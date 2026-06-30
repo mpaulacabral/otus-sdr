@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Central de Documentos — Consultor de Novos Negócios | Otus Engenharia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="otus-shared.css">
+<style>
+  :root {
+    --amarelo: #FFDC00;
+    --amarelo-bg: #fffce0;
+    --preto: #1C1C1B;
+    --cinza: #f4f5f7;
+    --borda: #e5e7eb;
+    --cinza-escuro: #374151;
+    --verde: #2d6a4f;
+    --verde-bg: #d8f3dc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--preto); background: #fff; }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, #1C1C1B 0%, #2a2a29 55%, #1a1a1a 100%);
+    color: white;
+    text-align: center;
+    padding: 64px 24px 56px;
+    border-bottom: 4px solid var(--amarelo);
+  }
+  .hero-owl { font-size: 52px; display: block; margin-bottom: 14px; }
+  .hero h1 { font-size: 28px; color: #fff; margin-bottom: 8px; letter-spacing: -.3px; }
+  .hero p { opacity: 0.8; font-size: 15px; max-width: 480px; margin: 0 auto; line-height: 1.6; }
+
+  /* ── Stats strip ── */
+  .stats-strip {
+    background: var(--amarelo);
+    padding: 10px 24px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat .num { font-size: 18px; font-weight: 800; color: var(--preto); display: block; }
+  .stat .lbl { font-size: 10px; font-weight: 600; color: rgba(0,0,0,0.6); text-transform: uppercase; letter-spacing: .5px; }
+
+  /* ── Cards grid ── */
+  .cards-section { max-width: 980px; margin: 0 auto; padding: 40px 24px; }
+  .cards-section h2 {
+    font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px;
+    color: var(--cinza-escuro); margin-bottom: 20px; opacity: .7;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 720px) { .cards-grid { grid-template-columns: 1fr; } }
+
+  .doc-card {
+    border-radius: 12px;
+    border: 2px solid var(--borda);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    transition: transform 0.17s, box-shadow 0.17s, border-color 0.17s;
+  }
+  .doc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    border-color: var(--amarelo);
+  }
+  .doc-card-head {
+    background: var(--preto);
+    padding: 22px 20px 18px;
+    border-bottom: 3px solid var(--amarelo);
+  }
+  .doc-card-head .icon { font-size: 30px; display: block; margin-bottom: 9px; }
+  .doc-card-head h3 { font-size: 17px; color: #fff; margin-bottom: 4px; }
+  .doc-card-head .sub { font-size: 12px; color: rgba(255,255,255,0.55); }
+
+  .doc-card-body {
+    padding: 18px 20px;
+    flex: 1;
+    border-bottom: 1px solid var(--borda);
+  }
+  .doc-card-body p {
+    font-size: 13px;
+    color: var(--cinza-escuro);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+  .doc-card-body ul { list-style: none; padding: 0; }
+  .doc-card-body ul li {
+    font-size: 12px;
+    color: var(--cinza-escuro);
+    padding: 3px 0;
+    display: flex;
+    gap: 7px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .doc-card-body ul li::before {
+    content: '→';
+    color: var(--amarelo);
+    font-weight: 800;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .doc-card-foot {
+    padding: 12px 20px;
+    background: var(--amarelo-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1C1C1B;
+    transition: background 0.15s;
+  }
+  .doc-card:hover .doc-card-foot { background: var(--amarelo); color: var(--preto); }
+  .doc-card-foot .arrow { font-size: 18px; }
+
+  /* ── How to use ── */
+  .how-section {
+    background: var(--cinza);
+    border-top: 1px solid var(--borda);
+    padding: 32px 24px 40px;
+    text-align: center;
+  }
+  .how-section h3 { font-size: 14px; font-weight: 700; color: var(--cinza-escuro); margin-bottom: 16px; text-transform: uppercase; letter-spacing: .5px; }
+  .how-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .how-item {
+    background: var(--preto);
+    color: var(--amarelo);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .how-item small { display: block; color: rgba(255,255,255,0.5); font-weight: 400; font-size: 11px; margin-top: 2px; }
+  .how-arrow { color: var(--amarelo); font-size: 20px; font-weight: 700; }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--preto);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 18px 24px;
+    font-size: 12px;
+    border-top: 3px solid var(--amarelo);
+  }
+  footer strong { color: var(--amarelo); }
+</style>
+</head>
+<body id="top">
+
+<div class="cross-nav" style="background:#1C1C1B;border-bottom:2px solid #FFDC00;position:sticky;top:0;z-index:300;display:flex;align-items:center;gap:2px;padding:0 16px;height:36px;overflow-x:auto;white-space:nowrap;">
+  <span class="cross-nav-brand" style="font-size:12px;font-weight:800;color:#FFDC00;margin-right:10px;flex-shrink:0;">🦉 Otus Engenharia</span>
+  <span class="cross-sep" style="color:rgba(255,255,255,0.2);margin:0 4px;">|</span>
+  <a href="index.html" class="current" style="color:#1C1C1B;background:#FFDC00;text-decoration:none;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:4px;flex-shrink:0;">Início</a>
+  <a href="Playbook%20SDR%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Playbook SDR</a>
+  <a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Produto &amp; Cases</a>
+  <a href="Scripts%20de%20Abordagem%20-%20Otus.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Scripts</a>
+</div>
+
+<div class="hero">
+  <span class="hero-owl">🦉</span>
+  <h1>Central de Documentos</h1>
+  <p style="color:#FFDC00;font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;opacity:1;">Consultor de Novos Negócios — Otus Engenharia</p>
+  <p>Tudo que você precisa para prospectar, qualificar e agendar — em um só lugar.</p>
+</div>
+
+<div class="stats-strip">
+  <div class="stat"><span class="num">+4mi m²</span><span class="lbl">Área gerenciada</span></div>
+  <div class="stat"><span class="num">+250</span><span class="lbl">Empreendimentos</span></div>
+  <div class="stat"><span class="num">+R$50mi</span><span class="lbl">Em economia p/ clientes</span></div>
+  <div class="stat"><span class="num">+60</span><span class="lbl">Profissionais</span></div>
+</div>
+
+<div class="cards-section">
+  <h2>Documentos de referência</h2>
+  <div class="cards-grid">
+
+    <a class="doc-card" href="Playbook SDR - Otus Engenharia.html">
+      <div class="doc-card-head">
+        <h3>Playbook SDR</h3>
+        <div class="sub">Guia completo de pré-vendas</div>
+      </div>
+      <div class="doc-card-body">
+        <p>O manual de operação do SDR: processos, critérios e ferramentas para qualificar e agendar com consistência.</p>
+        <ul>
+          <li>Funil Pipedrive — etapas e gatilhos</li>
+          <li>ICP (Perfil de Cliente Ideal)</li>
+          <li>Fluxos de cadência por canal</li>
+          <li>SPIN Selling por serviço</li>
+          <li>Escalada de cargos e pitch por persona</li>
+          <li>Métricas, rotinas e motivos de perda</li>
+          <li>Glossário de engenharia e vendas</li>
+        </ul>
+      </div>
+      <div class="doc-card-foot">Abrir Playbook SDR <span class="arrow">→</span></div>
+    </a>
+
+    <a class="doc-card" href="Produto e Cases - Otus Engenharia.html">
+      <div class="doc-card-head">
+        <h3>Produto &amp; Cases</h3>
+        <div class="sub">O que a Otus vende e entrega</div>
+      </div>
+      <div class="doc-card-body">
+        <p>Tudo sobre os serviços, método, portfólio e resultados reais para usar em conversas comerciais com dados concretos.</p>
+        <ul>
+          <li>Serviços e modelos de cobrança</li>
+          <li>Método Otus (Planejamento / Coord. / Compat.)</li>
+          <li>Cases com números e depoimentos reais</li>
+          <li>Portfólio por estado (SC, SP, PR…)</li>
+          <li>Argumento por cargo (Diretor → Analista)</li>
+          <li>Ecossistema, stack e marketing</li>
+        </ul>
+      </div>
+      <div class="doc-card-foot">Abrir Produto &amp; Cases <span class="arrow">→</span></div>
+    </a>
+
+    <a class="doc-card" href="Scripts de Abordagem - Otus.html">
+      <div class="doc-card-head">
+        <h3>Scripts de Abordagem</h3>
+        <div class="sub">Ligação, e-mail, WhatsApp e LinkedIn</div>
+      </div>
+      <div class="doc-card-body">
+        <p>Referência rápida com textos prontos para copiar e usar em tempo real: ligação, e-mail, WhatsApp e LinkedIn.</p>
+        <ul>
+          <li>Roteiro de ligação (4 etapas)</li>
+          <li>Variações por gatilho de personalização</li>
+          <li>Tratamento de todas as objeções</li>
+          <li>Casos completos outbound e inbound</li>
+          <li>Templates de e-mail, WhatsApp e LinkedIn</li>
+        </ul>
+      </div>
+      <div class="doc-card-foot">Abrir Scripts <span class="arrow">→</span></div>
+    </a>
+
+  </div>
+</div>
+
+<div class="how-section">
+  <h3>Como usar os documentos juntos</h3>
+  <div class="how-flow">
+    <div class="how-item">
+      Playbook SDR
+      <small>Regras, processos e critérios</small>
+    </div>
+    <span class="how-arrow">+</span>
+    <div class="how-item">
+      Produto &amp; Cases
+      <small>Argumentos e provas sociais</small>
+    </div>
+    <span class="how-arrow">+</span>
+    <div class="how-item">
+      Scripts
+      <small>Texto pronto para usar</small>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Otus Engenharia</strong> — Documentos internos SDR &nbsp;|&nbsp; Use em paralelo durante prospecção e ligações
+</footer>
+
+<script src="otus-shared.js"></script>
+</body>
+</html>

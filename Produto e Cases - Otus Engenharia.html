@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produto & Cases — Otus Engenharia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amarelo: #FFDC00;
+    --amarelo-bg: #fff8e0;
+    --amarelo-borda: #E6C800;
+    --preto: #1C1C1B;
+    --cinza-escuro: #374151;
+    --verde: #2d6a4f;
+    --verde-bg: #d8f3dc;
+    --azul: #1C1C1B;
+    --cinza: #f4f5f7;
+    --borda: #e5e7eb;
+    --texto: #1C1C1B;
+    --perigo: #e63946;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--texto); background: #fff; }
+
+  /* NAV */
+  nav { background: var(--amarelo); color: var(--preto); padding: 0 24px; position: sticky; top: 36px; z-index: 100; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; border-bottom: 3px solid #C9B800; }
+  nav h1 { font-size: 17px; font-weight: 800; flex: 1; padding: 14px 0; color: var(--preto); }
+  nav a { color: rgba(0,0,0,0.65); text-decoration: none; font-size: 12px; padding: 16px 10px; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -3px; font-weight: 600; display: inline-block; }
+  nav a:hover { color: var(--preto); border-bottom-color: var(--preto); }
+
+  .nav-item { position: relative; }
+  .nav-item > .dropdown { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid var(--borda); border-radius: 0 0 8px 8px; box-shadow: 0 6px 14px rgba(0,0,0,0.15); min-width: 250px; flex-direction: column; padding: 4px 0; z-index: 200; }
+  .nav-item:hover > .dropdown, .nav-item:focus-within > .dropdown { display: flex; }
+  .nav-item > .dropdown a { color: var(--cinza-escuro); padding: 8px 14px; font-size: 12px; font-weight: 500; border-bottom: 1px solid var(--cinza); white-space: normal; margin-bottom: 0; }
+  .nav-item > .dropdown a:last-child { border-bottom: none; }
+  .nav-item > .dropdown a:hover { background: var(--amarelo-bg); color: var(--preto); border-bottom-color: var(--cinza); }
+
+  .container { max-width: 1000px; margin: 0 auto; padding: 32px 24px 64px; }
+
+  /* TÍTULOS */
+  h2.section-title { font-size: 22px; color: var(--azul); border-bottom: 3px solid var(--amarelo); padding-bottom: 8px; margin: 52px 0 20px; }
+  h3.sub { font-size: 15px; color: var(--azul); margin: 24px 0 10px; font-weight: 700; }
+  h4.mini { font-size: 13px; font-weight: 700; margin: 14px 0 6px; color: var(--azul); }
+  p { line-height: 1.65; margin-bottom: 8px; }
+  ul { padding-left: 18px; }
+  li { margin-bottom: 5px; line-height: 1.6; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, var(--azul) 0%, #1a2f3a 100%); color: white; padding: 36px; border-radius: 14px; border-bottom: 4px solid var(--amarelo); }
+  .hero h1 { font-size: 28px; margin-bottom: 8px; }
+  .hero p { opacity: 0.85; font-size: 14px; max-width: 640px; }
+  .hero .pills { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .hero .pill { background: rgba(255,255,255,0.12); border-radius: 20px; padding: 5px 16px; font-size: 12px; border: 1px solid rgba(255,255,255,0.35); color: #fff; }
+
+  /* NÚMEROS */
+  .numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
+  .num-card { background: var(--azul); color: white; border-radius: 10px; padding: 20px 16px; text-align: center; border-bottom: 3px solid var(--amarelo); }
+  .num-card .big { font-size: 26px; font-weight: 800; color: var(--amarelo); display: block; margin-bottom: 4px; }
+  .num-card .label { font-size: 11px; opacity: 0.85; line-height: 1.4; }
+  @media (max-width: 700px) { .numbers { grid-template-columns: repeat(2, 1fr); } }
+
+  /* SERVIÇOS */
+  .servicos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+  .servico { border-radius: 10px; padding: 22px; border: 2px solid; }
+  .servico.principal { border-color: var(--amarelo); background: var(--amarelo-bg); }
+  .servico.pontual { border-color: var(--borda); background: var(--cinza); }
+  .servico h3 { font-size: 16px; margin-bottom: 10px; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+  .badge-verde { background: var(--preto); color: white; }
+  .badge-amarelo { background: var(--amarelo); color: #1a1a1a; font-weight: 800; }
+  .badge-azul { background: var(--azul); color: white; }
+  @media (max-width: 600px) { .servicos { grid-template-columns: 1fr; } }
+
+  /* COBRANÇA */
+  .cobranca { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .cob-card { border-radius: 8px; padding: 16px; border: 1px solid var(--borda); }
+  .cob-card h4 { margin-bottom: 8px; }
+  @media (max-width: 600px) { .cobranca { grid-template-columns: 1fr; } }
+
+  /* MÉTODO */
+  .metodo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+  .metodo-step { background: white; border: 1px solid var(--borda); border-radius: 10px; padding: 18px; position: relative; overflow: hidden; }
+  .metodo-step::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+  .metodo-step.m1::before { background: var(--amarelo); }
+  .metodo-step.m2::before { background: var(--amarelo); }
+  .metodo-step.m3::before { background: var(--amarelo); }
+  .metodo-num { font-size: 32px; font-weight: 900; opacity: 0.07; position: absolute; top: 8px; right: 12px; }
+  .metodo-step h4 { font-size: 14px; color: var(--azul); margin-bottom: 8px; }
+  @media (max-width: 600px) { .metodo { grid-template-columns: 1fr; } }
+
+  /* EQUIPE */
+  .equipe { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0; }
+  .eq-card { background: var(--cinza); border-radius: 8px; padding: 14px; border-left: 4px solid var(--amarelo); font-size: 13px; }
+  .eq-card strong { display: block; margin-bottom: 4px; color: var(--azul); font-size: 12px; }
+  @media (max-width: 600px) { .equipe { grid-template-columns: 1fr; } }
+
+  /* COMUNICAÇÃO */
+  .perfil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+  .perfil-card { border-radius: 10px; padding: 18px; }
+  .pc-verde { background: var(--verde-bg); border: 1px solid var(--amarelo); }
+  .pc-amarelo { background: var(--amarelo-bg); border: 2px solid var(--amarelo); }
+  .pc-azul { background: #e8f4fd; border: 1px solid #90c4e4; }
+  .pc-cinza { background: var(--cinza); border: 1px solid var(--borda); }
+  .perfil-card h4 { margin-bottom: 10px; font-size: 14px; color: var(--azul); }
+  @media (max-width: 600px) { .perfil-grid { grid-template-columns: 1fr; } }
+
+  /* MERCADO */
+  .mercado-dores { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .dor { background: #ffeef0; border: 1px solid #f4c4c8; border-radius: 8px; padding: 14px; font-size: 13px; border-top: 3px solid var(--amarelo); }
+  .dor strong { color: #c0392b; display: block; margin-bottom: 4px; }
+  @media (max-width: 600px) { .mercado-dores { grid-template-columns: 1fr; } }
+
+  /* ALERTA ESTRATÉGICO */
+  .alerta { background: var(--amarelo-bg); border: 2px solid var(--amarelo); border-radius: 10px; padding: 18px; margin: 16px 0; }
+  .alerta h4 { color: var(--preto); margin-bottom: 8px; font-size: 14px; }
+
+  /* UPSELL */
+  .upsell { background: var(--amarelo-bg); border: 2px solid var(--amarelo); border-radius: 12px; padding: 20px; margin: 16px 0; }
+  .upsell h4 { color: var(--preto); font-size: 15px; margin-bottom: 10px; }
+
+  /* CASES */
+  .case-card { border: 1px solid var(--borda); border-radius: 12px; margin-bottom: 24px; overflow: hidden; border-top: 4px solid var(--amarelo); }
+  .case-header { background: var(--preto); color: #fff; padding: 16px 20px; border-left: 5px solid var(--amarelo); }
+  .case-header h3 { font-size: 18px; margin-bottom: 4px; color: #fff; font-weight: 800; }
+  .case-header .sub-info { opacity: 0.75; font-size: 13px; color: #fff; }
+  .case-body { padding: 20px; }
+  .case-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .metric { background: var(--amarelo-bg); border: 1px solid var(--amarelo-borda); border-radius: 8px; padding: 14px; text-align: center; }
+  .metric .num { font-size: 24px; font-weight: 800; color: var(--preto); display: block; }
+  .metric .lbl { font-size: 11px; color: #555; }
+  @media (max-width: 600px) { .case-metrics { grid-template-columns: repeat(2, 1fr); } }
+
+  /* DEPOIMENTOS */
+  .depo { background: #f8f9fa; border-left: 4px solid var(--amarelo); border-radius: 0 8px 8px 0; padding: 16px 20px; margin-bottom: 14px; }
+  .depo blockquote { font-style: italic; line-height: 1.7; margin-bottom: 10px; font-size: 13.5px; }
+  .depo cite { font-style: normal; font-weight: 700; color: var(--azul); font-size: 13px; }
+  .depo cite span { font-weight: 400; color: #666; }
+
+  /* PORTFÓLIO POR ESTADO */
+  .estado-section { margin-bottom: 24px; }
+  .estado-header { background: var(--amarelo); color: var(--preto); padding: 10px 16px; border-radius: 8px 8px 0 0; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: space-between; border-left: 5px solid #c48a00; }
+  .estado-header .count { background: var(--preto); color: #fff; border-radius: 12px; padding: 2px 10px; font-size: 11px; font-weight: 800; }
+  .estado-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--borda); border: 1px solid var(--borda); border-top: none; border-radius: 0 0 8px 8px; overflow: hidden; }
+  .proj { background: white; padding: 12px; font-size: 12px; }
+  .proj strong { display: block; color: var(--azul); font-size: 12.5px; margin-bottom: 2px; }
+  .proj .area { color: var(--cinza-escuro); font-weight: 700; }
+  .proj .local { color: #888; font-size: 11px; }
+  @media (max-width: 700px) { .estado-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* STACK */
+  .stack { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .stack-card { border-radius: 8px; padding: 16px; text-align: center; border: 1px solid var(--borda); border-top: 3px solid var(--amarelo); background: var(--cinza) !important; }
+  .stack-card h4 { font-size: 13px; margin-bottom: 4px; color: var(--azul); font-weight: 700; }
+  .stack-card p { font-size: 11.5px; color: #666; }
+  @media (max-width: 600px) { .stack { grid-template-columns: 1fr; } }
+
+  /* ECOSSISTEMA */
+  .eco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
+  .eco-card { background: var(--azul); color: white; border-radius: 10px; padding: 18px; text-align: center; border-bottom: 3px solid var(--amarelo); }
+  .eco-card .icon { font-size: 26px; margin-bottom: 8px; }
+  .eco-card h4 { margin-bottom: 6px; font-size: 13px; color: var(--amarelo); }
+  .eco-card p { font-size: 11.5px; opacity: 0.85; }
+  @media (max-width: 600px) { .eco-grid { grid-template-columns: 1fr; } }
+
+  /* RESULTADO */
+  .resultado-destaque { background: var(--azul); color: white; border-radius: 12px; padding: 22px; text-align: center; margin: 16px 0; border: 2px solid var(--amarelo); }
+  .resultado-destaque .valor { font-size: 40px; font-weight: 900; color: var(--amarelo); }
+  .resultado-destaque p { opacity: 0.9; font-size: 13px; margin-top: 6px; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 13px; }
+  th { background: var(--amarelo); color: var(--preto); padding: 10px 12px; text-align: left; font-weight: 700; border-bottom: 2px solid #c48a00; }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--borda); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--cinza); }
+  tr:hover td { background: var(--amarelo-bg); }
+
+  /* MISC */
+  .obs { background: var(--amarelo-bg); border-left: 4px solid var(--amarelo); padding: 10px 14px; border-radius: 4px; margin: 10px 0; font-size: 13px; }
+  .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+  .tag-verde { background: var(--preto); color: white; }
+  .tag-azul { background: var(--azul); color: white; }
+  .tag-amarelo { background: var(--amarelo); color: #1a1a1a; font-weight: 800; }
+  .tag-cinza { background: #6c757d; color: white; }
+  .tag-vermelho { background: var(--perigo); color: white; }
+  .tag-preto { background: var(--preto); color: white; }
+
+  .card { background: var(--cinza); border: 1px solid var(--borda); border-radius: 8px; padding: 14px; margin-bottom: 12px; }
+  .card-amarelo { background: var(--amarelo-bg); border-color: var(--amarelo-borda); }
+  .card-vermelho { background: #ffeef0; border-color: var(--perigo); }
+
+  .steps { counter-reset: step; }
+  .step { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .step-num { background: var(--amarelo); color: #1a1a1a; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+  .step-body { flex: 1; }
+  .step-body strong { display: block; margin-bottom: 3px; }
+
+  .icp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 640px) { .icp-grid { grid-template-columns: 1fr; } }
+
+  .destaque { background: var(--preto); color: white; border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 13px; border-left: 4px solid var(--amarelo); }
+  .destaque strong { color: var(--amarelo); }
+
+  /* Marketing / Gestão por Resultados — uso interno */
+  .interno-tag { display: inline-block; background: var(--preto); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; margin-bottom: 12px; letter-spacing: .5px; border-left: 3px solid var(--amarelo); }
+
+  .funil-mkt { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 16px 0; text-align: center; align-items: stretch; }
+  .funil-mkt .etapa { border: 2px solid var(--amarelo); border-radius: 10px; padding: 12px 8px; }
+  .funil-mkt .etapa .nome { font-weight: 800; font-size: 12px; background: var(--amarelo); padding: 3px 8px; border-radius: 6px; display: inline-block; margin-bottom: 6px; }
+  .funil-mkt .etapa .desc { font-size: 11px; color: var(--cinza-escuro); line-height: 1.4; }
+  @media (max-width: 900px) { .funil-mkt { grid-template-columns: 1fr; } }
+
+  .farol-item { padding: 7px 12px; border-radius: 4px; margin-bottom: 6px; font-size: 12.5px; line-height: 1.5; }
+  .farol-vermelho { background: #ffeef0; border-left: 4px solid var(--perigo); }
+  .farol-amarelo { background: var(--amarelo-bg); border-left: 4px solid var(--amarelo); }
+  .farol-verde { background: var(--verde-bg); border-left: 4px solid var(--verde); }
+
+  .naoe-e { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .naoe-e .col { border: 1px solid var(--borda); border-radius: 8px; padding: 12px 14px; }
+  .naoe-e .col h4 { font-size: 13px; margin-bottom: 8px; }
+  .naoe-e .col.naoe { border-top: 3px solid var(--perigo); }
+  .naoe-e .col.eh { border-top: 3px solid var(--verde); }
+  @media (max-width: 640px) { .naoe-e { grid-template-columns: 1fr; } }
+</style>
+<link rel="stylesheet" href="otus-shared.css">
+</head>
+<body id="top">
+
+<div class="cross-nav" style="background:#1C1C1B;border-bottom:2px solid #FFDC00;position:sticky;top:0;z-index:300;display:flex;align-items:center;gap:2px;padding:0 16px;height:36px;overflow-x:auto;white-space:nowrap;">
+  <span class="cross-nav-brand" style="font-size:12px;font-weight:800;color:#FFDC00;margin-right:10px;flex-shrink:0;">Otus Engenharia</span>
+  <span class="cross-sep" style="color:rgba(255,255,255,0.2);margin:0 4px;">|</span>
+  <a href="index.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Início</a>
+  <a href="Playbook%20SDR%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Playbook SDR</a>
+  <a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html" class="current" style="color:#1C1C1B;background:#FFDC00;text-decoration:none;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:4px;flex-shrink:0;">Produto &amp; Cases</a>
+  <a href="Scripts%20de%20Abordagem%20-%20Otus.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Scripts</a>
+</div>
+
+<nav>
+  <h1><a href="#top" style="color:inherit;text-decoration:none;">Produto & Cases — Otus</a></h1>
+  <a href="#quem">Quem somos</a>
+
+  <div class="nav-item">
+    <a href="#mercado">Mercado ▾</a>
+    <div class="dropdown">
+      <a href="#mercado-dores">As grandes dores do mercado</a>
+      <a href="#mercado-nao-faz">O que a Otus NÃO faz</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <a href="#servicos">Serviços ▾</a>
+    <div class="dropdown">
+      <a href="#servicos-cobranca">Modelos de Cobrança</a>
+      <a href="#servicos-quando-indicar">Quando indicar qual serviço</a>
+      <a href="#servicos-melhor-fase">Melhor Fase para a Otus Entrar no Projeto</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <a href="#metodo">Método ▾</a>
+    <div class="dropdown">
+      <a href="#metodo-equipe">Estrutura da equipe em cada projeto</a>
+      <a href="#metodo-dados">Dados operacionais (Construflow)</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <a href="#comunicacao">Comunicação ▾</a>
+    <div class="dropdown">
+      <a href="#comunicacao-argumento">Argumento por cargo</a>
+    </div>
+  </div>
+
+  <a href="#cases">Cases</a>
+  <a href="#depoimentos">Depoimentos</a>
+  <a href="#portfolio">Portfólio</a>
+  <a href="#ecossistema">Ecossistema</a>
+  <a href="#stack">Stack</a>
+
+  <div class="nav-item">
+    <a href="#marketing">Marketing ▾</a>
+    <div class="dropdown">
+      <a href="#mkt-flywheel">Engrenagem Comercial (Flywheel)</a>
+      <a href="#mkt-funil">Funil de Leads — Nomenclatura</a>
+      <a href="#mkt-canais">Canais de Origem (MQL)</a>
+      <a href="#mkt-criterios">Critérios de Passagem entre Etapas</a>
+      <a href="#mkt-pipedrive">Boas Práticas no Pipedrive</a>
+      <a href="#mkt-performance">Performance Esperada do Funil</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <a href="#gestao">Gestão por Resultados ▾</a>
+    <div class="dropdown">
+      <a href="#gestao-modelo">Modelo OKR + Falconi</a>
+      <a href="#gestao-indicadores">Indicadores e Farol de Metas</a>
+      <a href="#gestao-reuniao">Reunião Mensal e PDCA</a>
+      <a href="#gestao-prazos">Prazos e Plataforma Otus</a>
+      <a href="#gestao-remuneracao">Remuneração Variável</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <a href="#cs">Sucesso do Cliente ▾</a>
+    <div class="dropdown">
+      <a href="#cs-missao">Missão e 4 Pilares</a>
+      <a href="#cs-jornada">Jornada do Cliente</a>
+      <a href="#cs-rituais">Rituais e Indicadores</a>
+      <a href="#cs-sinergia">Sinergia com Vendas</a>
+      <a href="#cs-conexoes">Conexões Internas</a>
+    </div>
+  </div>
+
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>Produto & Cases — Otus Engenharia</h1>
+    <p>Tudo que você precisa saber sobre o que a Otus vende, como se comunica, para quem vende e que resultados entrega.</p>
+    <div class="pills">
+      <a class="pill" href="#quem" style="text-decoration:none;">Quem somos</a>
+      <a class="pill" href="#servicos" style="text-decoration:none;">Serviços e Método</a>
+      <a class="pill" href="#servicos-cobranca" style="text-decoration:none;">Modelo de Cobrança</a>
+      <a class="pill" href="#comunicacao" style="text-decoration:none;">Comunicação</a>
+      <a class="pill" href="#mercado" style="text-decoration:none;">Mercado</a>
+      <a class="pill" href="#cases" style="text-decoration:none;">Cases</a>
+      <a class="pill" href="#portfolio" style="text-decoration:none;">Portfólio por Estado</a>
+      <a class="pill" href="#marketing" style="text-decoration:none;">Marketing</a>
+      <a class="pill" href="#gestao" style="text-decoration:none;">Gestão por Resultados</a>
+      <a class="pill" href="#cs" style="text-decoration:none;">Sucesso do Cliente</a>
+    </div>
+  </div>
+
+  <!-- ===================== QUEM É A OTUS ===================== -->
+  <h2 class="section-title" id="quem">Quem é a Otus</h2>
+
+  <p><strong>Missão:</strong> Tornar a construção civil um exemplo de eficiência, utilizando a tecnologia para adotar soluções inteligentes, reduzir o impacto ambiental e melhorar a vida das pessoas.</p>
+  <p><strong>Visão:</strong> Ser sinônimo de inovação e conhecimento na construção — o parceiro potencializador dos resultados de incorporadoras e construtoras.</p>
+  <p><strong>Posicionamento:</strong> <em>"Somos o parceiro estratégico da incorporação."</em> — oferecemos soluções completas em gerenciamento, coordenação e compatibilização de projetos, usando tecnologia e expertise técnica como base para aumento de eficiência e qualidade.</p>
+
+  <div class="numbers">
+    <div class="num-card"><span class="big">+4mi</span><span class="label">m² de área gerenciada</span></div>
+    <div class="num-card"><span class="big">+250</span><span class="label">empreendimentos gerenciados</span></div>
+    <div class="num-card"><span class="big">+50K</span><span class="label">soluções de projetos compatibilizadas</span></div>
+    <div class="num-card"><span class="big">+60</span><span class="label">profissionais no time</span></div>
+    <div class="num-card"><span class="big">+20bi</span><span class="label">em VGV de empreendimentos gerenciados (R$)</span></div>
+    <div class="num-card"><span class="big">+1.200</span><span class="label">profissionais coordenados</span></div>
+    <div class="num-card"><span class="big">+400</span><span class="label">empresas atendidas via Construflow</span></div>
+    <div class="num-card"><span class="big">+R$50mi</span><span class="label">em economia projetada para clientes</span></div>
+  </div>
+
+
+  <!-- ===================== MERCADO ===================== -->
+  <h2 class="section-title" id="mercado">O Mercado e as Dores que a Otus Resolve</h2>
+
+  <p>A construção civil brasileira opera com alto volume de retrabalho, atrasos e imprevisibilidade de custos. A Otus entra endereçando dores que incorporadoras e construtoras médias/grandes ainda resolvem de forma manual, descentralizada — ou não resolvem.</p>
+
+  <h3 class="sub" id="mercado-dores">As grandes dores do mercado</h3>
+  <div class="mercado-dores">
+    <div class="dor"><strong>Atrasos nos Marcos Estratégicos</strong>Obras que atrasam o lançamento ou início de obra impactam faturamento, caixa e relação com investidores. O gestor não tem visibilidade antecipada dos riscos.</div>
+    <div class="dor"><strong>Retrabalho em Obra</strong>Erros de projeto chegando ao canteiro geram paralisações, compra de material extra, demolições e aditivos. Origem: projetos incompatíveis entregues sem revisão integrada.</div>
+    <div class="dor"><strong>Projetos Desatualizados</strong>Obras que recebem pranchas por e-mail ou pelo WhatsApp trabalham com risco constante de execução com versão errada do projeto.</div>
+    <div class="dor"><strong>Gestão de Projetistas Descentralizada</strong>O responsável interno é multitarefa: coordena projeto, corre atrás de projetistas, vai a reuniões longas. Não sobra tempo para o estratégico.</div>
+    <div class="dor"><strong>Falta de Dados para Decisão</strong>Diretores tomam decisões sobre aditivos, trocas de produto e cronograma sem informação estruturada. A informação está na cabeça do coordenador, não em um dashboard.</div>
+    <div class="dor"><strong>Transição CAD → BIM sem Método</strong>Muitas empresas "contratam em BIM" sem definir requisitos. O modelo vem incompleto, sem parâmetros para quantitativos ou compatibilização.</div>
+  </div>
+
+  <!-- ALERTA ESTRATÉGICO: CASO DO ELEVADOR -->
+  <div class="alerta">
+    <h4>Caso Real — A Importância de Antecipar (use nas conversas)</h4>
+    <p><em>"Um cliente concretou a caixa de elevador antes da consultoria da Otus. Depois da concretagem, foi identificado que as dimensões não atendiam as normas de transporte vertical — e o custo para adequação foi altíssimo."</em></p>
+    <p style="margin-top:8px; font-size:13px;"><strong>Mensagem:</strong> Cada decisão tomada na fase de projeto custa uma fração do que custa corrigir em obra. Este é o núcleo da proposta de valor da Otus.</p>
+  </div>
+
+  <div class="resultado-destaque">
+    <p style="font-size:12px; opacity:0.85; margin-bottom:4px;">RESULTADO ACUMULADO PARA OS CLIENTES</p>
+    <span class="valor">+R$ 50 milhões</span>
+    <p>em economia projetada gerada para incorporadoras e construtoras</p>
+  </div>
+
+  <h3 class="sub" id="mercado-nao-faz">O que a Otus NÃO faz</h3>
+  <table>
+    <tr><th>Fora do portfólio</th><th>Como abordar</th></tr>
+    <tr><td>Gerenciamento de obras / canteiro</td><td>"Atuamos na fase de projetos, até o início da obra. Nosso trabalho entrega o projeto resolvido para a equipe executar com mais assertividade."</td></tr>
+    <tr><td>Orçamento e planejamento de obra</td><td>"Não fazemos orçamento de obra, mas os modelos gerenciados pela Otus permitem extração de quantitativos com muito mais precisão."</td></tr>
+    <tr><td>Consultoria BIM (apenas orientação)</td><td>"Não somos consultores — executamos. A equipe Otus está dentro do projeto, na operação do dia a dia."</td></tr>
+    <tr><td>Projetos de arquitetura ou engenharia</td><td>"Não produzimos os projetos — coordenamos e compatibilizamos os projetos feitos pelos projetistas contratados pela incorporadora."</td></tr>
+    <tr><td>Contratação de projetistas</td><td>"Definimos os requisitos e oferecemos modelos de contrato e cartas convite, mas a contratação é feita pela própria construtora."</td></tr>
+  </table>
+
+  <!-- ===================== SERVIÇOS ===================== -->
+  <h2 class="section-title" id="servicos">Os Serviços da Otus</h2>
+
+  <div class="servicos">
+    <div class="servico principal">
+      <span class="badge badge-verde">Serviço Principal</span>
+      <h3>Gerenciamento de Projetos em BIM</h3>
+      <p>A Otus atua como o <strong>braço direito da incorporadora</strong>, conectando clientes e projetistas em todo o desenvolvimento do empreendimento. Aplica o Método Otus nas 3 etapas: planejamento, coordenação e compatibilização.</p>
+      <br>
+      <strong style="font-size:12px; color: var(--azul);">O que está incluído:</strong>
+      <ul style="margin-top:8px; font-size:13px;">
+        <li>Planejamento: premissas, cronograma, PEB, NIN, DNA Construtivo (30–45 primeiros dias)</li>
+        <li>Coordenação: gestão de entregas, prazos, reuniões, relatórios gerenciais mensais</li>
+        <li>Compatibilização: análises federadas multidisciplinares por ciclos</li>
+        <li>Dashboard de acompanhamento para diretores/investidores</li>
+        <li>Gestão de entregáveis e versões (CDE)</li>
+        <li>Suporte à contratação (cartas convite, modelos de contrato)</li>
+      </ul>
+      <br>
+      <strong style="font-size:12px; color: var(--azul);">Resultado para o cliente:</strong>
+      <ul style="margin-top:8px; font-size:13px;">
+        <li>Alcance de marcos estratégicos (alvará, lançamento, início de obra)</li>
+        <li>Redução de até 5% do custo direto de obra</li>
+        <li>Equipe interna focada na estratégia — não na operação</li>
+        <li>Decisões críticas tomadas na fase de projeto, não em obra</li>
+      </ul>
+    </div>
+
+    <div class="servico pontual">
+      <span class="badge badge-amarelo">Serviço Pontual</span>
+      <h3 style="color: #b8860b;">Compatibilização de Projetos em BIM</h3>
+      <p>Solução <strong>técnica e pontual</strong> para quem já tem estrutura interna de coordenação, mas precisa de apoio especializado na análise dos modelos.</p>
+      <br>
+      <strong style="font-size:12px; color: var(--azul);">O que está incluído:</strong>
+      <ul style="margin-top:8px; font-size:13px;">
+        <li>Verificação de interferências físicas (clashes) entre disciplinas</li>
+        <li>Conformidade com normas técnicas e otimização de sistemas construtivos</li>
+        <li>Verificação de premissas do empreendimento e padrão construtivo</li>
+        <li>Consistência do modelo BIM com imagens comerciais e usabilidade</li>
+        <li><strong>2 relatórios por fase</strong>: lançamento + ajuste (com verificação dos ajustes incorporados)</li>
+        <li>Reuniões com cliente e reuniões multidisciplinares com projetistas</li>
+        <li>Gestão de versões dos arquivos BIM</li>
+      </ul>
+      <br>
+      <div class="obs" style="margin-top:8px; font-size:12px;">
+        <strong>Não inclui:</strong> gestão de cronograma, comunicação contínua com projetistas ou coordenação de equipes. Para isso, o serviço indicado é o Gerenciamento Completo.<br><br>
+        Pode ser vendida por <strong>pacote de ciclos</strong> ou ciclo pontual, dependendo da necessidade do projeto.
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub" id="servicos-cobranca">Modelos de Cobrança</h3>
+  <div class="cobranca">
+    <div class="cob-card" style="background: var(--verde-bg); border-color: var(--verde-claro);">
+      <h4 style="color: var(--verde);">Gerenciamento — Mensalidade</h4>
+      <p>Cobrança mensal pelo tempo de duração do projeto. A Otus fica engajada de forma contínua durante todo o ciclo de desenvolvimento, da concepção até o início da obra.</p>
+      <p style="font-size:12px; color:#555; margin-top:8px;">→ Contrato de longa duração atrelado ao cronograma do empreendimento.</p>
+    </div>
+    <div class="cob-card" style="background: var(--amarelo-bg); border-color: var(--amarelo);">
+      <h4 style="color: #b8860b;">Compatibilização — Por Entrega/Ciclo</h4>
+      <p>Cobrança por entrega de relatórios ou por pacote de ciclos de verificação. Serviço pontual e sob demanda, sem necessidade de presença contínua.</p>
+      <p style="font-size:12px; color:#555; margin-top:8px;">→ Pode ser 1 ciclo ou pacotes, conforme a fase e complexidade do projeto.</p>
+    </div>
+  </div>
+
+  <h3 class="sub" id="servicos-quando-indicar">Quando indicar qual serviço</h3>
+  <table>
+    <tr><th>Situação do lead</th><th>Serviço indicado</th></tr>
+    <tr><td>Primeiro empreendimento em BIM, sem metodologia, equipe enxuta</td><td><span class="tag tag-verde">Gerenciamento Completo</span></td></tr>
+    <tr><td>Múltiplos projetos simultâneos, equipe sobrecarregada</td><td><span class="tag tag-verde">Gerenciamento Completo</span></td></tr>
+    <tr><td>Dificuldade com coordenação de projetistas externos</td><td><span class="tag tag-verde">Gerenciamento Completo</span></td></tr>
+    <tr><td>Já tem gestor interno, quer reforço técnico nas análises</td><td><span class="tag tag-amarelo">Compatibilização</span></td></tr>
+    <tr><td>Projeto em fase avançada — quer relatório de riscos antes da obra</td><td><span class="tag tag-amarelo">Compatibilização</span></td></tr>
+    <tr><td>Lead resiste ao gerenciamento, quer testar primeiro</td><td><span class="tag tag-amarelo">Compatibilização (porta de entrada)</span></td></tr>
+  </table>
+
+  <!-- UPSELL -->
+  <div class="upsell">
+    <h4>Estratégia de Upsell: Compatibilização como porta de entrada</h4>
+    <p>Quando o lead resiste ao Gerenciamento Completo, a Compatibilização pode ser usada como <strong>"ciclo de teste"</strong>: o cliente contrata 1 ciclo de compatibilização, a Otus demonstra o valor na prática e, com frequência, converte em um contrato de coordenação mais amplo.</p>
+    <p style="margin-top:8px; font-size:13px;"><strong>Insight do treinamento:</strong> muitos clientes chegam pedindo "compatibilização" quando, na verdade, o que precisam é de "coordenação". Desenvolver esse feeling é parte do trabalho da pré-venda — fazer as perguntas certas de diagnóstico revela a necessidade real.</p>
+  </div>
+
+  <!-- ===================== MELHOR FASE DE ENTRADA ===================== -->
+  <h3 class="sub" id="servicos-melhor-fase">Melhor Fase para a Otus Entrar no Projeto</h3>
+
+  <div class="alerta">
+    <h4>Por que anteprojeto/pré-executivo é a janela ideal</h4>
+    <p>Nessas fases os projetos das disciplinas (ARQ, estrutural, hidráulica, elétrica, climatização) ainda estão sendo desenvolvidos — ainda há espaço para ajustes. É justamente aí que a compatibilização tem valor máximo: a Otus identifica interferências e gera ciclos de revisão com os projetistas <strong>antes</strong> de travar o projeto e antes da obra começar, evitando retrabalho caro em campo.</p>
+  </div>
+
+  <div class="obs">
+    <strong>Entrada tardia (executivo fechado ou em obra):</strong> os projetos já estão consolidados — mudar vira retrabalho caro, os projetistas resistem a revisar algo "pronto", e a Otus passa a só apontar problemas que não há mais como corrigir no projeto. O relatório vira "diagnóstico do desastre" em vez de prevenção. Por isso pós-executivo/obra é critério de exclusão no ICP, enquanto anteprojeto e pré-executivo continuam sendo a entrada ideal.
+  </div>
+
+  <h4 class="mini">Fase x Pacote: como a fase muda a oferta</h4>
+  <p>A divisão entre os dois pacotes não é definida pela fase em si, e sim pela <strong>situação/diagnóstico do cliente</strong> — mas a fase determina o que ainda é possível vender.</p>
+
+  <table>
+    <tr><th>Fase do projeto</th><th>O que ainda é possível</th><th>Pacote indicado</th></tr>
+    <tr><td><strong>Anteprojeto</strong></td><td>Módulo de Planejamento completo (PEB, NIN, DNA Construtivo, cronograma de marcos) nos primeiros 30–45 dias, seguido de coordenação e compatibilização desde o início.</td><td><span class="tag tag-verde">Gerenciamento Completo</span></td></tr>
+    <tr><td><strong>Pré-Executivo</strong></td><td>A janela dos primeiros 30–45 dias de Planejamento pode já ter passado, mas ainda cabem ciclos de coordenação e compatibilização. Se o cliente não tem ninguém coordenando os projetistas, ainda cabe Gerenciamento (eventualmente sem o módulo cheio de Planejamento inicial). Se já tem gestor/coordenador interno e só quer apoio técnico, entra só Compatibilização.</td><td><span class="tag tag-verde">Gerenciamento</span> ou <span class="tag tag-amarelo">Compatibilização</span> (depende do diagnóstico)</td></tr>
+    <tr><td><strong>Executivo fechado / Obra</strong></td><td>Projeto consolidado — pouco espaço para correção; relatórios apontam problemas que não há mais como corrigir.</td><td>Critério de exclusão (ICP)</td></tr>
+  </table>
+
+  <div class="obs">
+    <strong>Pergunta de diagnóstico:</strong> "Vocês têm um responsável interno pela coordenação dos projetistas hoje?" — a resposta revela se cabe Gerenciamento Completo (sem coordenação interna) ou Compatibilização isolada (já tem coordenação interna, quer reforço técnico).
+  </div>
+
+  <!-- ===================== MÉTODO OTUS ===================== -->
+  <h2 class="section-title" id="metodo">O Método Otus</h2>
+
+  <div class="metodo">
+    <div class="metodo-step m1">
+      <div class="metodo-num">1</div>
+      <h4>Planejamento</h4>
+      <p style="font-size:12px; color:#888; margin-bottom:8px;">Primeiros 30–45 dias do projeto</p>
+      <ul style="font-size:13px;">
+        <li>Marcos estratégicos: alvará, lançamento, início de obra</li>
+        <li>Cronograma de entregas por fase e disciplina</li>
+        <li>Elaboração do PEB (Plano de Execução BIM)</li>
+        <li>Definição dos NIN (Níveis de Informação por Disciplina)</li>
+        <li>DNA Construtivo da incorporadora (padrões de materiais e sistemas)</li>
+        <li>Definição de ferramentas obrigatórias: Construflow, Autodoc</li>
+        <li>Nomenclatura de arquivos e procedimentos de entrega</li>
+        <li>Suporte à contratação de projetistas BIM</li>
+      </ul>
+      <div class="obs" style="margin-top:10px; font-size:12px;">A Otus define os requisitos, mas <strong>não executa a contratação</strong>. Oferece cartas convite e modelos de contrato como suporte.</div>
+    </div>
+    <div class="metodo-step m2">
+      <div class="metodo-num">2</div>
+      <h4>Coordenação</h4>
+      <ul style="font-size:13px;">
+        <li>Monitoramento de entregas via Construflow</li>
+        <li>Atualização e comunicação de cronogramas com justificativas de atrasos</li>
+        <li>Promoção ativa da comunicação entre projetistas e contratante</li>
+        <li>Relatórios gerenciais mensais (status, pendências, próximos passos)</li>
+        <li>Liderança em reuniões de coordenação (sem reuniões longas e improdutivas)</li>
+        <li>Dashboard em tempo real para diretores e investidores</li>
+        <li>Simulação de cenários (ex: troca de sistema estrutural)</li>
+      </ul>
+    </div>
+    <div class="metodo-step m3">
+      <div class="metodo-num">3</div>
+      <h4>Compatibilização</h4>
+      <ul style="font-size:13px;">
+        <li>Análises críticas multidisciplinares em ciclos organizados</li>
+        <li>Verificações técnicas: interferências físicas, conformidade normativa, otimização de sistemas</li>
+        <li>Premissas do empreendimento: padrão construtivo, materiais, usabilidade</li>
+        <li>Consistência de modelos BIM (geometria + informações)</li>
+        <li>Questionamento técnico de escolhas (ex: robustez de pilares) para promover economia</li>
+        <li>2 relatórios por fase: lançamento + ajuste</li>
+        <li>Gestão de versões dos arquivos BIM</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub" id="metodo-equipe">Estrutura da equipe em cada projeto</h3>
+  <div class="equipe" style="grid-template-columns: repeat(5, 1fr);">
+    <div class="eq-card"><strong>Líder de Projetos</strong>Planejamento estratégico, decisões-chave, liderança do time Otus</div>
+    <div class="eq-card"><strong>Coordenador</strong>Ponte com cliente e projetistas; cronograma, análises e reuniões técnicas</div>
+    <div class="eq-card"><strong>Compatibilizador</strong>Análise técnica e apoio nas etapas de compatibilização</div>
+    <div class="eq-card" style="border-left-color: var(--amarelo);"><strong>Sucesso do Cliente</strong>Garante padrões de qualidade Otus e NPS do cliente, paralelo à equipe técnica</div>
+    <div class="eq-card" style="border-left-color: #6c757d;"><strong>Time Qualidade & Tecnologia</strong>Soluções tecnológicas internas para agregar valor ao processo</div>
+  </div>
+
+  <h3 class="sub" id="metodo-dados">Dados operacionais (Construflow)</h3>
+  <div class="numbers" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="num-card"><span class="big">53%</span><span class="label">dos apontamentos resolvidos em fases iniciais do projeto</span></div>
+    <div class="num-card"><span class="big">30%</span><span class="label">mais rápido na resolução de apontamentos em média</span></div>
+    <div class="num-card"><span class="big">50%</span><span class="label">mais rápido em problemas normativos e técnicos complexos</span></div>
+    <div class="num-card"><span class="big">+800</span><span class="label">tipos de análises realizadas nos projetos</span></div>
+  </div>
+
+  <!-- ===================== PERFIL DE COMUNICAÇÃO ===================== -->
+  <h2 class="section-title" id="comunicacao">Perfil de Comunicação da Otus</h2>
+
+  <p>A comunicação da Otus é <strong>consultiva, técnica e próxima</strong>. Não vende software nem serviço genérico — vende <em>parceria estratégica</em> e <em>transformação de resultado</em>. A proposta de valor principal é <strong>antecipar decisões críticas na fase de projeto para evitar custos e riscos em obra.</strong></p>
+
+  <div class="perfil-grid">
+    <div class="perfil-card pc-verde">
+      <h4>Tom de Voz</h4>
+      <ul>
+        <li><strong>Consultivo e especialista</strong> — fala de igual para igual com diretores técnicos</li>
+        <li><strong>Confiante, não arrogante</strong> — usa dados reais de cases para embasar</li>
+        <li><strong>Postura de dono</strong> do projeto do cliente — investe tempo dos especialistas</li>
+        <li><strong>Didático</strong> — muitos clientes estão no 1º contato com BIM; precisa educar</li>
+        <li><strong>Realista nas vendas</strong> — não promete o que não entrega (alimenta NPS positivo)</li>
+        <li>Adapta profundidade técnica conforme o cargo do interlocutor</li>
+      </ul>
+    </div>
+    <div class="perfil-card pc-amarelo">
+      <h4>Mensagens-Chave</h4>
+      <ul>
+        <li>"Gerenciamento que <strong>transforma projetos em resultados</strong>"</li>
+        <li>"Somos o <strong>parceiro estratégico</strong> da incorporação"</li>
+        <li>"Tornamos o <strong>complexo em simples</strong>"</li>
+        <li>"Postura de dono — investimos no seu projeto"</li>
+        <li>"<strong>Aceleradores</strong> do processo BIM"</li>
+        <li>"Decisões tomadas no projeto custam <strong>100x menos</strong> do que em obra"</li>
+        <li>"Até <strong>5% de redução</strong> nos custos diretos de obra"</li>
+        <li>"<strong>Previsibilidade</strong> e controle dos seus marcos estratégicos"</li>
+      </ul>
+    </div>
+    <div class="perfil-card pc-azul">
+      <h4>Canais e Presença</h4>
+      <ul>
+        <li><strong>LinkedIn</strong> — principal canal B2B, conteúdo educativo e cases</li>
+        <li><strong>Instagram</strong> — portfólio visual, cultura e eventos</li>
+        <li><strong>Café BIM</strong> — evento itinerante, networking com decisores</li>
+        <li><strong>Otus Day</strong> — benchmarking exclusivo para clientes</li>
+        <li><strong>Comunidade Otus</strong> — rodas de conversa online</li>
+        <li><strong>Otus Educação</strong> — cursos BIM (gerador de leads qualificados)</li>
+        <li>E-books e iscas digitais disponíveis na pasta <em>"compartilhamento marketing vendas"</em> no Drive</li>
+      </ul>
+    </div>
+    <div class="perfil-card pc-cinza">
+      <h4>Abordagem Comercial</h4>
+      <ul>
+        <li>Diagnóstico profundo antes de qualquer proposta (metodologia SPIN)</li>
+        <li>Cita cases da <strong>mesma região e padrão</strong> do lead</li>
+        <li>Demonstra conhecimento do mercado e concorrência local</li>
+        <li>Usa parceiros de projetos como ponte de credibilidade</li>
+        <li>Sempre busca reunião com o maior nível decisório possível</li>
+        <li>Constrói relacionamento de longo prazo, não transação pontual</li>
+        <li><strong>SDR como maior cliente do marketing</strong>: fornece feedbacks sobre qualidade dos leads gerados</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub" id="comunicacao-argumento">Argumento por cargo</h3>
+  <table>
+    <tr><th>Cargo</th><th>O que importa</th><th>Argumento principal</th></tr>
+    <tr><td><strong>Diretor / Sócio</strong></td><td>VGV, prazo de lançamento, risco financeiro</td><td>"Reduzimos até 5% dos custos de obra e garantimos os seus marcos estratégicos. Decisões no projeto custam 100x menos que em obra."</td></tr>
+    <tr><td><strong>Gerente</strong></td><td>Tomada de decisão, informações confiáveis</td><td>"Dashboard em tempo real, apontamentos resolvidos 50% mais rápido — sem surpresas no canteiro."</td></tr>
+    <tr><td><strong>Coordenador</strong></td><td>Processos, desgaste com projetistas, reuniões longas</td><td>"Assumimos a coordenação dos projetistas: prazos, reuniões, atas e comunicação do dia a dia."</td></tr>
+    <tr><td><strong>Analista</strong></td><td>Ferramentas BIM, problemas técnicos do projeto</td><td>"Plataforma de apontamentos, modelos federados, ciclos organizados de compatibilização."</td></tr>
+  </table>
+
+  <!-- ===================== CASES ===================== -->
+  <h2 class="section-title" id="cases">Cases de Sucesso</h2>
+
+  <div class="case-card">
+    <div class="case-header">
+      <h3>Tarraf Square — Prêmio Master Imobiliário</h3>
+      <div class="sub-info">São José do Rio Preto – SP &nbsp;|&nbsp; Multiuso (2 Torres) &nbsp;|&nbsp; VGV: R$ 360M+ &nbsp;|&nbsp; Cliente: TARRAF Incorporações</div>
+    </div>
+    <div class="case-body">
+      <p><strong>Contexto:</strong> Primeiro projeto multiuso da TARRAF realizado em BIM — 40 anos de mercado, 1,9 milhão de m² construídos. Torre S (365 Studios de 32–59m²) + Torre B (375 salas comerciais de 36–1.000m²), integradas ao Iguatemi. Meta clara: zero erro por projeto desatualizado, lançamento no prazo e produto alinhado ao padrão do shopping.</p>
+      <p><strong>Desafio:</strong> Apenas <strong>9 meses</strong> para viabilizar o lançamento, <strong>40 disciplinas simultâneas</strong> e necessidade de ajustar o produto final sem comprometer orçamento ou cronograma.</p>
+      <div class="case-metrics">
+        <div class="metric"><span class="num">800+</span><span class="lbl">apontamentos solucionados</span></div>
+        <div class="metric"><span class="num">260</span><span class="lbl">eram críticos</span></div>
+        <div class="metric"><span class="num">40</span><span class="lbl">disciplinas gerenciadas</span></div>
+      </div>
+      <div class="obs"><strong>Vencedor do Prêmio Master Imobiliário — Categoria Comercialização.</strong> No lançamento: <strong>96% das 740 unidades vendidas em 72h</strong>, com mais de 300 pessoas no estande na primeira semana. VGV de R$ 360M+.</div>
+      <p style="margin-top:10px; font-size:13px; color: var(--verde); font-weight:700;">Como usar em vendas:</p>
+      <p style="font-size:13px;"><em>"O Tarraf foi o 1º projeto multiuso da incorporadora em BIM — 40 disciplinas, 9 meses de prazo. Com o Método Otus entregaram no prazo, ganharam o Master Imobiliário e venderam 96% das unidades em 72 horas. VGV de R$360M."</em></p>
+      <div class="depo" style="margin-top:16px;">
+        <blockquote>"A Otus tem postura de dono. Trazem método com flexibilidade para atingir resultados e investem tempo dos seus especialistas nos projetos que gerenciam, trazendo propostas e análise de dados para tomada de decisão. Quando o assunto é BIM, são aceleradores do processo apresentando ferramentas e suas experiências!"</blockquote>
+        <cite>Valléria Moreira <span>— Gerente de Planejamento, Controle e Orçamento | TARRAF</span></cite>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-card">
+    <div class="case-header">
+      <h3>Nest 635 — Vertical Houses</h3>
+      <div class="sub-info">Maringá – PR &nbsp;|&nbsp; 22.728 m² &nbsp;|&nbsp; Cliente: PRC Construtora</div>
+    </div>
+    <div class="case-body">
+      <p><strong>Contexto:</strong> Primeiro lançamento vertical de alto padrão da PRC em Maringá — e também o primeiro projeto em BIM da incorporadora. Produto com arquitetura complexa: piscinas nas sacadas, floreiras integradas à fachada, lago natural, quadra de beach tênis e áreas de convívio sofisticadas. A PRC buscava um parceiro externo para viabilizar esse novo nível de empreendimento.</p>
+      <p><strong>Desafio:</strong> Nenhuma metodologia BIM estabelecida internamente. 25 disciplinas a serem coordenadas do zero, com validações simultâneas entre paisagismo, estrutura, impermeabilização e interiores.</p>
+      <div class="case-metrics">
+        <div class="metric"><span class="num">559+</span><span class="lbl">apontamentos solucionados</span></div>
+        <div class="metric"><span class="num">~100</span><span class="lbl">eram críticos</span></div>
+        <div class="metric"><span class="num">52%</span><span class="lbl">resolvidos antes do pré-executivo</span></div>
+      </div>
+      <div class="obs"><strong>52% dos apontamentos solucionados nas fases EP e AP</strong> — onde o custo de alteração é menor. Lançamento e início de obras entregues dentro do cronograma. A parceria evoluiu: a Otus hoje gerencia o segundo empreendimento da PRC.</div>
+      <p style="margin-top:10px; font-size:13px; color: var(--verde); font-weight:700;">Como usar em vendas:</p>
+      <p style="font-size:13px;"><em>"A PRC estreou no alto padrão vertical com BIM — nunca tinham feito. Com a Otus, 52% dos problemas foram resolvidos antes da fase mais cara, o lançamento foi no prazo e o produto chegou ao mercado com consistência técnica."</em></p>
+      <div class="depo" style="margin-top:16px;">
+        <blockquote>"Com a Otus sentimos 100% de disponibilidade. Gostamos da forma que eles resolvem o problema e como são uma ponte entre as partes. Mesmo com processos bem definidos, trabalhar com a Otus não é algo robotizado — e dentro dessa cultura, não conheço quem entrega um trabalho complexo, longo, com várias partes envolvidas de forma tão simples."</blockquote>
+        <cite>João Amaral Ferreira <span>— Diretor de Projetos | PRC Construtora</span></cite>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-card">
+    <div class="case-header">
+      <h3>CFL Oceana — Maior VGV de Florianópolis</h3>
+      <div class="sub-info">Jurerê Internacional – Florianópolis, SC &nbsp;|&nbsp; 82.000 m² &nbsp;|&nbsp; 7 Torres &nbsp;|&nbsp; Cliente: CFL Incorporadora</div>
+    </div>
+    <div class="case-body">
+      <p><strong>Contexto:</strong> Maior VGV de Florianópolis e primeiro projeto da CFL em BIM nesse porte. 7 torres integrando residências de luxo (127 apartamentos de 180–976m², de 3 a 6 suítes), hotel boutique e mall gastronômico — 82 mil m² no total. Sistemas sofisticados: climatização VRF, piscinas privativas nas coberturas, customização por unidade.</p>
+      <p><strong>Desafio:</strong> 45+ disciplinas simultâneas, projeto recebido já em anteprojeto, múltiplos stakeholders — e, às vésperas do protocolo, o plano diretor da cidade foi alterado. No meio do desenvolvimento, uma nova equipe de estrutura foi contratada para estudo paralelo de otimização.</p>
+      <div class="case-metrics">
+        <div class="metric"><span class="num">1.710</span><span class="lbl">apontamentos solucionados</span></div>
+        <div class="metric"><span class="num">45+</span><span class="lbl">disciplinas coordenadas</span></div>
+        <div class="metric"><span class="num">R$ 1,3 bi</span><span class="lbl">comercializados em 30 dias</span></div>
+      </div>
+      <div class="obs"><strong>Mudança do plano diretor virou oportunidade:</strong> novos ganhos de área e pé-direito incorporados ao produto com mínimo impacto no cronograma. Troca de equipe estrutural resultou em laje nervurada mais econômica e melhoria de pé-direito. Valor médio de venda: R$ 50 mil/m².</div>
+      <p style="margin-top:10px; font-size:13px; color: var(--verde); font-weight:700;">Como usar em vendas:</p>
+      <p style="font-size:13px;"><em>"O Oceana foi o maior VGV de Florianópolis — R$1,3 bilhão em 30 dias. 45 disciplinas, 1.710 apontamentos, plano diretor mudou no meio do projeto. Com a Otus, cada desafio virou oportunidade: o produto chegou ao lançamento melhor do que estava planejado."</em></p>
+      <div class="depo" style="margin-top:16px;">
+        <blockquote>"Quando existe sinergia entre a incorporadora e a equipe de coordenação, como acontece com a Otus no Oceana, o trabalho flui com mais confiança e eficiência. As demandas são atendidas com consistência, o que reduz a necessidade de fiscalização constante. Isso libera nosso time para focar no que realmente importa: o produto e o DNA da CFL."</blockquote>
+        <cite>Mariana Vivan <span>— Gerente de Projetos | CFL Incorporadora</span></cite>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-card">
+    <div class="case-header">
+      <h3>Guará Home Club — Proteção de Margem de Lucro</h3>
+      <div class="sub-info">Itajaí – SC &nbsp;|&nbsp; 33 pavimentos &nbsp;|&nbsp; Cliente: Êxito Construtora</div>
+    </div>
+    <div class="case-body">
+      <p><strong>Contexto:</strong> A Êxito Construtora, com 28 anos e foco em Itajaí desde 2007, cresceu para projetos mais complexos e precisou mudar sua forma de operar. O modelo de resolver detalhes técnicos no canteiro virou inviável. A Otus foi acionada como parceira estratégica para antecipar decisões e proteger a margem de lucro — primeiro no Residencial Oiti, depois no Guará Home Club.</p>
+      <p><strong>Desafio:</strong> Três "drenos" de margem a eliminar: falta de detalhamento nos projetos, disciplinas ausentes do escopo inicial (climatização, impermeabilização, interiores) e cultura de resolver problemas no canteiro.</p>
+      <div class="case-metrics">
+        <div class="metric"><span class="num">6:1</span><span class="lbl">ROI de coordenação</span></div>
+        <div class="metric"><span class="num">460+</span><span class="lbl">apontamentos resolvidos</span></div>
+        <div class="metric"><span class="num">60%</span><span class="lbl">detectados antes do pré-executivo</span></div>
+      </div>
+      <div class="obs"><strong>Resultados mensuráveis:</strong> Estudo drywall vs. alvenaria gerou decisão com dados — identificada variação de <strong>R$ 243.488</strong>. Conflito de gás e estrutura detectado nos 26 pavimentos tipo: resolvido digitalmente, evitando furos em vigas e desníveis de piso em toda a obra. 135 definições técnicas registradas para uso nos próximos empreendimentos.</div>
+      <p style="margin-top:10px; font-size:13px; color: var(--verde); font-weight:700;">Como usar em vendas:</p>
+      <p style="font-size:13px;"><em>"Para cada R$1 investido em coordenação com a Otus, a Êxito evitou R$6 em desperdícios — isso veio do próprio sócio da construtora. 60% dos problemas resolvidos antes da fase mais cara, cada decisão tomada com dados reais."</em></p>
+      <div class="depo" style="margin-top:16px;">
+        <blockquote>"O ponto principal é antecipar a tomada de decisão para garantir mais margem e previsibilidade lá na frente. A parceria com a Otus me tira da gestão operacional dos projetos e me permite focar no que é estratégico: novos negócios, gestão financeira e melhoria de processos. É um crescimento programado que exige bons parceiros e evolução constante no dia a dia."</blockquote>
+        <cite>Gustavo Bernardi <span>— Sócio Diretor | Êxito Construtora</span></cite>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-card">
+    <div class="case-header">
+      <h3>It's — Mudança Radical de Escopo, R$ 6M de Economia</h3>
+      <div class="sub-info">Itapema – SC &nbsp;|&nbsp; 2 Torres, 354 unidades &nbsp;|&nbsp; Cliente: ABC Empreendimentos</div>
+    </div>
+    <div class="case-body">
+      <p><strong>Contexto:</strong> Empreendimento de uso misto (flats, coworking e lazer) em Itapema – SC, mercado de alto padrão competitivo no litoral catarinense. No meio do desenvolvimento, a ABC decidiu por uma reformulação completa do produto — impactando layouts, acessos, tipologias e todas as diretrizes técnicas.</p>
+      <p><strong>Desafio:</strong> Recomeçar do Estudo Preliminar com apenas <strong>3 a 4 meses até o lançamento comercial</strong>. Trocar projetistas, reorganizar cronograma, manter viabilidade financeira e não perder o prazo de lançamento.</p>
+      <div class="case-metrics">
+        <div class="metric"><span class="num">R$ 6M</span><span class="lbl">de economia gerada</span></div>
+        <div class="metric"><span class="num">450</span><span class="lbl">apontamentos técnicos gerenciados</span></div>
+        <div class="metric"><span class="num">35</span><span class="lbl">disciplinas ativas</span></div>
+      </div>
+      <div class="obs"><strong>Destaque técnico:</strong> Nova modulação estrutural da garagem (10m, 7,5m e 5m) eliminou vigas de transição — economia de <strong>mais de R$ 1M só na estrutura</strong>. Outros R$ 5M vieram da compatibilização sistematizada. Total: <strong>~2,5% do custo direto da obra economizado</strong>. Lançamento e início de obras entregues dentro do cronograma reestruturado.</div>
+      <p style="margin-top:10px; font-size:13px; color: var(--verde); font-weight:700;">Como usar em vendas:</p>
+      <p style="font-size:13px;"><em>"A ABC mudou o produto completamente no meio do projeto — 3 a 4 meses antes do lançamento. A Otus reorganizou tudo: nova estrutura, novos projetistas, novo cronograma. Resultado: lançamento no prazo e R$6M de economia — 2,5% do custo direto da obra."</em></p>
+      <div class="depo" style="margin-top:16px;">
+        <blockquote>"Quando me perguntam por que contratar uma coordenação externa, sempre destaco o que vejo na prática: otimização de tempo, menos retrabalho, apoio na tomada de decisão e antecipação de problemas. No fim, o serviço da Otus acaba encurtando o caminho para que a gente chegue ao objetivo de forma mais rápida e eficiente."</blockquote>
+        <cite>Guilherme Fernandes <span>— Gerente de Projetos | ABC Empreendimentos</span></cite>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-card">
+    <div class="case-header">
+      <h3>Custo Evitado — Subestação</h3>
+      <div class="sub-info">Empreendimento comercial multiuso &nbsp;|&nbsp; Apontamento de alta complexidade</div>
+    </div>
+    <div class="case-body">
+      <p><strong>Problema:</strong> Subestações seriam instaladas em local que ocupava área de loja, comprometendo receita comercial do empreendimento.</p>
+      <p><strong>Solução Otus:</strong> Reposicionamento das subestações aproveitando lajes já previstas nos mezaninos, liberando 100% da área de loja.</p>
+      <div class="resultado-destaque" style="padding:14px; margin:12px 0;">
+        <p style="font-size:11px; opacity:0.85; margin-bottom:4px;">CUSTO EVITADO (Sinapi SC – Out/23 atualizado)</p>
+        <span class="valor" style="font-size:30px;">R$ 292.483,95</span>
+        <p>com um único apontamento de alta complexidade</p>
+      </div>
+      <p style="font-size:13px; color: var(--verde); font-weight:700;">Como usar:</p>
+      <p style="font-size:13px;"><em>"Um único apontamento de alta complexidade evitou quase R$300 mil de custo desnecessário. Multiplica isso pelos 800 apontamentos que resolvemos em um projeto como o Tarraf Square."</em></p>
+    </div>
+  </div>
+
+  <!-- ===================== DEPOIMENTOS ===================== -->
+  <h2 class="section-title" id="depoimentos">O Que os Clientes Falam</h2>
+
+  <div class="depo">
+    <blockquote>"A Otus tem postura de dono. Trazem método com flexibilidade para atingir resultados e investem tempo dos seus especialistas nos projetos que gerenciam, trazendo propostas e análise de dados para tomada de decisão. Quando o assunto é BIM, são aceleradores do processo apresentando ferramentas e suas experiências!"</blockquote>
+    <cite>Valéria Moreira <span>— Gerente de Orçamento</span></cite>
+  </div>
+  <div class="depo">
+    <blockquote>"Com a Otus gostamos da forma que eles resolvem o problema e como são uma ponte entre as partes. Mesmo com processos bem definidos, trabalhar com a Otus não é algo robotizado e dentro dessa cultura, não conheço quem entrega um trabalho complexo, longo, com várias partes envolvidas de forma tão simples."</blockquote>
+    <cite>João Amaral Ferreira <span>— Diretor de Projetos</span></cite>
+  </div>
+  <div class="depo">
+    <blockquote>"Os problemas que tínhamos na empresa era o excesso de informações dispersas. Com muitos projetistas em locais diferenciados, o tempo de resposta era muito demorado. A Otus veio trazer esse acompanhamento da gestão dos projetistas e com isso conseguimos informações mais rápidas e mais confiáveis para a empresa, além de melhorar a questão de retrabalhos na obra."</blockquote>
+    <cite>Leandro G. França <span>— Gerente de Engenharia</span></cite>
+  </div>
+
+  <!-- ===================== PORTFÓLIO POR ESTADO ===================== -->
+  <h2 class="section-title" id="portfolio">Portfólio por Região / Estado</h2>
+  <p>Use a região do lead para citar cases próximos a ele. Quanto mais familiar for o mercado local, maior a credibilidade.</p>
+
+  <!-- SC -->
+  <div class="estado-section">
+    <div class="estado-header">Santa Catarina (SC) <span class="count">19 empreendimentos</span></div>
+    <div class="estado-grid">
+      <div class="proj"><strong>Oceana</strong><span class="area"> 82.000 m²</span><br><span class="local">Florianópolis</span></div>
+      <div class="proj"><strong>BOSC Ecovillage</strong><span class="area"> 47.536 m²</span><br><span class="local">Florianópolis</span></div>
+      <div class="proj"><strong>Lumma Corporate & Home</strong><span class="area"> 33.000 m²</span><br><span class="local">Florianópolis</span></div>
+      <div class="proj"><strong>Live Cacupé</strong><span class="area"> 15.000 m²</span><br><span class="local">Florianópolis</span></div>
+      <div class="proj"><strong>Unique Place Residence</strong><span class="area"> 11.980 m²</span><br><span class="local">Florianópolis</span></div>
+      <div class="proj"><strong>Quadra 27</strong><span class="area"> 55.790 m²</span><br><span class="local">Porto Belo</span></div>
+      <div class="proj"><strong>Brickell Business</strong><span class="area"> 10.640 m²</span><br><span class="local">Porto Belo</span></div>
+      <div class="proj"><strong>Pátio das Artes</strong><span class="area"> 53.930 m²</span><br><span class="local">Palhoça</span></div>
+      <div class="proj"><strong>Le Parc</strong><span class="area"> 45.000 m²</span><br><span class="local">Joinville</span></div>
+      <div class="proj"><strong>Sense</strong><span class="area"> 8.000 m²</span><br><span class="local">Joinville</span></div>
+      <div class="proj"><strong>D/Vert</strong><span class="area"> 24.500 m²</span><br><span class="local">São José</span></div>
+      <div class="proj"><strong>Futura</strong><span class="area"> 59.200 m²</span><br><span class="local">Itapema</span></div>
+      <div class="proj"><strong>Elizabeth II</strong><span class="area"> 17.200 m²</span><br><span class="local">Itapema</span></div>
+      <div class="proj"><strong>Guará</strong><span class="area"> 26.000 m²</span><br><span class="local">Itajaí</span></div>
+      <div class="proj"><strong>Boulevard Jardins</strong><span class="area"> 19.445 m²</span><br><span class="local">Itajaí</span></div>
+      <div class="proj"><strong>Costão Estaleirinho</strong><span class="area"> 18.000 m²</span><br><span class="local">Balneário Camboriú</span></div>
+      <div class="proj"><strong>Cill Tower</strong><span class="area"> 17.200 m²</span><br><span class="local">Balneário Piçarras</span></div>
+      <div class="proj"><strong>Grant Vista</strong><span class="area"> 20.000 m²</span><br><span class="local">Barra Velha</span></div>
+      <div class="proj"><strong>TRS Amaro</strong><span class="area"> 9.600 m²</span><br><span class="local">Camboriú</span></div>
+    </div>
+  </div>
+
+  <!-- SP -->
+  <div class="estado-section">
+    <div class="estado-header">São Paulo (SP) <span class="count">5 empreendimentos</span></div>
+    <div class="estado-grid">
+      <div class="proj"><strong>Resort Prime Santa Angela</strong><span class="area"> 100.000 m²</span><br><span class="local">Jundiaí</span></div>
+      <div class="proj"><strong>Tarraf Square ⭐</strong><span class="area"> 54.395 m²</span><br><span class="local">São José do Rio Preto</span></div>
+      <div class="proj"><strong>PW 36</strong><span class="area"> 41.720 m²</span><br><span class="local">Santos</span></div>
+      <div class="proj"><strong>Bllis</strong><span class="area"> 30.099 m²</span><br><span class="local">Bauru</span></div>
+      <div class="proj"><strong>Trinity</strong><span class="area"> 27.460 m²</span><br><span class="local">São Paulo</span></div>
+    </div>
+  </div>
+
+  <!-- PR -->
+  <div class="estado-section">
+    <div class="estado-header">Paraná (PR) <span class="count">5 empreendimentos</span></div>
+    <div class="estado-grid">
+      <div class="proj"><strong>Cidade Aruna</strong><span class="area"> +200.000 m²</span><br><span class="local">Maringá</span></div>
+      <div class="proj"><strong>Nest 635 ⭐</strong><span class="area"> 22.728 m²</span><br><span class="local">Maringá</span></div>
+      <div class="proj"><strong>Aruna Torres</strong><span class="area"> 20.900 m²</span><br><span class="local">Porto Rico</span></div>
+      <div class="proj"><strong>Sorano</strong><span class="area"> 31.708 m²</span><br><span class="local">Curitiba</span></div>
+      <div class="proj"><strong>Benja</strong><span class="area"> 6.200 m²</span><br><span class="local">Curitiba</span></div>
+    </div>
+  </div>
+
+  <!-- GO -->
+  <div class="estado-section">
+    <div class="estado-header">Goiás (GO) <span class="count">5 empreendimentos</span></div>
+    <div class="estado-grid">
+      <div class="proj"><strong>Jardim Areião</strong><span class="area"> 33.869 m²</span><br><span class="local">Goiânia</span></div>
+      <div class="proj"><strong>Auten</strong><span class="area"> 27.408 m²</span><br><span class="local">Goiânia</span></div>
+      <div class="proj"><strong>Urban Garden Residence</strong><span class="area"> 26.245 m²</span><br><span class="local">Goiânia</span></div>
+      <div class="proj"><strong>FR Magno</strong><span class="area"> 25.589 m²</span><br><span class="local">Goiânia</span></div>
+      <div class="proj"><strong>Arq Opus</strong><span class="area"> 25.066 m²</span><br><span class="local">Goiânia</span></div>
+    </div>
+  </div>
+
+  <!-- MT -->
+  <div class="estado-section">
+    <div class="estado-header">Mato Grosso (MT) <span class="count">1 empreendimento</span></div>
+    <div class="estado-grid">
+      <div class="proj"><strong>Parque Sinop</strong><span class="area"> 66.850 m²</span><br><span class="local">Sinop</span></div>
+    </div>
+  </div>
+
+  <!-- RS -->
+  <div class="estado-section">
+    <div class="estado-header">Rio Grande do Sul (RS) <span class="count">1 empreendimento</span></div>
+    <div class="estado-grid">
+      <div class="proj"><strong>Country Tower</strong><span class="area"> 63.000 m²</span><br><span class="local">Porto Alegre</span></div>
+    </div>
+  </div>
+
+  <!-- RJ -->
+  <div class="estado-section">
+    <div class="estado-header">Rio de Janeiro (RJ) <span class="count">2 empreendimentos</span></div>
+    <div class="estado-grid">
+      <div class="proj"><strong>Lazuli</strong><span class="area"> 34.000 m²</span><br><span class="local">Niterói</span></div>
+      <div class="proj"><strong>Sou+Charitas</strong><span class="area"> 6.000 m²</span><br><span class="local">Niterói</span></div>
+    </div>
+  </div>
+
+  <!-- BA -->
+  <div class="estado-section">
+    <div class="estado-header">Bahia (BA) <span class="count">1 empreendimento</span></div>
+    <div class="estado-grid">
+      <div class="proj"><strong>Isla Park Residence</strong><span class="area"> 24.221 m²</span><br><span class="local">Ilhéus</span></div>
+    </div>
+  </div>
+
+  <div class="obs">⭐ Cases marcados com estrela possuem dados públicos detalhados — os mais indicados para abordagens comerciais.</div>
+
+  <!-- ===================== ECOSSISTEMA ===================== -->
+  <h2 class="section-title" id="ecossistema">Ecossistema Otus</h2>
+  <p>A Otus não entrega apenas gerenciamento — entrega acesso a um <strong>ecossistema de conhecimento, conexões e inovação</strong>.</p>
+
+  <div class="eco-grid">
+    <div class="eco-card"><div class="icon">☕</div><h4>Café BIM</h4><p>Evento itinerante de networking com decisores de projetos de incorporadoras e construtoras.</p></div>
+    <div class="eco-card"><div class="icon">🌟</div><h4>Otus Day</h4><p>Benchmarking e networking exclusivo para clientes Otus.</p></div>
+    <div class="eco-card"><div class="icon">💬</div><h4>Comunidade Otus</h4><p>Rodas de conversa online entre clientes e parceiros sobre temas práticos do dia a dia.</p></div>
+    <div class="eco-card"><div class="icon"></div><h4>Otus Educação</h4><p>Cursos BIM e gestão de projetos. Gera leads qualificados (canal Levantada de Mão Educação).</p></div>
+    <div class="eco-card"><div class="icon">📐</div><h4>Construflow</h4><p>Plataforma parceira: todos os apontamentos e ciclos de compatibilização são registrados e rastreáveis.</p></div>
+    <div class="eco-card"><div class="icon">🔗</div><h4>Rede de Parceiros</h4><p>Arquitetos, projetistas e consultores que indicam a Otus. Lead de indicação chega pré-aquecido.</p></div>
+  </div>
+<!-- ===================== STACK COMERCIAL ===================== -->
+  <h2 class="section-title" id="stack">Stack Comercial e Operacional</h2>
+
+  <div class="stack">
+    <div class="stack-card">
+      <h4>Pipedrive</h4>
+      <p>CRM para gestão do funil de vendas e negócios. Fonte de verdade sobre o pipeline comercial.</p>
+    </div>
+    <div class="stack-card">
+      <h4>ActiveCampaign</h4>
+      <p>Automação de e-mail e nutrição de leads que se cadastram em formulários. Alimenta o funil de inbound.</p>
+    </div>
+    <div class="stack-card">
+      <h4>Discord</h4>
+      <p>Tópico comercial para compartilhar insights entre SDR e marketing para otimizar abordagens.</p>
+    </div>
+    <div class="stack-card">
+      <h4>Construflow</h4>
+      <p>Plataforma de gestão de projetos. Central para apontamentos, ciclos de compatibilização e indicadores.</p>
+    </div>
+    <div class="stack-card">
+      <h4>Google Drive</h4>
+      <p>Pasta "compartilhamento marketing vendas" com portfólios, cases, e-books e materiais para envio a leads.</p>
+    </div>
+    <div class="stack-card">
+      <h4>NPS (Satisfação)</h4>
+      <p>Monitoramento contínuo da satisfação dos clientes. SDR deve vender de forma realista para sustentar NPS alto.</p>
+    </div>
+  </div>
+
+<!-- ===================== PRÉ-VENDAS <> MARKETING ===================== -->
+<h2 class="section-title" id="marketing">Pré-vendas &lt;&gt; Marketing</h2>
+<div class="interno-tag">Uso interno — não compartilhar com clientes ou leads</div>
+<div class="obs">Resumo do alinhamento entre Marketing e Pré-vendas (SLA Marketing × Vendas). Define como os leads fluem entre as duas áreas, critérios de qualificação e responsabilidades de cada time.</div>
+
+<h3 class="sub" id="mkt-flywheel">Engrenagem Comercial (Flywheel)</h3>
+<p>A Otus opera com uma engrenagem entre <strong>Marketing</strong>, <strong>Vendas (Pré-vendas)</strong> e <strong>Customer Success</strong> — cada área alimenta a próxima e retroalimenta as anteriores.</p>
+
+<div class="steps">
+  <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Marketing</strong>Posicionamento de marca, eventos (ex: Itapema) e materiais institucionais. Gera demanda via "iscas digitais" (e-books, checklists), nutridas por e-mail em uma base de ~800 contatos. Tempo de conversão varia de imediato a anos de maturação.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Vendas (Pré-vendas)</strong>Executa a pré-venda e a conversa consultiva: qualifica, diagnostica a dor e agenda reuniões com Executivos de Contas.</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Customer Success</strong>Gerencia a operação e a entrega, gerando feedbacks e cases que retroalimentam marketing e comercial.</div></div>
+</div>
+
+<div class="obs"><strong>Ciclo de feedback:</strong> o comercial reporta ao marketing as dores e palavras-chave ouvidas em ligações (ex: "monitoramento de projetos"), para ajustar o site e a comunicação à linguagem real do cliente. Eventos presenciais também servem para mapear dores — pré-vendas deve colaborar com marketing na definição de temas, usando seu conhecimento de mercado.</div>
+
+<h3 class="sub" id="mkt-funil">Funil de Leads — Nomenclatura (SLA Marketing × Vendas)</h3>
+<table>
+  <thead><tr><th>Etapa</th><th>Definição</th></tr></thead>
+  <tbody>
+    <tr><td><strong>LEADS</strong></td><td>Contatos únicos gerados em um determinado período.</td></tr>
+    <tr><td><strong>MQLs</strong></td><td>Leads qualificados pelo Marketing para avaliação do time de Vendas.</td></tr>
+    <tr><td><strong>SALs</strong></td><td>Leads aceitos pelo time comercial e que devem ser abordados.</td></tr>
+    <tr><td><strong>OPPs</strong></td><td>Leads com potencial de se tornar cliente, já em contato com um vendedor.</td></tr>
+    <tr><td><strong>CLIENTES</strong></td><td>Leads que fecharam negócio.</td></tr>
+  </tbody>
+</table>
+<div class="obs">Documentos de referência (SLA completo e padronização da base) estão no Google Drive, pasta <strong>"Padrões e Definições"</strong>.</div>
+
+<h3 class="sub" id="mkt-canais">Canais de Origem dos Leads (MQL)</h3>
+<div class="icp-grid">
+  <div class="card">
+    <h4 class="mini">Levantada de Mão — Fria</h4>
+    <p style="font-size:12.5px;">Contatos novos que nunca interagiram com a Otus. Critério: projeto a partir de 5 mil m² → vai para o Pipe.</p>
+  </div>
+  <div class="card">
+    <h4 class="mini">Levantada de Mão — Ecossistema</h4>
+    <p style="font-size:12.5px;">Contatos que já fazem parte da base ou possuem histórico anterior com a Otus.</p>
+  </div>
+  <div class="card">
+    <h4 class="mini">Lead Scoring</h4>
+    <p style="font-size:12.5px;">Pontuação por engajamento. Critérios: cargo de coordenador para cima; projeto a partir de 10 mil m²; setor de projetos, obra, produto/incorporação ou engenharia. Despriorizado nas metas de MQL — perfil bom não garante "timing" de compra.</p>
+  </div>
+  <div class="card">
+    <h4 class="mini">Prospecção Ecossistema</h4>
+    <p style="font-size:12.5px;">Abordagem ativa do comercial baseada em dados do marketing ou sinais de mercado (ex: lançamento de projetos). Requer que o pré-vendas identifique oportunidades em contatos já nutridos.</p>
+  </div>
+</div>
+<div class="obs"><strong>Blacklist Lead Scoring:</strong> cargo de Estagiário. <strong>Blacklist Levantada de Mão:</strong> não há.</div>
+
+<h3 class="sub" id="mkt-criterios">Critérios de Passagem entre Etapas</h3>
+
+<h4 class="mini">Lead → MQL (filtro do Marketing)</h4>
+<div class="card">
+  <p><strong>Perfil aceito pelo Marketing:</strong> construtora/incorporadora ou gerenciadora de obra; obra acima de 2.000 m²; tipo de obra residencial/comercial (vertical), hotéis/resorts ou shopping.</p>
+  <p><strong>Critério reforçado para Vendas (ICP de MQL):</strong> obras de 5.000 m² a 10.000 m², focando construtoras, incorporadoras e gerenciadoras.</p>
+  <p>Lead que entra pelo formulário do site é triado automaticamente: se está no ICP, o comercial recebe e-mail de alerta; se está fora, recebe resposta automática educada (sem passar para vendas).</p>
+</div>
+
+<h4 class="mini">MQL → SAL (responsabilidade do SDR)</h4>
+<div class="card">
+  <p><strong>Regra de passagem:</strong> lead cumprir todos os critérios da etapa anterior.</p>
+  <p><strong>Blacklist:</strong> ser cliente atual · ter negócio em aberto no funil de vendas · não ter site ou Instagram · número de contato inválido · preenchimento do formulário não condiz com a realidade · não ser construtora/incorporadora.</p>
+  <p><strong>Responsabilidades do SDR:</strong> descartar MQLs fora do perfil, justificando o descarte com base nestes critérios; entrar em contato em até <strong>30 min</strong> (levantada de mão) ou até <strong>24h</strong> (lead scoring).</p>
+</div>
+
+<h4 class="mini">SAL → OPP</h4>
+<div class="card">
+  <p><strong>Regras de passagem:</strong> ter dor que a Otus resolve (lista do Pipe) · estar decidido a trabalhar em BIM ou já trabalhar em BIM · projeto entre estudo preliminar de arquitetura e fundações iniciadas · lead com 45–60 min disponíveis para avaliação por Meet · pessoa influente no setor de projetos (coordenação, gerente ou diretoria) · prazo de contratação de até 90 dias.</p>
+  <p><strong>Blacklist:</strong> cargos abaixo de coordenador em projetos · cargos fora do setor de projetos/incorporação (orçamento/planejamento, suprimentos/compras, obras) · pessoa em dúvida se a empresa trabalha em BIM · empresas fora do ICP · projetista cotando para terceiros.</p>
+  <div class="obs"><strong>Filtros condicionais (exceções à blacklist):</strong> projetista pode seguir se for parceiro da Otus ou se o cliente final participar da reunião · analista pode seguir se exercer função de coordenação e responder direto ao diretor · comprador pode seguir se conectar com a equipe técnica · lead sem projeto pode seguir se a empresa for referência na região e o contato for o decisor, ou se o ICP for o nível máximo (ver doc de ICP).</div>
+  <p><strong>Responsabilidades SDR/Pipeline:</strong> descartar SALs fora do perfil, justificando o descarte; não rejeitar leads que estejam dentro do SLA.</p>
+</div>
+
+<h4 class="mini">OPP → Cliente</h4>
+<div class="card">
+  <p><strong>Regra de passagem:</strong> contrato assinado. <strong>Blacklist:</strong> vendas que não se concretizam.</p>
+  <p><strong>Responsabilidades de Customer Success/Atendimento:</strong> iniciar o atendimento em até 48h; envio do produto adquirido em até 10 dias após o faturamento.</p>
+</div>
+
+<h3 class="sub" id="mkt-pipedrive">Boas Práticas no Pipedrive</h3>
+<div class="steps">
+  <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Origem automática vs. manual</strong>Lead de formulário do site entra automaticamente no Active Campaign, é filtrado pelo ICP e enviado ao Pipedrive se qualificado. Leads de outros canais devem ser cadastrados manualmente pelo comercial.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Vincular pessoa ↔ organização ↔ negócio</strong>Use o botão de ação rápida para criar negócios. Sempre vincule a pessoa ao negócio e o negócio à organização — evita duplicidade de cadastros e mantém o histórico completo (e-mails, anotações, arquivos) consolidado na página da empresa.</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Padrão de preenchimento</strong>Evitar maiúsculas desnecessárias; telefones no formato 55 + DDD, classificados como "comercial" ou "residencial".</div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Contexto do formulário</strong>O formulário do site coleta cargo, setor, principais dores, tamanho da empresa e média de lançamentos anuais — use essas informações para priorizar e personalizar a abordagem.</div></div>
+</div>
+<div class="obs">Documentação de padronização da base e o SLA completo: Google Drive → pasta <strong>"Padrões e Definições"</strong>. Dúvidas sobre preenchimento: canal comercial no Pipe.</div>
+
+<h3 class="sub" id="mkt-performance">Performance Esperada do Funil</h3>
+<table>
+  <thead><tr><th>Transição</th><th>Taxa esperada</th></tr></thead>
+  <tbody>
+    <tr><td>Leads → MQLs</td><td><strong>20%</strong> (Aproveitamento)</td></tr>
+    <tr><td>MQLs → SALs</td><td><strong>45%</strong> (Qualificação)</td></tr>
+    <tr><td>SALs → OPPs</td><td><strong>35%</strong> (Conversão Pré-Vendas)</td></tr>
+    <tr><td>OPPs → Clientes</td><td><strong>40%</strong> (Conclusão)</td></tr>
+  </tbody>
+</table>
+<div class="destaque">Eficiência geral do funil (Lead → Cliente): <strong>1,26%</strong></div>
+
+<!-- ===================== GESTÃO POR RESULTADOS ===================== -->
+<h2 class="section-title" id="gestao">Gestão por Resultados</h2>
+<div class="interno-tag">Uso interno — não compartilhar com clientes ou leads</div>
+<div class="obs">Modelo interno de gestão por resultados da Otus (OKR + Falconi), aplicado a todos os colaboradores — inclusive Pré-vendas. Define como indicadores, metas e remuneração variável funcionam a partir de 2026.</div>
+
+<h3 class="sub" id="gestao-modelo">Modelo OKR + Falconi</h3>
+<p>A Otus combina dois modelos que se complementam:</p>
+<div class="icp-grid">
+  <div class="card card-amarelo">
+    <h4 class="mini">OKR (Objectives & Key Results)</h4>
+    <p style="font-size:12.5px;">Responde ao <strong>por quê</strong> e <strong>para onde vamos</strong>. Dá foco e direção estratégica — mostra onde a empresa deve acelerar. Usado para saltos de desempenho, não para acompanhamento de rotina.</p>
+  </div>
+  <div class="card">
+    <h4 class="mini">Falconi (Indicadores)</h4>
+    <p style="font-size:12.5px;">Responde ao <strong>como</strong> vamos executar e sustentar resultados. Garante disciplina, método e execução — e que o negócio não saia do controle.</p>
+  </div>
+</div>
+<div class="destaque">OKR dá foco e direção estratégica. Falconi garante disciplina, método e execução consistente.</div>
+
+<h4 class="mini">Cascateamento de Metas</h4>
+<p style="text-align:center; font-weight:700; margin:10px 0;">Estratégia da Otus → Indicadores Estratégicos da Empresa → Indicadores das Áreas → Indicadores Individuais</p>
+<p>Os indicadores são desdobrados em cadeia: o que cada pessoa entrega impacta a área, e o que a área entrega sustenta a estratégia da Otus. Ninguém trabalha para um número isolado — todos contribuem para um resultado maior.</p>
+
+<div class="obs"><strong>Regras OKR ↔ Indicador:</strong> indicadores críticos em vermelho podem virar OKR no próximo trimestre · indicadores já estabilizados não devem virar OKR · nem todo projeto é um OKR.</div>
+
+<h4 class="mini">5 Princípios do Modelo Otus</h4>
+<div class="steps">
+  <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Método a serviço do resultado</strong>Indicadores e rituais de gestão apoiam decisões e geram melhoria contínua — não são controle burocrático.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Clareza de papéis</strong>Colaboradores gerenciam indicadores; liderança define direção e prioridades estratégicas.</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Um número, uma responsabilidade</strong>Todo indicador tem um dono claro.</div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Ritmo de gestão</strong>Acompanhamento mensal para rotina e trimestral para estratégia.</div></div>
+  <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Aprendizado contínuo</strong>Metas não batidas geram planos de ação, não culpabilização.</div></div>
+</div>
+
+<h3 class="sub" id="gestao-indicadores">Indicadores e Farol de Metas</h3>
+<p>Um indicador é uma <strong>medida objetiva</strong> que mostra se está entregando o resultado esperado. Bom indicador é: simples e compreensível, mensurável, acompanhável mensalmente e diretamente ligado a um resultado relevante.</p>
+
+<h4 class="mini">Faixas do Farol de Metas</h4>
+<p style="font-size:12.5px; margin-bottom:8px;">Cada indicador tem um peso — todos juntos somam 100 pontos no farol (líderes podem somar até 120 com OKRs).</p>
+<div class="farol-item farol-vermelho"><strong>Abaixo de 80%</strong> — valor não aceitável. Zera o peso do indicador.</div>
+<div class="farol-item farol-amarelo">🟡 <strong>Igual a 80%</strong> — valor mínimo aceitável. Adquire o peso de 80% do indicador.</div>
+<div class="farol-item farol-amarelo">🟡 <strong>Entre 80% e 99%</strong> — abaixo da meta, mas dentro do aceitável. Adquire peso proporcional.</div>
+<div class="farol-item farol-verde">🟢 <strong>Igual a 100%</strong> — valor da meta. Adquire o peso determinado para o indicador.</div>
+<div class="farol-item farol-verde">🟢 <strong>Entre 100% e 120%</strong> — meta superada. Adquire peso proporcional.</div>
+<div class="farol-item farol-verde">🟢 <strong>Acima de 120%</strong> — meta superada. Trava o peso em 120%.</div>
+<div class="obs"><strong>Cálculo da pontuação:</strong> peso do indicador × % de atingimento. Exemplo: peso 15 com 89% de atingimento = 13,4 pontos. O farol não julga, ele orienta — mostra onde agir. Meta não batida exige ação, não justificativa.</div>
+
+<h4 class="mini">Colaborador vs. Liderança</h4>
+<table>
+  <thead><tr><th>Público</th><th>O que acompanha</th><th>Ritmo</th><th>Qtd. indicadores</th><th>Foco</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Colaboradores</strong></td><td>Indicadores individuais + plano de ação</td><td>Mensal</td><td>3 a 4</td><td>Estabilidade e entrega</td></tr>
+    <tr><td><strong>Liderança</strong></td><td>Indicadores da área e individuais + OKRs + plano de ação</td><td>Mensal + Trimestral</td><td>4 a 5</td><td>Direção, prioridade e avanço</td></tr>
+  </tbody>
+</table>
+
+<h3 class="sub" id="gestao-reuniao">Reunião Mensal de Resultados e PDCA</h3>
+<p>A reunião mensal é o momento em que cada pessoa mostra como está contribuindo para o resultado da Otus. É sobre <strong>aprendizado e decisão</strong> — reunião boa é aquela que termina com decisão clara.</p>
+
+<div class="naoe-e">
+  <div class="col naoe">
+    <h4>A reunião NÃO é</h4>
+    <ul style="font-size:12.5px;">
+      <li>Status report</li>
+      <li>Justificativa</li>
+      <li>Cobrança</li>
+      <li>Ranking</li>
+      <li>Punição</li>
+      <li>Exposição</li>
+    </ul>
+  </div>
+  <div class="col eh">
+    <h4>A reunião É</h4>
+    <ul style="font-size:12.5px;">
+      <li>Leitura de farol</li>
+      <li>Foco em exceção (amarelo e vermelho)</li>
+      <li>Plano de ação = Decisão + ação</li>
+      <li>Discussão do problema, não da pessoa</li>
+    </ul>
+  </div>
+</div>
+
+<h4 class="mini">Estrutura da Reunião</h4>
+<div class="steps">
+  <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Abertura e contexto (5 min)</strong>Reforço do propósito da reunião e conexão com os objetivos da área.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Apresentação do Farol de Metas</strong>Por responsável: 🟢 verde = meta atingida · 🟡 amarelo = risco de não atingir · 🔴 vermelho = meta não atingida.</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Análise de desvios</strong>Somente amarelo e vermelho — o que aconteceu? Qual foi a principal causa? (use 5 Porquês ou diagrama de causa-efeito)</div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Plano de Ação (PDCA)</strong>Ação clara + responsável + prazo.</div></div>
+  <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Encerramento</strong>Aprendizados do mês e prioridades do próximo ciclo.</div></div>
+</div>
+
+<h4 class="mini">PDCA Simplificado</h4>
+<table>
+  <tbody>
+    <tr><td style="width:60px;"><span class="tag tag-preto">P</span></td><td><strong>Planejar</strong> — qual meta não foi atingida? Qual é a causa principal?</td></tr>
+    <tr><td><span class="tag tag-amarelo">D</span></td><td><strong>Executar</strong> — o que será feito para corrigir?</td></tr>
+    <tr><td><span class="tag tag-verde">C</span></td><td><strong>Checar</strong> — o indicador melhorou no mês seguinte?</td></tr>
+    <tr><td><span class="tag tag-vermelho">A</span></td><td><strong>Agir</strong> — padronizar se funcionou ou ajustar se não funcionou.</td></tr>
+  </tbody>
+</table>
+<div class="obs">Plano de ação é <strong>obrigatório apenas para indicadores fora do verde</strong> (abaixo de 100%). O objetivo não é punir quem ficou abaixo de 80% — é gerar ação rápida quando há desvio relevante.</div>
+
+<h3 class="sub" id="gestao-prazos">Prazos e Plataforma Otus</h3>
+<table>
+  <thead><tr><th colspan="2">Colaboradores</th></tr><tr><th>Atividade</th><th>Prazo</th></tr></thead>
+  <tbody>
+    <tr><td>Preenchimento dos indicadores na plataforma</td><td>Até a 1ª sexta-feira do mês</td></tr>
+    <tr><td>Criação do plano de ação (indicadores amarelos/vermelhos)</td><td>Até a 1ª sexta-feira do mês</td></tr>
+    <tr><td>Reunião de resultados líder-colaborador</td><td>2ª segunda-feira do mês</td></tr>
+    <tr><td>Revisão trimestral de metas (se necessário)</td><td>Última semana do trimestre</td></tr>
+  </tbody>
+</table>
+<table>
+  <thead><tr><th colspan="2">Liderança</th></tr><tr><th>Atividade</th><th>Prazo</th></tr></thead>
+  <tbody>
+    <tr><td>Preenchimento dos indicadores na plataforma</td><td>Até a 2ª terça-feira do mês</td></tr>
+    <tr><td>Criação do plano de ação (indicadores amarelos/vermelhos)</td><td>Até a 2ª terça-feira do mês</td></tr>
+    <tr><td>Reunião de acompanhamento entre lideranças</td><td>2ª quarta-feira do mês</td></tr>
+    <tr><td>Revisão trimestral de metas (se necessário)</td><td>Última semana do trimestre</td></tr>
+  </tbody>
+</table>
+
+<h4 class="mini">Guia Rápido de Preenchimento (Plataforma Otus)</h4>
+<div class="steps">
+  <div class="step"><div class="step-num">1</div><div class="step-body">Acesse a Plataforma Otus e clique em <strong>"Indicadores"</strong>.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body">Escolha o indicador a atualizar.</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body">Selecione <strong>"Ver detalhes"</strong>.</div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body">Escolha o mês, clique em <strong>"Registrar"</strong> e preencha "Valor alcançado" do mês conforme o resultado atingido.</div></div>
+  <div class="step"><div class="step-num">5</div><div class="step-body">No modo manual, preencha "Realizado (Média)" com o valor acumulado até o momento.</div></div>
+  <div class="step"><div class="step-num">6</div><div class="step-body">Se ficar a menos de 100% da meta, registre o plano de ação com causa raiz, ação, prazo e responsável.</div></div>
+</div>
+<div class="obs">Cada área tem um <strong>Manual dos Indicadores</strong> com objetivo, fórmula de medição, métrica, planilhas de apoio e valores de meta (100%, mínimo aceitável 80% e máximo 120%). Dúvidas ou bugs: reportar à equipe de Gente e Gestão ou pela própria plataforma. Problemas de login/nome de exibição: suporte Open Sis (WhatsApp ou abertura de chamado).</div>
+
+<h3 class="sub" id="gestao-remuneracao">Remuneração Variável — Regras 2026</h3>
+<div class="obs">Vigência a partir do <strong>3º trimestre de 2026</strong>. O 1º e 2º trimestres funcionam como período de aprendizado (sem pagamento de variável) — usados para validar metas, métricas e pesos dos indicadores.</div>
+
+<table>
+  <thead><tr><th>Componente</th><th>Valor</th><th>Pagamento</th><th>Atrelado a</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Bônus anual</strong></td><td>1 salário</td><td>Dezembro</td><td>100% indicadores estratégicos da empresa</td></tr>
+    <tr><td><strong>Variável trimestral</strong></td><td>0,25 salário</td><td>Outubro e janeiro</td><td>100% indicadores individuais</td></tr>
+  </tbody>
+</table>
+
+<h4 class="mini">Base de Apuração</h4>
+<p>Calculada com base no resultado do farol individual no trimestre:</p>
+<table>
+  <thead><tr><th>Resultado</th><th>Pontuação</th></tr></thead>
+  <tbody>
+    <tr><td>Abaixo de 80%</td><td>0</td></tr>
+    <tr><td>80% – 120%</td><td>Proporcional</td></tr>
+    <tr><td>Acima de 120%</td><td>Limitado a 120%</td></tr>
+  </tbody>
+</table>
+
+<h4 class="mini">Elegibilidade</h4>
+<ul style="font-size:13px;">
+  <li>Ter trabalhado no mínimo 45 dias dentro do trimestre.</li>
+  <li>Estar com farol ativo e indicadores definidos.</li>
+</ul>
+
+<h4 class="mini">Casos Especiais</h4>
+<div class="card">
+  <p><strong>Mudança de cargo no trimestre:</strong> recebe a variável referente ao farol em que permaneceu mais tempo. O farol anterior fica ativo para quem assumir a posição.</p>
+  <p><strong>Desligamento voluntário</strong> antes do fechamento do trimestre: não elegível ao pagamento.</p>
+  <p><strong>Desligamento forçado:</strong> antes do fechamento do trimestre → não elegível; após o fechamento → elegível ao pagamento integral, ainda que ocorra posteriormente.</p>
+  <p><strong>Afastamento superior a 30 dias</strong> no trimestre: elegibilidade proporcional ao período trabalhado. Ex.: trimestre de 90 dias, trabalhou 60 dias → recebe 66% da variável de acordo com os resultados.</p>
+</div>
+
+<!-- ===================== SUCESSO DO CLIENTE (CS) ===================== -->
+<h2 class="section-title" id="cs">Sucesso do Cliente (CS)</h2>
+<span class="interno-tag">USO INTERNO — Equipe Otus</span>
+
+<p>O Sucesso do Cliente é o elo entre a promessa comercial e a realidade operacional. O setor transforma insumos e feedbacks em resultados tangíveis, garantindo o sucesso contínuo de cada cliente e cultivando parcerias estratégicas que vão além da entrega técnica.</p>
+
+<h3 class="sub" id="cs-missao">Missão e os 4 Pilares</h3>
+<p><strong>Missão:</strong> Garantir o sucesso contínuo de cada cliente, transformando nosso valor em resultados visíveis — colocando o cliente como foco absoluto, traduzindo valor técnico em impacto de negócio e posicionando a Otus como parceiro estratégico, não apenas executor.</p>
+
+<div class="icp-grid" style="margin: 16px 0;">
+  <div class="card card-amarelo">
+    <h4 class="mini">Onboarding e Adoção</h4>
+    <p style="font-size:13px;">Começar com o pé direito: alinhamento de expectativas e entrega do primeiro valor desde o início da parceria.</p>
+  </div>
+  <div class="card card-amarelo">
+    <h4 class="mini">Inteligência do Cliente</h4>
+    <p style="font-size:13px;">Coleta estratégica de feedbacks para retroalimentar melhorias no produto e nas operações da Otus.</p>
+  </div>
+  <div class="card card-amarelo">
+    <h4 class="mini">Saúde e Engajamento</h4>
+    <p style="font-size:13px;">Acompanhamento proativo de indicadores (Health Score, NPS, CSAT) para identificar riscos e fortalecer continuamente a relação com o cliente.</p>
+  </div>
+  <div class="card card-amarelo">
+    <h4 class="mini">Valor e Expansão</h4>
+    <p style="font-size:13px;">Transformar entregas em resultados mensuráveis, fortalecendo renovações e identificando oportunidades de crescimento.</p>
+  </div>
+</div>
+
+<h3 class="sub" id="cs-jornada">Jornada do Cliente com CS</h3>
+<div class="steps">
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body"><strong>Handoff e Onboarding</strong>A equipe comercial transfere ao CS todo o histórico do cliente, perfil da negociação e dados do projeto. O CS conduz o Start do Cliente e alinha expectativas com pesquisa de satisfação inicial.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body"><strong>Acompanhamento Ativo</strong>Participação em fechamentos de fase, manutenção de sincronia mensal com líderes de projeto e condução de QBRs trimestrais.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body"><strong>Gestão de Valor</strong>Tradução de entregas técnicas em impacto de negócio via estudos de custo. Identificação de oportunidades e gestão de aditivos contratuais.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body"><strong>Fechamento e Renovação</strong>Coleta de feedback estruturado no encerramento e gestão ativa do processo de renovação em conjunto com Vendas.</div>
+  </div>
+</div>
+
+<h3 class="sub" id="cs-rituais">Rituais e Indicadores</h3>
+<div class="icp-grid" style="margin: 16px 0;">
+  <div class="destaque"><strong>Semanalmente</strong> — Monitoramento da saúde de todos os projetos para identificar riscos e definir ações preventivas junto ao time.</div>
+  <div class="destaque"><strong>Quinzenalmente</strong> — Alinhamentos focando em saúde dos projetos e oportunidades de expansão, além de sincronização com Vendas e Marketing.</div>
+  <div class="destaque"><strong>Mensalmente</strong> — Reunião de percepções com lideranças, gestão de fornecedores e análise consolidada de indicadores para a diretoria.</div>
+  <div class="destaque"><strong>Semestralmente</strong> — Campanha de NPS para avaliar satisfação e check-ins profundos de relacionamento com stakeholders estratégicos.</div>
+</div>
+
+<h3 class="sub" id="cs-sinergia">Sinergia com Vendas</h3>
+<p>Existe troca constante de informações entre Comercial e CS para identificar novas oportunidades de negócios e renovações. Ambos os setores validam mutuamente ações críticas antes de avançar.</p>
+<div class="obs">
+  <ul>
+    <li><strong>Recebimento de handoff completo</strong> com histórico e objetivos do cliente ao fechar negócio</li>
+    <li><strong>Gestão de renovações</strong> e geração de novas oportunidades em conjunto com o time comercial</li>
+    <li><strong>Validação mútua de ações</strong> — liberação de aditivos, realização de eventos, pontos críticos de relacionamento</li>
+    <li><strong>Score de fornecedores</strong> fornecido ao comercial para gestão de relacionamentos</li>
+    <li><strong>Eventos</strong>: CS define quais membros da equipe participam com base nos clientes qualificados presentes e auxilia nos convites</li>
+  </ul>
+</div>
+
+<h3 class="sub" id="cs-conexoes">Conexões Internas</h3>
+<div class="naoe-e">
+  <div class="col">
+    <h4>CS + Marketing</h4>
+    <ul style="font-size:13px;">
+      <li>Co-criação de temas de iniciativas e conteúdos</li>
+      <li>Identificação de cases de sucesso para divulgação</li>
+      <li>Suporte em diagramação e comunicação</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h4>CS + Operações</h4>
+    <ul style="font-size:13px;">
+      <li>Participação em marcos importantes do projeto</li>
+      <li>Fornecimento de insights sobre saúde dos clientes</li>
+      <li>Apoio na construção de materiais estratégicos</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h4>CS + ADM/FIN</h4>
+    <ul style="font-size:13px;">
+      <li>Alinhamento de gestão de contratos e aditivos</li>
+      <li>Monitoramento de custos e ROI das ações de CS</li>
+      <li>Geração de previsibilidade de receita</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h4>Visitas Técnicas às Obras</h4>
+    <ul style="font-size:13px;">
+      <li>Visitas semanais para fortalecer relacionamento e capacitar equipe técnica</li>
+      <li>Participam preferencialmente os colaboradores atuando no projeto específico</li>
+      <li>Ampliam a visão prática sobre as soluções técnicas adotadas</li>
+    </ul>
+  </div>
+</div>
+
+
+  <br>
+  <div style="background: var(--preto); color: white; padding: 20px; border-radius: 10px; text-align: center; border-top: 4px solid var(--amarelo);">
+    <strong style="color: var(--amarelo);">Produto & Cases — Otus Engenharia | SDR Onboarding</strong><br>
+    <span style="opacity:0.75; font-size:12px;">Use em paralelo com o Playbook SDR.</span>
+  </div>
+
+</div>
+<script src="otus-shared.js"></script>
+</body>
+</html>

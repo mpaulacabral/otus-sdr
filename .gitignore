@@ -1,0 +1,9 @@
+# Exclude working documents — only publish the web files
+*.docx
+*.xlsx
+*.pptx
+*.pdf
+*.md
+*.~lock.*
+ARQUIVOS PARA USAR/
+.claude/

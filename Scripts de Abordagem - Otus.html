@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scripts de Abordagem — Otus Engenharia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amarelo: #FFDC00;
+    --amarelo-bg: #fff8e0;
+    --amarelo-borda: #E6C800;
+    --preto: #1C1C1B;
+    --cinza-escuro: #374151;
+    --cinza: #f4f5f7;
+    --borda: #e5e7eb;
+    --texto: #1C1C1B;
+    --perigo: #e63946;
+    --verde: #2d6a4f;
+    --verde-bg: #d8f3dc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--texto); background: #fff; }
+
+  nav { background: var(--amarelo); color: var(--preto); padding: 0 20px; position: sticky; top: 36px; z-index: 100; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; border-bottom: 3px solid #C9B800; }
+  nav h1 { font-size: 15px; font-weight: 800; padding: 12px 0; color: var(--preto); margin-right: 8px; white-space: nowrap; }
+  nav a { color: rgba(0,0,0,0.65); text-decoration: none; font-size: 12px; padding: 14px 8px; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -3px; font-weight: 600; display: inline-block; }
+  nav a:hover { color: var(--preto); border-bottom-color: var(--preto); }
+
+  .container { max-width: 1020px; margin: 0 auto; padding: 28px 20px 64px; }
+  h2.section-title { font-size: 21px; color: var(--preto); border-bottom: 3px solid var(--amarelo); padding-bottom: 8px; margin: 48px 0 18px; }
+  h3.sub { font-size: 15px; color: var(--preto); margin: 24px 0 10px; font-weight: 700; border-left: 4px solid var(--amarelo); padding-left: 10px; }
+  h4.mini { font-size: 13px; font-weight: 700; margin: 14px 0 6px; color: var(--cinza-escuro); }
+
+  .hero { background: linear-gradient(135deg, var(--preto) 0%, #1a2f3a 100%); color: white; padding: 28px; border-radius: 12px; margin-bottom: 28px; border-bottom: 4px solid var(--amarelo); }
+  .hero h1 { font-size: 24px; margin-bottom: 6px; color: #fff; }
+  .hero p { opacity: 0.85; font-size: 13px; }
+  .hero .pills { margin-top: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .hero .pill { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.35); border-radius: 20px; padding: 3px 12px; font-size: 11px; color: #fff; text-decoration: none; }
+
+  .pitch { background: #1a1a2e; color: #e0e0e0; border-radius: 8px; padding: 14px 18px; font-style: italic; line-height: 1.7; margin: 10px 0; border-left: 4px solid var(--amarelo); font-size: 13px; }
+  .pitch strong { color: #fff; font-style: normal; }
+
+  .etapa { background: var(--cinza); padding: 13px 18px; border-radius: 8px; border-left: 4px solid var(--amarelo); margin-bottom: 10px; }
+  .etapa strong { display:block; margin-bottom:4px; }
+  .etapa .ex { font-size: 12px; color:#555; font-style: italic; }
+
+  .msg-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; }
+  .msg-inbound { color: var(--verde); }
+  .msg-box { padding:13px; border-radius:8px; font-size:12px; font-style:italic; line-height:1.7; }
+  .msg-box-in { background:#f0faf0; border:1px solid #c3e6cb; }
+  .msg-box-out { background:var(--cinza); border:1px dashed #ccc; }
+
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
+
+  .obs { background: var(--amarelo-bg); border-left: 4px solid var(--amarelo); padding: 9px 12px; border-radius: 4px; margin: 8px 0; font-size: 13px; }
+  ul { padding-left: 18px; }
+  li { margin-bottom: 4px; line-height: 1.6; }
+  p { line-height: 1.6; margin-bottom: 8px; }
+
+  .fala { padding: 10px 14px; border-radius: 8px; margin-bottom: 8px; font-size: 13px; line-height: 1.6; }
+  .fala-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; opacity: 0.65; }
+  .fala-lead { background: var(--cinza); border-left: 3px solid #999; }
+  .fala-sdr { background: var(--amarelo-bg); border-left: 3px solid var(--amarelo); }
+
+  .steps { display: flex; flex-direction: column; gap: 10px; margin: 10px 0; }
+  .step { display: flex; gap: 12px; align-items: flex-start; }
+  .step-num { background: var(--amarelo); color: var(--preto); font-weight: 800; font-size: 12px; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-body { font-size: 13px; line-height: 1.6; }
+  .step-body strong { display: block; margin-bottom: 2px; }
+
+  table.precos { width: 100%; border-collapse: collapse; font-size: 12px; margin: 10px 0; }
+  table.precos th, table.precos td { border: 1px solid var(--borda); padding: 6px 10px; text-align: left; }
+  table.precos th { background: var(--cinza); }
+
+  .nav-item { position: relative; }
+  .nav-item > .dropdown { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid var(--borda); border-radius: 0 0 8px 8px; box-shadow: 0 6px 14px rgba(0,0,0,0.15); min-width: 260px; flex-direction: column; padding: 4px 0; z-index: 200; }
+  .nav-item:hover > .dropdown, .nav-item:focus-within > .dropdown { display: flex; }
+  .nav-item > .dropdown a { color: var(--cinza-escuro); padding: 8px 14px; font-size: 12px; font-weight: 500; border-bottom: 1px solid var(--cinza); white-space: normal; margin-bottom: 0; display: block; }
+  .nav-item > .dropdown a:last-child { border-bottom: none; }
+  .nav-item > .dropdown a:hover { background: var(--amarelo-bg); color: var(--preto); border-bottom-color: var(--cinza); }
+</style>
+<link rel="stylesheet" href="otus-shared.css">
+</head>
+<body id="top">
+
+<div class="cross-nav" style="background:#1C1C1B;border-bottom:2px solid #FFDC00;position:sticky;top:0;z-index:300;display:flex;align-items:center;gap:2px;padding:0 16px;height:36px;overflow-x:auto;white-space:nowrap;">
+  <span class="cross-nav-brand" style="font-size:12px;font-weight:800;color:#FFDC00;margin-right:10px;flex-shrink:0;">Otus Engenharia</span>
+  <span class="cross-sep" style="color:rgba(255,255,255,0.2);margin:0 4px;">|</span>
+  <a href="index.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Início</a>
+  <a href="Playbook%20SDR%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Playbook SDR</a>
+  <a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Produto &amp; Cases</a>
+  <a href="Scripts%20de%20Abordagem%20-%20Otus.html" class="current" style="color:#1C1C1B;background:#FFDC00;text-decoration:none;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:4px;flex-shrink:0;">Scripts</a>
+</div>
+
+<nav>
+  <h1><a href="#top" style="color:inherit;text-decoration:none;">Scripts de Abordagem — Otus</a></h1>
+  <div class="nav-item">
+    <a href="#ligacao">Ligação</a>
+    <div class="dropdown">
+      <a href="#ligacao-abertura-out">Variações — Abertura Outbound</a>
+      <a href="#ligacao-abertura-in">Variações — Abertura Inbound</a>
+      <a href="#ligacao-spin">Variações — Qualificação SPIN</a>
+      <a href="#ligacao-cta">Variações — CTA/Agendamento</a>
+      <a href="#ligacao-exemplo-out">Exemplo Completo Outbound</a>
+      <a href="#ligacao-exemplo-in">Exemplo Completo Inbound</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <a href="#objecoes">Objeções</a>
+    <div class="dropdown">
+      <a href="#obj-email">"Me manda por e-mail"</a>
+      <a href="#obj-ocupado">"Estou ocupado"</a>
+      <a href="#obj-internalizacao">"Já fazemos internamente"</a>
+      <a href="#obj-concorrente">Concorrente</a>
+      <a href="#obj-timing">"Não é prioridade agora"</a>
+      <a href="#obj-valores">"Quanto custa?"</a>
+      <a href="#obj-decisorio">"Falar com sócio/diretor"</a>
+      <a href="#obj-qualidade">"Nossos projetistas são bons"</a>
+      <a href="#obj-cad-bim">Caso especial: CAD x BIM</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <a href="#casos">Casos Completos</a>
+    <div class="dropdown">
+      <a href="#caso-out1">Outbound 1 — Incorporadora (Coordenação)</a>
+      <a href="#caso-out2">Outbound 2 — Construtora (upsell Coordenação)</a>
+      <a href="#caso-in1">Inbound 1 — Formulário do site</a>
+      <a href="#caso-in2">Inbound 2 — Indicação</a>
+    </div>
+  </div>
+  <a href="#email">E-mail</a>
+  <a href="#whatsapp">WhatsApp</a>
+  <a href="#linkedin">LinkedIn</a>
+</nav>
+
+<div class="container">
+
+<div class="hero">
+  <h1>Scripts de Abordagem — Otus Engenharia</h1>
+  <p>Referência rápida com exemplos reais prontos para uso: ligação (4 etapas), e-mail, WhatsApp e LinkedIn.</p>
+  <div class="pills">
+    <a class="pill" href="#ligacao">Ligação</a>
+    <a class="pill" href="#objecoes">Objeções</a>
+    <a class="pill" href="#casos">Casos Completos</a>
+    <a class="pill" href="#email">E-mail</a>
+    <a class="pill" href="#whatsapp">WhatsApp</a>
+    <a class="pill" href="#linkedin">LinkedIn</a>
+  </div>
+</div>
+
+<!-- ===================== LIGAÇÃO ===================== -->
+<h2 class="section-title" id="ligacao">Ligação — Roteiro em 4 Etapas</h2>
+<p style="font-size:13px; margin-bottom:14px;">A ligação é o canal que mais converte. Erro mais comum: tentar vender o produto. O correto é <strong>vender a reunião</strong>.</p>
+
+<div class="etapa">
+  <strong>ABERTURA</strong> — Voz positiva e segura.
+  <div class="ex">"Oi, Roberto! Aqui é a Maria Paula da Otus Engenharia. Tudo bem?"</div>
+</div>
+<div class="etapa">
+  <strong>MOTIVO DO CONTATO</strong> — Contexto + pedir acordo para continuar.
+  <div class="ex">"Estou te ligando porque vi que a [Incorporadora] lançou recentemente o [Empreendimento], com mais de 12 mil m² distribuídos em [X] torres. Posso te fazer 3 perguntas sobre como vocês gerenciam a compatibilização dos projetos hoje?"</div>
+</div>
+<div class="etapa">
+  <strong>QUALIFICAÇÃO</strong> — Verificar Dor + FIT + Interesse.
+  <div class="ex">• <em>Inbound:</em> "O que você busca resolver com a nossa ajuda?"<br>• <em>Outbound:</em> "Hoje você é o responsável pela coordenação dos projetos desse empreendimento? Em qual fase está o projeto — anteprojeto, pré-executivo ou executivo?"</div>
+</div>
+<div class="etapa">
+  <strong>CTA — CHAMADA PARA AÇÃO</strong> — Garantir o agendamento.
+  <div class="ex">"Pelo que conversamos, parece que temos muito fit. Tem interesse em agendar uma reunião com nosso time técnico para conhecer melhor o processo de coordenação e compatibilização BIM?"</div>
+</div>
+
+<div class="obs">
+  <strong>Escuta ativa:</strong> direcione 100% da atenção à resposta do lead. Confirme o que ele disse antes de prosseguir — o script é um guia, cada conversa tem seu próprio ritmo.
+</div>
+
+<h3 class="sub" id="ligacao-abertura-out">Variações de Abertura — Outbound</h3>
+<p style="font-size:13px;">Escolha a variação conforme o gatilho identificado na pesquisa prévia. Adapte nome, empresa, gatilho e fase do projeto.</p>
+
+<h4 class="mini">Gatilho: vaga aberta para coordenador/BIM</h4>
+<ul style="font-size:12px;">
+  <li><em>"Oi [Nome], bom dia! Aqui é a Maria Paula, da Otus Engenharia. Vi que vocês estão contratando para a área de coordenação BIM — isso geralmente é sinal de que o time está crescendo ou se estruturando. É esse o momento de vocês? Posso te roubar 2 minutos pra te contar como ajudamos equipes nessa fase?"</em></li>
+  <li><em>"Oi [Nome], tudo bem? Maria Paula, da Otus. Notei a vaga aberta para coordenação de projetos/BIM na [Empresa] — geralmente isso aparece quando a empresa está ampliando a operação ou sentindo dor com compatibilização. Faz sentido para vocês hoje?"</em></li>
+  <li><em>"[Nome], oi! Sou a Maria Paula, da Otus Engenharia. Vi o anúncio de vocês para coordenador BIM. Antes de vocês contratarem e estruturarem tudo do zero, queria te mostrar como a gente já entra como um time de coordenação plugado, sem o custo de uma nova contratação. Tem 5 minutos agora?"</em></li>
+</ul>
+
+<h4 class="mini">Gatilho: lançamento de empreendimento</h4>
+<ul style="font-size:12px;">
+  <li><em>"Oi [Nome], bom dia! Maria Paula, da Otus Engenharia. Vi o lançamento do [Empreendimento] e queria entender em que fase o projeto está — vocês já estão com a coordenação BIM rodando ou ainda em definição dos projetistas?"</em></li>
+  <li><em>"[Nome], tudo bem? Aqui é a Maria Paula, da Otus. Parabéns pelo lançamento do [Empreendimento]! Esse é exatamente o tipo de empreendimento em que a coordenação BIM evita bastante dor de cabeça mais para frente — vocês já têm um processo estruturado para isso?"</em></li>
+</ul>
+
+<h4 class="mini">Gatilho: indicação</h4>
+<ul style="font-size:12px;">
+  <li><em>"Oi [Nome], boa tarde! Aqui é a Maria Paula, da Otus Engenharia. O [Nome de quem indicou], da [Empresa], comentou que vocês também trabalham com [tipo de empreendimento] e sugeriu que eu te ligasse. Você tem 5 minutinhos?"</em></li>
+  <li><em>"[Nome], oi! Sou a Maria Paula, da Otus. Estou ligando porque o [Nome] me passou seu contato — ele é cliente nosso e falou que talvez fizesse sentido eu te apresentar o que fazemos em coordenação e compatibilização BIM. Posso te contar rapidinho?"</em></li>
+</ul>
+
+<h4 class="mini">Gatilho: crescimento/expansão de operação</h4>
+<ul style="font-size:12px;">
+  <li><em>"Oi [Nome], bom dia! Maria Paula, da Otus Engenharia. Vi que a [Empresa] está expandindo a operação para [região/novos empreendimentos] — nessas horas, a coordenação entre disciplinas costuma ficar mais difícil de acompanhar internamente. Como vocês estão lidando com isso hoje?"</em></li>
+</ul>
+
+<h4 class="mini">Cold call genérico (sem gatilho claro)</h4>
+<ul style="font-size:12px;">
+  <li><em>"Oi [Nome], bom dia! Aqui é a Maria Paula, da Otus Engenharia. Te liguei do nada, sem aviso — então vou ser rápida: a gente ajuda incorporadoras a reduzir retrabalho de obra fazendo a coordenação e compatibilização dos projetos antes da execução. Faz sentido eu te explicar em 1 minuto?"</em></li>
+  <li><em>"[Nome], oi, tudo bem? Maria Paula, da Otus Engenharia. Sei que te peguei de surpresa — posso roubar 2 minutos para entender se o que fazemos tem fit com os projetos de vocês?"</em></li>
+</ul>
+
+<h3 class="sub" id="ligacao-abertura-in">Variações de Abertura — Inbound</h3>
+
+<h4 class="mini">Levantada de mão (formulário do site)</h4>
+<ul style="font-size:12px;">
+  <li><em>"Oi [Nome], tudo bem? Aqui é a Maria Paula, da Otus Engenharia. Vi que você preencheu nosso formulário no site — fico feliz com o contato! Me conta, o que despertou seu interesse em falar com a gente agora?"</em></li>
+  <li><em>"[Nome], oi! Maria Paula, da Otus. Recebi seu contato pelo site e queria entender melhor o momento de vocês — estão buscando apoio para algum empreendimento específico ou é mais uma pesquisa inicial mesmo?"</em></li>
+</ul>
+
+<h4 class="mini">Lead score / engajou com conteúdo</h4>
+<ul style="font-size:12px;">
+  <li><em>"Oi [Nome], bom dia! Aqui é a Maria Paula, da Otus Engenharia. Vi que você baixou nosso material sobre [tema] — isso geralmente indica que vocês estão de olho em melhorar o processo de coordenação/compatibilização. É esse o momento de vocês?"</em></li>
+  <li><em>"[Nome], tudo bem? Maria Paula, da Otus. Notei que você tem acompanhado nosso conteúdo sobre BIM — queria entender se é uma curiosidade ou se já é algo no radar de vocês para esse ano."</em></li>
+</ul>
+
+<h4 class="mini">Indicação de cliente (inbound)</h4>
+<ul style="font-size:12px;">
+  <li><em>"Oi [Nome], boa tarde! Aqui é a Maria Paula, da Otus Engenharia. O [Nome do cliente] me passou seu contato — ele está bem satisfeito com o nosso trabalho de coordenação e achou que poderia fazer sentido para vocês também. Posso te contar um pouco mais?"</em></li>
+</ul>
+
+<h3 class="sub" id="ligacao-spin">Variações de Qualificação (SPIN)</h3>
+
+<h4 class="mini">Situação — Coordenação</h4>
+<ul style="font-size:12px;">
+  <li><em>"Hoje, como funciona o processo de coordenação dos projetos de vocês — vocês têm uma equipe interna dedicada a isso ou cada projetista resolve por conta própria?"</em></li>
+  <li><em>"Os projetos de arquitetura, estrutura e instalações são desenvolvidos por escritórios diferentes ou tudo é feito internamente?"</em></li>
+  <li><em>"Vocês já trabalham com BIM hoje, ou ainda é um processo mais baseado em CAD/2D?"</em></li>
+</ul>
+
+<h4 class="mini">Situação — Compatibilização</h4>
+<ul style="font-size:12px;">
+  <li><em>"Como é feita hoje a compatibilização entre as disciplinas — por sobreposição de plantas, reuniões periódicas, ou algum software específico?"</em></li>
+  <li><em>"Quem centraliza essa verificação entre os projetos hoje: alguém do time de vocês ou fica a cargo de cada projetista?"</em></li>
+</ul>
+
+<h4 class="mini">Problema</h4>
+<ul style="font-size:12px;">
+  <li><em>"E nesse processo, vocês já tiveram algum caso de incompatibilidade que só foi percebido na obra?"</em></li>
+  <li><em>"Com quantos projetistas diferentes vocês costumam trabalhar num empreendimento? E como é alinhar todos eles?"</em></li>
+  <li><em>"Já aconteceu de uma revisão de projeto chegar tarde demais — já depois de algo ter sido executado?"</em></li>
+</ul>
+
+<h4 class="mini">Implicação</h4>
+<ul style="font-size:12px;">
+  <li><em>"E quando isso acontece, o impacto fica só no cronograma ou chega a gerar custo extra de obra também?"</em></li>
+  <li><em>"Esses retrabalhos afetam só aquela etapa ou acabam atrasando entregas seguintes também?"</em></li>
+  <li><em>"Como isso reflete para o cliente final — vocês sentem isso em reclamações, atraso de entrega, ou aumento de custo que vira margem perdida?"</em></li>
+</ul>
+
+<h4 class="mini">Necessidade de solução</h4>
+<ul style="font-size:12px;">
+  <li><em>"Se vocês tivessem esse mapeamento de interferências pronto antes da obra começar, isso ajudaria a evitar boa parte desses imprevistos?"</em></li>
+  <li><em>"Faria sentido para vocês ter um relatório de compatibilização entre as disciplinas antes de liberar os projetos para execução?"</em></li>
+  <li><em>"Seria interessante conhecer como outras incorporadoras estão resolvendo isso com apoio externo, sem aumentar o quadro interno?"</em></li>
+</ul>
+
+<h3 class="sub" id="ligacao-cta">Variações de CTA / Agendamento</h3>
+
+<h4 class="mini">Fechamento direto</h4>
+<ul style="font-size:12px;">
+  <li><em>"Acho que faz total sentido a gente aprofundar isso com nosso time técnico — posso já deixar uma reunião marcada?"</em></li>
+  <li><em>"Para não ficar só na conversa, que tal eu já agendar um papo de 30 minutos com nosso time técnico para te mostrar como isso funciona na prática?"</em></li>
+</ul>
+
+<h4 class="mini">Oferecendo opções de horário</h4>
+<ul style="font-size:12px;">
+  <li><em>"Terça ou quinta de tarde funciona melhor para você?"</em></li>
+  <li><em>"Eu tenho horário na segunda de manhã ou na quarta depois das 14h — qual fica melhor para sua agenda?"</em></li>
+  <li><em>"Consigo encaixar ainda essa semana — prefere começo ou final da tarde?"</em></li>
+</ul>
+
+<h4 class="mini">Quando o lead pede para "pensar" / "te retorno"</h4>
+<ul style="font-size:12px;">
+  <li><em>"Sem problema! Só para eu te ajudar: o que você gostaria de avaliar antes — se faz sentido para o momento de vocês, ou algum ponto específico que ficou em aberto?"</em></li>
+  <li><em>"Entendo. Posso já deixar uma sugestão de horário na agenda, sem compromisso? Se não der, é só remarcar — assim a gente não perde o timing."</em></li>
+</ul>
+
+<h4 class="mini">Envolvendo terceiros / decisores</h4>
+<ul style="font-size:12px;">
+  <li><em>"Faz sentido o [Nome do decisor] participar dessa reunião também? Já deixo o convite para ele também."</em></li>
+  <li><em>"Combinado, vou confirmar com o [Nome] e te aviso o horário definido ainda hoje."</em></li>
+</ul>
+
+<h4 class="mini">Reforço pós-agendamento (confirmação)</h4>
+<ul style="font-size:12px;">
+  <li><em>"Perfeito! Já deixei agendado e vou te enviar um resumo por e-mail com o que vamos abordar e a confirmação do horário."</em></li>
+  <li><em>"Combinado então — te mando agora um e-mail com os detalhes da reunião e um material rápido sobre como funciona o nosso processo."</em></li>
+</ul>
+
+<h3 class="sub" id="ligacao-exemplo-out">Exemplo Completo — Ligação Outbound (Incorporadora, novo lançamento)</h3>
+
+<h4 class="mini">Abertura e Motivo</h4>
+<div class="pitch">"Oi, Roberto! Aqui é a Maria Paula da Otus Engenharia. Tudo bem?<br><br>
+Estou te ligando porque vi que a <strong>[Incorporadora]</strong> lançou recentemente o <strong>[Empreendimento]</strong>, com mais de 12 mil m² distribuídos em <strong>[X]</strong> torres.<br><br>
+Empreendimentos desse porte costumam ter dezenas de interfaces entre arquitetura, estrutura, hidráulica e elétrica — e qualquer incompatibilidade não identificada em projeto vira retrabalho e atraso de cronograma na obra.<br><br>
+A Otus ajuda incorporadoras como a <strong>[Cliente]</strong> a coordenar e compatibilizar esses projetos antes da execução, evitando esse tipo de problema.<br><br>
+Posso te fazer 3 perguntas sobre como vocês gerenciam a compatibilização dos projetos hoje?"</div>
+
+<h4 class="mini">Perguntas de FIT</h4>
+<div class="pitch">"Roberto, hoje você é o responsável pela coordenação dos projetos desse empreendimento na <strong>[Incorporadora]</strong>?"<br><br>
+"Para entender se temos fit para trabalharmos juntos, em qual fase está o projeto hoje — anteprojeto, pré-executivo ou executivo?"</div>
+
+<h4 class="mini">Pergunta de Problema</h4>
+<div class="pitch">"Geralmente as incorporadoras que nos procuram enfrentam retrabalho em obra por incompatibilidade entre disciplinas, ou não têm um responsável único pela coordenação dos projetistas. No caso de vocês, o que motivou seu contato?"<br><br>
+<em>OU:</em> "Me ajuda a entender: como vocês fazem hoje a compatibilização entre os projetos de arquitetura, estrutura e instalações?"</div>
+
+<h4 class="mini">Pergunta de Interesse + CTA</h4>
+<div class="pitch">"Nosso processo de coordenação BIM identifica interferências entre as disciplinas ainda na fase de projeto, gerando relatórios de compatibilização e ciclos de revisão com os projetistas antes do início da obra.<br><br>
+Por exemplo, se há um conflito entre uma viga e uma tubulação hidráulica, isso é identificado e corrigido em modelo, evitando retrabalho na obra.<br><br>
+Tem interesse em agendar uma reunião com nosso time técnico para conhecer melhor o processo?"</div>
+
+<h3 class="sub" id="ligacao-exemplo-in">Exemplo Completo — Ligação Inbound</h3>
+<p style="font-size:13px; margin-bottom:10px;">No inbound, a dor já existe — o foco é qualificar o <strong>FIT</strong>.</p>
+<div class="pitch">"Oi, Roberto! Aqui é a Maria Paula da Otus Engenharia. Tudo bem?<br><br>
+Estou ligando porque você solicitou um contato no nosso site.<br><br>
+Meu objetivo é fazer algumas perguntas para avaliar se temos potencial para atender o seu empreendimento. Caso positivo, podemos agendar um papo com nosso time técnico para você conhecer melhor a coordenação e compatibilização BIM.<br><br>
+Acha justo?"</div>
+
+<!-- ===================== OBJEÇÕES ===================== -->
+<h2 class="section-title" id="objecoes">Objeções</h2>
+<p style="font-size:13px; margin-bottom:14px;">Objeções na ligação geralmente são de <strong>acesso e timing</strong>, não de produto — sempre busque a objeção raiz, o primeiro "não" raramente é o motivo real.</p>
+
+<h3 class="sub" id="obj-email">"Me manda por e-mail" / "Agora não tenho tempo"</h3>
+<p style="font-size:13px;">Geralmente quando pedem isso é porque não estão interessados ou estão ocupados. O caminho é checar isso com transparência, ou negociar 30 segundos antes de encerrar.</p>
+
+<h4 class="mini">Variações de resposta</h4>
+<ul style="font-size:12px;">
+  <li><em>"Posso te mandar sim! Só queria entender rapidinho uma coisa antes, para te mandar algo que realmente faça sentido para o momento de vocês — vocês têm algum empreendimento em fase de projeto agora?"</em></li>
+  <li><em>"Sem problema, te mando já. Mas só para não ficar solto: prefere que eu já sugira um horário para um papo rápido com nosso time técnico, ou te ligo em outro momento essa semana?"</em></li>
+  <li><em>"Claro, mando sim. Posso te ligar de novo na quinta para saber se fez sentido o material e já aproveitar para entender melhor o momento de vocês?"</em></li>
+</ul>
+
+<h4 class="mini">Exemplo 1 — Outbound, lead pouco engajado</h4>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Olha, pode me mandar isso por e-mail que eu dou uma olhada depois."</div>
+<div class="fala fala-sdr"><div class="fala-label">Maria Paula</div>"Sem problema! Só pra eu não te mandar algo genérico: geralmente quando pedem isso é porque não estão interessados ou estão ocupados no momento — esse é o seu caso? Se for falta de tempo agora, te faço só 2 perguntas rápidas, leva 30 segundos, e te mando algo bem direcionado por e-mail."</div>
+
+<h4 class="mini">Exemplo 2 — Outbound, lead interessado mas com reunião em seguida</h4>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Olha, parece interessante sim. Mas agora eu realmente preciso ir pra essa reunião — você pode me mandar isso por e-mail? Eu dou uma olhada com calma e te retorno."</div>
+<div class="fala fala-sdr"><div class="fala-label">Maria Paula</div>"Perfeito, [Nome], sem problema! Vou te mandar agora por e-mail um resumo de como funciona. Pra não ficar pendente, já aproveito e te jogo um horário com nosso time técnico — terça ou quinta à tarde fica melhor pra você? Se não fechar, é só me avisar e remarcamos."</div>
+
+<h4 class="mini">Exemplo 3 — Opção 1: testar a real prioridade (mais consultiva)</h4>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Pode me mandar por e-mail que eu dou uma olhada?"</div>
+<div class="fala fala-sdr"><div class="fala-label">Maria Paula</div>"Sem problema, Felipe. Só pra eu não te mandar algo genérico — nas últimas obras de vocês, chegou a aparecer algum apontamento de projeto só na hora do canteiro?"</div>
+<div class="obs">Devolve a conversa para uma pergunta de problema (SPIN), sem insistir no agendamento — deixa o lead se abrir sobre uma dor real.</div>
+
+<h4 class="mini">Exemplo 4 — Opção 2: transparência direta (mais ousada)</h4>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Pode me mandar por e-mail que eu dou uma olhada?"</div>
+<div class="fala fala-sdr"><div class="fala-label">Maria Paula</div>"Posso te mandar sim. Mas, sendo sincera: 90% das vezes que mandamos material sem conversar antes, a gente nem consegue retomar contato depois. Topa 5 minutinhos agora mesmo, ou prefiro te ligar num horário melhor essa semana?"</div>
+<div class="obs">Joga a decisão de volta para o lead com duas saídas concretas (agora ou agendar) — evita o "te mando e nunca mais conversamos".</div>
+
+<h4 class="mini">E-mail de follow-up</h4>
+<div class="pitch">
+<strong>Assunto:</strong> Coordenação BIM – resumo conforme conversamos<br><br>
+"Oi [Nome], conforme falamos agora por telefone, segue um resumo rápido:<br><br>
+A Otus atua na coordenação e compatibilização BIM entre as disciplinas (arquitetura, estrutura, hidráulica, elétrica, climatização) ainda na fase de projeto. Identificamos interferências antes da obra começar, com relatórios de compatibilização e ciclos de revisão junto aos projetistas — evitando retrabalho em campo.<br><br>
+Como vocês estão em pré-executivo, esse é exatamente o momento ideal pra esse trabalho ter impacto.<br><br>
+Posso te mandar uma proposta de horário com nosso time técnico para uma conversa de 30 min? Te sugiro [opção 1] ou [opção 2] — qualquer um funciona pra você?<br><br>
+Abraço, Maria Paula | Otus Engenharia"</div>
+
+<h3 class="sub" id="obj-ocupado">⏰ "Estou ocupado / não estou disponível agora"</h3>
+<p style="font-size:13px;">Não insista na ligação — busque um horário melhor e, se o lead sugerir um, agende imediatamente no Pipedrive.</p>
+
+<h4 class="mini">Exemplo 1 — Outbound, lead pede para ligar depois</h4>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Agora não é um bom momento, estou numa reunião."</div>
+<div class="fala fala-sdr"><div class="fala-label">Maria Paula</div>"Sem problema, [Nome]! Tem algum horário melhor pra eu te ligar de novo? Estou ligando porque vi o lançamento do [Empreendimento] e queria entender como vocês estão organizando a compatibilização dos projetos — leva uns 5 minutinhos."</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Pode ser hoje à tarde, depois das 16h."</div>
+<div class="fala fala-sdr"><div class="fala-label">Maria Paula</div>"Perfeito, te ligo hoje às 16h então. Já anoto aqui. Até mais tarde!"</div>
+
+<h4 class="mini">Exemplo 2 — Inbound, lead solicitou contato mas está em outra atividade</h4>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Oi, na verdade agora eu não posso falar, tô no meio de uma obra."</div>
+<div class="fala fala-sdr"><div class="fala-label">Maria Paula</div>"Entendi, [Nome]! Sem problema. Você preencheu o formulário no nosso site sobre coordenação BIM — qual o melhor horário pra eu te ligar de novo, ainda hoje ou amanhã? Assim já consigo te ajudar com o que você precisa sem te interromper agora."</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Amanhã de manhã é melhor, lá pelas 9h."</div>
+<div class="fala fala-sdr"><div class="fala-label">Maria Paula</div>"Combinado, te ligo amanhã às 9h. Obrigada, [Nome]!"</div>
+
+<h3 class="sub" id="obj-internalizacao">"Já fazemos isso internamente"</h3>
+<ul style="font-size:12px;">
+  <li><em>"Que ótimo que vocês já têm um processo! Geralmente quando isso já existe internamente, a gente costuma complementar em pontos específicos — como compatibilização entre disciplinas muito técnicas, por exemplo. Como funciona esse processo de vocês hoje?"</em></li>
+  <li><em>"Faz sentido — muita gente que já tem equipe interna nos chama justamente para dar suporte em picos de demanda ou em projetos mais complexos. Vocês sentem que o time interno consegue dar conta de tudo hoje sem atrasos?"</em></li>
+</ul>
+
+<h3 class="sub" id="obj-concorrente">"Já trabalhamos com outro fornecedor/empresa de BIM"</h3>
+<ul style="font-size:12px;">
+  <li><em>"Entendo, é importante ter esse suporte. Posso te perguntar como tem sido essa experiência — principalmente em relação ao prazo de entrega dos relatórios e à revisão com os projetistas?"</em></li>
+  <li><em>"Que bom que vocês já estão nessa frente. Às vezes vale a pena ter uma segunda referência de mercado, só para comparar processo e resultado — você teria 15 minutos para eu te mostrar como funciona o nosso?"</em></li>
+</ul>
+
+<h3 class="sub" id="obj-timing">"Não é prioridade agora" (timing de projeto)</h3>
+<ul style="font-size:12px;">
+  <li><em>"Entendo, faz sentido. Só para eu entender melhor: vocês estão em qual fase hoje — anteprojeto, pré-executivo ou executivo? O ideal é a gente entrar um pouco antes da fase em que vocês estiverem, para já aproveitar o timing certo."</em></li>
+  <li><em>"Tudo bem! Posso deixar registrado aqui e te procuro de novo perto da fase em que normalmente entramos. Qual a previsão de vocês para avançar para o próximo estágio do projeto?"</em></li>
+</ul>
+
+<h3 class="sub" id="obj-valores">"Quanto custa?" / "Achamos caro"</h3>
+<p style="font-size:13px;">A solução parte de uma faixa de valores — para saber ao certo, é preciso entender a necessidade primeiro na reunião com o time técnico.</p>
+
+<h4 class="mini">Variações de resposta</h4>
+<ul style="font-size:12px;">
+  <li><em>"Entendo a preocupação com investimento. Só para te dar uma referência: em projetos parecidos, a gente normalmente vê uma redução de cerca de 5% no custo direto de obra por evitar retrabalho e paralisações — então o investimento tende a se pagar. Faz sentido eu te mostrar esses números com mais detalhe?"</em></li>
+  <li><em>"Faz sentido, todo investimento precisa fazer sentido financeiro. Por isso a sugestão de uma conversa com nosso time técnico — eles conseguem te mostrar casos reais, como o de uma subestação em que o cliente evitou quase R$ 300 mil em retrabalho. Topa ver isso com mais calma?"</em></li>
+</ul>
+
+<h4 class="mini">Referência de preços (uso interno — não divulgar ao lead sem necessidade)</h4>
+<table class="precos">
+  <tr><th>Tipo de serviço</th><th>Faixa de referência</th></tr>
+  <tr><td>Relatório de Compatibilização (projeto ~20–30 mil m²)</td><td>~R$ 25.000 (padrão maior: R$ 25–30 mil)</td></tr>
+  <tr><td>Gerenciamento — Alto padrão / Luxo (SP)</td><td>~R$ 16/m²</td></tr>
+  <tr><td>Projeto Econômico</td><td>~R$ 6/m²</td></tr>
+  <tr><td>Coordenação contínua</td><td>R$ 5–15/m² ou R$ 15–30 mil por ciclo de compatibilização</td></tr>
+</table>
+<div class="obs">Sempre validar internamente antes de passar valores — cada cliente tem variáveis de ciclo, escopo e padrão de obra.</div>
+
+<h4 class="mini">Exemplo 1 — Lead pergunta valor no início da ligação</h4>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Antes de mais nada, me dá uma média de valores? Assim já vejo se faz sentido continuar."</div>
+<div class="fala fala-sdr"><div class="fala-label">Maria Paula</div>"Claro! A solução parte de uma faixa de valores, mas o valor exato varia bastante de acordo com a complexidade e o escopo do projeto — por isso a gente costuma aprofundar isso na reunião com o time técnico. Posso te fazer 3 perguntas rápidas sobre o projeto de vocês pra eu te dar uma ideia mais próxima da realidade?"</div>
+
+<h4 class="mini">Exemplo 2 — Lead insiste e questiona se está acima do orçamento</h4>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Mas me dá uma faixa aí, porque o orçamento que temos pra isso é mais baixo do que imagino que vocês cobrem."</div>
+<div class="fala fala-sdr"><div class="fala-label">Maria Paula</div>"Entendo a preocupação. Como referência, projetos de compatibilização costumam ficar entre R$ 15 e 30 mil por ciclo, e a coordenação contínua na faixa de R$ 5 a 15 por m² — mas isso varia muito com o escopo. Você teria alguma inviabilidade de valor que eu já devesse considerar, ou prefere que a gente leve o cenário completo pra reunião e veja com nosso time técnico o que cabe dentro do que vocês têm disponível? Em alguns casos conseguimos ajustar o escopo."</div>
+
+<h3 class="sub" id="obj-decisorio">"Preciso falar com o sócio/diretor antes"</h3>
+<ul style="font-size:12px;">
+  <li><em>"Com certeza, faz todo sentido. Para te ajudar nessa conversa, que tal eu já te mandar um resumo de uma página com o que fazemos e os principais números? Assim fica mais fácil de compartilhar."</em></li>
+  <li><em>"Perfeito. Inclusive, se fizer sentido, posso já incluir o [Nome do diretor] numa reunião com nosso time técnico — assim ele já ouve direto e você não precisa repassar tudo. O que acha?"</em></li>
+</ul>
+
+<h3 class="sub" id="obj-qualidade">"Nossos projetistas são bons, não temos erro"</h3>
+<ul style="font-size:12px;">
+  <li><em>"Que ótimo, isso ajuda muito! Mesmo com projetistas muito bons, a maioria das incompatibilidades não vem de erro individual, e sim da falta de um olhar que cruze todas as disciplinas ao mesmo tempo — é exatamente esse o papel da coordenação. Faz sentido eu te explicar como isso funciona na prática?"</em></li>
+</ul>
+
+<h3 class="sub" id="obj-cad-bim">Caso Especial: Projeto ainda em CAD (sem BIM)</h3>
+<p style="font-size:13px;">Quando o lead responde que trabalha apenas em CAD, sem intenção de migrar no curto prazo, ele está fora do ICP no momento — mas a porta deve ficar aberta. A Otus trabalha a partir de modelos BIM (Revit, com exportação IFC); sem modelo, não há o que compatibilizar. A Otus <strong>não</strong> faz a modelagem CAD → BIM. (Lógica completa de qualificação: ver Playbook SDR, seção ICP.)</p>
+
+<div class="steps">
+  <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Pergunta de diagnóstico:</strong> "Pra eu entender melhor: hoje os projetos de vocês já são desenvolvidos em BIM (Revit), ou ainda é tudo em CAD?"</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Se a resposta for CAD:</strong> "Entendi — muita incorporadora que atendemos também começa assim. Vocês têm intenção de migrar os projetos pra BIM nos próximos lançamentos, ou nos projetos atuais?"</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Se não há intenção de migrar:</strong> usar o script de explicação abaixo, mantendo a porta aberta para reabertura futura.</div></div>
+</div>
+
+<h4 class="mini">Ligação — explicação ao lead</h4>
+<div class="pitch">"[Nome], entendi. Hoje a Otus trabalha a partir de modelos BIM (Revit, com exportação IFC) — é neles que a gente identifica as interferências entre arquitetura, estrutura e instalações. Como os projetos de vocês ainda são feitos em CAD, hoje não teríamos modelo pra compatibilizar.<br><br>
+Pra fazer sentido contratar a Otus, o caminho seria ter esses projetos em BIM — seja já exigindo entrega em BIM dos projetistas no próximo empreendimento, seja modelando os projetos atuais com um escritório especializado. <em>[Se houver parceiro confirmado: "Posso te indicar um escritório parceiro que faz esse tipo de modelagem, se for de interesse."]</em> Com o modelo pronto, aí sim a Otus entra pra compatibilizar e coordenar antes da obra."</div>
+
+<h4 class="mini">E-mail — registro e fechamento educado</h4>
+<div class="pitch">
+<strong>Assunto:</strong> Sobre nossa conversa – Otus Engenharia<br><br>
+"Oi [Nome], conforme conversamos, hoje a Otus atua compatibilizando e coordenando projetos a partir de modelos BIM (Revit/IFC) — é a partir deles que identificamos as interferências entre as disciplinas antes da obra.<br><br>
+Como os projetos de vocês ainda são desenvolvidos em CAD, hoje não conseguiríamos aplicar esse processo. Caso vocês avaliem migrar para BIM em um próximo empreendimento — seja modelando os projetos atuais, seja já contratando os próximos projetistas em BIM — ficarei à disposição para retomar a conversa. <em>[Se houver parceiro: "Posso te indicar um escritório especializado em modelagem CAD→BIM, se for de interesse."]</em><br><br>
+Um abraço, Maria Paula | Otus Engenharia"</div>
+
+<h4 class="mini">WhatsApp — versão curta</h4>
+<div class="msg-box msg-box-out">"Oi [Nome]! Conforme conversamos, hoje a Otus trabalha a partir de modelos em BIM, então com os projetos em CAD não teríamos como aplicar nosso processo agora. Se em algum momento vocês pensarem em migrar pra BIM (modelando os projetos atuais ou nos próximos lançamentos), me chama que vejo como posso ajudar — inclusive posso indicar parceiros de modelagem se for útil."</div>
+
+<div class="obs"><strong>Observação:</strong> não citar nomes de escritórios parceiros específicos sem confirmação prévia com a equipe da Otus.</div>
+
+<!-- ===================== CASOS COMPLETOS ===================== -->
+<h2 class="section-title" id="casos">Casos Completos por Canal</h2>
+<p style="font-size:13px; margin-bottom:14px;">Conversas completas de exemplo, cobrindo cenários outbound e inbound. Os critérios de ICP, fase do projeto (CAD x BIM) e SPIN já estão incorporados nas perguntas — para a referência completa, ver o Playbook SDR. Adapte os trechos entre [ ] para cada lead.</p>
+
+<h3 class="sub" id="caso-out1">Outbound — Caso 1: Incorporadora com novo lançamento (BIM, pré-executivo → Coordenação)</h3>
+<p style="font-size:13px;">Cenário: a [Incorporadora] lançou um empreendimento de grande porte. Pesquisa prévia indica que trabalham com Revit. Objetivo: qualificar fase do projeto e estrutura de coordenação, e agendar reunião de descoberta para Gerenciamento Completo (Planejamento + Coordenação + Compatibilização).</p>
+
+<h4 class="mini">Ligação — roteiro completo</h4>
+<div class="fala fala-sdr"><div class="fala-label">Abertura + Motivo</div>"Oi, [Nome]! Aqui é a Maria Paula, da Otus Engenharia. Tudo bem? Estou te ligando porque vi que a [Incorporadora] lançou recentemente o [Empreendimento], com mais de [X] mil m² distribuídos em [X] torres. Empreendimentos desse porte costumam ter dezenas de interfaces entre arquitetura, estrutura, hidráulica e elétrica — e qualquer incompatibilidade não identificada em projeto vira retrabalho e atraso de cronograma na obra. A Otus ajuda incorporadoras como a [Cliente de referência] a coordenar e compatibilizar esses projetos antes da execução. Posso te fazer 3 perguntas rápidas sobre como vocês gerenciam isso hoje?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Pode sim, tenho uns minutos."</div>
+<div class="fala fala-sdr"><div class="fala-label">Qualificação — FIT e diagnóstico</div>"[Nome], hoje você é o responsável pela coordenação dos projetos desse empreendimento na [Incorporadora]? Pra eu entender melhor: os projetos hoje já são desenvolvidos em BIM (Revit), ou ainda é tudo em CAD? Em qual fase está o projeto hoje — anteprojeto, pré-executivo ou executivo?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Sou eu sim. A gente já trabalha com Revit com os projetistas. O projeto está em pré-executivo ainda."</div>
+<div class="fala fala-sdr"><div class="fala-label">Qualificação — Problema</div>"Perfeito, é exatamente nessa fase que a Otus entra. Vocês possuem um setor interno de projetos, ou cada projetista trabalha de forma mais isolada? E como tem sido a coordenação entre arquitetura, estrutura e instalações até aqui — já apareceu algum erro de incompatibilidade indo para o canteiro?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Temos uma pessoa que acompanha, mas é bem corrido. Já tivemos retrabalho de hidráulica com estrutura em outra obra."</div>
+<div class="fala fala-sdr"><div class="fala-label">Implicação</div>"Entendo. E esse tipo de retrabalho, quando aparece em obra, costuma gerar quanto de impacto a mais de custo ou de atraso no cronograma de vocês?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Já chegou a atrasar entrega de torre em algumas semanas, então pesa bastante."</div>
+<div class="fala fala-sdr"><div class="fala-label">Necessidade + CTA</div>"Faz total sentido então. Nosso processo de coordenação BIM identifica interferências entre as disciplinas ainda na fase de projeto, gerando relatórios de compatibilização e ciclos de revisão com os projetistas antes do início da obra — exatamente esse tipo de conflito entre hidráulica e estrutura é identificado e corrigido em modelo, evitando retrabalho na obra. Pelo que você me contou, parece que temos bastante fit. Tem interesse em agendar uma reunião com nosso time técnico para conhecer melhor o processo de Gerenciamento — Planejamento, Coordenação e Compatibilização?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Sim, pode ser. Terça eu tenho mais tempo."</div>
+<div class="fala fala-sdr"><div class="fala-label">Fechamento</div>"Ótimo! Vou já deixar uma agenda de terça às [horário] com nosso time técnico. Confirmo por e-mail e WhatsApp os detalhes, combinado?"</div>
+
+<h4 class="mini">WhatsApp — outbound (apoio antes/depois da ligação)</h4>
+<div class="msg-box msg-box-out">"Olá [Nome]! Como você está? Sou a Maria Paula, da Otus Engenharia. Vi que a [Incorporadora] lançou o [Empreendimento] recentemente — empreendimentos desse porte costumam ter bastante interferência entre arquitetura, estrutura e instalações. Ajudamos incorporadoras a coordenar e compatibilizar esses projetos ainda na fase de projeto, evitando retrabalho na obra. Tem 5 minutos para conversarmos?"</div>
+
+<h4 class="mini">LinkedIn — outbound (mensagem de conexão)</h4>
+<div class="msg-box msg-box-out">"Oi [Nome], tudo bem? Sou Maria Paula, SDR na Otus Engenharia — trabalhamos com coordenação e compatibilização BIM para incorporadoras e construtoras. Vi o lançamento do [Empreendimento] e achei que faria sentido conectar. Topa uma conversa rápida de 10 minutos?"</div>
+
+<h4 class="mini">E-mail — cold outbound</h4>
+<div class="pitch">
+<strong>Assunto:</strong> Coordenação BIM para o [Empreendimento]<br><br>
+"Olá [Nome], meu nome é Maria Paula, sou SDR na Otus Engenharia.<br><br>
+Vi que a [Incorporadora] lançou recentemente o [Empreendimento] (~[X] mil m², [X] torres). Empreendimentos desse porte costumam ter dezenas de interfaces entre arquitetura, estrutura, hidráulica e elétrica — e qualquer incompatibilidade não identificada em projeto vira retrabalho e atraso de cronograma na obra.<br><br>
+A Otus ajuda incorporadoras a coordenar e compatibilizar esses projetos ainda na fase de projeto (anteprojeto/pré-executivo), antes do início da obra.<br><br>
+Faz sentido avaliar a coordenação BIM para a [Empresa]? Posso te ligar amanhã para uma conversa rápida de 5 minutos.<br><br>
+Abraço, Maria Paula | Otus Engenharia"</div>
+
+<h3 class="sub" id="caso-out2">Outbound — Caso 2: Construtora estruturando time de projetos/BIM (Compatibilização → upsell Coordenação)</h3>
+<p style="font-size:13px;">Cenário: a [Construtora] publicou vagas para coordenador de projetos/BIM — indício de que está estruturando ou ampliando a área de compatibilização. Objetivo: entender o estágio dessa estruturação e, se o projeto já estiver em executivo, entrar pela Compatibilização pontual; se ainda houver projetos em fase inicial, abrir espaço para Coordenação.</p>
+
+<h4 class="mini">Ligação — roteiro completo</h4>
+<div class="fala fala-sdr"><div class="fala-label">Abertura + Motivo</div>"Oi, [Nome]! Aqui é a Maria Paula, da Otus Engenharia. Tudo bem? Estou ligando porque notei que a [Construtora] está com vagas abertas para coordenador de projetos/BIM. Isso normalmente indica que vocês estão estruturando ou ampliando a área de compatibilização de projetos. A Otus ajuda equipes nesse momento a ganhar previsibilidade de cronograma e reduzir incompatibilidades entre disciplinas antes da obra. Posso te fazer 3 perguntas rápidas sobre como está esse processo hoje?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Pode, estamos mesmo organizando essa parte agora."</div>
+<div class="fala fala-sdr"><div class="fala-label">Qualificação — Situação</div>"Hoje os projetos de vocês já são desenvolvidos em BIM (Revit), ou ainda em CAD? E quantos projetos vocês têm para iniciar nos próximos 12 meses? Vocês já possuem alguém internamente responsável pela coordenação entre arquitetura, estrutura e instalações, ou essa vaga seria a primeira pessoa dedicada a isso?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Já trabalhamos em BIM com os projetistas. Temos 2 projetos para começar esse ano. Hoje cada projetista resolve por conta, não temos ninguém central."</div>
+<div class="fala fala-sdr"><div class="fala-label">Qualificação — Problema</div>"Entendi. Com essa coordenação isolada por projetista, já chegaram erros de projeto no canteiro? E em qual fase estão esses 2 projetos hoje — anteprojeto, pré-executivo ou executivo?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Sim, já tivemos retrabalho de elétrica com forro. Um projeto está em pré-executivo, o outro já está em executivo, mais avançado."</div>
+<div class="fala fala-sdr"><div class="fala-label">Implicação</div>"Esse tipo de retrabalho de elétrica, quando aparece em obra, costuma gerar quanto de impacto extra em custo ou prazo?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Já gerou um atraso de algumas semanas numa torre, e custo extra de mão de obra."</div>
+<div class="fala fala-sdr"><div class="fala-label">Necessidade + CTA</div>"Faz sentido. Para o projeto que já está em executivo, conseguimos atuar com um ciclo de Compatibilização pontual, focado em identificar e corrigir essas interferências antes da obra avançar mais. Para o que está em pré-executivo, ainda há espaço para um trabalho mais completo de Planejamento e Coordenação ao longo de todo o desenvolvimento. Tem interesse em agendar uma reunião com nosso time técnico para detalhar os dois casos?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Sim, faz sentido vermos os dois."</div>
+<div class="fala fala-sdr"><div class="fala-label">Fechamento</div>"Combinado! Vou agendar com nosso time técnico — qual dia da semana funciona melhor para vocês, e prefere reunião online ou presencial?"</div>
+
+<h4 class="mini">WhatsApp — outbound com gatilho de personalização</h4>
+<div class="msg-box msg-box-out">"Olá [Nome]! Como você está? Eu sou a Maria Paula, da Otus Engenharia. Notei que a [Construtora] está com vagas abertas para coordenador de projetos/BIM. Isso normalmente indica que vocês estão estruturando ou ampliando a área de compatibilização de projetos. Ajudamos equipes nesse momento a ganhar previsibilidade de cronograma e reduzir incompatibilidades entre disciplinas antes da obra. Tem interesse em bater um papo de 5 minutos?"</div>
+
+<h4 class="mini">LinkedIn — outbound (mensagem de conexão)</h4>
+<div class="msg-box msg-box-out">"Oi [Nome], tudo bem? Sou Maria Paula, SDR na Otus Engenharia. Vi que a [Construtora] está contratando para a área de projetos/BIM — costuma ser o momento certo para revisar como está a coordenação entre disciplinas. Topa uma conversa rápida de 10 minutos?"</div>
+
+<h4 class="mini">E-mail — cold outbound</h4>
+<div class="pitch">
+<strong>Assunto:</strong> Coordenação BIM para a [Construtora]<br><br>
+"Olá [Nome], meu nome é Maria Paula, sou SDR na Otus Engenharia.<br><br>
+Vi que a [Construtora] está com vagas abertas para coordenador de projetos/BIM — geralmente um sinal de que a área de compatibilização está em estruturação.<br><br>
+A Otus ajuda construtoras nesse momento a ganhar previsibilidade de cronograma e reduzir incompatibilidades entre arquitetura, estrutura e instalações antes da obra, com relatórios de compatibilização e ciclos de revisão junto aos projetistas.<br><br>
+Faz sentido conversarmos 15 minutos essa semana sobre como está esse processo hoje na [Construtora]?<br><br>
+Abraço, Maria Paula | Otus Engenharia"</div>
+
+<h3 class="sub" id="caso-in1">Inbound — Caso 1: Lead via formulário do site (levantada de mão)</h3>
+<p style="font-size:13px;">Cenário: o lead preencheu o formulário do site pedindo contato sobre coordenação de projetos. <strong>Regra de ouro: abordar em menos de 5 minutos após a conversão.</strong></p>
+
+<h4 class="mini">Ligação — roteiro completo</h4>
+<div class="fala fala-sdr"><div class="fala-label">Abertura + Motivo</div>"Oi, [Nome]! Aqui é a Maria Paula, da Otus Engenharia. Tudo bem? Estou ligando porque você solicitou um contato no nosso site. Meu objetivo é fazer algumas perguntas rápidas para avaliar se temos potencial para atender o seu empreendimento — caso positivo, agendamos um papo com nosso time técnico para você conhecer melhor a coordenação e compatibilização BIM. Acha justo?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Sim, claro. A gente está com um problema de retrabalho entre os projetos."</div>
+<div class="fala fala-sdr"><div class="fala-label">Qualificação — Situação e Problema</div>"Entendi. O que você busca resolver com a nossa ajuda? E me conta: hoje os projetos já estão em BIM (Revit) ou ainda em CAD? Em qual fase está esse projeto — anteprojeto, pré-executivo ou executivo?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Já está em Revit. Está em pré-executivo. O problema é que cada projetista manda a versão dele e a gente não sabe qual está certa."</div>
+<div class="fala fala-sdr"><div class="fala-label">Implicação</div>"Já chegou a gerar erro em obra por causa dessas versões desencontradas, ou atraso em alguma entrega?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Já tivemos retrabalho de estrutura por causa disso, sim."</div>
+<div class="fala fala-sdr"><div class="fala-label">Necessidade + CTA</div>"Faz total sentido então — é exatamente esse tipo de situação que o nosso processo de coordenação BIM resolve: a gente centraliza o modelo federado, identifica as interferências entre disciplinas ainda na fase de projeto e organiza ciclos de revisão com os projetistas, evitando esse tipo de retrabalho na obra. Como vocês estão em pré-executivo, esse é o momento ideal. Posso agendar uma reunião com nosso time técnico para detalharmos como funcionaria no caso de vocês?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Sim, pode agendar."</div>
+<div class="fala fala-sdr"><div class="fala-label">Fechamento</div>"Perfeito! Vou te mandar por WhatsApp duas opções de horário ainda hoje, combinado?"</div>
+
+<h4 class="mini">WhatsApp — inbound (confirmação/apoio)</h4>
+<div class="msg-box msg-box-in">"Oi [Nome]! Aqui é a Maria Paula, da Otus Engenharia. Vi que você solicitou um contato pelo nosso site. Gostaria de entender o que te motivou e se conseguimos atender suas necessidades. Podemos conversar 5 minutos?"</div>
+
+<h4 class="mini">LinkedIn — inbound (apoio)</h4>
+<div class="msg-box msg-box-in">"Oi [Nome], vi que você entrou em contato com a Otus pelo nosso site. Sou a Maria Paula, SDR da equipe. Posso te fazer 2 perguntas rápidas por aqui mesmo antes de te passar para o nosso time técnico?"</div>
+
+<h3 class="sub" id="caso-in2">Inbound — Caso 2: Lead via indicação</h3>
+<p style="font-size:13px;">Cenário: lead chegou por indicação de um cliente atual. Já há um vínculo de confiança — a abordagem pode citar quem indicou.</p>
+
+<h4 class="mini">Ligação — roteiro completo</h4>
+<div class="fala fala-sdr"><div class="fala-label">Abertura + Motivo</div>"Oi, [Nome]! Aqui é a Maria Paula, da Otus Engenharia. Tudo bem? O [Contato em Comum], da [Empresa Cliente], me passou seu contato — ele comentou que vocês também têm enfrentado alguns desafios na coordenação dos projetos e que poderia fazer sentido a gente conversar. Posso te fazer algumas perguntas rápidas para entender o cenário de vocês?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Pode, sim. O [Contato em Comum] comentou bem do trabalho de vocês."</div>
+<div class="fala fala-sdr"><div class="fala-label">Qualificação</div>"Que bom! Me conta: hoje os projetos de vocês já são desenvolvidos em BIM (Revit) ou ainda em CAD? Em qual fase está o(s) projeto(s) atual(is) — anteprojeto, pré-executivo ou executivo? E vocês têm um responsável interno pela coordenação entre os projetistas, ou cada um trabalha de forma mais isolada?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Trabalhamos em Revit, projeto em anteprojeto ainda. Temos uma engenheira que acompanha, mas sem muito tempo dedicado a isso."</div>
+<div class="fala fala-sdr"><div class="fala-label">Problema + Implicação</div>"Nessa fase de anteprojeto, normalmente ainda dá pra resolver bastante coisa sem custo de obra — mas sem alguém dedicado, é comum passarem interferências entre arquitetura, estrutura e instalações sem perceber, e isso aparecer só na obra. Isso já aconteceu em projetos anteriores de vocês? Que tipo de impacto gerou?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Sim, já tivemos esse tipo de problema, gerou retrabalho e um atraso pequeno."</div>
+<div class="fala fala-sdr"><div class="fala-label">Necessidade + CTA</div>"Faz sentido, então. Como vocês estão em anteprojeto, esse é exatamente o momento ideal para a Otus entrar com Planejamento, Coordenação e Compatibilização — identificando essas interferências em modelo, antes de virarem problema em obra. Posso agendar uma conversa com nosso time técnico para detalhar como isso funcionaria no caso de vocês?"</div>
+<div class="fala fala-lead"><div class="fala-label">Lead</div>"Sim, pode mandar uma proposta de horário por e-mail."</div>
+
+<h4 class="mini">E-mail — follow-up de agendamento</h4>
+<div class="pitch">
+<strong>Assunto:</strong> Conversa sobre coordenação BIM — indicação de [Contato em Comum]<br><br>
+"Oi [Nome], foi um prazer falar com você agora. Conforme conversamos, a Otus atua na coordenação e compatibilização BIM entre arquitetura, estrutura e instalações ainda na fase de projeto — identificando interferências e organizando ciclos de revisão com os projetistas antes da obra.<br><br>
+Como o projeto de vocês está em anteprojeto, esse é o momento ideal para esse trabalho ter mais impacto.<br><br>
+Te sugiro [opção 1] ou [opção 2] para uma conversa de 30 min com nosso time técnico — qual funciona melhor?<br><br>
+Abraço, Maria Paula | Otus Engenharia"</div>
+
+<!-- ===================== E-MAIL ===================== -->
+<h2 class="section-title" id="email">E-mail</h2>
+<p style="font-size:13px; margin-bottom:10px;">Use o início do e-mail (assunto + primeiras linhas) para chamar atenção com um gatilho. E-mails de até 100 palavras têm maior taxa de resposta.</p>
+
+<div class="grid2">
+  <div>
+    <p class="msg-label msg-inbound">Aberturas com gatilho</p>
+    <ul style="font-size:12px; line-height:1.8;">
+      <li><em>"Oi [Nome]! Vi que o time da [Empresa] cresceu muito nos últimos 6 meses! Normalmente isso traz alguns desafios de coordenação entre projetistas (...)"</em></li>
+      <li><em>"Oi [Nome]! Consegui seu contato com [Contato em Comum]; ele me contou um pouco dos desafios em [área do problema] que vocês vêm enfrentando (...)"</em></li>
+      <li><em>"Oi [Nome]! Parabéns pela promoção para [Cargo Novo]. Imagino que você esteja em um momento de [...]"</em></li>
+    </ul>
+  </div>
+  <div>
+    <p class="msg-label">Introdução da solução</p>
+    <ul style="font-size:12px; line-height:1.8;">
+      <li><em>"Estou curioso se reduzir o retrabalho em [processo-chave] te ajudaria a trazer a meta mais rapidamente."</em></li>
+      <li><em>"A [empresa concorrente/similar] tinha problemas de incompatibilidade entre disciplinas e hoje reduziu retrabalho em obra com a coordenação BIM da Otus."</em></li>
+      <li><em>"Não sei se vocês enfrentam retrabalho por incompatibilidade entre arquitetura, estrutura e instalações. Criamos um processo de coordenação e compatibilização BIM que identifica e corrige esses conflitos ainda em projeto."</em></li>
+    </ul>
+  </div>
+</div>
+
+<h3 class="sub">Exemplo de E-mail Completo (Outbound)</h3>
+<div class="pitch">
+<strong>Assunto:</strong> Compatibilização de projetos — [Empreendimento]<br><br>
+"Oi [Nome]! Vi que a [Incorporadora] lançou recentemente o [Empreendimento], com mais de 12 mil m² distribuídos em [X] torres.<br><br>
+Não sei se vocês enfrentam retrabalho por incompatibilidade entre arquitetura, estrutura e instalações. Criamos um processo de coordenação e compatibilização BIM que identifica e corrige esses conflitos ainda em projeto, antes da obra.<br><br>
+Faz sentido avaliar a coordenação BIM para a [Empresa]? Posso te ligar amanhã para uma conversa rápida de 5 minutos."</div>
+
+<div class="obs">
+  <strong>CTA de interesse</strong> (não de tempo): "Tem interesse em conhecer mais sobre [X]?", "Vale olhar mais a fundo?", "Faz sentido avaliar a coordenação BIM para a [Empresa do Lead]?" — e ligar em até 30 minutos após a abertura do e-mail.
+</div>
+
+<!-- ===================== WHATSAPP ===================== -->
+<h2 class="section-title" id="whatsapp">WhatsApp</h2>
+<div class="grid2">
+  <div>
+    <p class="msg-label msg-inbound">Inbound</p>
+    <div class="msg-box msg-box-in">"Oi [Nome]! Aqui é a Maria Paula da Otus Engenharia.<br>Vi que você solicitou um contato pelo nosso site.<br>Gostaria de entender o que te motivou e se conseguimos atender suas necessidades.<br>Podemos conversar 5 minutos?"</div>
+  </div>
+  <div>
+    <p class="msg-label">Outbound</p>
+    <div class="msg-box msg-box-out">"Olá [Nome]! Como você está?<br>Sou a Maria Paula da Otus Engenharia. [Gatilho personalizado].<br>Ajudamos construtoras a reduzir conflitos e retrabalho com BIM.<br>Tem 5 minutos para conversarmos?"</div>
+  </div>
+</div>
+
+<h3 class="sub">Outbound com Gatilho de Personalização — Exemplos Reais</h3>
+<div class="grid2">
+  <div>
+    <p class="msg-label">Incorporadora — Novo Lançamento</p>
+    <div class="msg-box msg-box-out">"Olá [Nome]! Como você está?<br>Eu sou [Seu Nome], da Otus Engenharia. Vi que a [Incorporadora] lançou recentemente o [Empreendimento], com mais de 12 mil m² distribuídos em [X] torres.<br><br>Empreendimentos desse porte costumam ter muitas interfaces entre arquitetura, estrutura e instalações — e qualquer incompatibilidade não identificada em projeto vira retrabalho na obra.<br><br>Tem um minuto para conversarmos sobre como a Otus pode ajudar a reduzir esse risco com coordenação e compatibilização de projetos?"</div>
+  </div>
+  <div>
+    <p class="msg-label">Construtora — Estruturando Time de Projetos/BIM</p>
+    <div class="msg-box msg-box-out">"Olá [Nome]! Como você está?<br>Eu sou [Seu Nome], da Otus Engenharia. Notei que a [Construtora] está com vagas abertas para coordenador de projetos/BIM.<br><br>Isso normalmente indica que vocês estão estruturando ou ampliando a área de compatibilização de projetos.<br><br>Ajudamos equipes nesse momento a ganhar previsibilidade de cronograma e reduzir incompatibilidades entre disciplinas antes da obra. Tem interesse em bater um papo de 5 minutos?"</div>
+  </div>
+</div>
+
+<div class="obs">
+  <strong>Regra:</strong> WhatsApp é canal de <em>suporte</em>. Telefone é o canal de <em>conversão</em>. Mensagens curtas. WhatsApp no outbound só após tentativas de ligação.
+</div>
+
+<!-- ===================== LINKEDIN ===================== -->
+<h2 class="section-title" id="linkedin">LinkedIn</h2>
+<div class="grid2">
+  <div>
+    <p class="msg-label msg-inbound">Inbound</p>
+    <div class="msg-box msg-box-in">"Oi [Nome], vi que você entrou em contato com a Otus.<br>Sou a Paula, SDR da equipe. Posso te fazer 2 perguntas rápidas antes de passar para um especialista?"</div>
+  </div>
+  <div>
+    <p class="msg-label">Outbound</p>
+    <div class="msg-box msg-box-out">"Oi [Nome], tudo bem?<br>Sou SDR na Otus — trabalhamos com BIM para construtoras e incorporadoras.<br>Vi [gatilho] e achei que faria sentido conectar.<br>Topa uma conversa rápida de 10 minutos?"</div>
+  </div>
+</div>
+
+<div class="obs">
+  <strong>Regra:</strong> LinkedIn é canal de <em>suporte</em> — usar para aquecer o contato antes ou depois da ligação, nunca como substituto dela.
+</div>
+
+<br>
+<div style="background: var(--preto); color: white; padding: 20px; border-radius: 10px; text-align: center; border-top: 4px solid var(--amarelo);">
+  <strong style="color: var(--amarelo);">Scripts de Abordagem — Otus Engenharia | SDR Onboarding</strong><br>
+  <span style="opacity:0.75; font-size:12px;">Use em paralelo com o Playbook SDR e o documento Produto & Cases.</span>
+</div>
+
+</div>
+<script src="otus-shared.js"></script>
+</body>
+</html>
