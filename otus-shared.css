@@ -234,4 +234,40 @@ nav a.is-active {
   /* Disable hover dropdown on mobile */
   .nav-item:hover > .dropdown { display: none !important; }
   .nav-item:focus-within > .dropdown { display: none !important; }
+
+  /* ── Global mobile layout fixes ── */
+  .container { padding: 16px 14px 48px !important; }
+
+  /* Tables scroll horizontally */
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: 12px !important; }
+  th, td { padding: 7px 9px !important; min-width: 90px; }
+
+  /* Hero sections */
+  .hero { padding: 20px 16px !important; border-radius: 8px !important; }
+  .hero h1 { font-size: 20px !important; }
+  .hero p { font-size: 12px !important; }
+  .hero .pills { gap: 6px !important; }
+  .hero .pill { font-size: 10px !important; padding: 4px 10px !important; }
+
+  /* Section titles */
+  h2.section-title { font-size: 17px !important; margin: 32px 0 14px !important; }
+  h3.sub { font-size: 14px !important; }
+
+  /* Cards and grids collapse */
+  .servicos, .cobranca, .metodo, .equipe, .perfil-grid,
+  .mercado-dores, .icp-grid, .naoe-e, .grid2, .funil-mkt,
+  .cobranca { grid-template-columns: 1fr !important; }
+
+  .stack { grid-template-columns: 1fr 1fr !important; }
+  .eco-grid { grid-template-columns: 1fr 1fr !important; }
+  .case-metrics { grid-template-columns: 1fr 1fr !important; }
+  .numbers { grid-template-columns: repeat(2, 1fr) !important; }
+  .estado-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .funil { grid-template-columns: 1fr !important; }
+
+  /* Pitch and message blocks */
+  .pitch, .msg-box, .fala-sdr { font-size: 12px !important; padding-top: 38px !important; }
+
+  /* Scroll-to-top button position */
+  #scroll-top-btn { bottom: 14px; right: 14px; width: 36px; height: 36px; font-size: 18px; }
 }
