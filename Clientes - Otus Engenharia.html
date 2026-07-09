@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clientes - Otus Engenharia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="otus-shared.css">
+<style>
+  :root {
+    --amarelo: #FFDC00;
+    --amarelo-bg: #fffce0;
+    --preto: #1C1C1B;
+    --cinza: #f4f5f7;
+    --borda: #e5e7eb;
+    --cinza-escuro: #374151;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--preto); background: #fff; }
+
+  .hero {
+    background: linear-gradient(135deg, #1C1C1B 0%, #2a2a29 55%, #1a1a1a 100%);
+    color: white;
+    padding: 48px 24px 40px;
+    border-bottom: 4px solid var(--amarelo);
+    text-align: center;
+  }
+  .hero h1 { font-size: 26px; color: #fff; margin-bottom: 8px; }
+  .hero p { opacity: 0.75; font-size: 14px; max-width: 500px; margin: 0 auto; line-height: 1.6; }
+  .hero .badge { display: inline-block; background: var(--amarelo); color: var(--preto); font-size: 12px; font-weight: 800; padding: 4px 14px; border-radius: 20px; margin-bottom: 14px; }
+
+  .container { max-width: 980px; margin: 0 auto; padding: 36px 24px 60px; }
+
+  .search-wrap { margin-bottom: 24px; }
+  .search-wrap input {
+    width: 100%; padding: 10px 16px; border: 2px solid var(--borda);
+    border-radius: 8px; font-size: 14px; font-family: inherit;
+    outline: none; transition: border-color 0.2s;
+  }
+  .search-wrap input:focus { border-color: var(--amarelo); }
+
+  .count-label { font-size: 12px; color: #6b7280; margin-bottom: 12px; }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    background: var(--preto); color: var(--amarelo);
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .6px; padding: 10px 14px; text-align: left;
+  }
+  tbody tr { border-bottom: 1px solid var(--borda); transition: background 0.15s; }
+  tbody tr:hover { background: var(--amarelo-bg); }
+  tbody td { padding: 10px 14px; font-size: 13px; vertical-align: middle; }
+  tbody tr:nth-child(even) { background: var(--cinza); }
+  tbody tr:nth-child(even):hover { background: var(--amarelo-bg); }
+
+  .no-results { display: none; padding: 32px; text-align: center; color: #6b7280; font-size: 14px; }
+
+  footer {
+    background: var(--preto); color: rgba(255,255,255,0.5);
+    text-align: center; padding: 18px 24px; font-size: 12px;
+    border-top: 3px solid var(--amarelo);
+  }
+  footer strong { color: var(--amarelo); }
+
+  @media (max-width: 600px) {
+    table, thead, tbody, th, td, tr { display: block; }
+    thead { display: none; }
+    tbody tr { margin-bottom: 12px; border: 1px solid var(--borda); border-radius: 8px; padding: 10px; background: #fff !important; }
+    tbody td { padding: 4px 8px; border: none; }
+    tbody td:first-child { font-weight: 700; font-size: 14px; }
+  }
+</style>
+</head>
+<body id="top">
+
+<div class="cross-nav" style="background:#1C1C1B;border-bottom:2px solid #FFDC00;position:sticky;top:0;z-index:300;display:flex;align-items:center;gap:2px;padding:0 16px;height:36px;overflow-x:auto;white-space:nowrap;">
+  <span class="cross-nav-brand" style="font-size:12px;font-weight:800;color:#FFDC00;margin-right:10px;flex-shrink:0;">🦉 Otus Engenharia</span>
+  <span class="cross-sep" style="color:rgba(255,255,255,0.2);margin:0 4px;">|</span>
+  <a href="index.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Início</a>
+  <a href="Playbook%20SDR%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Playbook SDR</a>
+  <a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Produto &amp; Cases</a>
+  <a href="Scripts%20de%20Abordagem%20-%20Otus.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Scripts</a>
+  <a href="Clientes%20-%20Otus%20Engenharia.html" class="current" style="color:#1C1C1B;background:#FFDC00;text-decoration:none;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:4px;flex-shrink:0;">Clientes</a>
+  <a href="Concorrentes%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Concorrentes</a>
+</div>
+
+<div class="hero">
+  <div class="badge">USO INTERNO</div>
+  <h1>Clientes Otus Engenharia</h1>
+  <p>Base de clientes ativos e históricos. Use para verificar relacionamentos, depoimentos e contexto antes de prospectar.</p>
+</div>
+
+<div class="container">
+  <div class="search-wrap">
+    <input type="text" id="search" placeholder="Buscar cliente por nome ou cidade..." oninput="filterTable()">
+  </div>
+  <p class="count-label" id="count">93 clientes</p>
+  <table id="clientTable">
+    <thead>
+      <tr>
+        <th>Empresa</th>
+        <th>Cidade / Estado</th>
+        <th>Case</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr id="c-abc-empreendimentos">
+      <td style="font-weight:600;">ABC Empreendimentos</td>
+      <td>Itapema, SC</td>
+      <td><a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html#case-its" style="font-size:11px;font-weight:700;color:#1C1C1B;background:#FFDC00;padding:2px 8px;border-radius:4px;text-decoration:none;white-space:nowrap;">📄 It's - R$6M de Economia</a></td>
+    </tr>
+    <tr id="c-abrizze-empreendimentos">
+      <td style="font-weight:600;">Abrizze Empreendimentos</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-amalfi-constru-es">
+      <td style="font-weight:600;">Amalfi Construções</td>
+      <td>Itajaí, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-ams-empreendimentos">
+      <td style="font-weight:600;">AMS Empreendimentos</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-arv-investimentos-imobili-rios">
+      <td style="font-weight:600;">ARV Investimentos Imobiliários</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-axia-vectra">
+      <td style="font-weight:600;">Axia Vectra</td>
+      <td>Joinville, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-benx-incorporadora">
+      <td style="font-weight:600;">Benx Incorporadora</td>
+      <td>São Paulo, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-bild-desenv-imobili-rio-bauru-sp">
+      <td style="font-weight:600;">Bild Desenv. Imobiliário - Bauru/SP</td>
+      <td>Bauru, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-bild-desenv-imobili-rio-londrina">
+      <td style="font-weight:600;">Bild Desenv. Imobiliário - Londrina</td>
+      <td>Londrina, PR</td>
+      <td></td>
+    </tr>
+    <tr id="c-boutiq-empreendimentos">
+      <td style="font-weight:600;">Boutiq Empreendimentos</td>
+      <td>Itapema, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-carmona-cabrera-engenharia-e-consultoria">
+      <td style="font-weight:600;">Carmona Cabrera Engenharia e Consultoria</td>
+      <td>Ananindeua, PA</td>
+      <td></td>
+    </tr>
+    <tr id="c-cavalcante-rolim">
+      <td style="font-weight:600;">Cavalcante Rolim</td>
+      <td>Maceió, AL</td>
+      <td></td>
+    </tr>
+    <tr id="c-ceranium-construindo-estilo-de-vida">
+      <td style="font-weight:600;">Ceranium - Construindo Estilo de Vida</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-cfl-incorporadora">
+      <td style="font-weight:600;">CFL Incorporadora</td>
+      <td>Florianópolis, SC</td>
+      <td><a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html#case-cfl" style="font-size:11px;font-weight:700;color:#1C1C1B;background:#FFDC00;padding:2px 8px;border-radius:4px;text-decoration:none;white-space:nowrap;">📄 CFL Oceana</a></td>
+    </tr>
+    <tr id="c-citz">
+      <td style="font-weight:600;">CITZ</td>
+      <td>São José do Rio Preto, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-construtora-fontana">
+      <td style="font-weight:600;">Construtora Fontana</td>
+      <td>Criciúma, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-construtora-mtf">
+      <td style="font-weight:600;">Construtora MTF</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-construtora-planeta">
+      <td style="font-weight:600;">Construtora Planeta</td>
+      <td>Sorocaba, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-cost-o-do-santinho">
+      <td style="font-weight:600;">Costão do Santinho</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-cp8-empreendimentos">
+      <td style="font-weight:600;">CP8 Empreendimentos</td>
+      <td>Balneário Camboriú, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-d-campos-construtora">
+      <td style="font-weight:600;">D'Campos Construtora</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-daros-engenharia">
+      <td style="font-weight:600;">Daros Engenharia</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-dimas-constru-es">
+      <td style="font-weight:600;">Dimas Construções</td>
+      <td>São José, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-ebm-desenvolvimento-imobili-rio">
+      <td style="font-weight:600;">EBM Desenvolvimento Imobiliário</td>
+      <td>Goiânia, GO</td>
+      <td></td>
+    </tr>
+    <tr id="c-emais-urbanismo">
+      <td style="font-weight:600;">Emais Urbanismo</td>
+      <td>São José do Rio Preto, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-engeco">
+      <td style="font-weight:600;">Engeco</td>
+      <td>Manaus, AM</td>
+      <td></td>
+    </tr>
+    <tr id="c-engenho-construindo-com-arte">
+      <td style="font-weight:600;">Engenho Construindo com Arte</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-xito-construtora">
+      <td style="font-weight:600;">Êxito Construtora</td>
+      <td>Itajaí, SC</td>
+      <td><a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html#case-guara" style="font-size:11px;font-weight:700;color:#1C1C1B;background:#FFDC00;padding:2px 8px;border-radius:4px;text-decoration:none;white-space:nowrap;">📄 Guará Home Club</a></td>
+    </tr>
+    <tr id="c-famex-empreendimentos">
+      <td style="font-weight:600;">Famex Empreendimentos</td>
+      <td>Pato Branco, PR</td>
+      <td></td>
+    </tr>
+    <tr id="c-fr-incorporadora">
+      <td style="font-weight:600;">FR Incorporadora</td>
+      <td>Goiânia, GO</td>
+      <td></td>
+    </tr>
+    <tr id="c-frechal">
+      <td style="font-weight:600;">Frechal</td>
+      <td>Blumenau, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-gessele-empreendimentos">
+      <td style="font-weight:600;">Gessele Empreendimentos</td>
+      <td>Itapema, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-gnd-incorporadora">
+      <td style="font-weight:600;">GND Incorporadora</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-gpe-incorporadora">
+      <td style="font-weight:600;">GPE Incorporadora</td>
+      <td>Goiânia, GO</td>
+      <td></td>
+    </tr>
+    <tr id="c-grupo-eis">
+      <td style="font-weight:600;">Grupo EIS</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-grupo-lumis">
+      <td style="font-weight:600;">Grupo Lumis</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-grupo-mundialmix">
+      <td style="font-weight:600;">Grupo MundialMix</td>
+      <td>São José, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-grupo-n1">
+      <td style="font-weight:600;">Grupo N1</td>
+      <td>Itapema, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-grupo-pal-dio-ali-rz-inc">
+      <td style="font-weight:600;">Grupo Paládio | Aliàrz Inc</td>
+      <td>Curitiba, PR</td>
+      <td></td>
+    </tr>
+    <tr id="c-gt-building">
+      <td style="font-weight:600;">GT Building</td>
+      <td>Curitiba, PR</td>
+      <td></td>
+    </tr>
+    <tr id="c-gt-home-abc">
+      <td style="font-weight:600;">GT HOME & ABC</td>
+      <td>Itapema, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-habitare-construtora-e-incorporadora">
+      <td style="font-weight:600;">Habitare Construtora e Incorporadora</td>
+      <td>Niterói, RJ</td>
+      <td></td>
+    </tr>
+    <tr id="c-hantei-engenharia">
+      <td style="font-weight:600;">Hantei Engenharia</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-hcr-empreendimentos">
+      <td style="font-weight:600;">HCR Empreendimentos</td>
+      <td>Maringá, PR</td>
+      <td></td>
+    </tr>
+    <tr id="c-hs-construtora-e-incorporadora">
+      <td style="font-weight:600;">HS Construtora e Incorporadora</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-hurbana">
+      <td style="font-weight:600;">Hurbana</td>
+      <td>Palhoça, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-ifsc">
+      <td style="font-weight:600;">IFSC</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-imobcon">
+      <td style="font-weight:600;">Imobcon</td>
+      <td>Curitiba, PR</td>
+      <td></td>
+    </tr>
+    <tr id="c-impacto-constru-es">
+      <td style="font-weight:600;">Impacto Construções</td>
+      <td>Aracaju, SE</td>
+      <td></td>
+    </tr>
+    <tr id="c-imperial-construtora-e-incorporadora-ltda">
+      <td style="font-weight:600;">Imperial Construtora e Incorporadora Ltda.</td>
+      <td>São Paulo, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-inbrasul">
+      <td style="font-weight:600;">Inbrasul</td>
+      <td>Navegantes, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-inndessa-incorporadora">
+      <td style="font-weight:600;">Inndessa Incorporadora</td>
+      <td>Curitiba, PR</td>
+      <td></td>
+    </tr>
+    <tr id="c-itapema-empreendimentos">
+      <td style="font-weight:600;">Itapema Empreendimentos</td>
+      <td>Itapema, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-j-tedesco-construtora-e-incorporadora-grupo-ted">
+      <td style="font-weight:600;">J Tedesco Construtora e Incorporadora | Grupo TED</td>
+      <td>Itapema, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-longview-empreendimentos">
+      <td style="font-weight:600;">Longview Empreendimentos</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-lumma-construtora">
+      <td style="font-weight:600;">Lumma Construtora</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-mabrem-maiochi-empreendimentos">
+      <td style="font-weight:600;">Mabrem Maiochi Empreendimentos</td>
+      <td>Itajaí, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-mac-construtora-e-incorporadora">
+      <td style="font-weight:600;">MAC Construtora e Incorporadora</td>
+      <td>São Paulo, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-maskan-incorporadora">
+      <td style="font-weight:600;">Maskan Incorporadora</td>
+      <td>São Paulo, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-moratti-empreendimentos">
+      <td style="font-weight:600;">Moratti Empreendimentos</td>
+      <td>Curitiba, PR</td>
+      <td></td>
+    </tr>
+    <tr id="c-mpd-incorporadora">
+      <td style="font-weight:600;">MPD Incorporadora</td>
+      <td>Barueri, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-mvituzzo">
+      <td style="font-weight:600;">MVituzzo</td>
+      <td>São José dos Campos, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-nampur">
+      <td style="font-weight:600;">Nampur</td>
+      <td>São Paulo, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-nova-empreendimentos">
+      <td style="font-weight:600;">Nova Empreendimentos</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-opus-incorporadora">
+      <td style="font-weight:600;">Opus Incorporadora</td>
+      <td>Goiânia, GO</td>
+      <td></td>
+    </tr>
+    <tr id="c-or">
+      <td style="font-weight:600;">OR</td>
+      <td>Recife, PE</td>
+      <td></td>
+    </tr>
+    <tr id="c-pass-e-empreendimentos">
+      <td style="font-weight:600;">Pass-e Empreendimentos</td>
+      <td>Itajaí, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-plax-engenharia">
+      <td style="font-weight:600;">Plax Engenharia</td>
+      <td>Joinville, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-porto-sul-construtora">
+      <td style="font-weight:600;">Porto Sul Construtora</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-prc-empreendimentos">
+      <td style="font-weight:600;">PRC Empreendimentos</td>
+      <td>Maringá, PR</td>
+      <td><a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html#case-nest635" style="font-size:11px;font-weight:700;color:#1C1C1B;background:#FFDC00;padding:2px 8px;border-radius:4px;text-decoration:none;white-space:nowrap;">📄 Nest 635</a></td>
+    </tr>
+    <tr id="c-pride-construtora">
+      <td style="font-weight:600;">Pride Construtora</td>
+      <td>Curitiba, PR</td>
+      <td></td>
+    </tr>
+    <tr id="c-puel-engenharia">
+      <td style="font-weight:600;">Puel Engenharia</td>
+      <td>Palhoça, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-raymundi-constru-es">
+      <td style="font-weight:600;">Raymundi Construções</td>
+      <td>Blumenau, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-rove-empreendimentos">
+      <td style="font-weight:600;">Rove Empreendimentos</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-salas-incorporadora">
+      <td style="font-weight:600;">Salas Incorporadora</td>
+      <td>Rondonópolis, MT</td>
+      <td></td>
+    </tr>
+    <tr id="c-san-carlos-inc">
+      <td style="font-weight:600;">San Carlos Inc</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-santa-ngela">
+      <td style="font-weight:600;">Santa Ângela</td>
+      <td>Jundiaí, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-silamar-construtora">
+      <td style="font-weight:600;">Silamar Construtora</td>
+      <td>Santos, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-ssn-empreendimentos">
+      <td style="font-weight:600;">SSN Empreendimentos</td>
+      <td>Ilhéus, BA</td>
+      <td></td>
+    </tr>
+    <tr id="c-studio-z-real-estate">
+      <td style="font-weight:600;">Studio Z - Real Estate</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-stylo-construtora">
+      <td style="font-weight:600;">Stylo Construtora</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-sunprime-empreendimentos">
+      <td style="font-weight:600;">Sunprime Empreendimentos</td>
+      <td>Itapema, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-tarraf-empreendimentos">
+      <td style="font-weight:600;">Tarraf Empreendimentos</td>
+      <td>São José do Rio Preto, SP</td>
+      <td><a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html#case-tarraf" style="font-size:11px;font-weight:700;color:#1C1C1B;background:#FFDC00;padding:2px 8px;border-radius:4px;text-decoration:none;white-space:nowrap;">📄 Tarraf Square</a></td>
+    </tr>
+    <tr id="c-tegra-incorporadora">
+      <td style="font-weight:600;">Tegra Incorporadora</td>
+      <td>São Paulo, SP</td>
+      <td></td>
+    </tr>
+    <tr id="c-tenorio-incorpora-es">
+      <td style="font-weight:600;">Tenorio Incorporações</td>
+      <td>Recife, PE</td>
+      <td></td>
+    </tr>
+    <tr id="c-terrazzas-construtora">
+      <td style="font-weight:600;">Terrazzas Construtora</td>
+      <td>Belo Horizonte, MG</td>
+      <td></td>
+    </tr>
+    <tr id="c-tolive-incorporadora">
+      <td style="font-weight:600;">Tolive Incorporadora</td>
+      <td>Recife, PE</td>
+      <td></td>
+    </tr>
+    <tr id="c-tonolher-empreendimentos">
+      <td style="font-weight:600;">Tonolher Empreendimentos</td>
+      <td>Itapema, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-triad-constru-es">
+      <td style="font-weight:600;">Triad Construções</td>
+      <td>Itapema, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-valor-real-empreendimentos">
+      <td style="font-weight:600;">Valor Real Empreendimentos</td>
+      <td>Curitiba, PR</td>
+      <td></td>
+    </tr>
+    <tr id="c-viplan-engenharia">
+      <td style="font-weight:600;">Viplan Engenharia</td>
+      <td>Joinville, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-wkoerich-im-veis">
+      <td style="font-weight:600;">WKoerich Imóveis</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    <tr id="c-yes-empreendimentos">
+      <td style="font-weight:600;">Yes Empreendimentos</td>
+      <td>Florianópolis, SC</td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="no-results" id="noResults">Nenhum cliente encontrado para essa busca.</div>
+</div>
+
+<footer>
+  <strong>Otus Engenharia</strong> &nbsp;|&nbsp; Documento interno &nbsp;|&nbsp; Não compartilhar com clientes ou leads
+</footer>
+
+<script src="otus-shared.js"></script>
+<script>
+function filterTable() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const rows = document.querySelectorAll('#clientTable tbody tr');
+  let visible = 0;
+  rows.forEach(function(row) {
+    const text = row.textContent.toLowerCase();
+    const show = text.includes(q);
+    row.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  document.getElementById('count').textContent = visible + ' cliente' + (visible !== 1 ? 's' : '');
+  document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+}
+</script>
+</body>
+</html>

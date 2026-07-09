@@ -7,3 +7,4 @@
 *.~lock.*
 ARQUIVOS PARA USAR/
 .claude/
+node_modules/

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concorrentes - Otus Engenharia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="otus-shared.css">
+<style>
+  :root {
+    --amarelo: #FFDC00;
+    --amarelo-bg: #fffce0;
+    --preto: #1C1C1B;
+    --cinza: #f4f5f7;
+    --borda: #e5e7eb;
+    --cinza-escuro: #374151;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--preto); background: #fff; }
+
+  .hero {
+    background: linear-gradient(135deg, #1C1C1B 0%, #2a2a29 55%, #1a1a1a 100%);
+    color: white;
+    padding: 48px 24px 40px;
+    border-bottom: 4px solid var(--amarelo);
+    text-align: center;
+  }
+  .hero h1 { font-size: 26px; color: #fff; margin-bottom: 8px; }
+  .hero p { opacity: 0.75; font-size: 14px; max-width: 500px; margin: 0 auto; line-height: 1.6; }
+  .hero .badge { display: inline-block; background: var(--amarelo); color: var(--preto); font-size: 12px; font-weight: 800; padding: 4px 14px; border-radius: 20px; margin-bottom: 14px; }
+
+  .container { max-width: 980px; margin: 0 auto; padding: 36px 24px 60px; }
+
+  .section-title {
+    font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px;
+    color: var(--cinza-escuro); margin-bottom: 16px; margin-top: 36px; opacity: .7;
+    padding-bottom: 8px; border-bottom: 2px solid var(--borda);
+  }
+  .section-title:first-child { margin-top: 0; }
+
+  .conc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  @media (max-width: 680px) { .conc-grid { grid-template-columns: 1fr; } }
+
+  .conc-card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--borda);
+  }
+  .conc-head {
+    background: var(--preto);
+    border-bottom: 3px solid var(--amarelo);
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .conc-obs {
+    padding: 12px 16px;
+    background: var(--cinza);
+  }
+
+  footer {
+    background: var(--preto); color: rgba(255,255,255,0.5);
+    text-align: center; padding: 18px 24px; font-size: 12px;
+    border-top: 3px solid var(--amarelo);
+  }
+  footer strong { color: var(--amarelo); }
+</style>
+</head>
+<body id="top">
+
+<div class="cross-nav" style="background:#1C1C1B;border-bottom:2px solid #FFDC00;position:sticky;top:0;z-index:300;display:flex;align-items:center;gap:2px;padding:0 16px;height:36px;overflow-x:auto;white-space:nowrap;">
+  <span class="cross-nav-brand" style="font-size:12px;font-weight:800;color:#FFDC00;margin-right:10px;flex-shrink:0;">🦉 Otus Engenharia</span>
+  <span class="cross-sep" style="color:rgba(255,255,255,0.2);margin:0 4px;">|</span>
+  <a href="index.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Início</a>
+  <a href="Playbook%20SDR%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Playbook SDR</a>
+  <a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Produto &amp; Cases</a>
+  <a href="Scripts%20de%20Abordagem%20-%20Otus.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Scripts</a>
+  <a href="Clientes%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Clientes</a>
+  <a href="Concorrentes%20-%20Otus%20Engenharia.html" class="current" style="color:#1C1C1B;background:#FFDC00;text-decoration:none;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:4px;flex-shrink:0;">Concorrentes</a>
+</div>
+
+<div class="hero">
+  <div class="badge">USO INTERNO</div>
+  <h1>Análise de Concorrentes</h1>
+  <p>Mapeamento competitivo da Otus Engenharia. Use para preparar argumentos diferenciadores e entender o posicionamento no mercado.</p>
+</div>
+
+<div class="container">
+
+  <h2 class="section-title">Concorrentes Diretos &mdash; 16 empresas</h2>
+  <div class="conc-grid">
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">BIM Connect / Mitech</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Goiânia, GO</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://bimconnect.eng.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Projetistas de instalações que também têm o produto de coordenação e compatibilização. Trabalhamos com eles em Goiás. Nossa equipe não tem uma boa relação com eles por atrasos nos projetos.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Toc Tec</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Goiânia, GO</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://toctec.eng.br/servicos/coordenacao-de-projetos/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Empresa de BIM e tecnologia (possui uma plataforma que foi comprada pela Globatech, adquirida pela Senior Sistemas).</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">DIM</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Goiânia, GO</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://dimip.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Empresa criada pelo filho do dono de uma incorporadora tradicional local.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">BIM Lab</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Belo Horizonte, MG</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://www.bimlabbrasil.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Fazem implementação BIM num cliente onde nós fazemos o gerenciamento e compatibilização BIM de projetos. O cliente nos consulta sempre para validar as entregas deles, pois confia que nós de fato fazemos os processos andarem.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">NDBIM</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Vila Nova de Famalicão, Portugal</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://ndbim.eu/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">De Portugal, um dos primeiros a atender as grandes de SP. Não conseguiu implementar de fato pois transcrevia projetos de CAD para BIM, ficando com toda a inteligência. Tratam BIM como produto, não como processo.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Archin Arquitetura e Gerenciamento</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Curitiba, PR</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://archin.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Escritório de arquitetura que faz compatibilização. Clientes como PRIDE e Moratti saíram deles e passaram para a Otus. Equipe pequena (14 pessoas), pegam projetos grandes. Atuamos juntos no cliente ABC sem maiores problemas.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">BBM Gerenciadora</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Curitiba, PR</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="http://www.gerenciadorabbm.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Segundo projetistas parceiros, são o "inimigo número 1 da colaboração". Trabalho impositivo. Cresceram aproveitando a base de clientes de sua empresa de projetos de instalações BIM de origem.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">ASBIM</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Curitiba, PR</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://asbim.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Baixo foco de nicho de mercado, atendem todo tipo de obra com grande variedade de serviços. Já utilizaram materiais da Otus Educação.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Urbana BIM</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Porto Alegre, RS</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://www.urbanabim.com/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Perdemos um projeto pequeno da CFL para eles, mas depois ganhamos os 2 maiores da história da empresa. Não apresentam grande força de mercado.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Cartesian</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Itajaí, SC</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://cartesianengenharia.com/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Empresa de orçamento e planejamento que adicionou coordenação e compatibilização BIM. Quando perdemos para eles, foi sempre por preço em projetos menores. Escopo muito parecido com o nosso. 25 funcionários para coordenação, compatibilização, orçamento, planejamento e acompanhamento de obras. Nós temos 50 fazendo apenas os 2 primeiros serviços.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Canteiro AEC</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Florianópolis, SC</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://canteiroaec.com/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Empresa com grande potencial inicial (2015) que se queimou no mercado. Mais de 10 clientes saíram deles e vieram para a Otus. Remodelam projetos CAD para garantir informações precisas, gerando retrabalho. A Otus usa o projeto direto do projetista e passa requisitos, eliminando essa etapa.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Manzz Arquitetos</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Blumenau, SC</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://www.mannz.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Arquitetos que também fazem coordenação. Isso dificulta indicações por outros arquitetos.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Berton Engenharia</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">São Paulo, SP</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://www.bertonengenharia.com/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Empresa tradicional, focada em obras residencial e shopping. Estão se atualizando para BIM. Também atendem a Tegra.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Favo Arquitetura e Gerenciamento</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">São Paulo, SP</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://favo.arq.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Atende a Tegra.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">CADBIM</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">São Paulo, SP</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="http://www.cadbim.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Empresa de treinamentos, projetos BIM, modelagem e coordenação e compatibilização BIM de SP. Recebemos feedbacks negativos sobre capacidade técnica.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:#fff;background:#dc2626;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Concorrente Direto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Quattro Arquitetas</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">-</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><span style="font-size:12px;color:#9ca3af;">Sem site</span></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Concorrente direto identificado.</p></div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Outros Concorrentes &mdash; 16 empresas</h2>
+  <div class="conc-grid">
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Sena Arquitetura</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Ribeirão Preto, SP</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://www.senarquiteturabim.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Atende a Tegra também. Empresa familiar de pai e filho, com caráter resolutivo.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">PAR Consultoria</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Goiânia, GO</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><span style="font-size:12px;color:#9ca3af;">Sem site</span></div>
+      </div>
+      
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Seja Vertical</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Goiânia, GO</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><span style="font-size:12px;color:#9ca3af;">Sem site</span></div>
+      </div>
+      
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">GVBIM</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Governador Valadares, MG</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://gvbim.com/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Faz o que fazemos e outros serviços BIM. Foca mais em quem quer fazer BIM do que em coordenação especificamente. Expandindo a compatibilização BIM. Tem menos da metade do nosso faturamento e funcionários. Segundo cliente: "GVBIM é mais rústica e a Otus mais profissional".</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Aval Engenharia</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Recife, PE</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="http://avalengenharia.eng.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Empresa de planejamento que também faz coordenação, compatibilização e construção virtual (modelagem CAD BIM).</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">ProjetaBIM</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Porto Alegre, RS</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="http://www.projetabim.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Uma das nossas inspirações. 2 dos fundadores são hoje sócios da Construflow (nosso principal parceiro de ferramenta). Remodelam projetos, gerando mais retrabalhos e custos. Estáveis em crescimento.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Engrena BIM</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Florianópolis, SC</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://engrenabim.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Fundada por 2 ex-funcionários do nosso principal case (Dimas). Copiam propostas e ferramentas. Feedback de projetistas: "Encrenca BIM". Ex-alunos da Otus Educação.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Vier Engenharia</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Criciúma, SC</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://www.instagram.com/vier.engenharia/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Parceiros em Criciúma. Empresa de 6 pessoas. Focam em modelagem e projeto executivo também.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">QuattroD</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">São Paulo, SP</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://quattrod.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Cliente potencial onde já atuam. Feedback: nosso preço é maior, mas o cliente quer testar a Otus.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Tools Engenharia</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">São Paulo, SP</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://toolsengenharia.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Empresa de gestão de obras que também faz projetos BIM.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Addor Associados</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">São Paulo, SP</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://www.addor.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Empresa tradicional com quase 30 anos. Fazem "meio BIM" - não estão 100% atualizados na nova metodologia. Atendem grandes clientes de SP e outros estados.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">DUO Gerenciamento</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">São Paulo, SP</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://duoeng.com.br/servicos/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Atende a Tegra.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">CTE Gerenciamento</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">São Paulo, SP</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://cte.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Parceiros com 7 verticais de negócio. Um dos produtos do gerenciamento é a compatibilização.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Inovatech Engenharia</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">São Paulo, SP</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://inovatechengenharia.com.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Foco em sustentabilidade e produtos acessórios, com coordenação e compatibilização BIM. Bom relacionamento com o CEO.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">Sobrepor Arquitetura e Compatibilização</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">São Paulo, SP</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://sobrepor.arq.br/" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      <div class="conc-obs"><p style="font-size:12px;color:var(--cinza-escuro);line-height:1.6;margin-top:8px;">Atende em CAD, não em BIM.</p></div>
+    </div>
+    <div class="conc-card">
+      <div class="conc-head">
+        <div>
+          <div style="margin-bottom:6px;"><span style="font-size:10px;font-weight:700;color:var(--cinza-escuro);background:var(--borda);padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px;">Indireto</span></div>
+          <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">GerenciARQ</h3>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">São José dos Campos, SP</p>
+        </div>
+        <div style="flex-shrink:0;padding-top:24px;"><a href="https://gerenciarq.com.br/projetos" target="_blank" rel="noopener" style="color:#1C1C1B;font-weight:700;text-decoration:none;font-size:12px;background:var(--amarelo);padding:3px 10px;border-radius:4px;white-space:nowrap;">🔗 Site</a></div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>Otus Engenharia</strong> &nbsp;|&nbsp; Documento interno &nbsp;|&nbsp; Não compartilhar com clientes ou leads
+</footer>
+
+<script src="otus-shared.js"></script>
+</body>
+</html>
