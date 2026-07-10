@@ -58,15 +58,17 @@
       lastScrollY = cur;
     }, { passive: true });
 
-    /* Close nav when a leaf section link is clicked on mobile (not parent nav-items with dropdown) */
+    /* Close menu on mobile when clicking a leaf link (dropdown items or standalone links, but NOT parent triggers) */
     nav.addEventListener('click', function (e) {
       if (window.innerWidth <= 700) {
         var target = e.target.closest('a[href^="#"]');
         if (target) {
+          var isInDropdown = !!target.closest('.dropdown');
           var parentItem = target.closest('.nav-item');
-          var hasDropdown = parentItem && parentItem.querySelector('.dropdown');
-          if (!hasDropdown) {
+          var isNavTrigger = !isInDropdown && parentItem && !!parentItem.querySelector('.dropdown');
+          if (!isNavTrigger) {
             nav.classList.remove('mobile-open');
+            nav.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('expanded'); });
             hamBtn.setAttribute('aria-expanded', 'false');
           }
         }

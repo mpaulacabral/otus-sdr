@@ -25,8 +25,7 @@
   body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--texto); background: #fff; }
 
   /* NAV */
-  nav { background: #000; color: #fff; padding: 0 16px; position: sticky; top: 36px; z-index: 100; display: flex; align-items: center; gap: 0; flex-wrap: nowrap; overflow-x: auto; border-bottom: 3px solid #FFDC00; scrollbar-width: none; transition: top 0.3s ease; }
-  nav::-webkit-scrollbar { display: none; }
+  nav { background: #000; color: #fff; padding: 0 16px; position: sticky; top: 36px; z-index: 100; display: flex; align-items: center; gap: 0; flex-wrap: nowrap; overflow: visible; border-bottom: 3px solid #FFDC00; transition: top 0.3s ease; }
   nav h1 { display: none; }
   nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 12px; padding: 12px 10px; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -3px; font-weight: 600; display: inline-block; }
   nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; border-bottom-color: transparent; margin-bottom: -3px; }
@@ -49,15 +48,15 @@
   li { margin-bottom: 5px; line-height: 1.6; }
 
   /* HERO */
-  .hero { background: #000; color: #fff; padding: 28px 20px 20px; border-bottom: 3px solid #FFDC00; }
-  .hero h1 { font-size: 22px; color: #fff; margin-bottom: 6px; }
-  .hero p { color: #FFDC00; font-size: 13px; font-weight: 600; opacity: 0.9; }
+  .hero { background: #000; color: #fff; padding: 32px 24px 28px; border-bottom: 3px solid #FFDC00; width: 100%; }
+  .hero h1 { font-size: 24px; color: #fff; margin-bottom: 8px; font-weight: 800; }
+  .hero p { color: rgba(255,255,255,0.75); font-size: 13px; font-weight: 500; }
   .hero .pills { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
   .hero .pill { background: transparent; border: 1.5px solid var(--amarelo); border-radius: 20px; padding: 5px 16px; font-size: 12px; color: #fff; }
 
   /* NÚMEROS */
   .numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
-  .num-card { background: var(--azul); color: white; border-radius: 10px; padding: 20px 16px; text-align: center; border-bottom: 3px solid var(--amarelo); }
+  .num-card { background: #000; color: white; border-radius: 10px; padding: 20px 16px; text-align: center; border-bottom: 3px solid var(--amarelo); }
   .num-card .big { font-size: 26px; font-weight: 800; color: var(--amarelo); display: block; margin-bottom: 4px; }
   .num-card .label { font-size: 11px; opacity: 0.85; line-height: 1.4; }
   @media (max-width: 700px) { .numbers { grid-template-columns: repeat(2, 1fr); } }
@@ -316,14 +315,14 @@
 
 </nav>
 
-<div class="container">
-
-  <div class="hero">
+<div class="hero">
     <h1>Produto & Cases - Otus Engenharia</h1>
     <p>Tudo que você precisa saber sobre o que a Otus vende, como se comunica, para quem vende e que resultados entrega.</p>
     </div>
 
-  <!-- ===================== QUEM É A OTUS ===================== -->
+<div class="container">
+
+    <!-- ===================== QUEM É A OTUS ===================== -->
   <h2 class="section-title" id="quem">Quem é a Otus</h2>
 
   <p><strong>Missão:</strong> Tornar a construção civil um exemplo de eficiência, utilizando a tecnologia para adotar soluções inteligentes, reduzir o impacto ambiental e melhorar a vida das pessoas.</p>

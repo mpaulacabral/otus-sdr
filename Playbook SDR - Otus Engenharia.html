@@ -23,8 +23,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--texto); background: #fff; }
 
-  nav { background: #000; color: #fff; padding: 0 16px; position: sticky; top: 36px; z-index: 100; display: flex; align-items: center; gap: 0; flex-wrap: nowrap; overflow-x: auto; border-bottom: 3px solid #FFDC00; scrollbar-width: none; transition: top 0.3s ease; }
-  nav::-webkit-scrollbar { display: none; }
+  nav { background: #000; color: #fff; padding: 0 16px; position: sticky; top: 36px; z-index: 100; display: flex; align-items: center; gap: 0; flex-wrap: nowrap; overflow: visible; border-bottom: 3px solid #FFDC00; transition: top 0.3s ease; }
   nav h1 { display: none; }
   nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 12px; padding: 12px 10px; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -3px; font-weight: 600; display: inline-block; }
   nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; border-bottom-color: transparent; margin-bottom: -3px; }
@@ -65,7 +64,7 @@
   .step-body { flex: 1; }
   .step-body strong { display: block; margin-bottom: 3px; }
 
-  .pitch { background: #1a1a2e; color: #e0e0e0; border-radius: 8px; padding: 14px 18px; font-style: italic; line-height: 1.7; margin: 10px 0; border-left: 4px solid var(--amarelo); font-size: 13px; }
+  .pitch { background: #000; color: #e0e0e0; border-radius: 8px; padding: 14px 18px; font-style: italic; line-height: 1.7; margin: 10px 0; border-left: 4px solid var(--amarelo); font-size: 13px; }
   .pitch strong { color: #fff; font-style: normal; }
 
   .perda-item { border: 1px solid var(--borda); border-radius: 8px; margin-bottom: 14px; overflow: hidden; border-top: 3px solid var(--amarelo); }
@@ -78,9 +77,9 @@
   @media (max-width: 700px) { .icp-grid { grid-template-columns: 1fr; } }
   @media (max-width: 700px) { .funil { grid-template-columns: 1fr; } }
 
-  .hero { background: #000; color: #fff; padding: 28px 20px 20px; border-bottom: 3px solid #FFDC00; }
-  .hero h1 { font-size: 22px; color: #fff; margin-bottom: 6px; }
-  .hero p { color: #FFDC00; font-size: 13px; font-weight: 600; opacity: 0.9; }
+  .hero { background: #000; color: #fff; padding: 32px 24px 28px; border-bottom: 3px solid #FFDC00; width: 100%; }
+  .hero h1 { font-size: 24px; color: #fff; margin-bottom: 8px; font-weight: 800; }
+  .hero p { color: rgba(255,255,255,0.75); font-size: 13px; font-weight: 500; }
   .hero .pills { margin-top: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
   .hero .pill { background: transparent; border: 1.5px solid var(--amarelo); border-radius: 20px; padding: 4px 13px; font-size: 11px; color: #fff; }
 
@@ -232,12 +231,12 @@
   </div>
 </nav>
 
-<div class="container">
-
 <div class="hero">
   <h1>Playbook SDR - Otus Engenharia</h1>
   <p>Guia completo de pré-vendas: funil, ICP, cadências, geração de valor, objeções e agendamento de reuniões.</p>
   </div>
+
+<div class="container">
 
 <!-- ===================== 1. FUNIL PIPEDRIVE ===================== -->
 <h2 class="section-title" id="funil">Etapas do Funil - Pipedrive</h2>
