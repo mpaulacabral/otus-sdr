@@ -23,11 +23,11 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--texto); background: #fff; }
 
-  nav { background: #fff; color: var(--preto); padding: 0 16px; position: sticky; top: 36px; z-index: 100; display: flex; align-items: center; gap: 0; flex-wrap: nowrap; overflow-x: auto; border-bottom: 2px solid #e5e7eb; scrollbar-width: none; transition: top 0.3s ease; }
+  nav { background: #000; color: #fff; padding: 0 16px; position: sticky; top: 36px; z-index: 100; display: flex; align-items: center; gap: 0; flex-wrap: nowrap; overflow-x: auto; border-bottom: 3px solid #FFDC00; scrollbar-width: none; transition: top 0.3s ease; }
   nav::-webkit-scrollbar { display: none; }
   nav h1 { display: none; }
-  nav a { color: var(--preto); text-decoration: none; font-size: 12px; padding: 12px 10px; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -2px; font-weight: 600; display: inline-block; }
-  nav a:hover { color: var(--preto); background: var(--amarelo); border-bottom-color: transparent; border-radius: 4px; }
+  nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 12px; padding: 12px 10px; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -3px; font-weight: 600; display: inline-block; }
+  nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; border-bottom-color: transparent; margin-bottom: -3px; }
 
   .nav-item { position: relative; }
   .nav-item > .dropdown { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid var(--borda); border-radius: 0 0 8px 8px; box-shadow: 0 6px 14px rgba(0,0,0,0.15); min-width: 250px; flex-direction: column; padding: 4px 0; z-index: 200; }
@@ -78,9 +78,9 @@
   @media (max-width: 700px) { .icp-grid { grid-template-columns: 1fr; } }
   @media (max-width: 700px) { .funil { grid-template-columns: 1fr; } }
 
-  .hero { background: none; color: var(--preto); padding: 24px 20px 4px; }
-  .hero h1 { font-size: 22px; color: var(--preto); margin-bottom: 6px; }
-  .hero p { color: var(--amarelo, #FFDC00); font-size: 13px; font-weight: 700; }
+  .hero { background: #000; color: #fff; padding: 28px 20px 20px; border-bottom: 3px solid #FFDC00; }
+  .hero h1 { font-size: 22px; color: #fff; margin-bottom: 6px; }
+  .hero p { color: #FFDC00; font-size: 13px; font-weight: 600; opacity: 0.9; }
   .hero .pills { margin-top: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
   .hero .pill { background: transparent; border: 1.5px solid var(--amarelo); border-radius: 20px; padding: 4px 13px; font-size: 11px; color: #fff; }
 

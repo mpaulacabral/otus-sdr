@@ -7,7 +7,7 @@
   position: sticky;
   top: 0;
   z-index: 300;
-  background: #1C1C1B;
+  background: #000;
   border-bottom: 2px solid #FFDC00;
   display: flex;
   align-items: center;
@@ -75,7 +75,7 @@
   display: block;
   width: 20px;
   height: 2px;
-  background: #1C1C1B;
+  background: #fff;
   border-radius: 2px;
   transition: transform 0.2s, opacity 0.2s;
   pointer-events: none;
@@ -193,7 +193,7 @@ nav a.is-active {
   nav.mobile-open > .nav-item {
     display: block !important;
     width: 100%;
-    border-top: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(255,255,255,0.1);
   }
 
   /* Direct anchor links in nav (E-mail, WhatsApp, etc.) */
@@ -204,8 +204,9 @@ nav a.is-active {
     padding: 10px 20px !important;
     font-size: 13px !important;
     border-bottom: none !important;
-    border-top: 1px solid rgba(0,0,0,0.1) !important;
+    border-top: 1px solid rgba(255,255,255,0.1) !important;
     margin-bottom: 0 !important;
+    color: rgba(255,255,255,0.85) !important;
   }
 
   /* Nav-item trigger link */
@@ -215,6 +216,7 @@ nav a.is-active {
     font-size: 13px !important;
     border-bottom: none !important;
     margin-bottom: 0 !important;
+    color: rgba(255,255,255,0.85) !important;
   }
 
   /* Dropdown: show only when .expanded (accordion) */
@@ -225,8 +227,8 @@ nav a.is-active {
     box-shadow: none !important;
     border-radius: 0 !important;
     border: none !important;
-    border-left: 3px solid rgba(0,0,0,0.15) !important;
-    background: rgba(0,0,0,0.06) !important;
+    border-left: 3px solid rgba(255,220,0,0.5) !important;
+    background: rgba(255,255,255,0.04) !important;
     min-width: unset !important;
     padding: 2px 0 !important;
     margin-left: 12px;
@@ -235,8 +237,8 @@ nav a.is-active {
     display: block !important;
     padding: 8px 16px !important;
     font-size: 12px !important;
-    color: #374151 !important;
-    border-bottom-color: transparent !important;
+    color: rgba(255,255,255,0.75) !important;
+    border-bottom-color: rgba(255,255,255,0.1) !important;
   }
 
   /* Disable hover dropdown on mobile (accordion only) */

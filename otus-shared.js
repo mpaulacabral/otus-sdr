@@ -14,22 +14,6 @@
   });
 
 
-  /* ── Back button in cross-nav ── */
-  var crossNav = document.querySelector('.cross-nav');
-  if (crossNav && history.length > 1) {
-    var backBtn = document.createElement('a');
-    backBtn.href = 'javascript:void(0)';
-    backBtn.textContent = '← Voltar';
-    backBtn.style.cssText = 'color:rgba(255,255,255,0.55);font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;text-decoration:none;flex-shrink:0;cursor:pointer;margin-right:4px;';
-    backBtn.addEventListener('click', function() { history.back(); });
-    var sep = crossNav.querySelector('.cross-sep');
-    if (sep) {
-      crossNav.insertBefore(backBtn, sep);
-    } else {
-      crossNav.insertBefore(backBtn, crossNav.firstChild);
-    }
-  }
-
   /* ── 2. Hamburger injection ── */
   var nav = document.querySelector('nav');
   if (nav) {
@@ -60,29 +44,31 @@
       });
     });
 
-    /* Auto-hide nav on scroll */
+    /* Auto-hide nav on scroll (desktop only) */
     var lastScrollY = 0;
     window.addEventListener('scroll', function() {
       var cur = window.pageYOffset;
-      if (cur > lastScrollY && cur > 80) {
-        nav.classList.add('nav-hidden');
-        if (nav.classList.contains('mobile-open')) {
-          nav.classList.remove('mobile-open');
-          hamBtn.setAttribute('aria-expanded', 'false');
+      if (window.innerWidth > 700) {
+        if (cur > lastScrollY && cur > 80) {
+          nav.classList.add('nav-hidden');
+        } else {
+          nav.classList.remove('nav-hidden');
         }
-      } else {
-        nav.classList.remove('nav-hidden');
       }
       lastScrollY = cur;
     }, { passive: true });
 
-    /* Close nav when a section link inside is clicked on mobile */
+    /* Close nav when a leaf section link is clicked on mobile (not parent nav-items with dropdown) */
     nav.addEventListener('click', function (e) {
       if (window.innerWidth <= 700) {
         var target = e.target.closest('a[href^="#"]');
         if (target) {
-          nav.classList.remove('mobile-open');
-          hamBtn.setAttribute('aria-expanded', 'false');
+          var parentItem = target.closest('.nav-item');
+          var hasDropdown = parentItem && parentItem.querySelector('.dropdown');
+          if (!hasDropdown) {
+            nav.classList.remove('mobile-open');
+            hamBtn.setAttribute('aria-expanded', 'false');
+          }
         }
       }
     });
