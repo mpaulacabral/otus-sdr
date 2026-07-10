@@ -154,17 +154,19 @@
     makeCopyBtn(el, true);
   });
 
-  /* ── 5. Dropdown overflow fix — flip to left when near right edge ── */
+  /* ── 5. Dropdown overflow fix — use trigger position to decide direction ── */
   document.querySelectorAll('.nav-item').forEach(function(item) {
+    var dropdown = item.querySelector('.dropdown');
+    if (!dropdown) return;
+    var dropdownWidth = 260;
     item.addEventListener('mouseenter', function() {
-      var dropdown = item.querySelector('.dropdown');
-      if (!dropdown) return;
-      dropdown.style.left = '0';
-      dropdown.style.right = 'auto';
-      var rect = dropdown.getBoundingClientRect();
-      if (rect.right > window.innerWidth - 8) {
+      var triggerRect = item.getBoundingClientRect();
+      if (triggerRect.left + dropdownWidth > window.innerWidth - 8) {
         dropdown.style.left = 'auto';
         dropdown.style.right = '0';
+      } else {
+        dropdown.style.left = '0';
+        dropdown.style.right = 'auto';
       }
     });
   });
