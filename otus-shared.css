@@ -159,6 +159,14 @@ nav.mobile-open .hamburger-btn span:nth-child(3) { transform: rotate(-45deg) tra
   padding-top: 38px !important;
 }
 
+/* ── Nav auto-hide on scroll ── */
+nav {
+  transition: top 0.3s ease;
+}
+nav.nav-hidden {
+  top: -120px !important;
+}
+
 /* ── Active nav section highlight (scroll spy) ── */
 nav a.is-active {
   color: #1C1C1B !important;
@@ -209,8 +217,8 @@ nav a.is-active {
     margin-bottom: 0 !important;
   }
 
-  /* Dropdown: show statically when open */
-  nav.mobile-open .nav-item > .dropdown {
+  /* Dropdown: show only when .expanded (accordion) */
+  nav.mobile-open .nav-item.expanded > .dropdown {
     display: flex !important;
     position: static !important;
     flex-direction: column;
@@ -231,9 +239,10 @@ nav a.is-active {
     border-bottom-color: transparent !important;
   }
 
-  /* Disable hover dropdown on mobile */
+  /* Disable hover dropdown on mobile (accordion only) */
   .nav-item:hover > .dropdown { display: none !important; }
   .nav-item:focus-within > .dropdown { display: none !important; }
+  nav.mobile-open .nav-item.expanded > a { color: var(--preto, #1C1C1B) !important; font-weight: 700 !important; }
 
   /* ── Global mobile layout fixes ── */
   .container { padding: 16px 14px 48px !important; }

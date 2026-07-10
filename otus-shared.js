@@ -13,6 +13,23 @@
     }
   });
 
+
+  /* ── Back button in cross-nav ── */
+  var crossNav = document.querySelector('.cross-nav');
+  if (crossNav && history.length > 1) {
+    var backBtn = document.createElement('a');
+    backBtn.href = 'javascript:void(0)';
+    backBtn.textContent = '← Voltar';
+    backBtn.style.cssText = 'color:rgba(255,255,255,0.55);font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;text-decoration:none;flex-shrink:0;cursor:pointer;margin-right:4px;';
+    backBtn.addEventListener('click', function() { history.back(); });
+    var sep = crossNav.querySelector('.cross-sep');
+    if (sep) {
+      crossNav.insertBefore(backBtn, sep);
+    } else {
+      crossNav.insertBefore(backBtn, crossNav.firstChild);
+    }
+  }
+
   /* ── 2. Hamburger injection ── */
   var nav = document.querySelector('nav');
   if (nav) {
@@ -26,6 +43,38 @@
       var isOpen = nav.classList.toggle('mobile-open');
       hamBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
+
+
+    /* Accordion: toggle individual nav-item dropdowns on mobile */
+    nav.querySelectorAll('.nav-item > a').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        if (window.innerWidth <= 700 && nav.classList.contains('mobile-open')) {
+          var item = this.closest('.nav-item');
+          if (item && item.querySelector('.dropdown')) {
+            e.preventDefault();
+            var wasExpanded = item.classList.contains('expanded');
+            nav.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('expanded'); });
+            if (!wasExpanded) item.classList.add('expanded');
+          }
+        }
+      });
+    });
+
+    /* Auto-hide nav on scroll */
+    var lastScrollY = 0;
+    window.addEventListener('scroll', function() {
+      var cur = window.pageYOffset;
+      if (cur > lastScrollY && cur > 80) {
+        nav.classList.add('nav-hidden');
+        if (nav.classList.contains('mobile-open')) {
+          nav.classList.remove('mobile-open');
+          hamBtn.setAttribute('aria-expanded', 'false');
+        }
+      } else {
+        nav.classList.remove('nav-hidden');
+      }
+      lastScrollY = cur;
+    }, { passive: true });
 
     /* Close nav when a section link inside is clicked on mobile */
     nav.addEventListener('click', function (e) {
