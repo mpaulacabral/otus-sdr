@@ -10,15 +10,15 @@
   :root {
     --amarelo: #FFDC00;
     --amarelo-bg: #fff8e0;
-    --amarelo-borda: #E6C800;
+    --amarelo-borda: #e7e0b0;
     --preto: #1C1C1B;
     --cinza-escuro: #374151;
     --cinza: #e9e7e1;
-    --borda: #e5e7eb;
+    --borda: #c1bfba;
     --texto: #1C1C1B;
     --perigo: #e63946;
-    --verde: #2d6a4f;
-    --verde-bg: #d8f3dc;
+    --verde: #1C1C1B;
+    --verde-bg: #e9e7e1;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--texto); background: var(--bg, #faf7f0); }
@@ -36,17 +36,17 @@
   .nav-item > .dropdown a:hover { background: var(--amarelo-bg); color: var(--preto); border-bottom-color: var(--cinza); }
 
   .container { max-width: 1020px; margin: 0 auto; padding: 28px 20px 64px; }
-  h2.section-title { font-size: 21px; color: var(--preto); border-bottom: 3px solid var(--amarelo); padding-bottom: 8px; margin: 48px 0 18px; }
-  h3.sub { font-size: 15px; color: var(--preto); margin: 24px 0 10px; font-weight: 700; border-left: 4px solid var(--amarelo); padding-left: 10px; }
+  h2.section-title { font-size: 21px; color: var(--preto); border-bottom: 3px solid #e7e0b0; padding-bottom: 8px; margin: 48px 0 18px; }
+  h3.sub { font-size: 15px; color: var(--preto); margin: 24px 0 10px; font-weight: 700; border-left: 4px solid #e7e0b0; padding-left: 10px; }
   h4.mini { font-size: 13px; font-weight: 700; margin: 14px 0 6px; color: var(--cinza-escuro); }
 
   .card { background: var(--cinza); border: 1px solid var(--borda); border-radius: 8px; padding: 14px; margin-bottom: 12px; }
   .card-amarelo { background: var(--amarelo-bg); border-color: var(--amarelo-borda); }
-  .card-verde { background: var(--verde-bg); border-color: #a5d6a7; }
+  .card-verde { background: var(--verde-bg); border-color: #c1bfba; }
   .card-vermelho { background: #ffeef0; border-color: var(--perigo); }
 
   table { width: 100%; border-collapse: collapse; margin: 10px 0 18px; font-size: 13px; }
-  th { background: var(--amarelo); color: var(--preto); padding: 9px 11px; text-align: left; font-weight: 700; border-bottom: 2px solid #c48a00; }
+  th { background: var(--amarelo); color: var(--preto); padding: 9px 11px; text-align: left; font-weight: 700; border-bottom: 2px solid #c1bfba; }
   td { padding: 8px 11px; border-bottom: 1px solid var(--borda); vertical-align: top; line-height: 1.5; }
   tr:nth-child(even) td { background: var(--cinza); }
   tr:hover td { background: var(--amarelo-bg); }
@@ -64,10 +64,10 @@
   .step-body { flex: 1; }
   .step-body strong { display: block; margin-bottom: 3px; }
 
-  .pitch { background: #000; color: #e0e0e0; border-radius: 8px; padding: 14px 18px; font-style: italic; line-height: 1.7; margin: 10px 0; border-left: 4px solid var(--amarelo); font-size: 13px; }
+  .pitch { background: #000; color: #e0e0e0; border-radius: 8px; padding: 14px 18px; font-style: italic; line-height: 1.7; margin: 10px 0; border-left: 4px solid #e7e0b0; font-size: 13px; }
   .pitch strong { color: #fff; font-style: normal; }
 
-  .perda-item { border: 1px solid var(--borda); border-radius: 8px; margin-bottom: 14px; overflow: hidden; border-top: 3px solid var(--amarelo); }
+  .perda-item { border: 1px solid var(--borda); border-radius: 8px; margin-bottom: 14px; overflow: hidden; border-top: 3px solid #e7e0b0; }
   .perda-header { background: var(--amarelo); color: var(--preto); padding: 9px 14px; font-weight: 700; font-size: 13px; }
   .perda-body { padding: 10px 14px; }
   .reabertura { background: var(--amarelo-bg); border: 1px solid var(--amarelo-borda); border-radius: 6px; padding: 8px 12px; margin-top: 8px; font-size: 13px; }
@@ -87,21 +87,21 @@
   li { margin-bottom: 4px; line-height: 1.6; }
   p { line-height: 1.6; margin-bottom: 8px; }
 
-  .obs { background: var(--amarelo-bg); border-left: 4px solid var(--amarelo); padding: 9px 12px; border-radius: 4px; margin: 8px 0; font-size: 13px; }
+  .obs { background: var(--amarelo-bg); border-left: 4px solid #e7e0b0; padding: 9px 12px; border-radius: 4px; margin: 8px 0; font-size: 13px; }
   .atencao { background: #ffeef0; border-left: 4px solid var(--perigo); padding: 9px 12px; border-radius: 4px; margin: 8px 0; font-size: 13px; }
-  .destaque { background: var(--preto); color: white; border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 13px; border-left: 4px solid var(--amarelo); }
+  .destaque { background: var(--preto); color: white; border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 13px; border-left: 4px solid #e7e0b0; }
   .destaque strong { color: #fff; }
 
-  .canal { border: 1px solid var(--borda); border-radius: 10px; margin-bottom: 18px; overflow: hidden; border-top: 3px solid var(--amarelo); }
+  .canal { border: 1px solid var(--borda); border-radius: 10px; margin-bottom: 18px; overflow: hidden; border-top: 3px solid #e7e0b0; }
   .canal-header { padding: 12px 16px; font-weight: 700; font-size: 14px; background: var(--cinza); }
   .canal-body { padding: 14px 16px; }
 
   /* Funil */
   .funil { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 16px 0; }
-  .funil-etapa { border: 2px solid var(--amarelo); border-radius: 10px; padding: 14px 12px; text-align: center; position: relative; }
+  .funil-etapa { border: 2px solid #e7e0b0; border-radius: 10px; padding: 14px 12px; text-align: center; position: relative; }
   .funil-etapa .titulo { font-weight: 800; font-size: 13px; color: var(--preto); margin-bottom: 8px; background: var(--amarelo); padding: 4px 8px; border-radius: 6px; display: block; }
   .funil-etapa .obj { font-size: 11px; color: var(--cinza-escuro); margin-bottom: 8px; line-height: 1.5; }
-  .funil-etapa .gatilho { background: var(--preto); color: #fff; font-size: 10px; padding: 4px 8px; border-radius: 4px; font-weight: 700; line-height: 1.4; display: block; border-left: 3px solid var(--amarelo); }
+  .funil-etapa .gatilho { background: var(--preto); color: #fff; font-size: 10px; padding: 4px 8px; border-radius: 4px; font-weight: 700; line-height: 1.4; display: block; border-left: 3px solid #e7e0b0; }
   @media (max-width: 700px) { .funil { grid-template-columns: 1fr; } }
 
   /* Cadência tables */
@@ -110,7 +110,7 @@
 
   /* Objeções */
   .obj-cat { margin-bottom: 6px; }
-  .obj-cat-title { background: var(--preto); color: #fff; padding: 8px 14px; font-weight: 800; font-size: 13px; border-radius: 6px 6px 0 0; border-left: 4px solid var(--amarelo); }
+  .obj-cat-title { background: var(--preto); color: #fff; padding: 8px 14px; font-weight: 800; font-size: 13px; border-radius: 6px 6px 0 0; border-left: 4px solid #e7e0b0; }
   .obj-item { border: 1px solid var(--borda); border-top: none; padding: 10px 14px; }
   .obj-item:last-child { border-radius: 0 0 6px 6px; }
   .obj-objecao { font-weight: 700; color: var(--preto); margin-bottom: 4px; }
@@ -119,10 +119,10 @@
   /* SLA steps */
   .sla-step { display: flex; gap: 14px; margin-bottom: 16px; }
   .sla-num { background: var(--amarelo); color: var(--preto); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
-  .sla-body { flex: 1; border: 1px solid var(--borda); border-radius: 8px; padding: 12px 14px; border-top: 3px solid var(--amarelo); }
+  .sla-body { flex: 1; border: 1px solid var(--borda); border-radius: 8px; padding: 12px 14px; border-top: 3px solid #e7e0b0; }
   .sla-body h4 { font-size: 14px; margin-bottom: 8px; color: var(--preto); }
 
-  .interno-tag { display: inline-block; background: var(--preto); color: #fff; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; margin-bottom: 12px; letter-spacing: .5px; border-left: 3px solid var(--amarelo); }
+  .interno-tag { display: inline-block; background: var(--preto); color: #fff; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; margin-bottom: 12px; letter-spacing: .5px; border-left: 3px solid #e7e0b0; }
 </style>
 <link rel="stylesheet" href="otus-shared.css">
 </head>
@@ -431,7 +431,7 @@
 </table>
 <div class="cadencia-perdido">PERDIDO após 6ª tentativa sem resposta</div>
 
-<h3 style="color:var(--amarelo); margin-top:32px;">Pesquisa Antes de Abordar</h3>
+<h3 style="color:#1C1C1B; margin-top:32px;">Pesquisa Antes de Abordar</h3>
 <p style="margin-bottom:12px;">Uma boa pesquisa gera uma boa abordagem. Princípio: <strong>"mostre que me conhece"</strong> - o lead percebe quando o SDR fez o dever de casa.</p>
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;">
   <div style="background:var(--cinza); border-left:4px solid var(--amarelo); padding:16px; border-radius:8px;">
@@ -554,7 +554,7 @@
   </div>
 </div>
 
-<h3 style="color:var(--amarelo); margin-top:32px;">Roteiro de Ligação - 4 Etapas</h3>
+<h3 style="color:#1C1C1B; margin-top:32px;">Roteiro de Ligação - 4 Etapas</h3>
 <p style="font-size:13px; margin-bottom:14px;">A ligação é o canal que mais converte. Erro mais comum: tentar vender o produto. O correto é <strong>vender a reunião</strong>.</p>
 <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:22px;">
   <div style="background:var(--cinza); padding:13px 18px; border-radius:8px; border-left:4px solid var(--amarelo);">
@@ -574,10 +574,10 @@
     <span style="font-size:12px; color:#555; font-style:italic;">"[Nome], pelo que conversamos parece que temos muito fit. Minha sugestão é uma reunião com nosso especialista para explorar mais seu desafio. O que acha?"</span>
   </div>
 </div>
-<h3 style="color:var(--amarelo); margin-top:20px;">Templates de Mensagem</h3>
+<h3 style="color:#1C1C1B; margin-top:20px;">Templates de Mensagem</h3>
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:12px;">
   <div>
-    <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; color:var(--amarelo);">WhatsApp - Inbound</p>
+    <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; color:#1C1C1B;">WhatsApp - Inbound</p>
     <div style="background:#f0faf0; border:1px solid #c3e6cb; padding:13px; border-radius:8px; font-size:12px; font-style:italic; line-height:1.7;">"Oi [Nome]! Aqui é a Maria Paula da Otus Engenharia.<br>Vi que você solicitou um contato pelo nosso site.<br>Gostaria de entender o que te motivou e se conseguimos atender suas necessidades.<br>Podemos conversar 5 minutos?"</div>
   </div>
   <div>
@@ -585,7 +585,7 @@
     <div style="background:var(--cinza); border:1px dashed #ccc; padding:13px; border-radius:8px; font-size:12px; font-style:italic; line-height:1.7;">"Olá [Nome]! Como você está?<br>Sou a Maria Paula da Otus Engenharia. [Gatilho personalizado].<br>Ajudamos construtoras a reduzir conflitos e retrabalho com BIM.<br>Tem 5 minutos para conversarmos?"</div>
   </div>
   <div>
-    <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; color:var(--amarelo);">LinkedIn - Inbound</p>
+    <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; color:#1C1C1B;">LinkedIn - Inbound</p>
     <div style="background:#f0faf0; border:1px solid #c3e6cb; padding:13px; border-radius:8px; font-size:12px; font-style:italic; line-height:1.7;">"Oi [Nome], vi que você entrou em contato com a Otus.<br>Sou a Paula, SDR da equipe. Posso te fazer 2 perguntas rápidas antes de passar para um especialista?"</div>
   </div>
   <div>
@@ -597,7 +597,7 @@
   <strong>Regra:</strong> LinkedIn e WhatsApp são canais de <em>suporte</em>. Telefone é o canal de <em>conversão</em>. Mensagens curtas. WhatsApp no outbound só após tentativas de ligação.
 </div>
 
-<h3 style="color:var(--amarelo); margin-top:24px;">Exemplo Completo - Ligação Outbound (Coordenação/Compatibilização BIM)</h3>
+<h3 style="color:#1C1C1B; margin-top:24px;">Exemplo Completo - Ligação Outbound (Coordenação/Compatibilização BIM)</h3>
 <p style="font-size:13px; margin-bottom:10px;">Discurso completo aplicado a uma <strong>incorporadora</strong> que lançou um novo empreendimentomodelo de referência para adaptar aos demais perfis do ICP.</p>
 
 <h4 class="mini">Abertura e Motivo</h4>
@@ -624,14 +624,14 @@ Tem interesse em agendar uma reunião com nosso time técnico para conhecer melh
   <strong>Escuta ativa:</strong> direcione 100% da atenção à resposta do lead. Confirme o que ele disse antes de prosseguiro script é um guia, cada conversa tem seu próprio ritmo.
 </div>
 
-<h3 style="color:var(--amarelo); margin-top:20px;">Exemplo - Ligação Inbound (Coordenação/Compatibilização BIM)</h3>
+<h3 style="color:#1C1C1B; margin-top:20px;">Exemplo - Ligação Inbound (Coordenação/Compatibilização BIM)</h3>
 <p style="font-size:13px; margin-bottom:10px;">No inbound, a dor já existeo foco é qualificar o <strong>FIT</strong>.</p>
 <div class="pitch">"Oi, Roberto! Aqui é a Maria Paula da Otus Engenharia. Tudo bem?<br><br>
 Estou ligando porque você solicitou um contato no nosso site.<br><br>
 Meu objetivo é fazer algumas perguntas para avaliar se temos potencial para atender o seu empreendimento. Caso positivo, podemos agendar um papo com nosso time técnico para você conhecer melhor a coordenação e compatibilização BIM.<br><br>
 Acha justo?"</div>
 
-<h3 style="color:var(--amarelo); margin-top:20px;">Mensagens Outbound com Gatilho de Personalização - Exemplos Reais</h3>
+<h3 style="color:#1C1C1B; margin-top:20px;">Mensagens Outbound com Gatilho de Personalização - Exemplos Reais</h3>
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
   <div>
     <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px;">Incorporadora - Novo Lançamento</p>
@@ -643,11 +643,11 @@ Acha justo?"</div>
   </div>
 </div>
 
-<h3 style="color:var(--amarelo); margin-top:20px;">E-mail - Gatilhos de Personalização e Introdução da Solução</h3>
+<h3 style="color:#1C1C1B; margin-top:20px;">E-mail - Gatilhos de Personalização e Introdução da Solução</h3>
 <p style="font-size:13px; margin-bottom:10px;">Use o início do e-mail (assunto + primeiras linhas) para chamar atenção com um gatilho. E-mails de até 100 palavras têm maior taxa de resposta.</p>
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
   <div>
-    <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; color:var(--amarelo);">Aberturas com gatilho</p>
+    <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; color:#1C1C1B;">Aberturas com gatilho</p>
     <ul style="font-size:12px; line-height:1.8;">
       <li><em>"Oi [Nome]! Vi que o time da [Empresa] cresceu muito nos últimos 6 meses! Normalmente isso traz alguns desafios de coordenação entre projetistas (...)"</em></li>
       <li><em>"Oi [Nome]! Consegui seu contato com [Contato em Comum]; ele me contou um pouco dos desafios em [área do problema] que vocês vêm enfrentando (...)"</em></li>
@@ -1244,7 +1244,7 @@ Acha justo?"</div>
   </div>
 </div>
 
-<h3 style="color:var(--amarelo); margin-top:32px;">Objeções na Ligação - Como Responder</h3>
+<h3 style="color:#1C1C1B; margin-top:32px;">Objeções na Ligação - Como Responder</h3>
 <p style="font-size:13px; margin-bottom:14px;">Estas objeções surgem <em>durante o contato inicial</em>, antes da reunião. São objeções de <strong>acesso e timing</strong>, não de produto.</p>
 <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px;">
   <div style="background:var(--cinza); padding:13px 18px; border-radius:8px; border-left:4px solid var(--amarelo);">
