@@ -2,6 +2,10 @@
    otus-shared.css — Otus Engenharia | Estilos compartilhados
    ============================================================ */
 
+:root {
+  --bg: #faf7f0;
+}
+
 /* ── Cross-doc navigation bar ── */
 .cross-nav {
   position: sticky;
