@@ -144,8 +144,8 @@ nav.mobile-open .hamburger-btn span:nth-child(3) { transform: rotate(-45deg) tra
 }
 .copy-btn:hover { background: rgba(255,220,0,0.3); }
 .copy-btn.ok {
-  background: #2d6a4f !important;
-  border-color: #2d6a4f !important;
+  background: #1C1C1B !important;
+  border-color: #1C1C1B !important;
   color: #fff !important;
 }
 /* Light-background variant (msg-box, fala-sdr) */

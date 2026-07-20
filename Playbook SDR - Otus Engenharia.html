@@ -36,8 +36,8 @@
   .nav-item > .dropdown a:hover { background: var(--amarelo-bg); color: var(--preto); border-bottom-color: var(--cinza); }
 
   .container { max-width: 1020px; margin: 0 auto; padding: 28px 20px 64px; }
-  h2.section-title { font-size: 21px; color: var(--preto); border-bottom: 3px solid #e7e0b0; padding-bottom: 8px; margin: 48px 0 18px; }
-  h3.sub { font-size: 15px; color: var(--preto); margin: 24px 0 10px; font-weight: 700; border-left: 4px solid #e7e0b0; padding-left: 10px; }
+  h2.section-title { font-size: 21px; color: var(--preto); border-bottom: 3px solid var(--amarelo); padding-bottom: 8px; margin: 48px 0 18px; }
+  h3.sub { font-size: 15px; color: var(--preto); margin: 24px 0 10px; font-weight: 700; border-left: 4px solid var(--amarelo); padding-left: 10px; }
   h4.mini { font-size: 13px; font-weight: 700; margin: 14px 0 6px; color: var(--cinza-escuro); }
 
   .card { background: var(--cinza); border: 1px solid var(--borda); border-radius: 8px; padding: 14px; margin-bottom: 12px; }
@@ -64,10 +64,10 @@
   .step-body { flex: 1; }
   .step-body strong { display: block; margin-bottom: 3px; }
 
-  .pitch { background: #000; color: #e0e0e0; border-radius: 8px; padding: 14px 18px; font-style: italic; line-height: 1.7; margin: 10px 0; border-left: 4px solid #e7e0b0; font-size: 13px; }
+  .pitch { background: #000; color: #e0e0e0; border-radius: 8px; padding: 14px 18px; font-style: italic; line-height: 1.7; margin: 10px 0; border-left: 4px solid var(--amarelo); font-size: 13px; }
   .pitch strong { color: #fff; font-style: normal; }
 
-  .perda-item { border: 1px solid var(--borda); border-radius: 8px; margin-bottom: 14px; overflow: hidden; border-top: 3px solid #e7e0b0; }
+  .perda-item { border: 1px solid var(--borda); border-radius: 8px; margin-bottom: 14px; overflow: hidden; border-top: 3px solid var(--amarelo); }
   .perda-header { background: var(--amarelo); color: var(--preto); padding: 9px 14px; font-weight: 700; font-size: 13px; }
   .perda-body { padding: 10px 14px; }
   .reabertura { background: var(--amarelo-bg); border: 1px solid var(--amarelo-borda); border-radius: 6px; padding: 8px 12px; margin-top: 8px; font-size: 13px; }
@@ -89,19 +89,19 @@
 
   .obs { background: var(--amarelo-bg); border-left: 4px solid #e7e0b0; padding: 9px 12px; border-radius: 4px; margin: 8px 0; font-size: 13px; }
   .atencao { background: #ffeef0; border-left: 4px solid var(--perigo); padding: 9px 12px; border-radius: 4px; margin: 8px 0; font-size: 13px; }
-  .destaque { background: var(--preto); color: white; border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 13px; border-left: 4px solid #e7e0b0; }
+  .destaque { background: var(--preto); color: white; border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 13px; border-left: 4px solid var(--amarelo); }
   .destaque strong { color: #fff; }
 
-  .canal { border: 1px solid var(--borda); border-radius: 10px; margin-bottom: 18px; overflow: hidden; border-top: 3px solid #e7e0b0; }
+  .canal { border: 1px solid var(--borda); border-radius: 10px; margin-bottom: 18px; overflow: hidden; border-top: 3px solid var(--amarelo); }
   .canal-header { padding: 12px 16px; font-weight: 700; font-size: 14px; background: var(--cinza); }
   .canal-body { padding: 14px 16px; }
 
   /* Funil */
   .funil { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 16px 0; }
-  .funil-etapa { border: 2px solid #e7e0b0; border-radius: 10px; padding: 14px 12px; text-align: center; position: relative; }
+  .funil-etapa { border: 2px solid var(--amarelo); border-radius: 10px; padding: 14px 12px; text-align: center; position: relative; }
   .funil-etapa .titulo { font-weight: 800; font-size: 13px; color: var(--preto); margin-bottom: 8px; background: var(--amarelo); padding: 4px 8px; border-radius: 6px; display: block; }
   .funil-etapa .obj { font-size: 11px; color: var(--cinza-escuro); margin-bottom: 8px; line-height: 1.5; }
-  .funil-etapa .gatilho { background: var(--preto); color: #fff; font-size: 10px; padding: 4px 8px; border-radius: 4px; font-weight: 700; line-height: 1.4; display: block; border-left: 3px solid #e7e0b0; }
+  .funil-etapa .gatilho { background: var(--preto); color: #fff; font-size: 10px; padding: 4px 8px; border-radius: 4px; font-weight: 700; line-height: 1.4; display: block; border-left: 3px solid var(--amarelo); }
   @media (max-width: 700px) { .funil { grid-template-columns: 1fr; } }
 
   /* Cadência tables */
@@ -110,7 +110,7 @@
 
   /* Objeções */
   .obj-cat { margin-bottom: 6px; }
-  .obj-cat-title { background: var(--preto); color: #fff; padding: 8px 14px; font-weight: 800; font-size: 13px; border-radius: 6px 6px 0 0; border-left: 4px solid #e7e0b0; }
+  .obj-cat-title { background: var(--preto); color: #fff; padding: 8px 14px; font-weight: 800; font-size: 13px; border-radius: 6px 6px 0 0; border-left: 4px solid var(--amarelo); }
   .obj-item { border: 1px solid var(--borda); border-top: none; padding: 10px 14px; }
   .obj-item:last-child { border-radius: 0 0 6px 6px; }
   .obj-objecao { font-weight: 700; color: var(--preto); margin-bottom: 4px; }
@@ -119,10 +119,10 @@
   /* SLA steps */
   .sla-step { display: flex; gap: 14px; margin-bottom: 16px; }
   .sla-num { background: var(--amarelo); color: var(--preto); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
-  .sla-body { flex: 1; border: 1px solid var(--borda); border-radius: 8px; padding: 12px 14px; border-top: 3px solid #e7e0b0; }
+  .sla-body { flex: 1; border: 1px solid var(--borda); border-radius: 8px; padding: 12px 14px; border-top: 3px solid var(--amarelo); }
   .sla-body h4 { font-size: 14px; margin-bottom: 8px; color: var(--preto); }
 
-  .interno-tag { display: inline-block; background: var(--preto); color: #fff; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; margin-bottom: 12px; letter-spacing: .5px; border-left: 3px solid #e7e0b0; }
+  .interno-tag { display: inline-block; background: var(--preto); color: #fff; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; margin-bottom: 12px; letter-spacing: .5px; border-left: 3px solid var(--amarelo); }
 </style>
 <link rel="stylesheet" href="otus-shared.css">
 </head>
