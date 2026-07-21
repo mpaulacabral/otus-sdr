@@ -308,10 +308,10 @@ footer strong { color: var(--amarelo); }
 
   <section id="resumo-sec">
     <h2 class="section-title">Resumo do ano</h2>
-    <p class="section-desc">Visão consolidada mês a mês, com o total acumulado em 2026.</p>
+    <p class="section-desc">Visão consolidada mês a mês. O somatório de todos os meses aparece só na linha "Total 2026", no final da tabela.</p>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Mês</th><th>Comissão de vendas</th><th>Comissão de reuniões</th><th>Total do mês</th></tr></thead>
+        <thead><tr><th>Mês</th><th>Comissão de vendas</th><th>Comissão de reuniões</th><th>Total do mês</th><th>Acumulado no ano</th></tr></thead>
         <tbody id="resumoBody"></tbody>
         <tfoot id="resumoFoot"></tfoot>
       </table>
@@ -728,12 +728,13 @@ footer strong { color: var(--amarelo); }
         '<td class="tabular">' + fmtBRL(r.comissaoV) + '</td>' +
         '<td class="tabular">' + fmtBRL(r.comissaoR) + '</td>' +
         '<td class="tabular strong">' + fmtBRL(r.total) + '</td>' +
+        '<td class="tabular">' + fmtBRL(r.total) + '</td>' +
         '</tr>';
     }).join('');
     var totalV = 0, totalR = 0, totalT = 0;
     rows.forEach(function (r) { totalV += r.comissaoV; totalR += r.comissaoR; totalT += r.total; });
     document.getElementById('resumoFoot').innerHTML =
-      '<tr><td>Total 2026</td><td class="tabular">' + fmtBRL(totalV) + '</td><td class="tabular">' + fmtBRL(totalR) + '</td><td class="tabular">' + fmtBRL(totalT) + '</td></tr>';
+      '<tr><td>Total 2026</td><td class="tabular">' + fmtBRL(totalV) + '</td><td class="tabular">' + fmtBRL(totalR) + '</td><td class="tabular">' + fmtBRL(totalT) + '</td><td class="tabular">' + fmtBRL(totalT) + '</td></tr>';
   }
 
   // ── Render: parameter reference tables ──
