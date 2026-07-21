@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Comissão · Pré-vendas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  color-scheme: light;
+  --preto: #000000;
+  --amarelo: #FFDC00;
+  --amarelo-bg: #FFFCE0;
+  --cinza: #E9E7E1;
+  --borda: #E5E7EB;
+  --cinza-escuro: #374151;
+  --cinza-medio: #6B7280;
+  --verde: #2D6A4F;
+  --verde-bg: #D8F3DC;
+  --ambar: #92400E;
+  --ambar-bg: #FEF3E2;
+  --branco: #FFFFFF;
+  --bg: #FAF7F0;
+  /* Cores do Farol de Metas da Otus (Gestão por Resultados) */
+  --farol-verde: #2D6A4F;
+  --farol-verde-bg: #D8F3DC;
+  --farol-amarelo: #8A6D00;
+  --farol-amarelo-bg: #FFF8E0;
+  --farol-vermelho: #E63946;
+  --farol-vermelho-bg: #FFEEF0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { color-scheme: light; }
+body {
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  font-size: 14px;
+  color: var(--preto);
+  background: var(--bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.tabular { font-variant-numeric: tabular-nums; }
+h1, h2, h3 { text-wrap: balance; }
+button, input, select { font-family: inherit; }
+a { color: inherit; }
+
+/* ── Top brand bar ── */
+.topbar {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--preto);
+  border-bottom: 2px solid var(--amarelo);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; padding: 0 18px; height: 40px; overflow-x: auto;
+}
+.topbar-brand { font-size: 12.5px; font-weight: 800; color: var(--amarelo); letter-spacing: .3px; white-space: nowrap; }
+.topbar-links { display: flex; align-items: center; gap: 16px; }
+.topbar-link { font-size: 11.5px; font-weight: 600; color: rgba(255,255,255,0.55); text-decoration: none; white-space: nowrap; }
+.topbar-link:hover { color: #fff; }
+
+/* ── Hero ── */
+.hero {
+  background: var(--preto);
+  color: #fff;
+  text-align: center;
+  padding: 44px 24px 40px;
+  border-bottom: 4px solid var(--amarelo);
+}
+.hero .badge {
+  display: inline-block; background: var(--amarelo); color: var(--preto);
+  font-size: 11.5px; font-weight: 800; padding: 4px 14px; border-radius: 20px;
+  margin-bottom: 14px; text-transform: uppercase; letter-spacing: .4px;
+}
+.hero h1 { font-size: 30px; font-weight: 700; margin-bottom: 8px; letter-spacing: -.3px; }
+.hero p { opacity: .78; font-size: 14px; max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+/* ── Stats strip ── */
+.stats-strip {
+  background: var(--amarelo);
+  padding: 14px 24px;
+  display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat .num { font-size: 21px; font-weight: 800; color: var(--preto); display: block; }
+.stat .lbl { font-size: 10px; font-weight: 700; color: rgba(0,0,0,0.62); text-transform: uppercase; letter-spacing: .5px; }
+
+/* ── Layout ── */
+.container { max-width: 1080px; margin: 0 auto; padding: 40px 24px 24px; }
+section + section { margin-top: 44px; }
+h2.section-title {
+  font-size: 12.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px;
+  color: var(--cinza-escuro); margin-bottom: 4px; opacity: .8;
+}
+.section-desc { font-size: 13px; color: var(--cinza-medio); margin-bottom: 18px; max-width: 640px; }
+.section-desc--wide { max-width: none; }
+
+/* ── Month picker ── */
+.month-picker { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 22px; }
+.month-btn {
+  border: 2px solid var(--borda); background: #fff; color: var(--cinza-escuro);
+  border-radius: 8px; padding: 7px 13px; font-size: 12.5px; font-weight: 700;
+  cursor: pointer; transition: all .15s;
+}
+.month-btn:hover { border-color: var(--amarelo); }
+.month-btn.active { background: var(--preto); border-color: var(--preto); color: var(--amarelo); }
+.month-btn .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+
+/* ── Dashboard cards ── */
+.dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+@media (max-width: 720px) { .dash-grid { grid-template-columns: 1fr; } }
+.card {
+  border-radius: 12px; border: 2px solid var(--borda); overflow: hidden;
+  background: #fff; display: flex; flex-direction: column;
+}
+.card-head {
+  background: var(--preto); padding: 16px 20px 13px; border-bottom: 3px solid var(--amarelo);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-head h3 { font-size: 15px; color: #fff; font-weight: 700; }
+.card-head .icon { font-size: 20px; }
+.card-body { padding: 16px 20px; flex: 1; }
+.metric-row { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 0; border-bottom: 1px dashed var(--borda); font-size: 13px; }
+.metric-row:last-child { border-bottom: none; }
+.metric-row .k { color: var(--cinza-medio); }
+.metric-row .v { font-weight: 700; color: var(--preto); }
+.card-foot {
+  padding: 14px 20px; background: var(--cinza);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-foot .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; color: var(--cinza-escuro); }
+.card-foot .val { font-size: 22px; font-weight: 800; color: var(--preto); }
+
+.total-banner {
+  background: var(--verde-bg); border: 2px solid var(--verde);
+  border-radius: 12px; padding: 18px 24px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.total-banner .lbl { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--verde); }
+.total-banner .val { font-size: 30px; font-weight: 800; color: var(--verde); }
+.total-banner .sub { font-size: 12px; color: var(--cinza-escuro); }
+
+/* ── Pills ── */
+.pill { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; font-weight: 700; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: .3px; white-space: nowrap; }
+.pill-verde { background: var(--farol-verde-bg); color: var(--farol-verde); }
+.pill-amarelo { background: var(--farol-amarelo-bg); color: var(--farol-amarelo); }
+.pill-vermelho { background: var(--farol-vermelho-bg); color: var(--farol-vermelho); }
+.pill-cinza { background: var(--cinza); color: var(--cinza-medio); }
+
+/* ── Tables ── */
+.table-wrap { overflow-x: auto; border: 1px solid var(--borda); border-radius: 10px; }
+table { width: 100%; border-collapse: collapse; min-width: 640px; }
+.table-wrap--fit table { min-width: 0; }
+.table-wrap--fit td, .table-wrap--fit th { white-space: normal; }
+tr.farol-verde { box-shadow: inset 4px 0 0 var(--farol-verde); }
+tr.farol-amarelo { box-shadow: inset 4px 0 0 var(--farol-amarelo); }
+tr.farol-vermelho { box-shadow: inset 4px 0 0 var(--farol-vermelho); }
+tr.farol-cinza { box-shadow: inset 4px 0 0 var(--borda); }
+thead th {
+  background: var(--preto); color: #fff; font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .5px; padding: 10px 12px; text-align: left; white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid var(--borda); }
+tbody tr:nth-child(even) { background: var(--cinza); }
+tbody tr.is-current { outline: 2px solid var(--amarelo); outline-offset: -2px; }
+tbody td { padding: 8px 12px; font-size: 12.5px; vertical-align: middle; white-space: nowrap; }
+tbody td.strong { font-weight: 700; }
+tfoot td { padding: 10px 12px; font-size: 12.5px; font-weight: 800; background: var(--cinza); border-top: 2px solid var(--preto); }
+
+/* editable cells */
+input.cell-input {
+  width: 84px; border: 1.5px solid var(--amarelo); background: var(--amarelo-bg);
+  border-radius: 6px; padding: 5px 7px; font-size: 12.5px; font-weight: 700; color: var(--preto);
+  font-family: inherit;
+}
+input.cell-input:focus { outline: 2px solid var(--preto); outline-offset: 1px; }
+input.cell-input.wide { width: 130px; }
+input.cell-input.narrow { width: 56px; }
+
+/* ── Forms ── */
+.form-card { background: var(--cinza); border: 1px solid var(--borda); border-radius: 12px; padding: 18px 20px; margin-bottom: 18px; }
+.form-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; align-items: end; }
+@media (max-width: 900px) { .form-grid { grid-template-columns: 1fr 1fr; } }
+.field label { display: block; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; color: var(--cinza-medio); margin-bottom: 5px; }
+.field input, .field select {
+  width: 100%; border: 1.5px solid var(--borda); border-radius: 7px; padding: 8px 10px;
+  font-size: 13px; background: #fff; color: var(--preto);
+}
+.field input:focus, .field select:focus { outline: none; border-color: var(--preto); }
+.btn {
+  border: none; border-radius: 7px; padding: 9px 16px; font-size: 12.5px; font-weight: 700;
+  cursor: pointer; background: var(--preto); color: var(--amarelo); transition: opacity .15s;
+}
+.btn:hover { opacity: .85; }
+.btn-ghost { background: transparent; border: 1.5px solid var(--borda); color: var(--cinza-escuro); }
+.btn-ghost:hover { border-color: var(--preto); }
+.btn-del { background: transparent; border: none; color: #b91c1c; font-size: 15px; cursor: pointer; font-weight: 700; padding: 2px 6px; }
+.btn-del:hover { text-decoration: underline; }
+.btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+
+/* ── Support / how it works ── */
+.how-section { background: var(--cinza); border: 1px solid var(--borda); border-radius: 14px; padding: 28px 26px; }
+.rule-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 22px; }
+@media (max-width: 720px) { .rule-grid { grid-template-columns: 1fr; } }
+.rule-card { background: #fff; border: 1px solid var(--borda); border-radius: 10px; padding: 16px 18px; }
+.rule-card h4 { font-size: 13px; font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 7px; }
+.rule-card p { font-size: 12.5px; color: var(--cinza-escuro); line-height: 1.6; }
+.rule-card p + p { margin-top: 6px; }
+.quote {
+  border-left: 3px solid var(--amarelo); background: var(--amarelo-bg); border-radius: 0 8px 8px 0;
+  padding: 10px 14px; font-size: 12px; font-style: italic; color: var(--cinza-escuro); margin-top: 8px;
+}
+.param-grid { display: flex; flex-direction: column; gap: 24px; }
+.param-grid .table-wrap { background: #fff; }
+.mini-title { font-size: 11.5px; font-weight: 800; color: var(--cinza-escuro); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .4px; }
+
+/* ── Footer ── */
+footer {
+  background: var(--preto); color: rgba(255,255,255,0.55); text-align: center;
+  padding: 22px 24px; font-size: 11.5px; border-top: 3px solid var(--amarelo); margin-top: 50px;
+}
+footer strong { color: var(--amarelo); }
+.footer-actions { display: flex; justify-content: center; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.footer-actions button {
+  background: transparent; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.75);
+  border-radius: 6px; padding: 6px 12px; font-size: 11px; font-weight: 600; cursor: pointer;
+}
+.footer-actions button:hover { border-color: var(--amarelo); color: var(--amarelo); }
+
+.empty-note { font-size: 12px; color: var(--cinza-medio); padding: 14px; text-align: center; }
+</style>
+</head>
+<body id="top">
+
+
+<div class="topbar">
+  <span class="topbar-brand">Otus Engenharia · Calculadora de Comissão</span>
+  <div class="topbar-links">
+    <a class="topbar-link" href="https://mpaulacabral.github.io/otus-sdr/Produto%20e%20Cases%20-%20Otus%20Engenharia.html#gestao" target="_blank" rel="noopener">Gestão por Resultados (Farol de Metas) ↗</a>
+    <a class="topbar-link" href="https://mpaulacabral.github.io/otus-sdr/index.html" target="_blank" rel="noopener">Central de Documentos ↗</a>
+  </div>
+</div>
+
+<div class="hero">
+  <span class="badge">Pré-vendas · Maria Paula</span>
+  <h1>Calculadora de Comissão</h1>
+  <p>Lance suas vendas e o resultado das avaliações de reunião mês a mês e acompanhe exatamente quanto você tem a receber, com o mesmo cálculo da planilha oficial.</p>
+</div>
+
+<div class="stats-strip" id="statsStrip"></div>
+
+<div class="container">
+
+  <section id="dashboard">
+    <h2 class="section-title">Painel do mês</h2>
+    <p class="section-desc">Escolha o mês para ver o detalhamento do cálculo. O mês atual já vem selecionado.</p>
+    <div class="month-picker" id="monthPicker"></div>
+    <div class="dash-grid" id="dashCards"></div>
+    <div class="total-banner" id="totalBanner"></div>
+  </section>
+
+  <section id="vendas-sec">
+    <h2 class="section-title">Vendas</h2>
+    <p class="section-desc">Digite quanto foi vendido em cada mês. A taxa de comissão é calculada automaticamente a partir da sua meta daquele mês.</p>
+
+    <div class="table-wrap table-wrap--fit">
+      <table>
+        <thead><tr><th>Mês</th><th>Meta do mês</th><th>Realizada (vendido)</th><th>Meta efetiva*</th><th>Comissão de vendas</th><th>Status da meta</th></tr></thead>
+        <tbody id="vendasMesBody"></tbody>
+      </table>
+    </div>
+    <p class="section-desc section-desc--wide" style="margin-top:8px;">A meta do mês nunca muda: é o valor da tabela oficial. Assim que você digita o valor vendido de um mês (mesmo que seja 0) na coluna "Realizada", a diferença para a meta daquele mês (sobra ou falta) vira saldo e ajusta a meta efetiva só do mês seguinte; do mês depois em diante, a meta volta a ser a normal. Um mês em branco não altera a meta de nenhum outro mês. O detalhe de % atingido e faixa aplicada do mês selecionado está no Painel do mês, no topo da página.</p>
+
+    <h3 class="mini-title" style="margin-top:28px;">Registro de vendas (opcional)</h3>
+    <p class="section-desc">Só para seu controle de quais clientes fecharam; não entra automaticamente na conta acima.</p>
+    <div class="form-card">
+      <div class="form-grid">
+        <div class="field"><label>Cliente</label><input id="fCliente" type="text" placeholder="Nome do cliente"></div>
+        <div class="field"><label>Projeto</label><input id="fProjeto" type="text" placeholder="Nome do projeto"></div>
+        <div class="field"><label>Mês de fechamento</label><select id="fMes"></select></div>
+        <div class="field"><label>Valor (R$)</label><input id="fValor" type="number" min="0" step="0.01" placeholder="0,00"></div>
+        <div class="field"><label>Data pagamento</label><input id="fDataPag" type="date"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="btnAddVenda">+ Lançar venda</button></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Cliente</th><th>Projeto</th><th>Mês</th><th>Valor</th><th>Pagamento</th><th></th></tr></thead>
+        <tbody id="vendasBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="reunioes-sec">
+    <h2 class="section-title">Reuniões</h2>
+    <p class="section-desc">Informe, por mês, o resultado das avaliações que o Gil já faz após cada reunião: quantas foram classificadas como fria, morna ou quente.</p>
+
+    <div class="table-wrap table-wrap--fit">
+      <table>
+        <thead><tr><th>Mês</th><th>Meta do mês</th><th>Frias</th><th>Mornas</th><th>Quentes</th><th>Realizadas</th><th>Meta efetiva*</th><th>Comissão de reuniões</th><th>Status da meta</th></tr></thead>
+        <tbody id="reunioesBody"></tbody>
+      </table>
+    </div>
+    <p class="section-desc section-desc--wide" style="margin-top:8px;">A meta do mês nunca muda: é o valor da tabela oficial. "Realizadas" soma sozinha Frias + Mornas + Quentes assim que você preenche pelo menos uma delas (mesmo que seja 0); a diferença para a meta daquele mês (sobra ou falta) vira saldo e ajusta a meta efetiva só do mês seguinte, depois disso a meta volta a ser a normal. Conte a reunião no mês em que ela aconteceu, não em que foi marcada. O detalhe de % atingido e % quentes do mês selecionado está no Painel do mês, no topo da página.</p>
+  </section>
+
+  <section id="resumo-sec">
+    <h2 class="section-title">Resumo do ano</h2>
+    <p class="section-desc">Visão consolidada mês a mês, com o total acumulado em 2026.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Mês</th><th>Comissão de vendas</th><th>Comissão de reuniões</th><th>Total do mês</th><th>Acumulado no ano</th></tr></thead>
+        <tbody id="resumoBody"></tbody>
+        <tfoot id="resumoFoot"></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section id="apoio-sec">
+    <h2 class="section-title">Como funciona</h2>
+    <p class="section-desc">Resumo das regras de comissionamento explicadas pelo Maciel, para consulta rápida.</p>
+    <div class="how-section">
+
+      <div class="rule-grid">
+        <div class="rule-card">
+          <h4>Duas comissões</h4>
+          <p>Você ganha por duas frentes, todo mês: pelo <strong>valor vendido</strong> e pela <strong>quantidade e qualidade das reuniões</strong> agendadas. As duas se somam no total do mês.</p>
+        </div>
+        <div class="rule-card">
+          <h4>Meta fixa + saldo do mês anterior</h4>
+          <p>A meta de cada mês é sempre a mesma, a da tabela oficial: ela não muda sozinha. Assim que você digita o realizado de um mês (mesmo que seja 0), a diferença para a meta fixa daquele mês (para mais ou para menos) vira saldo e ajusta a meta efetiva <strong>só do mês seguinte</strong>. Do mês depois em diante, a meta já volta a ser a fixa normal. Um mês em branco não altera a meta de nenhum outro mês.</p>
+          <div class="quote">"Se a meta de julho era 4 reuniões e você lança 6 feitas, sobram 2 de saldo: a meta de agosto, que seria 13, passa a ser 11. Setembro já volta a ser 16, a não ser que agosto também tenha sobra ou falta."</div>
+        </div>
+        <div class="rule-card">
+          <h4>Meta zerada ou já superada</h4>
+          <p>Quando a meta efetiva do mês chega a zero (porque a meta era baixa ou o saldo do mês anterior já cobriu tudo), qualquer venda ou reunião naquele mês já entra automaticamente na faixa máxima de comissão, como se tivesse batido mais de 120% da meta.</p>
+        </div>
+        <div class="rule-card">
+          <h4>Datas que valem</h4>
+          <p>Reunião conta no mês em que <strong>aconteceu</strong>, não em que foi agendada. Venda conta no mês em que o contrato <strong>fechou</strong>, mesmo que o pagamento (e sua comissão em caixa) só caia em um mês depois.</p>
+        </div>
+        <div class="rule-card">
+          <h4>Cores do status (Farol de Metas)</h4>
+          <p>O "Status" de cada mês usa as mesmas cores do Farol de Metas da Otus: <span class="pill pill-verde" style="display:inline">meta atingida</span> a partir de 100%, <span class="pill pill-amarelo" style="display:inline">risco</span> entre 80% e 99%, <span class="pill pill-vermelho" style="display:inline">meta não atingida</span> abaixo de 80%.</p>
+          <div class="btn-row" style="margin-top:10px;">
+            <a class="btn btn-ghost" href="https://mpaulacabral.github.io/otus-sdr/Produto%20e%20Cases%20-%20Otus%20Engenharia.html#gestao" target="_blank" rel="noopener" style="text-decoration:none; display:inline-block;">Ver Gestão por Resultados ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="param-grid">
+        <div>
+          <div class="mini-title">Faixas de comissão sobre vendas</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Atingimento da meta</th><th>Taxa sobre o valor vendido</th></tr></thead>
+              <tbody id="paramVendasBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <div class="mini-title">Valor base por temperatura da reunião</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Classificação</th><th>Valor base</th></tr></thead>
+              <tbody id="paramTempBody"></tbody>
+            </table>
+          </div>
+          <div class="mini-title" style="margin-top:16px;">Multiplicadores de reuniões</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Critério</th><th>Faixa</th><th>Multiplicador</th></tr></thead>
+              <tbody id="paramMultBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Otus Engenharia</strong> · Calculadora pessoal de comissão · Dados salvos automaticamente neste navegador
+  <div class="footer-actions">
+    <button id="btnExport">Exportar dados</button>
+    <button id="btnImport">Importar dados</button>
+    <button id="btnReset">Limpar dados</button>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var MESES = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  var MESES_ABR = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+
+  var META_VENDAS_PADRAO = [0,0,0,0,0,0,0,170850,118650,490320,397920,144900];
+  var META_REUNIOES_PADRAO = [0,0,0,0,0,0,4,13,16,5,16,16];
+
+  var FAIXAS_VENDAS = [
+    { min: 1.20, taxa: 0.008, label: 'Supermeta (≥120%)' },
+    { min: 1.00, taxa: 0.006, label: 'Meta (≥100%)' },
+    { min: 0.75, taxa: 0.0042, label: 'Abaixo da meta (≥75%)' },
+    { min: 0.50, taxa: 0.0027, label: 'Bem abaixo (≥50%)' },
+    { min: 0.01, taxa: 0.0015, label: 'Vendeu pouco (≥1%)' },
+    { min: 0,    taxa: 0,      label: 'Sem vendas' }
+  ];
+  var MULT_ATINGIMENTO = [
+    { min: 1.20, mult: 1.2, label: 'Supermeta (≥120%)' },
+    { min: 1.00, mult: 1.0, label: 'Meta (≥100%)' },
+    { min: 0.75, mult: 0.85, label: 'Abaixo da meta (≥75%)' },
+    { min: 0.50, mult: 0.5, label: 'Bem abaixo (≥50%)' },
+    { min: 0,    mult: 0,   label: 'Muito abaixo (<50%)' }
+  ];
+  var MULT_QUENTES = [
+    { min: 0.95, mult: 1.2, label: 'Supermeta (≥95%)' },
+    { min: 0.80, mult: 1.0, label: 'Meta (≥80%)' },
+    { min: 0.60, mult: 0.85, label: 'Abaixo da meta (≥60%)' },
+    { min: 0.40, mult: 0.5, label: 'Bem abaixo (≥40%)' },
+    { min: 0,    mult: 0,   label: 'Muito abaixo (<40%)' }
+  ];
+  var VALOR_BASE = { fria: 0, morna: 40, quente: 90 };
+
+  function lookup(tiers, x) {
+    for (var i = 0; i < tiers.length; i++) { if (x >= tiers[i].min) return tiers[i]; }
+    return tiers[tiers.length - 1];
+  }
+
+  var STORAGE_KEY = 'otus_comissao_2026_v3';
+  // Normaliza dados de uma versao anterior: um 0 numerico "puro" (sobra de quando o padrao
+  // era 0 em vez de vazio) volta a ser tratado como "nao preenchido", para nao gerar saldo
+  // fantasma em meses que na verdade nunca foram preenchidos.
+  function normalizeEntry(v) { return v === 0 ? '' : v; }
+
+  // Campos de "realizado" ficam com string vazia por padrao: '' significa "ainda nao
+  // preenchido" (nao mexe em nada), qualquer numero digitado (inclusive 0) conta como um
+  // resultado real do mes e passa a valer para o saldo do mes seguinte.
+  function defaultState() {
+    return {
+      sales: [],
+      vendidoMes: new Array(12).fill(''),
+      meetings: (function () { var o = {}; for (var m = 0; m < 12; m++) o[m] = { fria: '', morna: '', quente: '' }; return o; })(),
+      metaVendas: META_VENDAS_PADRAO.slice(),
+      metaReunioes: META_REUNIOES_PADRAO.slice()
+    };
+  }
+
+  var state = load();
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return defaultState();
+      var parsed = JSON.parse(raw);
+      var def = defaultState();
+      var vendidoMes = (parsed.vendidoMes || def.vendidoMes).map(normalizeEntry);
+      var meetingsRaw = parsed.meetings || def.meetings;
+      var meetings = {};
+      for (var m = 0; m < 12; m++) {
+        var mt = meetingsRaw[m] || { fria: '', morna: '', quente: '' };
+        meetings[m] = { fria: normalizeEntry(mt.fria), morna: normalizeEntry(mt.morna), quente: normalizeEntry(mt.quente) };
+      }
+      return {
+        sales: parsed.sales || def.sales,
+        vendidoMes: vendidoMes,
+        meetings: meetings,
+        metaVendas: parsed.metaVendas || def.metaVendas,
+        metaReunioes: parsed.metaReunioes || def.metaReunioes
+      };
+    } catch (e) { return defaultState(); }
+  }
+  function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+  function fmtBRL(v) {
+    if (!isFinite(v)) v = 0;
+    return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+  function fmtPct(v) {
+    if (!isFinite(v)) return '∞';
+    return (v * 100).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%';
+  }
+  function uid() { return 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+
+  // Aceita "215000", "215000,50", "215.000,00" ou "215000.50" e devolve um numero (ou '' se vazio).
+  function parseMoneyInput(str) {
+    if (str === '' || str === null || str === undefined) return '';
+    var cleaned = String(str).replace(/[^\d,.-]/g, '');
+    if (cleaned === '') return '';
+    if (cleaned.indexOf(',') > -1 && cleaned.indexOf('.') > -1) {
+      cleaned = cleaned.replace(/\./g, '').replace(',', '.');
+    } else if (cleaned.indexOf(',') > -1) {
+      cleaned = cleaned.replace(',', '.');
+    }
+    var n = parseFloat(cleaned);
+    return isNaN(n) ? '' : n;
+  }
+
+  var today = new Date();
+  var selectedMonth = (today.getFullYear() === 2026) ? today.getMonth() : 6;
+
+  // ── Core calculation engine ──
+  // A meta fixa de cada mês nunca muda: é o valor da tabela oficial. Quando você digita um
+  // valor realizado num mês (mesmo que seja 0), a diferença entre o realizado e a meta fixa
+  // daquele mês (sobra ou falta) vira o saldo do mês SEGUINTE, e só dele: no mês depois disso
+  // a meta efetiva já volta a ser a meta fixa normal, a não ser que aquele mês também tenha
+  // um realizado lançado. Um mês em branco (ainda não preenchido) não empurra saldo nenhum.
+  function hasVal(v) { return v !== '' && v !== null && v !== undefined; }
+
+  function computeYear() {
+    var rows = [];
+    var carryV = 0; // saldo vindo do mes anterior, vale so para o mes atual
+    var carryR = 0;
+
+    for (var m = 0; m < 12; m++) {
+      var metaVFixa = state.metaVendas[m];
+      var metaRFixa = state.metaReunioes[m];
+
+      var vendidoAuto = 0;
+      var temVendaItem = false;
+      state.sales.forEach(function (s) { if (s.mes === m) { vendidoAuto += Number(s.valor) || 0; temVendaItem = true; } });
+      var vendidoStr = state.vendidoMes[m];
+      var temOverride = hasVal(vendidoStr);
+      var temVenda = temOverride || temVendaItem;
+      var vendidoMes = temOverride ? (Number(vendidoStr) || 0) : vendidoAuto;
+
+      var effV = Math.max(0, metaVFixa - carryV);
+      var attV = effV > 0 ? vendidoMes / effV : (vendidoMes > 0 ? Infinity : 0);
+      var faixaV = lookup(FAIXAS_VENDAS, attV);
+      var comissaoV = vendidoMes * faixaV.taxa;
+      var carryVNext = temVenda ? (vendidoMes - effV) : 0;
+
+      var mt = state.meetings[m] || { fria: '', morna: '', quente: '' };
+      var temReuniao = hasVal(mt.fria) || hasVal(mt.morna) || hasVal(mt.quente);
+      var friaN = Number(mt.fria) || 0, mornaN = Number(mt.morna) || 0, quenteN = Number(mt.quente) || 0;
+      var totalR = friaN + mornaN + quenteN;
+      var effR = Math.max(0, metaRFixa - carryR);
+      var attR = effR > 0 ? totalR / effR : (totalR > 0 ? Infinity : 0);
+      var multA = lookup(MULT_ATINGIMENTO, attR);
+      var pctQ = totalR > 0 ? quenteN / totalR : 0;
+      var multQ = lookup(MULT_QUENTES, pctQ);
+      var baseSum = friaN * VALOR_BASE.fria + mornaN * VALOR_BASE.morna + quenteN * VALOR_BASE.quente;
+      var comissaoR = baseSum * multA.mult * multQ.mult;
+      var carryRNext = temReuniao ? (totalR - effR) : 0;
+
+      rows.push({
+        m: m, metaVOriginal: metaVFixa, effV: effV, vendidoMes: vendidoMes, vendidoAuto: vendidoAuto, temOverride: temOverride, temVenda: temVenda, attV: attV, faixaV: faixaV, comissaoV: comissaoV,
+        metaROriginal: metaRFixa, effR: effR, mt: mt, totalR: totalR, temReuniao: temReuniao, attR: attR, multA: multA, pctQ: pctQ, multQ: multQ, comissaoR: comissaoR,
+        total: comissaoV + comissaoR
+      });
+
+      carryV = carryVNext;
+      carryR = carryRNext;
+    }
+    var acc = 0;
+    rows.forEach(function (r) { acc += r.total; r.acumulado = acc; });
+    return rows;
+  }
+
+  // Cores do Farol de Metas da Otus (Gestão por Resultados): verde >=100%, amarelo 80-99%, vermelho <80%.
+  function farolTier(attainment, hasEntry) {
+    if (!hasEntry) return { cls: 'cinza', label: 'Sem dados' };
+    if (!isFinite(attainment) || attainment >= 1) return { cls: 'verde', label: 'Meta atingida' };
+    if (attainment >= 0.8) return { cls: 'amarelo', label: 'Risco' };
+    return { cls: 'vermelho', label: 'Meta não atingida' };
+  }
+  function statusPill(attainment, hasEntry) {
+    var t = farolTier(attainment, hasEntry);
+    return '<span class="pill pill-' + t.cls + '">' + t.label + '</span>';
+  }
+
+  // ── Render: month picker ──
+  function renderMonthPicker(rows) {
+    var el = document.getElementById('monthPicker');
+    el.innerHTML = MESES.map(function (nome, m) {
+      var r = rows[m];
+      var color = (r.total > 0) ? 'var(--verde)' : 'var(--borda)';
+      var active = (m === selectedMonth) ? ' active' : '';
+      return '<button class="month-btn' + active + '" data-m="' + m + '"><span class="dot" style="background:' + color + '"></span>' + MESES_ABR[m] + '</button>';
+    }).join('');
+    Array.prototype.forEach.call(el.querySelectorAll('.month-btn'), function (btn) {
+      btn.addEventListener('click', function () { selectedMonth = Number(btn.getAttribute('data-m')); renderAll(); });
+    });
+  }
+
+  // ── Render: stats strip ──
+  function renderStats(rows) {
+    var r = rows[selectedMonth];
+    var totalAno = rows[11].acumulado;
+    var vendidoAno = 0, reunioesAno = 0;
+    rows.forEach(function (x) { vendidoAno += x.vendidoMes; reunioesAno += x.totalR; });
+    document.getElementById('statsStrip').innerHTML =
+      stat(fmtBRL(r.total), 'Comissão em ' + MESES[selectedMonth]) +
+      stat(fmtBRL(totalAno), 'Acumulado em 2026') +
+      stat(fmtBRL(vendidoAno), 'Vendido no ano') +
+      stat(reunioesAno.toLocaleString('pt-BR'), 'Reuniões no ano');
+  }
+  function stat(num, lbl) { return '<div class="stat"><span class="num tabular">' + num + '</span><span class="lbl">' + lbl + '</span></div>'; }
+
+  // ── Render: dashboard cards ──
+  function renderDashboard(rows) {
+    var r = rows[selectedMonth];
+    var cards = document.getElementById('dashCards');
+    cards.innerHTML =
+      '<div class="card">' +
+        '<div class="card-head"><h3>Vendas · ' + MESES[selectedMonth] + '</h3></div>' +
+        '<div class="card-body">' +
+          metricRow('Meta original do mês', fmtBRL(r.metaVOriginal)) +
+          metricRow('Meta efetiva (com saldo acumulado)', fmtBRL(r.effV)) +
+          metricRow('Vendido no mês', fmtBRL(r.vendidoMes)) +
+          metricRow('% atingido', fmtPct(r.attV)) +
+          metricRow('Faixa aplicada', r.faixaV.label) +
+        '</div>' +
+        '<div class="card-foot"><span class="lbl">Comissão de vendas</span><span class="val tabular">' + fmtBRL(r.comissaoV) + '</span></div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="card-head"><h3>Reuniões · ' + MESES[selectedMonth] + '</h3></div>' +
+        '<div class="card-body">' +
+          metricRow('Meta original do mês', r.metaROriginal + ' reuniões') +
+          metricRow('Meta efetiva (com saldo acumulado)', r.effR.toLocaleString('pt-BR', {maximumFractionDigits:1})) +
+          metricRow('Realizadas (F / M / Q)', (r.mt.fria||0) + ' / ' + (r.mt.morna||0) + ' / ' + (r.mt.quente||0) + ' = ' + r.totalR) +
+          metricRow('% atingido · multiplicador', fmtPct(r.attR) + ' → ×' + r.multA.mult) +
+          metricRow('% quentes · multiplicador', fmtPct(r.pctQ) + ' → ×' + r.multQ.mult) +
+        '</div>' +
+        '<div class="card-foot"><span class="lbl">Comissão de reuniões</span><span class="val tabular">' + fmtBRL(r.comissaoR) + '</span></div>' +
+      '</div>';
+
+    document.getElementById('totalBanner').innerHTML =
+      '<div><div class="lbl">Comissão total de ' + MESES[selectedMonth] + '</div><div class="sub">Vendas + reuniões</div></div>' +
+      '<div class="val tabular">' + fmtBRL(r.total) + '</div>';
+  }
+  function metricRow(k, v) { return '<div class="metric-row"><span class="k">' + k + '</span><span class="v tabular">' + v + '</span></div>'; }
+
+  // ── Render: monthly sales table + optional itemized record ──
+  function renderVendas(rows) {
+    var mesBody = document.getElementById('vendasMesBody');
+    mesBody.innerHTML = rows.map(function (r, m) {
+      var farol = farolTier(r.attV, r.temVenda);
+      var cls = 'farol-' + farol.cls + (m === selectedMonth ? ' is-current' : '');
+      var inputVal = r.temOverride ? state.vendidoMes[m] : (r.vendidoAuto || '');
+      var inputDisplay = inputVal === '' ? '' : fmtBRL(Number(inputVal));
+      return '<tr class="' + cls + '" title="' + farol.label + '">' +
+        '<td class="strong">' + MESES[m] + '</td>' +
+        '<td class="strong tabular">' + fmtBRL(r.metaVOriginal) + '</td>' +
+        '<td><input class="cell-input wide" type="text" inputmode="decimal" placeholder="R$ 0,00" value="' + inputDisplay + '" data-vendido="' + m + '" data-raw="' + inputVal + '"></td>' +
+        '<td class="tabular">' + fmtBRL(r.effV) + '</td>' +
+        '<td class="tabular strong">' + fmtBRL(r.comissaoV) + '</td>' +
+        '<td>' + statusPill(r.attV, r.temVenda) + '</td>' +
+        '</tr>';
+    }).join('');
+    Array.prototype.forEach.call(mesBody.querySelectorAll('[data-vendido]'), function (input) {
+      input.addEventListener('focus', function () {
+        var raw = input.getAttribute('data-raw');
+        input.value = raw === '' ? '' : String(raw).replace('.', ',');
+        input.select();
+      });
+      input.addEventListener('blur', function () {
+        var m = Number(input.getAttribute('data-vendido'));
+        state.vendidoMes[m] = parseMoneyInput(input.value);
+        save(); renderAll();
+      });
+    });
+
+    var body = document.getElementById('vendasBody');
+    if (state.sales.length === 0) {
+      body.innerHTML = '<tr><td colspan="6" class="empty-note">Nenhuma venda registrada ainda.</td></tr>';
+    } else {
+      var sorted = state.sales.slice().sort(function (a, b) { return a.mes - b.mes; });
+      body.innerHTML = sorted.map(function (s) {
+        return '<tr>' +
+          '<td class="strong">' + escapeHtml(s.cliente || '-') + '</td>' +
+          '<td>' + escapeHtml(s.projeto || '-') + '</td>' +
+          '<td>' + MESES[s.mes] + '</td>' +
+          '<td class="tabular">' + fmtBRL(Number(s.valor) || 0) + '</td>' +
+          '<td>' + (s.dataPagamento ? new Date(s.dataPagamento + 'T00:00:00').toLocaleDateString('pt-BR') : '-') + '</td>' +
+          '<td><button class="btn-del" data-id="' + s.id + '" title="Remover">✕</button></td>' +
+          '</tr>';
+      }).join('');
+      Array.prototype.forEach.call(body.querySelectorAll('.btn-del'), function (b) {
+        b.addEventListener('click', function () {
+          state.sales = state.sales.filter(function (s) { return s.id !== b.getAttribute('data-id'); });
+          save(); renderAll();
+        });
+      });
+    }
+  }
+
+  // ── Render: meetings table ──
+  function renderReunioes(rows) {
+    var body = document.getElementById('reunioesBody');
+    body.innerHTML = rows.map(function (r, m) {
+      var mt = state.meetings[m];
+      var farol = farolTier(r.attR, r.temReuniao);
+      var cls = 'farol-' + farol.cls + (m === selectedMonth ? ' is-current' : '');
+      return '<tr class="' + cls + '" title="' + farol.label + '">' +
+        '<td class="strong">' + MESES[m] + '</td>' +
+        '<td class="strong tabular">' + r.metaROriginal.toLocaleString('pt-BR') + '</td>' +
+        '<td><input class="cell-input narrow" type="number" min="0" step="1" placeholder="0" value="' + mt.fria + '" data-mt="' + m + '" data-tipo="fria"></td>' +
+        '<td><input class="cell-input narrow" type="number" min="0" step="1" placeholder="0" value="' + mt.morna + '" data-mt="' + m + '" data-tipo="morna"></td>' +
+        '<td><input class="cell-input narrow" type="number" min="0" step="1" placeholder="0" value="' + mt.quente + '" data-mt="' + m + '" data-tipo="quente"></td>' +
+        '<td class="tabular strong">' + r.totalR + '</td>' +
+        '<td class="tabular">' + r.effR.toLocaleString('pt-BR', {maximumFractionDigits:1}) + '</td>' +
+        '<td class="tabular strong">' + fmtBRL(r.comissaoR) + '</td>' +
+        '<td>' + statusPill(r.attR, r.temReuniao) + '</td>' +
+        '</tr>';
+    }).join('');
+    Array.prototype.forEach.call(body.querySelectorAll('[data-mt]'), function (input) {
+      input.addEventListener('change', function () {
+        var m = Number(input.getAttribute('data-mt'));
+        var tipo = input.getAttribute('data-tipo');
+        state.meetings[m][tipo] = input.value === '' ? '' : (Number(input.value) || 0);
+        save(); renderAll();
+      });
+    });
+  }
+
+  // ── Render: yearly summary ──
+  function renderResumo(rows) {
+    var body = document.getElementById('resumoBody');
+    body.innerHTML = rows.map(function (r, m) {
+      var cur = (m === selectedMonth) ? ' class="is-current"' : '';
+      return '<tr' + cur + '>' +
+        '<td class="strong">' + MESES[m] + '</td>' +
+        '<td class="tabular">' + fmtBRL(r.comissaoV) + '</td>' +
+        '<td class="tabular">' + fmtBRL(r.comissaoR) + '</td>' +
+        '<td class="tabular strong">' + fmtBRL(r.total) + '</td>' +
+        '<td class="tabular">' + fmtBRL(r.acumulado) + '</td>' +
+        '</tr>';
+    }).join('');
+    var totalV = 0, totalR = 0, totalT = 0;
+    rows.forEach(function (r) { totalV += r.comissaoV; totalR += r.comissaoR; totalT += r.total; });
+    document.getElementById('resumoFoot').innerHTML =
+      '<tr><td>Total 2026</td><td class="tabular">' + fmtBRL(totalV) + '</td><td class="tabular">' + fmtBRL(totalR) + '</td><td class="tabular">' + fmtBRL(totalT) + '</td><td class="tabular">' + fmtBRL(rows[11].acumulado) + '</td></tr>';
+  }
+
+  // ── Render: parameter reference tables ──
+  function renderParams() {
+    document.getElementById('paramVendasBody').innerHTML = FAIXAS_VENDAS.map(function (f) {
+      return '<tr><td>' + f.label + '</td><td class="tabular">' + (f.taxa * 100).toLocaleString('pt-BR', {minimumFractionDigits:2}) + '%</td></tr>';
+    }).join('');
+    document.getElementById('paramTempBody').innerHTML =
+      '<tr><td>Fria</td><td class="tabular">' + fmtBRL(VALOR_BASE.fria) + '</td></tr>' +
+      '<tr><td>Morna</td><td class="tabular">' + fmtBRL(VALOR_BASE.morna) + '</td></tr>' +
+      '<tr><td>Quente</td><td class="tabular">' + fmtBRL(VALOR_BASE.quente) + '</td></tr>';
+    document.getElementById('paramMultBody').innerHTML =
+      MULT_ATINGIMENTO.map(function (f) { return '<tr><td>Atingimento da meta</td><td>' + f.label + '</td><td class="tabular">×' + f.mult + '</td></tr>'; }).join('') +
+      MULT_QUENTES.map(function (f) { return '<tr><td>% de reuniões quentes</td><td>' + f.label + '</td><td class="tabular">×' + f.mult + '</td></tr>'; }).join('');
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function renderAll() {
+    var rows = computeYear();
+    renderMonthPicker(rows);
+    renderStats(rows);
+    renderDashboard(rows);
+    renderVendas(rows);
+    renderReunioes(rows);
+    renderResumo(rows);
+  }
+
+  // ── Sale form ──
+  var mesSelect = document.getElementById('fMes');
+  mesSelect.innerHTML = MESES.map(function (nome, i) { return '<option value="' + i + '">' + nome + '</option>'; }).join('');
+  mesSelect.value = selectedMonth;
+
+  document.getElementById('btnAddVenda').addEventListener('click', function () {
+    var cliente = document.getElementById('fCliente').value.trim();
+    var valor = Number(document.getElementById('fValor').value);
+    if (!cliente || !valor) { alert('Preencha ao menos o cliente e o valor da venda.'); return; }
+    state.sales.push({
+      id: uid(),
+      cliente: cliente,
+      projeto: document.getElementById('fProjeto').value.trim(),
+      mes: Number(document.getElementById('fMes').value),
+      valor: valor,
+      dataPagamento: document.getElementById('fDataPag').value || null
+    });
+    save();
+    document.getElementById('fCliente').value = '';
+    document.getElementById('fProjeto').value = '';
+    document.getElementById('fValor').value = '';
+    document.getElementById('fDataPag').value = '';
+    renderAll();
+  });
+
+  // ── Footer actions ──
+  document.getElementById('btnExport').addEventListener('click', function () {
+    var blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'comissao-2026-backup.json';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+  document.getElementById('btnImport').addEventListener('click', function () {
+    var input = document.createElement('input');
+    input.type = 'file'; input.accept = 'application/json';
+    input.addEventListener('change', function () {
+      var file = input.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        try {
+          var parsed = JSON.parse(reader.result);
+          var def = defaultState();
+          var vendidoMesImp = (parsed.vendidoMes || def.vendidoMes).map(normalizeEntry);
+          var meetingsRawImp = parsed.meetings || def.meetings;
+          var meetingsImp = {};
+          for (var mi = 0; mi < 12; mi++) {
+            var mti = meetingsRawImp[mi] || { fria: '', morna: '', quente: '' };
+            meetingsImp[mi] = { fria: normalizeEntry(mti.fria), morna: normalizeEntry(mti.morna), quente: normalizeEntry(mti.quente) };
+          }
+          state = {
+            sales: parsed.sales || def.sales,
+            vendidoMes: vendidoMesImp,
+            meetings: meetingsImp,
+            metaVendas: parsed.metaVendas || def.metaVendas,
+            metaReunioes: parsed.metaReunioes || def.metaReunioes
+          };
+          save(); renderAll();
+        } catch (e) { alert('Arquivo inválido.'); }
+      };
+      reader.readAsText(file);
+    });
+    input.click();
+  });
+  document.getElementById('btnReset').addEventListener('click', function () {
+    if (!confirm('Isso vai apagar todos os dados lançados nesta ferramenta. Deseja continuar?')) return;
+    state = defaultState(); save(); renderAll();
+  });
+
+  renderParams();
+  renderAll();
+})();
+</script>
+
+</body>
+</html>
