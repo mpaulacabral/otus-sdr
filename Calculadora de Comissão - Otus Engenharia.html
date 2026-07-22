@@ -273,7 +273,7 @@ footer strong { color: var(--amarelo); }
     <p class="section-desc section-desc--wide" style="margin-top:8px;">A meta do mês nunca muda: é o valor da tabela oficial. Assim que você digita o valor vendido de um mês (mesmo que seja 0) na coluna "Realizada", a diferença para a meta daquele mês (sobra ou falta) vira saldo e ajusta a meta efetiva só do mês seguinte; do mês depois em diante, a meta volta a ser a normal. Um mês em branco não altera a meta de nenhum outro mês. O detalhe de % atingido e faixa aplicada do mês selecionado está no Painel do mês, no topo da página.</p>
 
     <h3 class="mini-title" style="margin-top:28px;">Registro de vendas</h3>
-    <p class="section-desc">Cada venda lançada aqui entra sozinha na conta acima, no mês da <strong>data de pagamento</strong> (é quando você recebe), não no mês em que o contrato foi assinado. Se preferir, use direto o campo "Realizada" da tabela acima, sem itemizar venda por venda.</p>
+    <p class="section-desc section-desc--wide">Cada venda lançada aqui entra sozinha na conta acima (meta e taxa aplicada), no mês do <strong>fechamento do contrato</strong>. A taxa e a comissão prevista de cada venda já saem calculadas na tabela abaixo; a coluna "Cai no caixa em" mostra em qual mês o dinheiro realmente chega, com base na data de pagamento da entrada. Se preferir, use direto o campo "Realizada" da tabela acima, sem itemizar venda por venda.</p>
     <div class="form-card">
       <div class="form-grid">
         <div class="field"><label>Cliente</label><input id="fCliente" type="text" placeholder="Nome do cliente"></div>
@@ -287,7 +287,7 @@ footer strong { color: var(--amarelo); }
 
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Cliente</th><th>Projeto</th><th>Mês fechamento</th><th>Valor</th><th>Data pagamento</th><th></th></tr></thead>
+        <thead><tr><th>Cliente</th><th>Projeto</th><th>Mês fechamento</th><th>Valor</th><th>Taxa aplicada</th><th>Comissão prevista</th><th>Cai no caixa em</th><th></th></tr></thead>
         <tbody id="vendasBody"></tbody>
       </table>
     </div>
@@ -339,7 +339,8 @@ footer strong { color: var(--amarelo); }
         </div>
         <div class="rule-card">
           <h4>Datas que valem</h4>
-          <p>Reunião conta no mês em que <strong>aconteceu</strong>, não em que foi agendada. Venda conta no mês em que o cliente <strong>paga</strong> (a data de pagamento), não no mês em que o contrato foi assinado: se o contrato foi assinado em julho mas o cliente só paga em agosto, a venda entra na conta de agosto, que é quando você recebe.</p>
+          <p>Reunião conta no mês em que <strong>aconteceu</strong>, não em que foi agendada.</p>
+          <p>Venda: a <strong>meta</strong> conta no mês em que o contrato <strong>fechou</strong> (assinatura). A <strong>comissão em caixa</strong> só cai no mês em que o cliente <strong>paga a entrada</strong> (primeira parcela). Exemplo: contrato assinado em julho, mas o cliente só paga em agosto; a venda entra na meta de julho, e o dinheiro da comissão cai em agosto.</p>
         </div>
         <div class="rule-card">
           <h4>Cores do status (Farol de Metas)</h4>
@@ -510,8 +511,9 @@ footer strong { color: var(--amarelo); }
   // a meta efetiva já volta a ser a meta fixa normal, a não ser que aquele mês também tenha
   // um realizado lançado. Um mês em branco (ainda não preenchido) não empurra saldo nenhum.
   function hasVal(v) { return v !== '' && v !== null && v !== undefined; }
-  // A venda conta no mês em que o cliente PAGA, não no mês em que o contrato foi assinado:
-  // é só quando o pagamento cai que a comissão daquela venda realmente entra.
+  // A meta conta pelo mês em que o CONTRATO FOI FECHADO (assinatura), mesmo que o cliente só
+  // pague depois. Já a comissão em caixa (o dinheiro que efetivamente cai na conta) segue o
+  // mês da DATA DE PAGAMENTO da entrada, que costuma ser um mês (ou mais) depois do fechamento.
   function paymentMonth(s) {
     if (!s.dataPagamento) return null;
     var d = new Date(s.dataPagamento + 'T00:00:00');
@@ -529,7 +531,7 @@ footer strong { color: var(--amarelo); }
 
       var vendidoAuto = 0;
       var temVendaItem = false;
-      state.sales.forEach(function (s) { if (paymentMonth(s) === m) { vendidoAuto += Number(s.valor) || 0; temVendaItem = true; } });
+      state.sales.forEach(function (s) { if (s.mes === m) { vendidoAuto += Number(s.valor) || 0; temVendaItem = true; } });
       var vendidoStr = state.vendidoMes[m];
       var temOverride = hasVal(vendidoStr);
       var temVenda = temOverride || temVendaItem;
@@ -566,6 +568,16 @@ footer strong { color: var(--amarelo); }
     var acc = 0;
     rows.forEach(function (r) { acc += r.total; r.acumulado = acc; });
     return rows;
+  }
+
+  // Para cada venda lançada, calcula a comissão dela usando a taxa do mês em que o CONTRATO
+  // fechou (é a taxa que vale para a meta), mas informa em qual mês esse valor cai no caixa
+  // (mês da data de pagamento da entrada).
+  function comissaoPorVenda(s, rows) {
+    var r = rows[s.mes];
+    var taxa = r ? r.faixaV.taxa : 0;
+    var comissao = (Number(s.valor) || 0) * taxa;
+    return { taxa: taxa, comissao: comissao, mesPagamento: paymentMonth(s) };
   }
 
   // Cores do Farol de Metas da Otus (Gestão por Resultados): verde >=100%, amarelo 80-99%, vermelho <80%.
@@ -674,16 +686,20 @@ footer strong { color: var(--amarelo); }
 
     var body = document.getElementById('vendasBody');
     if (state.sales.length === 0) {
-      body.innerHTML = '<tr><td colspan="6" class="empty-note">Nenhuma venda registrada ainda.</td></tr>';
+      body.innerHTML = '<tr><td colspan="8" class="empty-note">Nenhuma venda registrada ainda.</td></tr>';
     } else {
       var sorted = state.sales.slice().sort(function (a, b) { return a.mes - b.mes; });
       body.innerHTML = sorted.map(function (s) {
+        var info = comissaoPorVenda(s, rows);
+        var caixaTxt = info.mesPagamento !== null ? MESES[info.mesPagamento] : '-';
         return '<tr>' +
           '<td class="strong">' + escapeHtml(s.cliente || '-') + '</td>' +
           '<td>' + escapeHtml(s.projeto || '-') + '</td>' +
           '<td>' + MESES[s.mes] + '</td>' +
           '<td class="tabular">' + fmtBRL(Number(s.valor) || 0) + '</td>' +
-          '<td>' + (s.dataPagamento ? new Date(s.dataPagamento + 'T00:00:00').toLocaleDateString('pt-BR') : '-') + '</td>' +
+          '<td>' + (info.taxa * 100).toLocaleString('pt-BR', {minimumFractionDigits:2}) + '%</td>' +
+          '<td class="tabular strong">' + fmtBRL(info.comissao) + '</td>' +
+          '<td>' + caixaTxt + '</td>' +
           '<td><button class="btn-del" data-id="' + s.id + '" title="Remover">✕</button></td>' +
           '</tr>';
       }).join('');
