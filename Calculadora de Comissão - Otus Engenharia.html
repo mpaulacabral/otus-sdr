@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <style>
 
+
 :root {
   color-scheme: light;
   --preto: #000000;
@@ -233,6 +234,9 @@ footer strong { color: var(--amarelo); }
 </head>
 <body id="top">
 
+</head>
+<body id="top">
+
 
 <div class="topbar">
   <span class="topbar-brand">Otus Engenharia · Calculadora de Comissão</span>
@@ -262,7 +266,7 @@ footer strong { color: var(--amarelo); }
 
   <section id="vendas-sec">
     <h2 class="section-title">Vendas</h2>
-    <p class="section-desc">Digite quanto foi vendido em cada mês. A taxa de comissão é calculada automaticamente a partir da sua meta daquele mês.</p>
+    <p class="section-desc section-desc--wide">Digite quanto foi vendido em cada mês. A taxa de comissão é calculada automaticamente a partir da sua meta daquele mês.</p>
 
     <div class="table-wrap table-wrap--fit">
       <table>
@@ -308,7 +312,7 @@ footer strong { color: var(--amarelo); }
 
   <section id="resumo-sec">
     <h2 class="section-title">Resumo do ano</h2>
-    <p class="section-desc">Visão consolidada mês a mês. O somatório de todos os meses aparece só na linha "Total 2026", no final da tabela.</p>
+    <p class="section-desc section-desc--wide">Visão consolidada mês a mês, em caixa (comissão de vendas pelo mês do pagamento). "Acumulado no ano" soma progressivamente mês a mês; o somatório de todos os meses aparece também na linha "Total 2026", no final da tabela.</p>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Mês</th><th>Comissão de vendas (pago)</th><th>Comissão de reuniões</th><th>Total em caixa</th><th>Acumulado no ano</th></tr></thead>
@@ -888,6 +892,7 @@ footer strong { color: var(--amarelo); }
   renderAll();
 })();
 </script>
+
 
 </body>
 </html>
