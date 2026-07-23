@@ -266,7 +266,7 @@ footer strong { color: var(--amarelo); }
 
     <div class="table-wrap table-wrap--fit">
       <table>
-        <thead><tr><th>Mês</th><th>Meta do mês</th><th>Realizada (vendido)</th><th>Meta efetiva*</th><th>Comissão de vendas</th><th>Status da meta</th></tr></thead>
+        <thead><tr><th>Mês</th><th>Meta do mês</th><th>Realizada (vendido)</th><th>Meta efetiva*</th><th>% atingido</th><th>Status da meta</th></tr></thead>
         <tbody id="vendasMesBody"></tbody>
       </table>
     </div>
@@ -311,7 +311,7 @@ footer strong { color: var(--amarelo); }
     <p class="section-desc">Visão consolidada mês a mês. O somatório de todos os meses aparece só na linha "Total 2026", no final da tabela.</p>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Mês</th><th>Comissão de vendas</th><th>Comissão de reuniões</th><th>Total do mês</th><th>Acumulado no ano</th></tr></thead>
+        <thead><tr><th>Mês</th><th>Comissão de vendas (pago)</th><th>Comissão de reuniões</th><th>Total em caixa</th><th>Acumulado no ano</th></tr></thead>
         <tbody id="resumoBody"></tbody>
         <tfoot id="resumoFoot"></tfoot>
       </table>
@@ -412,18 +412,18 @@ footer strong { color: var(--amarelo); }
     { min: 0,    taxa: 0,      label: 'Sem vendas' }
   ];
   var MULT_ATINGIMENTO = [
-    { min: 1.20, mult: 1.2, label: 'Supermeta (≥120%)' },
-    { min: 1.00, mult: 1.0, label: 'Meta (≥100%)' },
+    { min: 1.20, mult: 1.2,  label: 'Supermeta (≥120%)' },
+    { min: 1.00, mult: 1.0,  label: 'Meta (≥100%)' },
     { min: 0.75, mult: 0.85, label: 'Abaixo da meta (≥75%)' },
-    { min: 0.50, mult: 0.5, label: 'Bem abaixo (≥50%)' },
-    { min: 0,    mult: 0,   label: 'Muito abaixo (<50%)' }
+    { min: 0.50, mult: 0.5,  label: 'Bem abaixo (≥50%)' },
+    { min: 0,    mult: 0.25, label: 'Muito abaixo (<50%)' }
   ];
   var MULT_QUENTES = [
-    { min: 0.95, mult: 1.2, label: 'Supermeta (≥95%)' },
-    { min: 0.80, mult: 1.0, label: 'Meta (≥80%)' },
+    { min: 0.95, mult: 1.2,  label: 'Supermeta (≥95%)' },
+    { min: 0.80, mult: 1.0,  label: 'Meta (≥80%)' },
     { min: 0.60, mult: 0.85, label: 'Abaixo da meta (≥60%)' },
-    { min: 0.40, mult: 0.5, label: 'Bem abaixo (≥40%)' },
-    { min: 0,    mult: 0,   label: 'Muito abaixo (<40%)' }
+    { min: 0.40, mult: 0.5,  label: 'Bem abaixo (≥40%)' },
+    { min: 0,    mult: 0.25, label: 'Muito abaixo (<40%)' }
   ];
   var VALOR_BASE = { fria: 0, morna: 40, quente: 90 };
 
@@ -538,7 +538,7 @@ footer strong { color: var(--amarelo); }
       var vendidoMes = temOverride ? (Number(vendidoStr) || 0) : vendidoAuto;
 
       var effV = Math.max(0, metaVFixa - carryV);
-      var attV = effV > 0 ? vendidoMes / effV : (vendidoMes > 0 ? Infinity : 0);
+      var attV = effV > 0 ? vendidoMes / effV : (temVenda ? Infinity : 0);
       var faixaV = lookup(FAIXAS_VENDAS, attV);
       var comissaoV = vendidoMes * faixaV.taxa;
       var carryVNext = temVenda ? (vendidoMes - effV) : 0;
@@ -548,7 +548,7 @@ footer strong { color: var(--amarelo); }
       var friaN = Number(mt.fria) || 0, mornaN = Number(mt.morna) || 0, quenteN = Number(mt.quente) || 0;
       var totalR = friaN + mornaN + quenteN;
       var effR = Math.max(0, metaRFixa - carryR);
-      var attR = effR > 0 ? totalR / effR : (totalR > 0 ? Infinity : 0);
+      var attR = effR > 0 ? totalR / effR : (temReuniao ? Infinity : 0);
       var multA = lookup(MULT_ATINGIMENTO, attR);
       var pctQ = totalR > 0 ? quenteN / totalR : 0;
       var multQ = lookup(MULT_QUENTES, pctQ);
@@ -559,14 +559,34 @@ footer strong { color: var(--amarelo); }
       rows.push({
         m: m, metaVOriginal: metaVFixa, effV: effV, vendidoMes: vendidoMes, vendidoAuto: vendidoAuto, temOverride: temOverride, temVenda: temVenda, attV: attV, faixaV: faixaV, comissaoV: comissaoV,
         metaROriginal: metaRFixa, effR: effR, mt: mt, totalR: totalR, temReuniao: temReuniao, attR: attR, multA: multA, pctQ: pctQ, multQ: multQ, comissaoR: comissaoR,
-        total: comissaoV + comissaoR
+        comissaoVCaixa: 0, total: 0
       });
 
       carryV = carryVNext;
       carryR = carryRNext;
     }
+
+    // Comissão de vendas em caixa: distribui pelo mês do pagamento.
+    // Meses com override manual (sem itens) caem no mês de fechamento.
+    var comissaoVCaixaArr = new Array(12).fill(0);
+    state.sales.forEach(function (s) {
+      var r = rows[s.mes];
+      if (!r || r.temOverride) return;
+      var pm = paymentMonth(s);
+      var mCaixa = (pm !== null) ? pm : s.mes;
+      comissaoVCaixaArr[mCaixa] += (Number(s.valor) || 0) * r.faixaV.taxa;
+    });
+    rows.forEach(function (r, m) {
+      if (r.temOverride) comissaoVCaixaArr[m] += r.comissaoV;
+    });
+
     var acc = 0;
-    rows.forEach(function (r) { acc += r.total; r.acumulado = acc; });
+    rows.forEach(function (r, m) {
+      r.comissaoVCaixa = comissaoVCaixaArr[m];
+      r.total = r.comissaoVCaixa + r.comissaoR;
+      acc += r.total;
+      r.acumulado = acc;
+    });
     return rows;
   }
 
@@ -633,8 +653,9 @@ footer strong { color: var(--amarelo); }
           metricRow('Vendido no mês', fmtBRL(r.vendidoMes)) +
           metricRow('% atingido', fmtPct(r.attV)) +
           metricRow('Faixa aplicada', r.faixaV.label) +
+          metricRow('Comissão por fechamento', fmtBRL(r.comissaoV)) +
         '</div>' +
-        '<div class="card-foot"><span class="lbl">Comissão de vendas</span><span class="val tabular">' + fmtBRL(r.comissaoV) + '</span></div>' +
+        '<div class="card-foot"><span class="lbl">Comissão em caixa neste mês</span><span class="val tabular">' + fmtBRL(r.comissaoVCaixa) + '</span></div>' +
       '</div>' +
       '<div class="card">' +
         '<div class="card-head"><h3>Reuniões · ' + MESES[selectedMonth] + '</h3></div>' +
@@ -667,7 +688,7 @@ footer strong { color: var(--amarelo); }
         '<td class="strong tabular">' + fmtBRL(r.metaVOriginal) + '</td>' +
         '<td><input class="cell-input wide" type="text" inputmode="decimal" placeholder="R$ 0,00" value="' + inputDisplay + '" data-vendido="' + m + '" data-raw="' + inputVal + '"></td>' +
         '<td class="tabular">' + fmtBRL(r.effV) + '</td>' +
-        '<td class="tabular strong">' + fmtBRL(r.comissaoV) + '</td>' +
+        '<td class="tabular strong">' + fmtPct(r.attV) + '</td>' +
         '<td>' + statusPill(r.attV, r.temVenda) + '</td>' +
         '</tr>';
     }).join('');
@@ -748,14 +769,14 @@ footer strong { color: var(--amarelo); }
       var cur = (m === selectedMonth) ? ' class="is-current"' : '';
       return '<tr' + cur + '>' +
         '<td class="strong">' + MESES[m] + '</td>' +
-        '<td class="tabular">' + fmtBRL(r.comissaoV) + '</td>' +
+        '<td class="tabular">' + fmtBRL(r.comissaoVCaixa) + '</td>' +
         '<td class="tabular">' + fmtBRL(r.comissaoR) + '</td>' +
         '<td class="tabular strong">' + fmtBRL(r.total) + '</td>' +
-        '<td class="tabular">' + fmtBRL(r.total) + '</td>' +
+        '<td class="tabular">' + fmtBRL(r.acumulado) + '</td>' +
         '</tr>';
     }).join('');
     var totalV = 0, totalR = 0, totalT = 0;
-    rows.forEach(function (r) { totalV += r.comissaoV; totalR += r.comissaoR; totalT += r.total; });
+    rows.forEach(function (r) { totalV += r.comissaoVCaixa; totalR += r.comissaoR; totalT += r.total; });
     document.getElementById('resumoFoot').innerHTML =
       '<tr><td>Total 2026</td><td class="tabular">' + fmtBRL(totalV) + '</td><td class="tabular">' + fmtBRL(totalR) + '</td><td class="tabular">' + fmtBRL(totalT) + '</td><td class="tabular">' + fmtBRL(totalT) + '</td></tr>';
   }
