@@ -295,7 +295,7 @@ footer strong { color: var(--amarelo); }
 
   <section id="reunioes-sec">
     <h2 class="section-title">Reuniões</h2>
-    <p class="section-desc">Informe, por mês, o resultado das avaliações que o Gil já faz após cada reunião: quantas foram classificadas como fria, morna ou quente.</p>
+    <p class="section-desc section-desc--wide">Informe, por mês, o resultado das avaliações que o Gil já faz após cada reunião: quantas foram classificadas como fria, morna ou quente.</p>
 
     <div class="table-wrap table-wrap--fit">
       <table>
@@ -554,7 +554,7 @@ footer strong { color: var(--amarelo); }
       var multQ = lookup(MULT_QUENTES, pctQ);
       var baseSum = friaN * VALOR_BASE.fria + mornaN * VALOR_BASE.morna + quenteN * VALOR_BASE.quente;
       var comissaoR = baseSum * multA.mult * multQ.mult;
-      var carryRNext = temReuniao ? (totalR - effR) : 0;
+      var carryRNext = temReuniao ? Math.min(0, totalR - effR) : 0;
 
       rows.push({
         m: m, metaVOriginal: metaVFixa, effV: effV, vendidoMes: vendidoMes, vendidoAuto: vendidoAuto, temOverride: temOverride, temVenda: temVenda, attV: attV, faixaV: faixaV, comissaoV: comissaoV,
