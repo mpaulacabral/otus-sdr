@@ -559,7 +559,7 @@ footer strong { color: var(--amarelo); }
       var multQ = lookup(MULT_QUENTES, pctQ);
       var baseSum = friaN * VALOR_BASE.fria + mornaN * VALOR_BASE.morna + quenteN * VALOR_BASE.quente;
       var comissaoR = baseSum * multA.mult * multQ.mult;
-      var carryRNext = temReuniao ? Math.min(0, totalR - effR) : 0;
+      var carryRNext = temReuniao ? (totalR - effR) : 0;
 
       rows.push({
         m: m, metaVOriginal: metaVFixa, effV: effV, vendidoMes: vendidoMes, vendidoAuto: vendidoAuto, temOverride: temOverride, temVenda: temVenda, attV: attV, faixaV: faixaV, comissaoV: comissaoV,
