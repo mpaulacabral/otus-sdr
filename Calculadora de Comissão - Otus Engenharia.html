@@ -415,19 +415,20 @@ footer strong { color: var(--amarelo); }
     { min: 0.01, taxa: 0.0015, label: 'Vendeu pouco (≥1%)' },
     { min: 0,    taxa: 0,      label: 'Sem vendas' }
   ];
+  // Exatamente as 4 faixas da aba "Tabela de Comissão" da planilha oficial (Ating. acumulado /
+  // Multiplicador). Não existe uma 5ª faixa abaixo de "Mês muito abaixo": ela mesma é o piso,
+  // vale para qualquer atingimento a partir de 0%.
   var MULT_ATINGIMENTO = [
     { min: 1.20, mult: 1.2,  label: 'Supermeta (≥120%)' },
     { min: 1.00, mult: 1.0,  label: 'Meta (≥100%)' },
-    { min: 0.75, mult: 0.85, label: 'Abaixo da meta (≥75%)' },
-    { min: 0.50, mult: 0.5,  label: 'Bem abaixo (≥50%)' },
-    { min: 0,    mult: 0.25, label: 'Muito abaixo (<50%)' }
+    { min: 0.75, mult: 0.85, label: 'Mês abaixo (≥75%)' },
+    { min: 0.50, mult: 0.5,  label: 'Mês muito abaixo (≥50%)' }
   ];
   var MULT_QUENTES = [
     { min: 0.95, mult: 1.2,  label: 'Supermeta (≥95%)' },
     { min: 0.80, mult: 1.0,  label: 'Meta (≥80%)' },
-    { min: 0.60, mult: 0.85, label: 'Abaixo da meta (≥60%)' },
-    { min: 0.40, mult: 0.5,  label: 'Bem abaixo (≥40%)' },
-    { min: 0,    mult: 0.25, label: 'Muito abaixo (<40%)' }
+    { min: 0.60, mult: 0.85, label: 'Mês abaixo (≥60%)' },
+    { min: 0.40, mult: 0.5,  label: 'Mês muito abaixo (≥40%)' }
   ];
   var VALOR_BASE = { fria: 0, morna: 40, quente: 90 };
 
