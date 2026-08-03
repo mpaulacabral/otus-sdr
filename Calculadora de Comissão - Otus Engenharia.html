@@ -9,6 +9,7 @@
 <style>
 
 
+
 :root {
   color-scheme: light;
   --preto: #000000;
@@ -234,8 +235,7 @@ footer strong { color: var(--amarelo); }
 </head>
 <body id="top">
 
-</head>
-<body id="top">
+
 
 
 <div class="topbar">
@@ -510,11 +510,11 @@ footer strong { color: var(--amarelo); }
   var selectedMonth = (today.getFullYear() === 2026) ? today.getMonth() : 6;
 
   // ── Core calculation engine ──
-  // A meta fixa de cada mês nunca muda: é o valor da tabela oficial. Quando você digita um
-  // valor realizado num mês (mesmo que seja 0), a diferença entre o realizado e a meta fixa
-  // daquele mês (sobra ou falta) vira o saldo do mês SEGUINTE, e só dele: no mês depois disso
-  // a meta efetiva já volta a ser a meta fixa normal, a não ser que aquele mês também tenha
-  // um realizado lançado. Um mês em branco (ainda não preenchido) não empurra saldo nenhum.
+  // A meta fixa de cada mês nunca muda: é o valor da tabela oficial. O saldo (sobra ou falta)
+  // sempre é colocado à frente: se um mês sobra mais do que a meta fixa do mês seguinte
+  // consegue absorver, o restante continua avançando (mesmo por meses em branco, sem lançamento)
+  // até ser totalmente consumido por alguma meta futura. Um mês em branco não gera saldo novo,
+  // só deixa passar adiante o que já vinha de antes.
   function hasVal(v) { return v !== '' && v !== null && v !== undefined; }
   // A meta conta pelo mês em que o CONTRATO FOI FECHADO (assinatura), mesmo que o cliente só
   // pague depois. Já a comissão em caixa (o dinheiro que efetivamente cai na conta) segue o
@@ -546,7 +546,10 @@ footer strong { color: var(--amarelo); }
       var attV = effV > 0 ? vendidoMes / effV : (temVenda ? Infinity : 0);
       var faixaV = lookup(FAIXAS_VENDAS, attV);
       var comissaoV = vendidoMes * faixaV.taxa;
-      var carryVNext = temVenda ? (vendidoMes - effV) : 0;
+      // saldo que sobrou de meses anteriores e nao coube na meta fixa deste mes continua
+      // avancando, mesmo que este mes nao tenha lancamento novo
+      var carryVRestante = carryV - (metaVFixa - effV);
+      var carryVNext = temVenda ? (carryVRestante + (vendidoMes - effV)) : carryVRestante;
 
       var mt = state.meetings[m] || { fria: '', morna: '', quente: '' };
       var temReuniao = hasVal(mt.fria) || hasVal(mt.morna) || hasVal(mt.quente);
@@ -559,7 +562,10 @@ footer strong { color: var(--amarelo); }
       var multQ = lookup(MULT_QUENTES, pctQ);
       var baseSum = friaN * VALOR_BASE.fria + mornaN * VALOR_BASE.morna + quenteN * VALOR_BASE.quente;
       var comissaoR = baseSum * multA.mult * multQ.mult;
-      var carryRNext = temReuniao ? (totalR - effR) : 0;
+      // mesma logica do saldo de vendas: o que sobrou de antes e nao coube na meta fixa deste
+      // mes continua avancando, mesmo sem lancamento novo neste mes
+      var carryRRestante = carryR - (metaRFixa - effR);
+      var carryRNext = temReuniao ? (carryRRestante + (totalR - effR)) : carryRRestante;
 
       rows.push({
         m: m, metaVOriginal: metaVFixa, effV: effV, vendidoMes: vendidoMes, vendidoAuto: vendidoAuto, temOverride: temOverride, temVenda: temVenda, attV: attV, faixaV: faixaV, comissaoV: comissaoV,
@@ -892,6 +898,7 @@ footer strong { color: var(--amarelo); }
   renderAll();
 })();
 </script>
+
 
 
 </body>
