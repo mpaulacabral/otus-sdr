@@ -4,216 +4,122 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Instrucoes de Atendimento - Otus Engenharia</title>
-<meta property="og:title" content="Instrucoes de Atendimento - Otus Engenharia">
-<meta property="og:description" content="Instrucoes gerais de atendimento para ligacoes e mensagens. Compilado a partir do feedback do Gil e do Pipe Review.">
-<meta property="og:url" content="https://mpaulacabral.github.io/otus-sdr/instrucoes-atendimento.html">
-<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="otus-shared.css">
 <style>
-  :root {
-    --amarelo: #FFDC00;
-    --amarelo-bg: #fffce0;
-    --amarelo-borda: #e7e0b0;
-    --preto: #1C1C1B;
-    --cinza: #e9e7e1;
-    --borda: #c1bfba;
-    --cinza-escuro: #374151;
-    --cinza-medio: #6b7280;
-    --bg: #faf7f0;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--preto); background: var(--bg); }
+:root {
+  --amarelo: #FFDC00;
+  --amarelo-bg: #fffce0;
+  --amarelo-borda: #e7e0b0;
+  --preto: #1C1C1B;
+  --cinza: #e9e7e1;
+  --borda: #c1bfba;
+  --cinza-escuro: #374151;
+  --cinza-medio: #6b7280;
+  --bg: #faf7f0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--preto); background: var(--bg); }
 
-  /* ── Layout ── */
-  nav {
-    position: sticky; top: 36px; z-index: 200;
-    background: #1C1C1B; display: flex; align-items: center; gap: 4px;
-    padding: 0 20px; height: 44px; border-bottom: 2px solid var(--amarelo);
-    overflow-x: auto; white-space: nowrap; scrollbar-width: none;
-  }
-  nav::-webkit-scrollbar { display: none; }
-  nav a {
-    color: rgba(255,255,255,0.65); text-decoration: none; font-size: 12px; font-weight: 600;
-    padding: 6px 12px; border-radius: 5px; flex-shrink: 0; border-bottom: 2px solid transparent;
-    transition: color 0.15s, background 0.15s;
-  }
-  nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
-  nav a.is-active { color: var(--amarelo) !important; border-bottom-color: var(--amarelo) !important; }
-  .nav-item { position: relative; flex-shrink: 0; }
-  .hamburger-btn { display: none; }
+.hero {
+  background: #000; color: #fff;
+  padding: 48px 24px 40px;
+  border-bottom: 4px solid var(--amarelo);
+  text-align: center;
+}
+.hero .badge {
+  display: inline-block; background: var(--amarelo); color: var(--preto);
+  font-size: 11.5px; font-weight: 800; padding: 4px 14px; border-radius: 20px;
+  margin-bottom: 14px; text-transform: uppercase; letter-spacing: .4px;
+}
+.hero h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+.hero p { opacity: .78; font-size: 13.5px; max-width: 520px; margin: 0 auto; line-height: 1.6; }
 
-  .hero {
-    background: #000; color: #fff;
-    padding: 48px 24px 40px;
-    border-bottom: 4px solid var(--amarelo);
-    text-align: center;
-  }
-  .hero .badge {
-    display: inline-block; background: var(--amarelo); color: var(--preto);
-    font-size: 11.5px; font-weight: 800; padding: 4px 14px; border-radius: 20px;
-    margin-bottom: 14px; text-transform: uppercase; letter-spacing: .4px;
-  }
-  .hero h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; letter-spacing: -.3px; }
-  .hero p { opacity: .78; font-size: 13.5px; max-width: 520px; margin: 0 auto; line-height: 1.6; }
+.container { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
 
-  .container { max-width: 900px; margin: 0 auto; padding: 40px 24px 60px; }
-  section + section { margin-top: 36px; }
+.toc {
+  background: var(--cinza); border: 1px solid var(--borda); border-radius: 12px;
+  padding: 18px 22px; margin-bottom: 36px;
+}
+.toc h4 { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--cinza-escuro); margin-bottom: 12px; }
+.toc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px 20px; }
+.toc a { font-size: 12px; color: var(--cinza-escuro); text-decoration: none; padding: 3px 0; display: block; line-height: 1.4; }
+.toc a:hover { color: var(--preto); text-decoration: underline; }
+.toc .n { color: var(--cinza-medio); font-size: 10px; margin-right: 3px; }
 
-  h2.section-title {
-    font-size: 12.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px;
-    color: var(--cinza-escuro); margin-bottom: 20px; opacity: .7; padding-bottom: 6px;
-    border-bottom: 3px solid var(--amarelo);
-  }
+h2.sec { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px; color: var(--cinza-escuro); opacity: .65; margin: 36px 0 18px; padding-bottom: 6px; border-bottom: 3px solid var(--amarelo); }
 
-  /* ── Instrucao card ── */
-  .instr-card {
-    background: #fff; border: 1px solid var(--borda); border-radius: 12px;
-    overflow: hidden; margin-bottom: 16px;
-  }
-  .instr-head {
-    background: var(--preto); padding: 14px 20px;
-    border-bottom: 3px solid var(--amarelo);
-    display: flex; align-items: center; gap: 12px;
-  }
-  .instr-num {
-    background: var(--amarelo); color: var(--preto);
-    font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 20px;
-    flex-shrink: 0; letter-spacing: .3px;
-  }
-  .instr-head h3 { font-size: 14px; color: #fff; font-weight: 700; }
-  .instr-body { padding: 18px 22px; font-size: 13px; color: var(--cinza-escuro); line-height: 1.7; }
-  .instr-body p + p { margin-top: 10px; }
-  .instr-body strong { color: var(--preto); }
-  .instr-body ul { list-style: none; padding: 0; margin: 10px 0; }
-  .instr-body ul li {
-    padding: 5px 0 5px 18px; position: relative; border-bottom: 1px dashed var(--borda);
-  }
-  .instr-body ul li:last-child { border-bottom: none; }
-  .instr-body ul li::before {
-    content: '→'; position: absolute; left: 0;
-    color: var(--amarelo); font-weight: 800;
-  }
+.card {
+  background: #fff; border: 1px solid var(--borda); border-radius: 12px;
+  overflow: hidden; margin-bottom: 14px;
+}
+.card-head {
+  background: var(--preto); padding: 13px 20px;
+  border-bottom: 3px solid var(--amarelo);
+  display: flex; align-items: center; gap: 10px;
+}
+.card-num {
+  background: var(--amarelo); color: var(--preto);
+  font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 20px; flex-shrink: 0;
+}
+.card-head h3 { font-size: 13.5px; color: #fff; font-weight: 700; }
+.card-body { padding: 16px 20px; font-size: 13px; color: var(--cinza-escuro); line-height: 1.75; }
+.card-body p + p { margin-top: 10px; }
+.card-body strong { color: var(--preto); }
 
-  /* ── Alerta / destaque ── */
-  .alerta {
-    background: var(--amarelo-bg); border-left: 4px solid var(--amarelo);
-    border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0;
-    font-size: 12.5px; line-height: 1.6;
-  }
-  .alerta strong { color: var(--preto); }
+.card-body ul { list-style: none; padding: 0; margin: 10px 0; }
+.card-body ul li { padding: 5px 0 5px 20px; position: relative; border-bottom: 1px dashed var(--borda); }
+.card-body ul li:last-child { border-bottom: none; }
+.card-body ul li::before { content: 'a'; font-family: sans-serif; color: transparent; position: absolute; left: 0; width: 14px; height: 14px; background: var(--amarelo); clip-path: polygon(0 50%, 45% 50%, 45% 0, 100% 50%, 45% 100%, 45% 50%); top: 10px; }
 
-  .nao-faz {
-    background: #fef2f2; border-left: 4px solid #ef4444;
-    border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 10px 0;
-    font-size: 12.5px; line-height: 1.6; color: #7f1d1d;
-  }
-  .nao-faz strong { color: #991b1b; }
+.alerta {
+  background: var(--amarelo-bg); border-left: 4px solid var(--amarelo);
+  border-radius: 0 8px 8px 0; padding: 11px 15px; margin: 10px 0;
+  font-size: 12.5px; line-height: 1.65;
+}
+.nao {
+  background: #fef2f2; border-left: 4px solid #ef4444;
+  border-radius: 0 8px 8px 0; padding: 11px 15px; margin: 10px 0;
+  font-size: 12.5px; line-height: 1.65; color: #7f1d1d;
+}
+.nao strong { color: #991b1b; }
 
-  /* ── Pergunta/resposta ── */
-  .qa { background: var(--cinza); border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 12.5px; }
-  .qa .q { font-weight: 800; color: var(--preto); margin-bottom: 4px; }
-  .qa .a { color: var(--cinza-escuro); line-height: 1.6; }
+.etapas { display: flex; flex-direction: column; gap: 7px; margin: 10px 0; }
+.etapa { display: flex; gap: 10px; align-items: flex-start; background: var(--cinza); border-radius: 7px; padding: 9px 13px; font-size: 12.5px; }
+.etapa-label { background: var(--preto); color: var(--amarelo); font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 4px; flex-shrink: 0; letter-spacing: .3px; margin-top: 1px; }
 
-  /* ── Etapas ── */
-  .etapas { display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
-  .etapa {
-    display: flex; gap: 12px; align-items: flex-start;
-    background: var(--cinza); border-radius: 8px; padding: 10px 14px; font-size: 12.5px;
-  }
-  .etapa-label {
-    background: var(--preto); color: var(--amarelo);
-    font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 4px;
-    flex-shrink: 0; letter-spacing: .3px; margin-top: 1px;
-  }
-  .etapa-body { color: var(--cinza-escuro); line-height: 1.6; }
-  .etapa-body strong { color: var(--preto); }
+.pipe { display: flex; flex-direction: column; gap: 5px; margin: 10px 0; }
+.pipe-row { display: flex; border-radius: 7px; overflow: hidden; border: 1px solid var(--borda); font-size: 12.5px; }
+.pipe-name { background: var(--preto); color: var(--amarelo); padding: 9px 14px; font-weight: 800; font-size: 11px; min-width: 140px; display: flex; align-items: center; }
+.pipe-desc { padding: 9px 14px; color: var(--cinza-escuro); background: #fff; display: flex; align-items: center; line-height: 1.5; }
 
-  /* ── Pipedrive etapas ── */
-  .pipe-steps { display: flex; flex-direction: column; gap: 6px; margin: 10px 0; }
-  .pipe-step {
-    display: flex; gap: 0; align-items: stretch; border-radius: 8px; overflow: hidden;
-    border: 1px solid var(--borda); font-size: 12.5px;
-  }
-  .pipe-step-name {
-    background: var(--preto); color: var(--amarelo);
-    padding: 10px 14px; font-weight: 800; font-size: 11px; min-width: 130px;
-    display: flex; align-items: center; letter-spacing: .2px;
-  }
-  .pipe-step-desc {
-    padding: 10px 14px; color: var(--cinza-escuro); background: #fff;
-    display: flex; align-items: center; line-height: 1.5;
-  }
+footer { background: var(--preto); color: rgba(255,255,255,0.45); text-align: center; padding: 18px 24px; font-size: 12px; border-top: 3px solid var(--amarelo); }
+footer strong { color: var(--amarelo); }
 
-  /* ── Index lateral ── */
-  .toc {
-    background: var(--cinza); border: 1px solid var(--borda); border-radius: 12px;
-    padding: 18px 20px; margin-bottom: 32px;
-  }
-  .toc h4 { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--cinza-escuro); margin-bottom: 12px; }
-  .toc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 16px; }
-  @media (max-width: 700px) { .toc-grid { grid-template-columns: 1fr 1fr; } }
-  .toc a { font-size: 12px; color: var(--cinza-escuro); text-decoration: none; padding: 3px 0; display: block; }
-  .toc a:hover { color: var(--preto); text-decoration: underline; }
-  .toc a .num { color: var(--cinza-medio); font-size: 10px; margin-right: 3px; }
-
-  footer {
-    background: var(--preto); color: rgba(255,255,255,0.5);
-    text-align: center; padding: 18px 24px; font-size: 12px;
-    border-top: 3px solid var(--amarelo);
-  }
-  footer strong { color: var(--amarelo); }
-
-  @media (max-width: 700px) {
-    .hero h1 { font-size: 20px !important; }
-    .container { padding: 24px 14px 48px !important; }
-    .instr-body { padding: 14px 16px; }
-    nav { top: 36px !important; }
-  }
+@media (max-width: 700px) {
+  .toc-grid { grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 20px; }
+  .container { padding: 24px 14px 60px; }
+}
 </style>
 </head>
 <body id="top">
 
-<div class="cross-nav" style="background:#000;border-bottom:2px solid #FFDC00;position:sticky;top:0;z-index:300;display:flex;align-items:center;gap:2px;padding:0 16px;height:36px;overflow-x:auto;white-space:nowrap;">
-  <span class="cross-nav-brand" style="font-size:12px;font-weight:800;color:#FFDC00;margin-right:10px;flex-shrink:0;">Otus Engenharia</span>
-  <span class="cross-sep" style="color:rgba(255,255,255,0.2);margin:0 4px;">|</span>
+<div style="background:#000;border-bottom:2px solid #FFDC00;position:sticky;top:0;z-index:300;display:flex;align-items:center;gap:2px;padding:0 16px;height:36px;overflow-x:auto;white-space:nowrap;">
+  <span style="font-size:12px;font-weight:800;color:#FFDC00;margin-right:10px;flex-shrink:0;">Otus Engenharia</span>
+  <span style="color:rgba(255,255,255,0.2);margin:0 4px;">|</span>
   <a href="index.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Inicio</a>
   <a href="Playbook%20SDR%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Playbook SDR</a>
   <a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Produto &amp; Cases</a>
   <a href="Scripts%20de%20Abordagem%20-%20Otus.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Scripts</a>
   <a href="Clientes%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Clientes</a>
   <a href="Concorrentes%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Concorrentes</a>
-  <a href="instrucoes-atendimento.html" class="current" style="color:#1C1C1B;background:#FFDC00;text-decoration:none;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:4px;flex-shrink:0;">Instrucoes</a>
+  <a href="instrucoes-atendimento.html" style="color:#1C1C1B;background:#FFDC00;text-decoration:none;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:4px;flex-shrink:0;">Instrucoes</a>
 </div>
 
-<nav id="mainNav">
-  <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
-  <div class="nav-item"><a href="#antes">Antes da ligacao</a></div>
-  <div class="nav-item"><a href="#durante">Durante a ligacao</a></div>
-  <div class="nav-item"><a href="#mapeamento">Mapeamento</a></div>
-  <div class="nav-item"><a href="#spin">SPIN Selling</a></div>
-  <div class="nav-item"><a href="#cuidados">Perguntas</a></div>
-  <div class="nav-item"><a href="#bim-cad">BIM e CAD</a></div>
-  <div class="nav-item"><a href="#fase">Fase do projeto</a></div>
-  <div class="nav-item"><a href="#reuniao">Reuniao com Gil</a></div>
-  <div class="nav-item"><a href="#timing">Timing</a></div>
-  <div class="nav-item"><a href="#mensagens">Mensagens</a></div>
-  <div class="nav-item"><a href="#ficha">Ficha</a></div>
-  <div class="nav-item"><a href="#primeiro">1o contato</a></div>
-  <div class="nav-item"><a href="#reacao">Reacao</a></div>
-  <div class="nav-item"><a href="#objecao-interno">Objecao BIM interno</a></div>
-  <div class="nav-item"><a href="#projeto-interno">Projeto interno</a></div>
-  <div class="nav-item"><a href="#icp">ICP</a></div>
-  <div class="nav-item"><a href="#reabertura">Reabertura</a></div>
-  <div class="nav-item"><a href="#cadencia">Cadencia</a></div>
-  <div class="nav-item"><a href="#email">E-mail</a></div>
-  <div class="nav-item"><a href="#nunca">O que nunca faz</a></div>
-  <div class="nav-item"><a href="#pipedrive">Pipedrive</a></div>
-</nav>
-
 <div class="hero">
-  <span class="badge">Instrucoes Gerais · Maria Paula</span>
+  <span class="badge">Instrucoes Gerais - Maria Paula</span>
   <h1>Instrucoes de Atendimento</h1>
   <p>Compilado a partir do feedback do Gil e do Pipe Review 05/08/2026. Aplicavel a todos os leads, em qualquer canal.</p>
 </div>
@@ -221,321 +127,292 @@
 <div class="container">
 
   <div class="toc">
-    <h4>Indice rapido</h4>
+    <h4>Indice</h4>
     <div class="toc-grid">
-      <a href="#antes"><span class="num">01</span> Antes da ligacao</a>
-      <a href="#durante"><span class="num">02</span> Durante a ligacao</a>
-      <a href="#mapeamento"><span class="num">03</span> Mapeamento de processo</a>
-      <a href="#spin"><span class="num">04</span> SPIN Selling</a>
-      <a href="#cuidados"><span class="num">05</span> Perguntas com cuidado</a>
-      <a href="#bim-cad"><span class="num">06</span> O que NAO dizer (BIM/CAD)</a>
-      <a href="#fase"><span class="num">07</span> Fase do projeto</a>
-      <a href="#reuniao"><span class="num">08</span> Convite para reuniao</a>
-      <a href="#timing"><span class="num">09</span> Timing e datas</a>
-      <a href="#mensagens"><span class="num">10</span> Mensagens (donos e obra)</a>
-      <a href="#ficha"><span class="num">11</span> Ficha de qualificacao</a>
-      <a href="#primeiro"><span class="num">12</span> Primeiro contato</a>
-      <a href="#reacao"><span class="num">13</span> Reacao as respostas</a>
-      <a href="#objecao-interno"><span class="num">14</span> Objecao: BIM interno</a>
-      <a href="#projeto-interno"><span class="num">15</span> Lead com projeto interno</a>
-      <a href="#icp"><span class="num">16</span> ICP</a>
-      <a href="#reabertura"><span class="num">17</span> Reabertura de leads</a>
-      <a href="#cadencia"><span class="num">18</span> Cadencia e nutricao</a>
-      <a href="#email"><span class="num">19</span> E-mail: assunto</a>
-      <a href="#nunca"><span class="num">20</span> O que nunca faz ou diz</a>
-      <a href="#pipedrive"><span class="num">21</span> Pipedrive: etapas</a>
+      <a href="#i1"><span class="n">01</span>Antes da ligacao</a>
+      <a href="#i2"><span class="n">02</span>Durante a ligacao</a>
+      <a href="#i3"><span class="n">03</span>Mapeamento de processo</a>
+      <a href="#i4"><span class="n">04</span>SPIN Selling</a>
+      <a href="#i5"><span class="n">05</span>Perguntas com cuidado</a>
+      <a href="#i6"><span class="n">06</span>O que NAO dizer</a>
+      <a href="#i7"><span class="n">07</span>Fase do projeto</a>
+      <a href="#i8"><span class="n">08</span>Convite para reuniao</a>
+      <a href="#i9"><span class="n">09</span>Timing e datas</a>
+      <a href="#i10"><span class="n">10</span>Mensagens (dono/obra)</a>
+      <a href="#i11"><span class="n">11</span>Ficha de qualificacao</a>
+      <a href="#i12"><span class="n">12</span>Primeiro contato</a>
+      <a href="#i13"><span class="n">13</span>Reacao as respostas</a>
+      <a href="#i14"><span class="n">14</span>Objecao: BIM interno</a>
+      <a href="#i15"><span class="n">15</span>Projeto interno</a>
+      <a href="#i16"><span class="n">16</span>ICP</a>
+      <a href="#i17"><span class="n">17</span>Reabertura de leads</a>
+      <a href="#i18"><span class="n">18</span>Cadencia e nutricao</a>
+      <a href="#i19"><span class="n">19</span>E-mail: assunto</a>
+      <a href="#i20"><span class="n">20</span>O que nunca faz</a>
+      <a href="#i21"><span class="n">21</span>Pipedrive: etapas</a>
     </div>
   </div>
 
-  <section>
-    <h2 class="section-title">Preparacao e postura</h2>
+  <h2 class="sec">Preparacao e postura</h2>
 
-    <div class="instr-card" id="antes">
-      <div class="instr-head"><span class="instr-num">01</span><h3>Antes da ligacao — o que saber</h3></div>
-      <div class="instr-body">
-        <p><strong>Pesquise quem decide antes de ligar.</strong> Se a informacao esta disponivel na internet (LinkedIn, site da empresa, CNPJ), voce ja deve saber antes de perguntar. Nao pergunte ao cliente o que voce poderia ter descoberto antes. Isso passa falta de preparo.</p>
-        <p><strong>Revise a ficha de qualificacao antes de qualquer contato de continuidade.</strong> Informacoes inconsistentes ou repetidas na ficha passam inseguranca para o Gil e prejudicam a transicao.</p>
-      </div>
+  <div class="card" id="i1">
+    <div class="card-head"><span class="card-num">01</span><h3>Antes da ligacao — o que saber</h3></div>
+    <div class="card-body">
+      <p><strong>Pesquise quem decide antes de ligar.</strong> Se a informacao esta disponivel na internet (LinkedIn, site da empresa, CNPJ), voce ja deve saber antes de perguntar. Nao pergunte ao cliente o que voce poderia ter descoberto antes. Isso passa falta de preparo.</p>
+      <p><strong>Revise a ficha de qualificacao antes de qualquer contato de continuidade.</strong> Informacoes inconsistentes ou repetidas na ficha passam inseguranca para o Gil e prejudicam a transicao.</p>
     </div>
+  </div>
 
-    <div class="instr-card" id="durante">
-      <div class="instr-head"><span class="instr-num">02</span><h3>Durante a ligacao — postura geral</h3></div>
-      <div class="instr-body">
-        <p><strong>De espaco para o cliente falar.</strong> Em momentos de diagnostico, menos e mais. Faca a pergunta, fique em silencio e ouca. Nao complete a frase do cliente, nao antecipe a resposta. Se ele pausar, aguarde.</p>
-        <p><strong>Siga uma sequencia logica de perguntas (storytelling).</strong> A conducao da conversa precisa ter um fio: situacao &rarr; problema &rarr; impacto &rarr; necessidade. Nao pule etapas. Perguntas fora de ordem confundem o cliente e voce perde profundidade.</p>
-        <p><strong>Quem decide precisa ser mapeado cedo.</strong> Antes de investir tempo em qualificar um projeto, confirme: quem toma a decisao de contratar? E o dono, o diretor, o gerente? A dor de cada um e diferente. O gerente de projetos pensa em facilitar o trabalho dele. O dono pensa em margem, lucro e risco. Adapte o angulo da conversa conforme o cargo.</p>
-      </div>
+  <div class="card" id="i2">
+    <div class="card-head"><span class="card-num">02</span><h3>Durante a ligacao — postura geral</h3></div>
+    <div class="card-body">
+      <p><strong>De espaco para o cliente falar.</strong> Em momentos de diagnostico, menos e mais. Faca a pergunta, fique em silencio e ouca. Nao complete a frase do cliente, nao antecipe a resposta. Se ele pausar, aguarde.</p>
+      <p><strong>Siga uma sequencia logica de perguntas (storytelling).</strong> A conducao da conversa precisa ter um fio: situacao > problema > impacto > necessidade. Nao pule etapas. Perguntas fora de ordem confundem o cliente e voce perde profundidade.</p>
+      <p><strong>Quem decide precisa ser mapeado cedo.</strong> Antes de investir tempo em qualificar um projeto, confirme: quem toma a decisao de contratar? E o dono, o diretor, o gerente? A dor de cada um e diferente. O gerente de projetos pensa em facilitar o trabalho dele. O dono pensa em margem, lucro e risco. Adapte o angulo da conversa conforme o cargo.</p>
     </div>
+  </div>
 
-    <div class="instr-card" id="mapeamento">
-      <div class="instr-head"><span class="instr-num">03</span><h3>Mapeamento de processo — obrigatorio</h3></div>
-      <div class="instr-body">
-        <p><strong>Pergunte sempre como a compatibilizacao/coordenacao e feita hoje.</strong> E nesse ponto que o cliente vai comparar o que a Otus oferece com o que ele ja faz. Sem saber o processo atual, voce nao consegue mostrar onde a Otus agrega.</p>
-        <ul>
-          <li>Como voces fazem a gestao/compatibilizacao hoje?</li>
-          <li>Quem e responsavel por isso?</li>
-          <li>Esse processo tem funcionado bem? O que voce sentiria falta de melhorar?</li>
-        </ul>
-        <div class="alerta"><strong>Quando o cliente mencionar que vai demitir ou desligar alguem que faz essa funcao hoje, nao passe por cima.</strong> Aprofunde: por que esta desligando? O que nao esta funcionando nesse processo? Que tipo de problema isso esta gerando? Essa e a dor real e e onde o argumento da Otus se encaixa.</div>
-      </div>
+  <div class="card" id="i3">
+    <div class="card-head"><span class="card-num">03</span><h3>Mapeamento de processo — obrigatorio</h3></div>
+    <div class="card-body">
+      <p><strong>Pergunte sempre como a compatibilizacao/coordenacao e feita hoje.</strong> E nesse ponto que o cliente vai comparar o que a Otus oferece com o que ele ja faz. Sem saber o processo atual, voce nao consegue mostrar onde a Otus agrega.</p>
+      <p>Perguntas uteis:</p>
+      <ul>
+        <li>Como voces fazem a gestao/compatibilizacao hoje?</li>
+        <li>Quem e responsavel por isso?</li>
+        <li>Esse processo tem funcionado bem? O que voce sentiria falta de melhorar?</li>
+      </ul>
+      <div class="alerta"><strong>Quando o cliente mencionar que vai demitir ou desligar alguem que faz essa funcao hoje, nao passe por cima.</strong> Aprofunde: por que esta desligando? O que nao esta funcionando nesse processo? Que tipo de problema isso esta gerando? Essa e a dor real e e onde o argumento da Otus se encaixa.</div>
     </div>
+  </div>
 
-    <div class="instr-card" id="spin">
-      <div class="instr-head"><span class="instr-num">04</span><h3>SPIN Selling — seu papel no pre-venda</h3></div>
-      <div class="instr-body">
-        <p>Voce nao e agendadora de reuniao. Seu papel e preparar o lead para a conversa com o Gil.</p>
-        <div class="etapas">
-          <div class="etapa"><span class="etapa-label">S</span><div class="etapa-body"><strong>Situacao:</strong> como a empresa funciona, tamanho, projetos, equipe. Voce ja faz isso.</div></div>
-          <div class="etapa"><span class="etapa-label">P</span><div class="etapa-body"><strong>Problema:</strong> que dor o cliente tem. Voce ja faz isso.</div></div>
-          <div class="etapa"><span class="etapa-label">I</span><div class="etapa-body"><strong>Impacto:</strong> o que esse problema gera na pratica — financeiro, operacional, de relacionamento com investidores. <strong>Isso e o que a maioria ainda nao faz.</strong> Quando o cliente cita um problema, nao siga em frente. Pergunte:<br><br>• Qual o impacto disso para voce?<br>• Ja passou por alguma situacao concreta por causa disso?<br>• Chegou a dimensionar o tamanho desse desvio?<br><br>O objetivo e fazer o cliente sentir a urgencia do problema antes de chegar no Gil. Quando ele sente o impacto, ele mesmo faz a conta e entende o valor do investimento.</div></div>
-          <div class="etapa"><span class="etapa-label">N</span><div class="etapa-body"><strong>Necessidade:</strong> o cliente declara que precisa resolver. Isso vem naturalmente quando o I foi bem feito.</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">Qualificacao tecnica</h2>
-
-    <div class="instr-card" id="cuidados">
-      <div class="instr-head"><span class="instr-num">05</span><h3>Perguntas que precisam de cuidado</h3></div>
-      <div class="instr-body">
-        <div class="qa">
-          <div class="q">"Voces nao fazem nenhum projeto interno?"</div>
-          <div class="a">E muito raro uma construtora/incorporadora nao ter nada internamente. Pergunte de forma mais aberta: <em>"Como e estruturado o setor de projetos hoje? Tem alguem interno que coordena, ou tudo e terceirizado?"</em> Deixa o cliente descrever, sem sugerir que voce espera uma resposta especifica.</div>
-        </div>
-        <div class="qa" style="margin-top:10px;">
-          <div class="q">"Voces trabalham com BIM?"</div>
-          <div class="a">Se o cliente confirmar que sim, nao pare ai. Aprofunde:<br>
+  <div class="card" id="i4">
+    <div class="card-head"><span class="card-num">04</span><h3>SPIN Selling — seu papel no pre-venda</h3></div>
+    <div class="card-body">
+      <p>Voce nao e agendadora de reuniao. Seu papel e preparar o lead para a conversa com o Gil.</p>
+      <div class="etapas">
+        <div class="etapa"><span class="etapa-label">S</span><div><strong>Situacao:</strong> como a empresa funciona, tamanho, projetos, equipe. Voce ja faz isso.</div></div>
+        <div class="etapa"><span class="etapa-label">P</span><div><strong>Problema:</strong> que dor o cliente tem. Voce ja faz isso.</div></div>
+        <div class="etapa"><span class="etapa-label">I</span><div><strong>Impacto:</strong> o que esse problema gera na pratica — financeiro, operacional, de relacionamento com investidores. <strong>Isso e o que a maioria ainda nao faz.</strong> Quando o cliente cita um problema, nao siga em frente. Pergunte:
           <ul style="margin:8px 0 0 0;">
-            <li>Todas as disciplinas estao em BIM, ou so algumas?</li>
-            <li>Quem entrega em BIM? Um escritorio multidisciplinar ou projetistas separados?</li>
-            <li>Ja teve experiencia de compatibilizacao em BIM antes?</li>
+            <li>Qual o impacto disso para voce?</li>
+            <li>Ja passou por alguma situacao concreta por causa disso?</li>
+            <li>Chegou a dimensionar o tamanho desse desvio?</li>
           </ul>
-          <p style="margin-top:8px;">Uma disciplina so em CAD fica fora do escopo da Otus. Por isso e essencial mapear disciplina por disciplina antes de montar a expectativa de escopo.</p></div>
-        </div>
+          <p style="margin-top:8px;">O objetivo e fazer o cliente sentir a urgencia do problema antes de chegar no Gil. Quando ele sente o impacto, ele mesmo faz a conta e entende o valor do investimento.</p>
+        </div></div>
+        <div class="etapa"><span class="etapa-label">N</span><div><strong>Necessidade:</strong> o cliente declara que precisa resolver. Isso vem naturalmente quando o I foi bem feito.</div></div>
       </div>
     </div>
+  </div>
 
-    <div class="instr-card" id="bim-cad">
-      <div class="instr-head"><span class="instr-num">06</span><h3>O que NAO dizer sobre BIM e CAD</h3></div>
-      <div class="instr-body">
-        <div class="nao-faz"><strong>Nao diga "a gente nao faz em CAD".</strong> A explicacao correta e: nosso padrao de entrega e verificacao e em BIM porque o CAD tem limitacao de informacoes. Em BIM voce consegue ver coisas que em CAD nao existem — por exemplo, em um projeto hidraulico voce consegue visualizar a tubulacao em 3D, o caimento real, os conflitos com estrutura. Em CAD isso e so uma linha reta com anotacao. E uma questao tecnica de qualidade de entrega, nao uma restricao arbitraria.</div>
-        <div class="alerta" style="margin-top:10px;"><strong>Sobre modelo em Revit:</strong> modelar em Revit nao e o mesmo que compatibilizar. Nao e porque um projeto existe em Revit que ele esta pronto para ser recebido e compatibilizado. A entrega precisa estar no padrao correto.</div>
+  <h2 class="sec">Qualificacao tecnica</h2>
+
+  <div class="card" id="i5">
+    <div class="card-head"><span class="card-num">05</span><h3>Perguntas que precisam de cuidado</h3></div>
+    <div class="card-body">
+      <p><strong>"Voces nao fazem nenhum projeto interno?"</strong> E muito raro uma construtora/incorporadora nao ter nada internamente. Pergunte de forma mais aberta: "Como e estruturado o setor de projetos hoje? Tem alguem interno que coordena, ou tudo e terceirizado?" Deixa o cliente descrever, sem sugerir que voce espera uma resposta especifica.</p>
+      <p style="margin-top:14px;"><strong>"Voces trabalham com BIM?"</strong> Se o cliente confirmar que sim, nao pare ai. Aprofunde:</p>
+      <ul>
+        <li>Todas as disciplinas estao em BIM, ou so algumas?</li>
+        <li>Quem entrega em BIM? Um escritorio multidisciplinar ou projetistas separados?</li>
+        <li>Ja teve experiencia de compatibilizacao em BIM antes?</li>
+      </ul>
+      <div class="alerta">Uma disciplina so em CAD fica fora do escopo da Otus. Por isso e essencial mapear disciplina por disciplina antes de montar a expectativa de escopo.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i6">
+    <div class="card-head"><span class="card-num">06</span><h3>O que NAO dizer sobre BIM e CAD</h3></div>
+    <div class="card-body">
+      <div class="nao"><strong>Nao diga "a gente nao faz em CAD".</strong> A explicacao correta e: nosso padrao de entrega e verificacao e em BIM porque o CAD tem limitacao de informacoes. Em BIM voce consegue ver coisas que em CAD nao existem: em um projeto hidraulico voce consegue visualizar a tubulacao em 3D, o caimento real, os conflitos com estrutura. Em CAD isso e so uma linha reta com anotacao. E uma questao tecnica de qualidade de entrega, nao uma restricao arbitraria.</div>
+      <div class="alerta" style="margin-top:10px;"><strong>Sobre modelo em Revit:</strong> modelar em Revit nao e o mesmo que compatibilizar. Nao e porque um projeto existe em Revit que ele esta pronto para ser recebido e compatibilizado. A entrega precisa estar no padrao correto.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i7">
+    <div class="card-head"><span class="card-num">07</span><h3>Fase de projeto — nunca assuma pelo nome</h3></div>
+    <div class="card-body">
+      <p>Os nomes das fases variam por empresa. "Pre-executivo" para um pode ser "anteprojeto" para outro. Nunca presuma a fase pelo nome que o cliente usa — isso impacta diretamente o que o Gil pode vender.</p>
+      <p>Perguntas para deduzir a fase real:</p>
+      <ul>
+        <li>Todos os projetistas ja foram contratados?</li>
+        <li>Eles ja fizeram alguma entrega? O que ja foi desenvolvido?</li>
+        <li>O projeto ja foi aprovado na prefeitura?</li>
+      </ul>
+      <div class="alerta">Se todas as disciplinas ainda nao foram contratadas, o projeto provavelmente esta em anteprojeto, independente do nome que o cliente usa. <strong>Passe essa informacao para o Gil — ela muda o escopo e o preco.</strong></div>
+    </div>
+  </div>
+
+  <h2 class="sec">Conducao da conversa</h2>
+
+  <div class="card" id="i8">
+    <div class="card-head"><span class="card-num">08</span><h3>Convite para a reuniao com o Gil</h3></div>
+    <div class="card-body">
+      <p>A explicacao do convite para a reuniao precisa ser sobre o beneficio para o cliente, nao sobre o processo da Otus.</p>
+      <div class="nao"><strong>Evitar:</strong> "E o nosso processo que a gente faz antes de montar a proposta."</div>
+      <div class="alerta" style="margin-top:8px;"><strong>Melhor:</strong> deixar claro o que o cliente vai ganhar nessa conversa — entender como o servico funciona na pratica, ver se faz sentido para o projeto dele especificamente, ter clareza de investimento e retorno.</div>
+      <p style="margin-top:10px;">O cliente precisa sentir que a reuniao e valiosa para ele, nao que e uma etapa burocratica do funil da Otus.</p>
+    </div>
+  </div>
+
+  <div class="card" id="i9">
+    <div class="card-head"><span class="card-num">09</span><h3>Timing e datas — seja especifica</h3></div>
+    <div class="card-body">
+      <p>Quando o lead fala "proxima semana", pergunte: "Qual dia fica melhor pra eu te chamar?"</p>
+      <p>Quando fala "mes que vem", pergunte: "Comeco, meio ou final do mes?"</p>
+      <div class="alerta" style="margin-top:10px;"><strong>Data vaga = risco alto de novo silencio. Data especifica = comprometimento.</strong> Sempre fechar com um dia concreto.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i10">
+    <div class="card-head"><span class="card-num">10</span><h3>Mensagens para donos de empresa e pessoas de obra</h3></div>
+    <div class="card-body">
+      <p>Donos de empresa e engenheiros de obra tem o WhatsApp saturado de fornecedores, cotacoes e problemas do dia a dia. <strong>Mensagem longa = ignorada.</strong></p>
+      <p>Para esse perfil: seja direta, uma pergunta por mensagem, sem preambulo. Se nao responder, nao mande a mesma mensagem de novo. <strong>Mude o gancho ou o canal.</strong></p>
+    </div>
+  </div>
+
+  <div class="card" id="i13">
+    <div class="card-head"><span class="card-num">13</span><h3>Reacao as respostas do cliente — seja tecnica, nao generica</h3></div>
+    <div class="card-body">
+      <p>Quando o cliente compartilha uma informacao relevante (um dado, um problema, uma decisao), nunca reaja com "boa", "legal", "entendi" antes de ir para a proxima pergunta. Isso desperdiça o momento.</p>
+      <div class="alerta">A reacao correta e puxar o dado tecnico especifico que ele acabou de dar. Exemplo: se ele disse que tem problema de incompatibilidade na obra, nao diga "entendi, e quantos projetos voce tem?" — pergunte sobre aquele problema: "Que tipo de incompatibilidade voce ja passou? Estrutura com hidraulica, ou mais em instalacoes?" Isso mostra que voce ouviu de verdade e aprofunda exatamente onde importa.</div>
+    </div>
+  </div>
+
+  <h2 class="sec">Primeiro contato e cadencia</h2>
+
+  <div class="card" id="i12">
+    <div class="card-head"><span class="card-num">12</span><h3>Primeiro contato — nunca comercial</h3></div>
+    <div class="card-body">
+      <p>A primeira mensagem com qualquer lead nunca comeca com proposta de valor, servico ou produto. Primeiro cria conexao, depois descobre o problema, depois fala da Otus.</p>
+      <div class="nao"><strong>Nunca abrir direto com:</strong> "A Otus faz isso e pode te ajudar com aquilo."</div>
+      <div class="alerta" style="margin-top:8px;">A regra e: conexao especifica (algo relacionado a empresa ou ao contexto do lead) + CTA de curiosidade ou pergunta leve. Qualificacao so entra a partir da segunda ou terceira interacao, quando ja existe algum nivel de engajamento.</div>
+      <p style="margin-top:10px;"><strong>Sequencia para leads de evento (Conexchange, etc.):</strong></p>
+      <div class="etapas">
+        <div class="etapa"><span class="etapa-label">1</span><div>Primeira mensagem: conexao com um insight do evento, sem pergunta comercial</div></div>
+        <div class="etapa"><span class="etapa-label">2</span><div>Segunda mensagem: convite para live ou conteudo relevante</div></div>
+        <div class="etapa"><span class="etapa-label">3</span><div>Terceira mensagem: so entao entra a pergunta de negocio</div></div>
       </div>
     </div>
+  </div>
 
-    <div class="instr-card" id="fase">
-      <div class="instr-head"><span class="instr-num">07</span><h3>Fase de projeto — nunca assuma pelo nome</h3></div>
-      <div class="instr-body">
-        <p>Os nomes das fases variam por empresa. "Pre-executivo" para um pode ser "anteprojeto" para outro. Nunca presuma a fase pelo nome que o cliente usa — isso impacta diretamente o que o Gil pode vender (coordenacao tem timing de entrada; nao e possivel entrar na metade do projeto).</p>
-        <p style="margin-top:12px;"><strong>Perguntas para deduzir a fase real:</strong></p>
-        <ul>
-          <li>Todos os projetistas ja foram contratados?</li>
-          <li>Eles ja fizeram alguma entrega? O que ja foi desenvolvido?</li>
-          <li>O projeto ja foi aprovado na prefeitura?</li>
-        </ul>
-        <div class="alerta">Se todas as disciplinas ainda nao foram contratadas, o projeto provavelmente esta em anteprojeto, independente do nome que o cliente usa. Se as disciplinas ja entregaram documentacao detalhada, esta mais avancado. <strong>Passe essa informacao para o Gil — ela muda o escopo e o preco.</strong></div>
-      </div>
+  <div class="card" id="i17">
+    <div class="card-head"><span class="card-num">17</span><h3>Reabertura e reativacao de leads</h3></div>
+    <div class="card-body">
+      <div class="nao"><strong>Nao faca check-in generico</strong> ("oi, tudo bem, como estao as coisas?"). Isso nao gera resposta.</div>
+      <div class="alerta" style="margin-top:8px;"><strong>O gatilho correto e:</strong> novidade + previsao futura relevante para aquele lead especificamente. Algo mudou no mercado, no servico da Otus, ou no contexto do projeto dele que justifica o retorno agora.</div>
+      <p style="margin-top:10px;">A primeira mensagem de reabertura vai direto ao gancho, sem pedir permissao para retomar o contato. Explica o motivo e termina com uma pergunta de diagnostico.</p>
+      <div class="alerta">Atencao: o historico no Pipedrive pode ter sido feito por outro SDR ou executivo. <strong>Nao simule que voce ja falou pessoalmente com o lead se nao falou.</strong></div>
     </div>
-  </section>
+  </div>
 
-  <section>
-    <h2 class="section-title">Conducao da conversa</h2>
-
-    <div class="instr-card" id="reuniao">
-      <div class="instr-head"><span class="instr-num">08</span><h3>Convite para a reuniao com o Gil</h3></div>
-      <div class="instr-body">
-        <p>A explicacao do convite para a reuniao precisa ser sobre o beneficio para o cliente, nao sobre o processo da Otus.</p>
-        <div class="nao-faz"><strong>Evitar:</strong> "E o nosso processo que a gente faz antes de montar a proposta."</div>
-        <div class="alerta" style="margin-top:8px;"><strong>Melhor:</strong> deixar claro o que o cliente vai ganhar nessa conversa — entender como o servico funciona na pratica, ver se faz sentido para o projeto dele especificamente, ter clareza de investimento e retorno.</div>
-        <p style="margin-top:10px;">O cliente precisa sentir que a reuniao e valiosa para ele, nao que e uma etapa burocratica do funil da Otus.</p>
-      </div>
+  <div class="card" id="i18">
+    <div class="card-head"><span class="card-num">18</span><h3>Cadencia e nutricao — varie a estrutura</h3></div>
+    <div class="card-body">
+      <p>Cada e-mail ou mensagem de nutricao em uma cadencia precisa ter abertura e estrutura diferentes. Nao basta trocar o case ou o tema — se o formato e sempre o mesmo (apresentacao, case, CTA), o lead percebe e ignora.</p>
+      <div class="alerta">Varie: as vezes abra com uma pergunta, as vezes com um dado de mercado, as vezes com uma referencia direta ao contexto da empresa dele. <strong>O conteudo e a forma precisam mudar juntos.</strong></div>
     </div>
+  </div>
 
-    <div class="instr-card" id="timing">
-      <div class="instr-head"><span class="instr-num">09</span><h3>Timing e datas — seja especifica</h3></div>
-      <div class="instr-body">
-        <p>Quando o lead fala <em>"proxima semana"</em>, pergunte: <em>"Qual dia fica melhor pra eu te chamar?"</em></p>
-        <p>Quando fala <em>"mes que vem"</em>, pergunte: <em>"Comeco, meio ou final do mes?"</em></p>
-        <div class="alerta" style="margin-top:10px;"><strong>Data vaga = risco alto de novo silencio. Data especifica = comprometimento.</strong> Sempre fechar com um dia concreto.</div>
-      </div>
+  <div class="card" id="i19">
+    <div class="card-head"><span class="card-num">19</span><h3>E-mail — assunto</h3></div>
+    <div class="card-body">
+      <p>O assunto precisa ser curto, claro e especifico para aquele lead. Quem bate o olho tem que querer abrir. Evite palavras genericas como "parceria", "oportunidade", "servicos". Prefira algo que conecte com o contexto real do lead.</p>
+      <div class="alerta"><strong>Teste rapido:</strong> se o assunto serve para qualquer empresa do setor, nao serve.</div>
     </div>
+  </div>
 
-    <div class="instr-card" id="mensagens">
-      <div class="instr-head"><span class="instr-num">10</span><h3>Mensagens para donos de empresa e pessoas de obra</h3></div>
-      <div class="instr-body">
-        <p>Donos de empresa e engenheiros de obra tem o WhatsApp saturado de fornecedores, cotacoes e problemas do dia a dia. <strong>Mensagem longa = ignorada.</strong></p>
-        <p>Para esse perfil: seja direta, uma pergunta por mensagem, sem preambulo. Se nao responder, nao mande a mesma mensagem de novo. <strong>Mude o gancho ou o canal.</strong></p>
-      </div>
+  <h2 class="sec">Objecoes e situacoes especificas</h2>
+
+  <div class="card" id="i14">
+    <div class="card-head"><span class="card-num">14</span><h3>Objecao: "fazemos a compatibilizacao/BIM internamente"</h3></div>
+    <div class="card-body">
+      <p>Quando o lead disser que ja faz gestao BIM ou compatibilizacao com equipe propria, nao trate como desqualificacao automatica. A resposta correta e mostrar <strong>complementaridade, nao substituicao.</strong></p>
+      <div class="alerta"><strong>O argumento central:</strong> a Otus trabalha com um checklist de mais de 800 verificacoes e experiencia em mais de 250 projetos. Isso nao substitui o time interno — complementa e eleva o padrao de entrega. Um colaborador interno nao tem como ter a mesma profundidade de repertorio que vem de centenas de projetos simultaneos em tipologias diferentes.</div>
+      <p style="margin-top:10px;">Perguntas para aprofundar antes de usar esse argumento:</p>
+      <ul>
+        <li>Como funciona esse processo interno hoje?</li>
+        <li>Quem faz? Tem quantas pessoas dedicadas?</li>
+        <li>Ja passou por algum problema de interferencia que nao foi pego antes da obra?</li>
+      </ul>
     </div>
+  </div>
 
-    <div class="instr-card" id="reacao">
-      <div class="instr-head"><span class="instr-num">13</span><h3>Reacao as respostas do cliente — seja tecnica, nao generica</h3></div>
-      <div class="instr-body">
-        <p>Quando o cliente compartilha uma informacao relevante (um dado, um problema, uma decisao), nunca reaja com <em>"boa"</em>, <em>"legal"</em>, <em>"entendi"</em> antes de ir para a proxima pergunta. Isso desperdiça o momento.</p>
-        <div class="alerta">A reacao correta e puxar o dado tecnico especifico que ele acabou de dar. Exemplo: se ele disse que tem problema de incompatibilidade na obra, nao diga <em>"entendi, e quantos projetos voce tem?"</em> — pergunte sobre aquele problema: <em>"Que tipo de incompatibilidade voce ja passou? Estrutura com hidraulica, ou mais em instalacoes?"</em> Isso mostra que voce ouviu de verdade e aprofunda exatamente onde importa.</div>
-      </div>
+  <div class="card" id="i15">
+    <div class="card-head"><span class="card-num">15</span><h3>Lead que faz projeto internamente</h3></div>
+    <div class="card-body">
+      <p>Se o lead faz projeto internamente (arquitetura, engenharia), nao descarte. Ofereca relatorio pontual de compatibilizacao ou a plataforma da Otus, em vez de ir embora da conversa. <strong>Existe espaco para colaboracao mesmo quando o projeto e interno.</strong></p>
     </div>
-  </section>
+  </div>
 
-  <section>
-    <h2 class="section-title">Primeiro contato e cadencia</h2>
+  <h2 class="sec">Ficha, ICP e Pipedrive</h2>
 
-    <div class="instr-card" id="primeiro">
-      <div class="instr-head"><span class="instr-num">12</span><h3>Primeiro contato — nunca comercial</h3></div>
-      <div class="instr-body">
-        <p>A primeira mensagem com qualquer lead nunca comeca com proposta de valor, servico ou produto. Primeiro cria conexao, depois descobre o problema, depois fala da Otus.</p>
-        <div class="nao-faz"><strong>Nunca abrir direto com:</strong> "A Otus faz isso e pode te ajudar com aquilo."</div>
-        <div class="alerta" style="margin-top:8px;"><strong>A regra e:</strong> conexao especifica (algo relacionado a empresa ou ao contexto do lead) + CTA de curiosidade ou pergunta leve. Qualificacao so entra a partir da segunda ou terceira interacao, quando ja existe algum nivel de engajamento.</div>
-        <p style="margin-top:10px;"><strong>Sequencia para leads de evento (Conexchange, etc.):</strong></p>
-        <div class="etapas">
-          <div class="etapa"><span class="etapa-label">1</span><div class="etapa-body">Primeira mensagem: conexao com um insight do evento, sem pergunta comercial</div></div>
-          <div class="etapa"><span class="etapa-label">2</span><div class="etapa-body">Segunda mensagem: convite para live ou conteudo relevante</div></div>
-          <div class="etapa"><span class="etapa-label">3</span><div class="etapa-body">Terceira mensagem: so entao entra a pergunta de negocio</div></div>
-        </div>
-      </div>
+  <div class="card" id="i11">
+    <div class="card-head"><span class="card-num">11</span><h3>Ficha de qualificacao — cuidados na hora de preencher</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Nao repita a mesma informacao em campos diferentes</li>
+        <li>Se uma informacao nao foi confirmada, anote como pendencia com uma pergunta especifica para buscar na proxima conversa</li>
+        <li>Revise a ficha antes de enviar para o Gil</li>
+        <li>Projeto que esta em CAD nao entra como projeto em analise — vai apenas como dado de contexto da empresa</li>
+        <li>"Usa BIM" precisa ser respondido com base em pratica real, nao em intencao futura ("ja contratou em BIM" e diferente de "quer contratar em BIM")</li>
+        <li>Equipe interna: seja direta. Ex: "Tem 1 colaborador que faz compatibilizacao internamente, mas sera desligado — motivo da busca por externalizacao." Nao dilua em duas frases separadas.</li>
+      </ul>
     </div>
+  </div>
 
-    <div class="instr-card" id="cadencia">
-      <div class="instr-head"><span class="instr-num">18</span><h3>Cadencia e nutricao — varie a estrutura</h3></div>
-      <div class="instr-body">
-        <p>Cada e-mail ou mensagem de nutricao em uma cadencia precisa ter abertura e estrutura diferentes. Nao basta trocar o case ou o tema — se o formato e sempre o mesmo (apresentacao, case, CTA), o lead percebe e ignora.</p>
-        <div class="alerta">Varie: as vezes abra com uma pergunta, as vezes com um dado de mercado, as vezes com uma referencia direta ao contexto da empresa dele. <strong>O conteudo e a forma precisam mudar juntos.</strong></div>
-      </div>
+  <div class="card" id="i16">
+    <div class="card-head"><span class="card-num">16</span><h3>ICP — qualifique antes de investir tempo</h3></div>
+    <div class="card-body">
+      <p>Antes de avancar qualquer lead, confirme o fit basico:</p>
+      <ul>
+        <li>A empresa trabalha com projetos em BIM (Revit/IFC)? Se os projetistas entregam so em CAD 2D, esta fora do escopo da Otus.</li>
+        <li>Quantos lancamentos por ano? O perfil ideal e 1 a 3 lancamentos/ano. Empresas com mais de 12 projetos simultaneos sao grandes demais para prospeccao direta.</li>
+        <li>Qual o tamanho dos projetos? A Otus atende a partir de coordenacao a partir de ~R$75-85k, 12 meses. Projetos muito pequenos ficam fora do ICP.</li>
+      </ul>
+      <div class="alerta">Se o lead esta claramente fora do ICP, registre o motivo correto no Pipedrive e de Lost sem arrastar o negocio.</div>
     </div>
+  </div>
 
-    <div class="instr-card" id="email">
-      <div class="instr-head"><span class="instr-num">19</span><h3>E-mail — assunto</h3></div>
-      <div class="instr-body">
-        <p>O assunto precisa ser curto, claro e especifico para aquele lead. Quem bate o olho tem que querer abrir. Evite palavras genericas como <em>"parceria"</em>, <em>"oportunidade"</em>, <em>"servicos"</em>. Prefira algo que conecte com o contexto real do lead — o projeto, a cidade, o problema que ele citou.</p>
-        <div class="alerta"><strong>Teste rapido:</strong> se o assunto serve para qualquer empresa do setor, nao serve.</div>
+  <div class="card" id="i21">
+    <div class="card-head"><span class="card-num">21</span><h3>Pipedrive — etapas e o que cada uma exige</h3></div>
+    <div class="card-body">
+      <div class="pipe">
+        <div class="pipe-row"><div class="pipe-name">Entrada</div><div class="pipe-desc">Lead chegou. Atender em ate 1 dia.</div></div>
+        <div class="pipe-row"><div class="pipe-name">Prospeccao</div><div class="pipe-desc">Lead sendo trabalhado via sequencia (Driva ou manual). Se nao responder ao fim da cadencia, Lost em Prospeccao.</div></div>
+        <div class="pipe-row"><div class="pipe-name">Conexao</div><div class="pipe-desc">Primeiro contato estabelecido, lead respondeu. Nao deixar mais de 7 dias sem atividade (vira vermelho).</div></div>
+        <div class="pipe-row"><div class="pipe-name">Qualificado</div><div class="pipe-desc">Empresa mapeada com o cliente. Precisa ter: champion confirmado + dores mapeadas (max 2, da lista fixa do Pipe).</div></div>
+        <div class="pipe-row"><div class="pipe-name">Descoberta Agendada</div><div class="pipe-desc">Reuniao com o Gil marcada.</div></div>
       </div>
+      <div class="alerta" style="margin-top:14px;"><strong>Quando dar Lost:</strong> sempre registrar o motivo correto da lista do Pipedrive + adicionar comentario no card explicando o contexto (o que foi conversado, por que perdeu, se vale reativar no futuro e quando).</div>
+      <div class="alerta" style="margin-top:8px;"><strong>Break off:</strong> quando as tentativas de contato se esgotam, mandar mensagem curta e direta: "Tenho tentado contato, imagino que esteja na correria. Ainda e uma prioridade isso para voce? Quando quiser retomar, estaremos a disposicao." Depois: Lost com motivo "Tentativas de contato esgotadas" + observacao no card.</div>
     </div>
+  </div>
 
-    <div class="instr-card" id="reabertura">
-      <div class="instr-head"><span class="instr-num">17</span><h3>Reabertura e reativacao de leads</h3></div>
-      <div class="instr-body">
-        <div class="nao-faz"><strong>Nao faca check-in generico</strong> ("oi, tudo bem, como estao as coisas?"). Isso nao gera resposta.</div>
-        <div class="alerta" style="margin-top:8px;"><strong>O gatilho correto e:</strong> novidade + previsao futura relevante para aquele lead especificamente. Algo mudou no mercado, no servico da Otus, ou no contexto do projeto dele que justifica o retorno agora.</div>
-        <p style="margin-top:10px;">A primeira mensagem de reabertura vai direto ao gancho, sem pedir permissao para retomar o contato. Explica o motivo e termina com uma pergunta de diagnostico.</p>
-        <div class="alerta">Atencao: o historico no Pipedrive pode ter sido feito por outro SDR ou executivo. <strong>Nao simule que voce ja falou pessoalmente com o lead se nao falou.</strong> Se a conversa foi de outro colega, nao escreva como se fosse sua.</div>
-      </div>
+  <h2 class="sec">Regras pessoais</h2>
+
+  <div class="card" id="i20">
+    <div class="card-head"><span class="card-num">20</span><h3>O que a Paula nunca faz ou diz</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Nunca fala em "montar proposta" ou "orcamento" com o lead. Esse papel e do Gil. A Paula agenda a reuniao.</li>
+        <li>Nunca menciona valores ou estimativas de preco nas conversas de prospeccao.</li>
+        <li>Nunca usa travessao em mensagens (WhatsApp, e-mail, LinkedIn).</li>
+        <li>Nunca explica de forma literal uma limitacao interna da Otus. Formula o convite para outro canal como preferencia natural, nao como restricao.</li>
+        <li>Nunca assume que o lead ja conhece a Otus so porque esta no Pipedrive ha tempo. Pode ter sido prospectado por outra pessoa, em outro contexto.</li>
+      </ul>
     </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">Objecoes e situacoes especificas</h2>
-
-    <div class="instr-card" id="objecao-interno">
-      <div class="instr-head"><span class="instr-num">14</span><h3>Objecao: "fazemos a compatibilizacao/BIM internamente"</h3></div>
-      <div class="instr-body">
-        <p>Quando o lead disser que ja faz gestao BIM ou compatibilizacao com equipe propria, nao trate como desqualificacao automatica. A resposta correta e mostrar <strong>complementaridade, nao substituicao.</strong></p>
-        <div class="alerta"><strong>O argumento central:</strong> a Otus trabalha com um checklist de mais de 800 verificacoes e experiencia em mais de 250 projetos. Isso nao substitui o time interno — complementa e eleva o padrao de entrega. Um colaborador interno nao tem como ter a mesma profundidade de repertorio que vem de centenas de projetos simultaneos em tipologias diferentes.</div>
-        <p style="margin-top:10px;"><strong>Perguntas para aprofundar antes de usar esse argumento:</strong></p>
-        <ul>
-          <li>Como funciona esse processo interno hoje?</li>
-          <li>Quem faz? Tem quantas pessoas dedicadas?</li>
-          <li>Ja passou por algum problema de interferencia que nao foi pego antes da obra?</li>
-        </ul>
-        <p style="margin-top:8px;">O objetivo e fazer o cliente sentir que a solucao interna dele pode estar deixando algo passar — e que a Otus entra como especializacao, nao como critica ao que ele ja faz.</p>
-      </div>
-    </div>
-
-    <div class="instr-card" id="projeto-interno">
-      <div class="instr-head"><span class="instr-num">15</span><h3>Lead que faz projeto internamente</h3></div>
-      <div class="instr-body">
-        <p>Se o lead faz projeto internamente (arquitetura, engenharia), nao descarte. Ofereça relatorio pontual de compatibilizacao ou a plataforma da Otus, em vez de ir embora da conversa. <strong>Existe espaco para colaboracao mesmo quando o projeto e interno.</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">Ficha, ICP e Pipedrive</h2>
-
-    <div class="instr-card" id="ficha">
-      <div class="instr-head"><span class="instr-num">11</span><h3>Ficha de qualificacao — cuidados na hora de preencher</h3></div>
-      <div class="instr-body">
-        <ul>
-          <li>Nao repita a mesma informacao em campos diferentes</li>
-          <li>Se uma informacao nao foi confirmada, anote como pendencia com uma pergunta especifica para buscar na proxima conversa — nao deixe "a confirmar" solto</li>
-          <li>Revise a ficha antes de enviar para o Gil</li>
-          <li>Projeto que esta em CAD nao entra como projeto em analise — vai apenas como dado de contexto da empresa</li>
-          <li>"Usa BIM" precisa ser respondido com base em pratica real, nao em intencao futura ("ja contratou em BIM" e diferente de "quer contratar em BIM")</li>
-          <li>Equipe interna: seja direta. Ex: "Tem 1 colaborador que faz compatibilizacao internamente, mas sera desligado — motivo da busca por externalizacao." Nao dilua em duas frases separadas.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="instr-card" id="icp">
-      <div class="instr-head"><span class="instr-num">16</span><h3>ICP — qualifique antes de investir tempo</h3></div>
-      <div class="instr-body">
-        <p>Antes de avancar qualquer lead, confirme o fit basico:</p>
-        <ul>
-          <li>A empresa trabalha com projetos em BIM (Revit/IFC)? Se os projetistas entregam so em CAD 2D, esta fora do escopo — a Otus nao compatibiliza em CAD.</li>
-          <li>Quantos lancamentos por ano? O perfil ideal e 1 a 3 lancamentos/ano. Empresas com mais de 12 projetos simultaneos sao grandes demais para prospeccao direta.</li>
-          <li>Qual o tamanho dos projetos? A Otus atende a partir de projetos com escopo compativel (coordenacao a partir de ~R$75-85k, 12 meses). Projetos muito pequenos ou sem viabilidade de escopo minimo ficam fora do ICP.</li>
-        </ul>
-        <div class="alerta">Se o lead esta claramente fora do ICP, registre o motivo correto no Pipedrive e de Lost sem arrastar o negocio.</div>
-      </div>
-    </div>
-
-    <div class="instr-card" id="pipedrive">
-      <div class="instr-head"><span class="instr-num">21</span><h3>Pipedrive — etapas e o que cada uma exige</h3></div>
-      <div class="instr-body">
-        <div class="pipe-steps">
-          <div class="pipe-step">
-            <div class="pipe-step-name">Entrada</div>
-            <div class="pipe-step-desc">Lead chegou. Atender em ate 1 dia.</div>
-          </div>
-          <div class="pipe-step">
-            <div class="pipe-step-name">Prospeccao</div>
-            <div class="pipe-step-desc">Lead sendo trabalhado via sequencia (Driva ou manual). Se nao responder ao fim da cadencia, Lost em Prospeccao.</div>
-          </div>
-          <div class="pipe-step">
-            <div class="pipe-step-name">Conexao</div>
-            <div class="pipe-step-desc">Primeiro contato estabelecido, lead respondeu. Nao deixar mais de 7 dias sem atividade (vira vermelho).</div>
-          </div>
-          <div class="pipe-step">
-            <div class="pipe-step-name">Qualificado</div>
-            <div class="pipe-step-desc">Empresa mapeada diretamente com o cliente. Precisa ter: champion confirmado + dores mapeadas (max 2, da lista fixa). Nao precisa ter projeto — pode dar Lost depois se nao tiver escopo.</div>
-          </div>
-          <div class="pipe-step">
-            <div class="pipe-step-name">Descoberta Agendada</div>
-            <div class="pipe-step-desc">Reuniao com o Gil marcada.</div>
-          </div>
-        </div>
-        <div class="alerta" style="margin-top:14px;"><strong>Quando dar Lost:</strong> sempre registrar o motivo correto da lista do Pipedrive + adicionar comentario no card explicando o contexto (o que foi conversado, por que perdeu, se vale reativar no futuro e quando).</div>
-        <div class="alerta" style="margin-top:8px;"><strong>Break off:</strong> quando as tentativas de contato se esgotam, mandar mensagem curta e direta: <em>"Tenho tentado contato, imagino que esteja na correria. Ainda e uma prioridade isso para voce? Quando quiser retomar, estaremos a disposicao."</em> Depois: Lost com motivo "Tentativas de contato esgotadas" + observacao no card.</div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">Regras pessoais</h2>
-
-    <div class="instr-card" id="nunca">
-      <div class="instr-head"><span class="instr-num">20</span><h3>O que a Paula nunca faz ou diz</h3></div>
-      <div class="instr-body">
-        <ul>
-          <li>Nunca fala em "montar proposta" ou "orcamento" com o lead. Esse papel e do Gil. A Paula agenda a reuniao.</li>
-          <li>Nunca menciona valores ou estimativas de preco nas conversas de prospeccao.</li>
-          <li>Nunca usa travessao em mensagens (WhatsApp, e-mail, LinkedIn).</li>
-          <li>Nunca explica de forma literal uma limitacao interna da Otus (ex: "nao posso te chamar pelo WhatsApp"). Formula o convite para outro canal como preferencia natural, nao como restricao.</li>
-          <li>Nunca assume que o lead ja conhece a Otus so porque esta no Pipedrive ha tempo. Pode ter sido prospectado por outra pessoa, em outro contexto.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  </div>
 
 </div>
 
 <footer>
-  <strong>Otus Engenharia</strong> &nbsp;|&nbsp; Instrucoes de Atendimento &nbsp;|&nbsp; Compilado a partir do feedback do Gil e do Pipe Review 05/08/2026
+  <strong>Otus Engenharia</strong> &nbsp;|&nbsp; Instrucoes de Atendimento &nbsp;|&nbsp; Pipe Review 05/08/2026
 </footer>
 
 <a href="#top" id="scroll-top-btn" title="Voltar ao topo">&#8679;</a>
-
 <script src="otus-shared.js"></script>
 </body>
 </html>
