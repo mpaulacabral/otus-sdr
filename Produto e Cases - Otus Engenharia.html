@@ -293,6 +293,15 @@
   </div>
 
   <div class="nav-item">
+    <a href="#indicadores">Indicadores ▾</a>
+    <div class="dropdown">
+      <a href="#ind-oven03">O-VEN-03: Oportunidades Geradas</a>
+      <a href="#ind-oven04">O-VEN-04: Valor de Contratos Vendidos</a>
+      <a href="#ind-oven05">O-VEN-05: Taxa de Qualificacao de Prospeccao</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
     <a href="#gestao">Gestão por Resultados ▾</a>
     <div class="dropdown">
       <a href="#gestao-modelo">Modelo OKR + Falconi</a>
@@ -1014,6 +1023,123 @@
   </tbody>
 </table>
 <div class="destaque">Eficiência geral do funil (Lead → Cliente): <strong>1,26%</strong></div>
+
+<!-- ===================== INDICADORES SDR ===================== -->
+<h2 class="section-title" id="indicadores">Indicadores SDR / BDR (Pre-vendas)</h2>
+<div class="interno-tag">Uso interno - nao compartilhar com clientes ou leads</div>
+<div class="obs">Indicadores do time de Pre-vendas para acompanhamento de performance. Cada indicador tem codigo, descricao, formula de calculo, exemplo e tabela de interpretacao de resultados.</div>
+
+<h3 class="sub" id="ind-oven03">O-VEN-03: Oportunidades Geradas</h3>
+<p><strong>Descricao:</strong> Este indicador mensura o volume de novos negocios que sao efetivamente qualificados e transferidos do time de Pre-Vendas para o time de Vendas (Closer), sendo formalizados apos a realizacao de uma Reuniao de Descoberta bem-sucedida. Ele reflete a capacidade do pre-vendedor em identificar e preparar oportunidades comercialmente maduras para avanco no funil.</p>
+
+<h4 class="mini">Como metrificar</h4>
+<div class="card">
+  <ul style="font-size:13px;">
+    <li>Sera filtrado no CRM o numero de negocios movidos para a etapa "Reuniao de Descoberta" com o campo "Pre-vendas" preenchido com o nome do pre-vendedor em questao.</li>
+    <li>Caso uma reuniao com um lead gere mais de 1 negocio, sera contabilizado a quantidade de negocios gerados.</li>
+    <li>Nao serao contabilizados negocios reabertos pelo vendedor cuja reuniao de descoberta foi contabilizada em meses anteriores.</li>
+  </ul>
+</div>
+
+<h4 class="mini">Exemplo</h4>
+<div class="obs">Em maio/2026, aconteceu uma reuniao de descoberta com o Cliente A sobre o Projeto X. Tal reuniao foi contabilizada para o indicador em maio/26. O negocio nao avancou por timing. Em novembro/26, o vendedor recebeu um contato do Cliente A para reabrir as conversas. No Pipe, ira constar como um novo negocio movido para a etapa de Descoberta para o pre-vendedor, porem a reuniao ocorreu e foi contabilizada em maio/26.</div>
+
+<h4 class="mini">Exemplo de calculo</h4>
+<div class="card">
+  <p style="font-size:13px;">Em junho/26 foram movidos 17 negocios para a etapa Reuniao de Descoberta. Destes 17, 14 constam como Pre-vendedor A, porem 1 ja havia sido contabilizado em fevereiro/26.</p>
+  <p style="font-size:13px;margin-top:8px;"><strong>Resultado do indicador = 13 oportunidades.</strong></p>
+</div>
+
+<h4 class="mini">Interpretacao dos resultados</h4>
+<table>
+  <thead>
+    <tr><th>80%</th><th>100%</th><th>120%</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>84</td><td>105</td><td>126</td></tr>
+    <tr>
+      <td style="background:#fff3cd;font-weight:700;">Valor minimo aceitavel</td>
+      <td style="background:#fff3cd;font-weight:700;">Meta</td>
+      <td style="background:#fff3cd;font-weight:700;">Valor maximo</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 class="sub" id="ind-oven04">O-VEN-04: Valor de Contratos Vendidos (agendamento direto)</h3>
+<p><strong>Descricao:</strong> Este indicador mensura o volume financeiro total de novos negocios formalizados pela empresa em um intervalo de tempo especifico, provenientes de oportunidades agendadas pelo pre-vendedor. Ele reflete a capacidade do pre-vendedor em agendar oportunidades qualificadas e comercialmente maduras para o time de vendas.</p>
+
+<h4 class="mini">Formula</h4>
+<div class="destaque"><strong>Valor de Contratos Vendidos = Soma(Vendas com agendamento do PV)</strong></div>
+
+<h4 class="mini">Regras de inclusao e exclusao</h4>
+<div class="card">
+  <ul style="font-size:13px;">
+    <li><strong>Inclusoes:</strong> contratos assinados pela parte do contratante dentro do mes de competencia; campo "pre-vendas" do CRM preenchido com o nome do PV em questao.</li>
+    <li><strong>Exclusoes:</strong> aceites formais ou informais e assinaturas apenas da testemunha do contratante.</li>
+    <li><strong>Regra de prazo:</strong> sera contabilizado como venda proveniente do pre-vendedor as vendas que ocorrem ate 1 ano apos a realizacao da reuniao de descoberta.</li>
+    <li><strong>Ferramenta:</strong> Pipedrive para conferencia de informacoes.</li>
+  </ul>
+</div>
+
+<h4 class="mini">Exemplo de calculo</h4>
+<div class="card">
+  <p style="font-size:13px;">Em marco foram fechados os seguintes negocios:</p>
+  <ul style="font-size:13px;margin-top:8px;">
+    <li>Novo Cliente 1 (Projeto A): R$ 150.000,00 (Contrato assinado)</li>
+    <li>Novo Cliente 1 (Projeto B): R$ 150.000,00 (Contrato assinado)</li>
+    <li>Novo Cliente 2 (Projeto C): R$ 200.000,00 (Contrato assinado)</li>
+    <li>Novo Cliente 3 (Projeto D): R$ 100.000,00 (Contrato assinado)</li>
+  </ul>
+  <p style="font-size:13px;margin-top:8px;">O Novo Cliente 1 e Novo Cliente 3 haviam sido agendados pelo pre-vendedor. O agendamento do NC 1 ocorreu 3 meses atras e o do NC 3 ocorreu 13 meses atras. Apenas as vendas para o NC 1 entram no calculo (NC 3 ultrapassou o prazo de 1 ano).</p>
+  <p style="font-size:13px;margin-top:8px;"><strong>Calculo: R$ 150.000 x 2 = R$ 300.000,00</strong></p>
+</div>
+
+<h4 class="mini">Interpretacao dos resultados</h4>
+<table>
+  <thead>
+    <tr><th>80%</th><th>100%</th><th>120%</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>R$ 1.931.928,00</td><td>R$ 2.414.910,00</td><td>R$ 2.897.892,00</td></tr>
+    <tr>
+      <td style="background:#fff3cd;font-weight:700;">Valor minimo aceitavel</td>
+      <td style="background:#fff3cd;font-weight:700;">Meta</td>
+      <td style="background:#fff3cd;font-weight:700;">Valor maximo</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 class="sub" id="ind-oven05">O-VEN-05: Taxa de Qualificacao de Prospeccao</h3>
+<p><strong>Descricao:</strong> Este indicador mensura a eficacia do processo de pre-vendas ao calcular a porcentagem de leads que sao convertidos em SQLs (Sales Qualified Leads). Um SQL representa um negocio submetido a um processo de qualificacao e considerado apto para ser transferido ao Executivo de Vendas, por atender aos criterios definidos de perfil, necessidade e maturidade comercial.</p>
+
+<h4 class="mini">Formula</h4>
+<div class="destaque"><strong>% SQL = Volume de negocios Qualificados / Volume de negocios criados</strong></div>
+
+<h4 class="mini">Regras</h4>
+<div class="card">
+  <ul style="font-size:13px;">
+    <li>Serao computados apenas os canais de origem "Outbound" e "Prospeccao Ecossistema".</li>
+    <li>Os negocios movidos para a etapa Qualificado serao submetidos a uma analise criteriosa do coordenador para conferencia da conformidade aos criterios de qualificacao.</li>
+  </ul>
+</div>
+
+<h4 class="mini">Exemplo de calculo</h4>
+<div class="obs">Em junho/26, 25 negocios foram movidos para a etapa "Qualificado" dos canais de origem de prospeccao ativa. Foram criados em Entrada 60 negocios dos mesmos canais de origem. <strong>Taxa de qualificacao = 41,7%</strong></div>
+
+<h4 class="mini">Interpretacao dos resultados</h4>
+<table>
+  <thead>
+    <tr><th>80%</th><th>100%</th><th>120%</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>31%</td><td>36%</td><td>41%</td></tr>
+    <tr>
+      <td style="background:#fff3cd;font-weight:700;">Valor minimo aceitavel</td>
+      <td style="background:#fff3cd;font-weight:700;">Meta</td>
+      <td style="background:#fff3cd;font-weight:700;">Valor maximo</td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- ===================== GESTÃO POR RESULTADOS ===================== -->
 <h2 class="section-title" id="gestao">Gestão por Resultados</h2>
