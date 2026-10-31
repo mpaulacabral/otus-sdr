@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instruções de Atendimento - Otus Engenharia</title>
+<title>Guia de Atendimento - Otus Engenharia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="otus-shared.css">
@@ -112,6 +112,22 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
 .nav-item > .dropdown a:last-child { border-bottom: none; }
 .nav-item > .dropdown a:hover { background: var(--amarelo-bg); color: var(--preto); border-radius: 0; }
 
+.msg { background: #f6f5f1; border: 1px solid var(--cinza); border-left: 4px solid var(--preto); border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 8px 0; font-size: 12.5px; line-height: 1.65; color: var(--preto); }
+.msg-label { display: block; font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; color: var(--cinza-medio); margin-bottom: 4px; }
+.tabela-wrap { overflow-x: auto; margin: 10px 0; }
+.tabela { width: 100%; border-collapse: collapse; font-size: 12.5px; line-height: 1.55; }
+.tabela th { background: var(--preto); color: var(--amarelo); text-align: left; padding: 8px 10px; font-size: 11px; font-weight: 800; }
+.tabela td { border-bottom: 1px solid var(--cinza); padding: 8px 10px; vertical-align: top; }
+.tabela tr:nth-child(even) td { background: #fbfaf6; }
+.card-body ol.lista-num { padding-left: 22px; margin: 6px 0; }
+.card-body ol.lista-num li { padding: 6px 0; border-bottom: 1px dashed var(--borda); }
+.card-body ol.lista-num li:last-child { border-bottom: none; }
+.card-body h4 { font-size: 11.5px; font-weight: 800; color: var(--preto); margin: 14px 0 2px; text-transform: uppercase; letter-spacing: .4px; }
+.card-body h4:first-child { margin-top: 0; }
+.card-body a, .alerta a { color: var(--preto); font-weight: 600; }
+.sec-intro { margin: -4px 0 14px; }
+.nav-item > .dropdown { max-height: 70vh; overflow-y: auto; }
+
 @media (max-width: 700px) {
   .hero h1 { font-size: 20px; }
   .container { padding: 24px 14px 60px; }
@@ -126,7 +142,7 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
   <a href="index.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Início</a>
   <a href="Playbook%20SDR%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Playbook SDR</a>
   <a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Produto &amp; Cases</a>
-  <a href="instrucoes-atendimento.html" style="color:#1C1C1B;background:#FFDC00;text-decoration:none;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:4px;flex-shrink:0;">Instruções</a>
+  <a href="instrucoes-atendimento.html" style="color:#1C1C1B;background:#FFDC00;text-decoration:none;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:4px;flex-shrink:0;">Guia de Atendimento</a>
   <a href="Scripts%20de%20Abordagem%20-%20Otus.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Scripts</a>
   <a href="Clientes%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Clientes</a>
   <a href="Concorrentes%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Concorrentes</a>
@@ -134,7 +150,15 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
 
 <nav>
   <div class="nav-item">
-    <a href="#i1">Preparação e postura ▾</a>
+    <a href="#i28">Comece aqui ▾</a>
+    <div class="dropdown">
+      <a href="#i28">Como usar este guia</a>
+      <a href="#i29">Princípios de todo atendimento</a>
+      <a href="#i30">Orientações que mudaram</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <a href="#i1">Preparação ▾</a>
     <div class="dropdown">
       <a href="#i1">Antes da ligação</a>
       <a href="#i2">Durante a ligação</a>
@@ -143,47 +167,90 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
     </div>
   </div>
   <div class="nav-item">
-    <a href="#i5">Qualificação técnica ▾</a>
+    <a href="#i31">Qualificação ▾</a>
     <div class="dropdown">
+      <a href="#i31">Processo enxuto de pré-vendas</a>
+      <a href="#i19">ICP</a>
       <a href="#i5">Perguntas com cuidado</a>
+      <a href="#i32">BIM por disciplina</a>
       <a href="#i6">O que NÃO dizer</a>
       <a href="#i7">Fase do projeto</a>
+      <a href="#i33">Quem decide</a>
     </div>
   </div>
   <div class="nav-item">
-    <a href="#i8">Condução da conversa ▾</a>
+    <a href="#i8">Condução ▾</a>
     <div class="dropdown">
       <a href="#i8">Convite para reunião</a>
       <a href="#i9">Timing e datas</a>
-      <a href="#i10">Mensagens (dono/obra)</a>
+      <a href="#i10">Abordagem por perfil</a>
+      <a href="#i34">Do WhatsApp para a ligação</a>
+      <a href="#i35">Confirmar reuniões</a>
     </div>
   </div>
   <div class="nav-item">
-    <a href="#i11">Primeiro contato e cadência ▾</a>
+    <a href="#i21">Comunicação ▾</a>
+    <div class="dropdown">
+      <a href="#i21">O que nunca fazer</a>
+      <a href="#i36">O que sempre fazer</a>
+      <a href="#i37">Regras por canal</a>
+      <a href="#i38">Prova social e dados</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <a href="#i11">Cadência ▾</a>
     <div class="dropdown">
       <a href="#i11">Primeiro contato</a>
       <a href="#i12">Reação às respostas</a>
       <a href="#i13">Reabertura de leads</a>
+      <a href="#i39">Ritmo de contato</a>
       <a href="#i14">Cadência e nutrição</a>
       <a href="#i15">E-mail: assunto</a>
+      <a href="#i40">Eventos e lives</a>
     </div>
   </div>
   <div class="nav-item">
     <a href="#i16">Objeções ▾</a>
     <div class="dropdown">
-      <a href="#i16">Objeção: BIM interno</a>
-      <a href="#i17">Projeto interno</a>
+      <a href="#i16">Fazemos internamente</a>
+      <a href="#i41">Coordenador interno barra</a>
+      <a href="#i42">Projetista compatibiliza</a>
+      <a href="#i43">Estou corrido</a>
+      <a href="#i44">Sem orçamento ou caro</a>
+      <a href="#i45">Ainda não chegamos na fase</a>
+      <a href="#i46">Resolvemos na obra</a>
+      <a href="#i47">Negativa genérica</a>
+      <a href="#i48">Manda por e-mail</a>
+      <a href="#i49">Experiência ruim anterior</a>
+      <a href="#i50">Diretoria não vê valor</a>
+      <a href="#i51">Empresa grande e madura</a>
+      <a href="#i52">Proposta sem reunião</a>
+      <a href="#i53">Fechou com concorrente</a>
     </div>
   </div>
   <div class="nav-item">
-    <a href="#i18">Ficha, ICP e Pipedrive ▾</a>
+    <a href="#i54">Mensagens prontas ▾</a>
     <div class="dropdown">
-      <a href="#i18">Ficha de qualificação</a>
-      <a href="#i19">ICP</a>
-      <a href="#i20">Pipedrive: etapas</a>
+      <a href="#i54">Lead de evento</a>
+      <a href="#i55">Reativação de lead antigo</a>
+      <a href="#i56">Respondeu bem: ligação</a>
+      <a href="#i57">Pedir a ligação sem peso</a>
+      <a href="#i58">Lead de indicação</a>
+      <a href="#i59">Visualiza e não responde</a>
+      <a href="#i60">Data de retomada</a>
+      <a href="#i61">Confirmar alinhamento de escopo</a>
+      <a href="#i62">Convidar para evento</a>
+      <a href="#i63">Indicou outra pessoa</a>
+      <a href="#i64">Mudou de empresa</a>
+      <a href="#i65">Empresa grande quer ir direto</a>
+      <a href="#i66">Lead monossilábico</a>
+      <a href="#i67">Perguntar pelo projeto</a>
+      <a href="#i68">Reunião presencial</a>
+      <a href="#i69">Lançamento apertado</a>
+      <a href="#i70">O que a empresa publicou</a>
+      <a href="#i71">Fora do perfil</a>
     </div>
   </div>
-  <a href="#i21">Regras pessoais</a>
   <div class="nav-item">
     <a href="#i22">WhatsApp ▾</a>
     <div class="dropdown">
@@ -195,14 +262,77 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
       <a href="#i27">Checklist da mensagem</a>
     </div>
   </div>
+  <div class="nav-item">
+    <a href="#i20">Pipe e Lost ▾</a>
+    <div class="dropdown">
+      <a href="#i20">Etapas do Pipe</a>
+      <a href="#i72">Conexão e Qualificado</a>
+      <a href="#i18">Ficha de qualificação</a>
+      <a href="#i73">Break-off</a>
+      <a href="#i74">Quando dar Lost</a>
+      <a href="#i75">Regras do Pipedrive</a>
+      <a href="#i76">Rotina e agenda</a>
+    </div>
+  </div>
+  <a href="#i77">A confirmar</a>
 </nav>
 
 <div class="hero">
-  <h1>Instruções de Atendimento</h1>
-  <p>Aplicável a todos os leads, em qualquer canal.</p>
+  <h1>Guia de Atendimento</h1>
+  <p>Orientações e mensagens para todos os leads, em qualquer canal.</p>
 </div>
 
 <div class="container">
+
+  <h2 class="sec">Comece aqui</h2>
+
+  <div class="card" id="i28">
+    <div class="card-head"><span class="card-num">01</span><h3>Como usar este guia</h3></div>
+    <div class="card-body">
+      <p>Este guia junta as instruções de atendimento com as orientações das reuniões de vendas, pipe reviews e one-on-one de 24/06 a 28/10/2026, organizadas por tema e não por data. Quando não há indicação, a orientação veio do Maciel. As orientações do Gil aparecem identificadas.</p>
+      <p>Os textos de exemplo são referência, não script para copiar. O próprio Maciel disse em 29/09 que o que importa é a mensagem central chegar. Troque nomes, projetos e fatos pelos do lead, e use [Nome] e [Empresa] como variáveis.</p>
+      <div class="alerta">Quando duas orientações se contradizem, vale a mais recente, e a data está indicada. Os pontos que ainda precisam de confirmação estão em <a href="#i77">A confirmar com o Maciel</a>.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i29">
+    <div class="card-head"><span class="card-num">02</span><h3>Princípios que valem para todo atendimento</h3></div>
+    <div class="card-body">
+      <ol class="lista-num">
+        <li><strong>Resposta de lead vem antes de tudo.</strong> Primeira resposta de um lead: deixe o que está fazendo e responda. Lead já em conversa: no máximo 1h a 1h30. Resposta positiva é o momento de maior engajamento (26/08).</li>
+        <li><strong>Qualquer resposta é ouro.</strong> Uma negativa é melhor que silêncio, porque dá para qualificar, contornar e registrar (19/08).</li>
+        <li><strong>Curiosidade antes de venda.</strong> A primeira mensagem apresenta a Otus e dá o motivo do contato. Depois, só perguntas para entender o cenário. Só posicione a Otus depois de ouvir. A analogia do Maciel: o médico não receita antes de perguntar.</li>
+        <li><strong>Foque no cliente, não na Otus.</strong> A pessoa precisa sentir que você quer entender a empresa dela, e não que está empurrando um serviço (26/08).</li>
+        <li><strong>Não rebata objeção, contorne.</strong> Rebater cria duas cabeças opostas e o lead para de responder. Conduza o lead a chegar sozinho à conclusão (26/08).</li>
+        <li><strong>Comentário curto antes de cada pergunta.</strong> Pergunta atrás de pergunta vira interrogatório.</li>
+        <li><strong>Perguntas simples e abertas.</strong> Pergunta fechada gera resposta monossilábica. Pergunta simples gera resposta. Mensagem longa some (28/10, 23/09).</li>
+        <li><strong>Use mais a ligação.</strong> Uma ou duas perguntas no WhatsApp para abrir e depois ligue. Uma qualificação que levaria dois dias no WhatsApp se resolve em 15 minutos por telefone (26/08, 29/09).</li>
+        <li><strong>Prova social é obrigatória.</strong> Cite clientes reais da região do lead (lista em <a href="#i38">Prova social e dados</a>).</li>
+        <li><strong>Papel da Paula é educar.</strong> Muitos leads não sabem o que estão contratando nem o impacto de uma decisão tomada na obra e não no projeto (19/08).</li>
+        <li><strong>Cumpra o que combinar.</strong> Quando o lead define dia ou horário, crie a atividade no Pipe na mesma hora e zere no dia. Falhar no combinado diz ao lead que a Otus não cumpre prazo (26/08).</li>
+        <li><strong>Zere as tarefas do dia.</strong> Abra o Pipe todo dia em "para fazer", ordene por vencimento e zere as de hoje e as vencidas.</li>
+        <li><strong>Não se apegue.</strong> Contornou uma ou duas vezes e o lead continua barrando: portfólio como última cartada, Lost e próximo (28/10).</li>
+        <li><strong>Conheça o lead antes de ligar.</strong> Olhe o Pipe, o LinkedIn e o Instagram, e converse com Gil, Arthur ou Carla se o lead já teve contato com a Otus (23/09).</li>
+        <li><strong>Papel da Paula na pré-venda.</strong> Garantir ICP e agendar a reunião. Proposta, preço e escopo detalhado são do Gil (08/10, 28/10).</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card" id="i30">
+    <div class="card-head"><span class="card-num">03</span><h3>Orientações que mudaram ao longo do tempo</h3></div>
+    <div class="card-body">
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Tema</th><th>Orientação anterior</th><th>Orientação atual (vale esta)</th></tr>
+        <tr><td><strong>Qualificação</strong></td><td>Ficha completa, com empresa e projeto (05/08)</td><td>Três pontos (08/10): contrata projetos em BIM, tem projeto em andamento e está aberto a entender coordenação e compatibilização sem compromisso de cotar. Em 28/10, o Maciel simplificou ainda mais: ICP, trabalha em BIM e se já teve compatibilização externa (só para puxar conversa), depois reunião.</td></tr>
+        <tr><td><strong>Nome da reunião</strong></td><td>Reunião de descoberta</td><td>Alinhamento de escopo e apresentação, enxuta, com 3 a 4 perguntas (08/10)</td></tr>
+        <tr><td><strong>Intervalo entre contatos em Conexão</strong></td><td>7 a 8 dias (05/08)</td><td>Mais de 3 dias entre atividades e no máximo 2 por semana (07/10). Para quem já respondeu, 1 follow-up por semana (08/10). Em 29/09, o intervalo sugerido foi 4 dias.</td></tr>
+        <tr><td><strong>Prazo antes de Lost</strong></td><td>Pelo menos 15 dias de tentativas espaçadas, uma por semana (19/08)</td><td>Se o lead pedir para retomar em mais de 15 dias, Lost por timing com atividade de reativação na data combinada (16/09)</td></tr>
+        <tr><td><strong>Lost sem próximo passo</strong></td><td>Nunca dar Lost sem deixar atividade futura em 1 a 2 meses (11/09)</td><td>Mantido, combinado com a regra de 16/09 acima</td></tr>
+        <tr><td><strong>Dado de custo projeto x obra</strong></td><td>Uma decisão no projeto custa cerca de 50 vezes menos que na obra (19/08)</td><td>Confirmar com o Maciel: as mensagens-chave do projeto usam 100 vezes</td></tr>
+        <tr><td><strong>Passar preço ao lead</strong></td><td>A Paula levava a estimativa do Gil (28/10, caso Santa Maria)</td><td>No novo processo a Paula não passa preço. Ela explica e já marca a reunião (28/10)</td></tr>
+      </table></div>
+    </div>
+  </div>
 
   <h2 class="sec">Preparação e postura</h2>
 
@@ -211,20 +341,36 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
     <div class="card-body">
       <p><strong>Pesquise quem decide antes de ligar.</strong> Se a informação está disponível na internet (LinkedIn, site da empresa, CNPJ), você já deve saber antes de perguntar. Não pergunte ao cliente o que você poderia ter descoberto antes. Isso passa falta de preparo.</p>
       <p><strong>Revise a ficha de qualificação antes de qualquer contato de continuidade.</strong> Informações inconsistentes ou repetidas na ficha passam insegurança para o Gil e prejudicam a transição.</p>
+      <p><strong>Onde pesquisar:</strong></p>
+      <ul>
+        <li>Pipe: porte, mercado, cidade e histórico. Quando um lead responder pelo Driva, olhe o Pipe antes de responder (23/09).</li>
+        <li>Site da empresa e LinkedIn: porte dos empreendimentos, cargos e quantos coordenadores de projeto existem. Isso mostra o perfil e dispensa perguntas.</li>
+        <li>Instagram pessoal e da empresa: viagem, férias, lançamento e entrega de obra explicam a ausência e viram gancho (19/08).</li>
+        <li>No Google, pesquise "nome + empresa" juntos.</li>
+        <li>Se a empresa já teve contato com a Otus, pergunte ao Gil, Arthur, Carla ou Maciel o que aconteceu antes de entrar em contato.</li>
+      </ul>
+      <div class="alerta">Se parecer alheia ao histórico, a pessoa te engole na ligação (23/09). Ex-clientes não são leads frios: prepare-se para a conversa antes de contatar (19/08).</div>
     </div>
   </div>
 
   <div class="card" id="i2">
-    <div class="card-head"><span class="card-num">02</span><h3>Durante a ligação — postura geral</h3></div>
+    <div class="card-head"><span class="card-num">02</span><h3>Durante a ligação: postura geral</h3></div>
     <div class="card-body">
       <p><strong>Dê espaço para o cliente falar.</strong> Em momentos de diagnóstico, menos é mais. Faça a pergunta, fique em silêncio e ouça. Não complete a frase do cliente, não antecipe a resposta. Se ele pausar, aguarde.</p>
-      <p><strong>Siga uma sequência lógica de perguntas (storytelling).</strong> A condução da conversa precisa ter um fio: situação > problema > impacto > necessidade. Não pule etapas. Perguntas fora de ordem confundem o cliente e você perde profundidade.</p>
+      <p><strong>Siga uma sequência lógica de perguntas (storytelling).</strong> A condução da conversa precisa ter um fio: situação, problema, impacto, necessidade. Não pule etapas. Perguntas fora de ordem confundem o cliente e você perde profundidade.</p>
       <p><strong>Quem decide precisa ser mapeado cedo.</strong> Antes de investir tempo em qualificar um projeto, confirme: quem toma a decisão de contratar? É o dono, o diretor, o gerente? A dor de cada um é diferente. O gerente de projetos pensa em facilitar o trabalho dele. O dono pensa em margem, lucro e risco. Adapte o ângulo da conversa conforme o cargo.</p>
+      <p><strong>Na prática (29/09 e 07/10):</strong></p>
+      <ul>
+        <li>O motivo da ligação precisa ser claro e convincente, sem cara de "vou te vender": "quero entender melhor como vocês trabalham".</li>
+        <li>Tire o peso: peça 5 minutos em vez de 15. As pessoas aceitam 5 e a conversa passa disso. Mantenha o "se você achar que faz sentido" no roteiro.</li>
+        <li>Faça um comentário curto antes de cada pergunta. Pergunta atrás de pergunta vira interrogatório.</li>
+        <li>Se o lead disser que está sem tempo: "Imagina que está corrido aí mesmo. Quer marcar um horário para a gente falar melhor? O objetivo é só entender como vocês funcionam."</li>
+      </ul>
     </div>
   </div>
 
   <div class="card" id="i3">
-    <div class="card-head"><span class="card-num">03</span><h3>Mapeamento de processo — obrigatório</h3></div>
+    <div class="card-head"><span class="card-num">03</span><h3>Mapeamento de processo: obrigatório</h3></div>
     <div class="card-body">
       <p><strong>Pergunte sempre como a compatibilização/coordenação é feita hoje.</strong> É nesse ponto que o cliente vai comparar o que a Otus oferece com o que ele já faz. Sem saber o processo atual, você não consegue mostrar onde a Otus agrega.</p>
       <p>Perguntas úteis:</p>
@@ -238,29 +384,62 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
   </div>
 
   <div class="card" id="i4">
-    <div class="card-head"><span class="card-num">04</span><h3>SPIN Selling — seu papel no pré-venda</h3></div>
+    <div class="card-head"><span class="card-num">04</span><h3>SPIN Selling: seu papel no pré-venda</h3></div>
     <div class="card-body">
-      <p>Você não é agendadora de reunião. Seu papel é preparar o lead para a conversa com o Gil.</p>
+      <p>Você não é agendadora de reunião. Seu papel é preparar o lead para a conversa com o Gil. Quem dimensiona o problema chega com urgência e faz a conta sozinho (05/08).</p>
       <div class="etapas">
-        <div class="etapa"><span class="etapa-label">S</span><div><strong>Situação:</strong> como a empresa funciona, tamanho, projetos, equipe. Você já faz isso.</div></div>
-        <div class="etapa"><span class="etapa-label">P</span><div><strong>Problema:</strong> que dor o cliente tem. Você já faz isso.</div></div>
-        <div class="etapa"><span class="etapa-label">I</span><div><strong>Impacto:</strong> o que esse problema gera na prática — financeiro, operacional, de relacionamento com investidores. <strong>Isso é o que a maioria ainda não faz.</strong> Quando o cliente cita um problema, não siga em frente. Pergunte:
+        <div class="etapa"><span class="etapa-label">S</span><div><strong>Situação:</strong> como a empresa funciona, tamanho, projetos, equipe. Pergunta que não pode faltar: como vocês fazem a gestão e a compatibilização hoje? Quem é responsável? Tem funcionado bem?</div></div>
+        <div class="etapa"><span class="etapa-label">P</span><div><strong>Problema:</strong> que dor o cliente tem.</div></div>
+        <div class="etapa"><span class="etapa-label">I</span><div><strong>Impacto:</strong> o que esse problema gera na prática: financeiro, operacional, de relacionamento com investidores. <strong>Isso é o que mais falta.</strong> Quando o cliente cita um problema, não siga em frente. Pergunte:
           <ul style="margin:8px 0 0 0;">
-            <li>Qual o impacto disso para você?</li>
-            <li>Já passou por alguma situação concreta por causa disso?</li>
-            <li>Chegou a dimensionar o tamanho desse desvio?</li>
+            <li>Qual o impacto disso para você? Já passou por alguma situação concreta por causa disso?</li>
+            <li>Quais problemas de obra você já passou por causa disso?</li>
+            <li>Chegou a dimensionar o desvio de orçamento? Se o lucro estimado era X, quanto ficou depois dos imprevistos?</li>
+            <li>Como isso afeta seus sócios ou investidores?</li>
           </ul>
           <p style="margin-top:8px;">O objetivo é fazer o cliente sentir a urgência do problema antes de chegar no Gil. Quando ele sente o impacto, ele mesmo faz a conta e entende o valor do investimento.</p>
         </div></div>
-        <div class="etapa"><span class="etapa-label">N</span><div><strong>Necessidade:</strong> o cliente declara que precisa resolver. Isso vem naturalmente quando o I foi bem feito.</div></div>
+        <div class="etapa"><span class="etapa-label">N</span><div><strong>Necessidade:</strong> faça o lead verbalizar o que ajudaria, sem sugerir a resposta. Isso vem naturalmente quando o I foi bem feito.</div></div>
       </div>
+      <div class="alerta"><strong>Pergunta de comprometimento antes de convidar (23/09):</strong> "Você vê isso funcionando na [Empresa]?" ou "Você acha que isso poderia dar certo nos projetos de vocês?". Se a resposta for não, você entende o porquê e economiza a ligação. Se for sim, o convite vem naturalmente.</div>
     </div>
   </div>
 
-  <h2 class="sec">Qualificação técnica</h2>
+  <h2 class="sec">Qualificação</h2>
+
+  <div class="card" id="i31">
+    <div class="card-head"><span class="card-num">01</span><h3>O processo enxuto de pré-vendas (08/10 e 28/10)</h3></div>
+    <div class="card-body">
+      <p>A pré-venda garante ICP e agenda a reunião. O filtro estava alto e o funil burocrático, e o Gil confirmou que, quando a Paula pergunta demais, ele precisa repetir a explicação na reunião.</p>
+      <div class="etapas">
+        <div class="etapa"><span class="etapa-label">1</span><div><strong>Pesquise antes de conversar.</strong> Site da empresa e LinkedIn: porte dos empreendimentos, cargos, quantos coordenadores de projeto. Isso mostra o perfil e dispensa perguntas.</div></div>
+        <div class="etapa"><span class="etapa-label">2</span><div><strong>Valide apenas o essencial.</strong> Em 08/10 foram três pontos: contrata projetos em BIM, tem projeto em andamento agora e está aberto a entender coordenação e compatibilização sem compromisso de cotar. Em 28/10 o Maciel reduziu para dois: trabalha em BIM (premissa) e se já teve contato com compatibilização externa (só para puxar conversa, não qualifica nem desqualifica).</div></div>
+        <div class="etapa"><span class="etapa-label">3</span><div><strong>Converse de forma macro</strong> sobre como a empresa trabalha. Não entre em quais softwares usa nem no escopo dos projetistas.</div></div>
+        <div class="etapa"><span class="etapa-label">4</span><div><strong>Agende o alinhamento de escopo e apresentação.</strong> É uma reunião enxuta com o Gil, com 3 a 4 perguntas estratégicas: já contratou coordenação externa, o que espera do parceiro, tem receio de terceirizar a gestão do projeto, quais os maiores desafios no desenvolvimento dos projetos e na obra.</div></div>
+        <div class="etapa"><span class="etapa-label">5</span><div><strong>Quem investiga é o vendedor.</strong> O Gil descobre o projeto ideal e o formato (gerenciamento, ciclo de compatibilização ou compatibilização pontual).</div></div>
+      </div>
+      <div class="alerta"><strong>Regra prática (11/08):</strong> com a ficha em cerca de 80%, já pode marcar a reunião e passar para o Gil. A reunião precisa parecer um atalho para o cliente, e não mais uma etapa burocrática.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i19">
+    <div class="card-head"><span class="card-num">02</span><h3>ICP: qualifique antes de investir tempo</h3></div>
+    <div class="card-body">
+      <p>Antes de avançar qualquer lead, confirme o fit básico:</p>
+      <ul>
+        <li>A empresa trabalha com projetos em BIM (Revit ou IFC)? Se os projetistas entregam só em CAD 2D, está fora do escopo da Otus.</li>
+        <li>Quantos lançamentos por ano? O perfil ideal é 1 a 3 lançamentos por ano. Empresas com mais de 12 projetos simultâneos são grandes demais para prospecção direta, e empresas fora do escopo geográfico saem da lista (14/07).</li>
+        <li>Qual o tamanho dos projetos? Referência interna: coordenação a partir de cerca de R$ 75 a 85 mil, 12 meses (nunca cite valores ao lead). Projetos muito pequenos ficam fora do ICP.</li>
+        <li>Em 08/10, o Maciel apontou baixa conversão em projetos abaixo de 10.000 m² (12 negócios, 8%) e em Santa Catarina (15 negócios, 1 ganho). O mercado vê a Otus como premium. Foque em empreendimentos maiores e em empresas com estrutura, mesmo quando o empreendimento é pequeno.</li>
+        <li>Exemplo de descarte (07/10, DGO): Uberlândia fora da região estratégica, projeto abaixo de 10.000 m² e sem BIM. Junto, não vale gastar energia: um olá, portas abertas e Lost.</li>
+        <li>Empresas muito grandes (Cyrela) estão fora do padrão, mas a Otus está testando. O limite é uma compatibilização, e não a coordenação completa (23/09).</li>
+      </ul>
+      <div class="alerta">Se o lead está claramente fora do ICP, registre o motivo correto no Pipedrive e dê Lost sem arrastar o negócio.</div>
+    </div>
+  </div>
 
   <div class="card" id="i5">
-    <div class="card-head"><span class="card-num">01</span><h3>Perguntas que precisam de cuidado</h3></div>
+    <div class="card-head"><span class="card-num">03</span><h3>Perguntas que precisam de cuidado</h3></div>
     <div class="card-body">
       <p><strong>"Vocês não fazem nenhum projeto interno?"</strong> É muito raro uma construtora/incorporadora não ter nada internamente. Pergunte de forma mais aberta: "Como é estruturado o setor de projetos hoje? Tem alguém interno que coordena, ou tudo é terceirizado?" Deixe o cliente descrever, sem sugerir que você espera uma resposta específica.</p>
       <p style="margin-top:14px;"><strong>"Vocês trabalham com BIM?"</strong> Se o cliente confirmar que sim, não pare aí. Aprofunde:</p>
@@ -269,29 +448,58 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
         <li>Quem entrega em BIM? Um escritório multidisciplinar ou projetistas separados?</li>
         <li>Já teve experiência de compatibilização em BIM antes?</li>
       </ul>
-      <div class="alerta">Uma disciplina só em CAD fica fora do escopo da Otus. Por isso é essencial mapear disciplina por disciplina antes de montar a expectativa de escopo.</div>
+      <div class="alerta">Uma disciplina só em CAD fica fora do escopo da Otus. Por isso é essencial mapear disciplina por disciplina antes de montar a expectativa de escopo (veja <a href="#i32">BIM, disciplina por disciplina</a>).</div>
+    </div>
+  </div>
+
+  <div class="card" id="i32">
+    <div class="card-head"><span class="card-num">04</span><h3>BIM, disciplina por disciplina (Gil, 31/07)</h3></div>
+    <div class="card-body">
+      <p>A Otus só compatibiliza sobre modelos em BIM, e em todas as disciplinas. Levante o status de arquitetônico, estrutural, hidráulico, elétrico e dos demais complementares contratados.</p>
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Situação</th><th>O que fazer</th></tr>
+        <tr><td>Todas as disciplinas em BIM</td><td>Segue para compatibilização (ciclo ou relatório, conforme a fase)</td></tr>
+        <tr><td>Alguma em CAD, com abertura para migrar</td><td>Indicar escritório parceiro de modelagem e reabrir quando o modelo estiver pronto</td></tr>
+        <tr><td>Alguma em CAD, sem abertura</td><td>Fora do escopo por ora. Não oferecer compatibilização por prancha</td></tr>
+      </table></div>
+      <div class="alerta">A Otus não converte CAD para BIM. Não feche formato de serviço, prazo ou preço antes de ter a confirmação completa. "Usa BIM" precisa ser respondido com base em prática real, e não em intenção futura.</div>
     </div>
   </div>
 
   <div class="card" id="i6">
-    <div class="card-head"><span class="card-num">02</span><h3>O que NÃO dizer sobre BIM e CAD</h3></div>
+    <div class="card-head"><span class="card-num">05</span><h3>O que NÃO dizer sobre BIM e CAD</h3></div>
     <div class="card-body">
       <div class="nao"><strong>Não diga "a gente não faz em CAD".</strong> A explicação correta é: nosso padrão de entrega e verificação é em BIM porque o CAD tem limitação de informações. Em BIM você consegue ver coisas que em CAD não existem: em um projeto hidráulico você consegue visualizar a tubulação em 3D, o caimento real, os conflitos com estrutura. Em CAD isso é só uma linha reta com anotação. É uma questão técnica de qualidade de entrega, não uma restrição arbitrária.</div>
+      <div class="nao"><strong>Não prometa nem deixe em aberto</strong> qualquer atuação da Otus sobre disciplina em CAD.</div>
       <div class="alerta" style="margin-top:10px;"><strong>Sobre modelo em Revit:</strong> modelar em Revit não é o mesmo que compatibilizar. Não é porque um projeto existe em Revit que ele está pronto para ser recebido e compatibilizado. A entrega precisa estar no padrão correto.</div>
     </div>
   </div>
 
   <div class="card" id="i7">
-    <div class="card-head"><span class="card-num">03</span><h3>Fase de projeto — nunca assuma pelo nome</h3></div>
+    <div class="card-head"><span class="card-num">06</span><h3>Fase de projeto: nunca assuma pelo nome</h3></div>
     <div class="card-body">
-      <p>Os nomes das fases variam por empresa. "Pré-executivo" para um pode ser "anteprojeto" para outro. Nunca presuma a fase pelo nome que o cliente usa — isso impacta diretamente o que o Gil pode vender.</p>
+      <p>Os nomes das fases variam por empresa. "Pré-executivo" para um pode ser "anteprojeto" para outro. Nunca presuma a fase pelo nome que o cliente usa: isso impacta diretamente o que o Gil pode vender.</p>
       <p>Perguntas para deduzir a fase real:</p>
       <ul>
-        <li>Todos os projetistas já foram contratados?</li>
+        <li>Todos os projetistas já foram contratados? Quais são? (peça o nome dos projetistas, orientação do Gil de 22/09)</li>
         <li>Eles já fizeram alguma entrega? O que já foi desenvolvido?</li>
-        <li>O projeto já foi aprovado na prefeitura?</li>
+        <li>O projeto já foi aprovado na prefeitura? Quando?</li>
+        <li>Torre e embasamento são desenvolvidos juntos (um ciclo de entrada da Otus) ou separados (dois ciclos)? (Gil)</li>
       </ul>
-      <div class="alerta">Se todas as disciplinas ainda não foram contratadas, o projeto provavelmente está em anteprojeto, independente do nome que o cliente usa. <strong>Passe essa informação para o Gil — ela muda o escopo e o preço.</strong></div>
+      <div class="alerta">Se todas as disciplinas ainda não foram contratadas, o projeto provavelmente está em anteprojeto, independente do nome que o cliente usa. <strong>Passe essa informação para o Gil: ela muda o escopo e o preço.</strong></div>
+      <div class="alerta">A coordenação tem timing de entrada. A Otus não pega coordenação da metade do projeto para a frente, e nesse caso só vende compatibilização (05/08).</div>
+    </div>
+  </div>
+
+  <div class="card" id="i33">
+    <div class="card-head"><span class="card-num">07</span><h3>Quem decide</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Mapeie o decisor cedo. Dono e gerente de projetos têm dores diferentes: o dono pensa em margem e risco, e o coordenador em facilitar o trabalho.</li>
+        <li>Se o contato é coordenador, pergunte se o diretor sente as mesmas dores ou se é só um desejo dele. Pergunta que o Gil faz na reunião: "essa demanda de ter alguém de fora, você já conversou com o seu diretor ou quer levantar os valores antes de apresentar?" (18/08)</li>
+        <li>Ao marcar a reunião, veja se existe um gerente ou diretor que deveria estar na call. Se não conseguir, o Gil tenta trazê-lo na etapa de proposta (06/10).</li>
+        <li>Resposta de quem não decide (mestre de obras, assistente, comercial) não vira Conexão (11/08).</li>
+      </ul>
     </div>
   </div>
 
@@ -303,7 +511,13 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
       <p>A explicação do convite para a reunião precisa ser sobre o benefício para o cliente, não sobre o processo da Otus.</p>
       <div class="nao"><strong>Evitar:</strong> "É o nosso processo que a gente faz antes de montar a proposta."</div>
       <div class="alerta" style="margin-top:8px;"><strong>Melhor:</strong> deixar claro o que o cliente vai ganhar nessa conversa: entender como o serviço funciona na prática, ver se faz sentido para o projeto dele especificamente, ter clareza de investimento e retorno.</div>
-      <p style="margin-top:10px;">O cliente precisa sentir que a reunião é valiosa para ele, não que é uma etapa burocrática do funil da Otus.</p>
+      <p style="margin-top:10px;">O cliente precisa sentir que a reunião é valiosa para ele, não que é uma etapa burocrática do funil da Otus. Exemplos de ganho (11/08): ver a plataforma de cronograma (desenvolvimento próprio, acesso gratuito), entender como a metodologia difere da concorrência e definir escopo, tempo de coordenação e número de ciclos.</p>
+      <ul>
+        <li>Chame de "alinhamento de escopo e apresentação" (08/10), e não de "reunião de descoberta" ou "reunião de vendas". Soa mais prático (09/09).</li>
+        <li>Com perfis diretos, use "gostaria de te convidar" ou "gostaria de marcar". "Faz sentido?" abre espaço demais para o não (09/09).</li>
+        <li>Lead que pede proposta com urgência: "Você está com pressão. Deixa eu te ligar agora e a gente marca a reunião hoje no fim do dia ou amanhã cedo." Use a urgência a favor do agendamento (11/08).</li>
+        <li>Se o lead cita o preço: lembre que um único apontamento de um ciclo pode pagar o valor daquele ciclo, e que a reunião serve para ele ver esse retorno (28/10).</li>
+      </ul>
     </div>
   </div>
 
@@ -312,15 +526,147 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
     <div class="card-body">
       <p>Quando o lead fala "próxima semana", pergunte: "Qual dia fica melhor pra eu te chamar?"</p>
       <p>Quando fala "mês que vem", pergunte: "Começo, meio ou final do mês?"</p>
+      <ul>
+        <li>Mesmo diante de um "vamos aguardar", ancore um prazo: "Quando posso te retornar? Daqui a um mês, 15 dias ou um ano?" (19/08)</li>
+        <li>Crie a atividade no Pipe na hora em que a data for combinada.</li>
+        <li>Prazo de retomada acima de 15 dias: Lost por timing e atividade de reativação na data combinada (16/09).</li>
+      </ul>
       <div class="alerta" style="margin-top:10px;"><strong>Data vaga = risco alto de novo silêncio. Data específica = comprometimento.</strong> Sempre fechar com um dia concreto.</div>
     </div>
   </div>
 
   <div class="card" id="i10">
-    <div class="card-head"><span class="card-num">03</span><h3>Mensagens para donos de empresa e pessoas de obra</h3></div>
+    <div class="card-head"><span class="card-num">03</span><h3>Abordagem por perfil de lead</h3></div>
     <div class="card-body">
       <p>Donos de empresa e engenheiros de obra têm o WhatsApp saturado de fornecedores, cotações e problemas do dia a dia. <strong>Mensagem longa = ignorada.</strong></p>
       <p>Para esse perfil: seja direta, uma pergunta por mensagem, sem preâmbulo. Se não responder, não mande a mesma mensagem de novo. <strong>Mude o gancho ou o canal.</strong></p>
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Perfil</th><th>Como abordar</th></tr>
+        <tr><td><strong>Dono ou sócio</strong></td><td>Valor estratégico, margem, risco e parceiro especializado. Mensagem curta e mais formal. Não é a conversa de coordenador (09/09).</td></tr>
+        <tr><td><strong>Diretor de empresa grande</strong></td><td>Termos técnicos e conhecimento da empresa. Posicione como braço técnico pontual de compatibilização, para equipe sobrecarregada ou olhar mais profundo em conflito. Perguntas rasas como "acontece problema na obra?" não funcionam (23/09).</td></tr>
+        <tr><td><strong>Coordenador ou gerente de projetos</strong></td><td>Processo, compatibilização e eficiência de obra. Faça o coordenador sentir que a Otus potencializa o trabalho dele ("coordenação a quatro mãos", "apoio", "parceria"). Nunca soar como substituição.</td></tr>
+        <tr><td><strong>Coordenador interno que bloqueia</strong></td><td>Curiosidade total, sem tom comercial. Mapeie os desafios dele e, depois, acione o dono ou diretor separadamente, sem citar que tentou vender ao coordenador (16/09).</td></tr>
+        <tr><td><strong>Engenheiro de obra</strong></td><td>WhatsApp cheio de fornecedores. Mensagem direta, com data específica combinada. Dor: facilitar o dia a dia dele (14/07).</td></tr>
+        <tr><td><strong>Profissional que faz tudo sozinho</strong></td><td>Evite qualquer tom de terceirização da função. Use "apoio", "parceria" e "ajudar a ser mais estratégico" (19/08).</td></tr>
+        <tr><td><strong>Quem veio de indicação</strong></td><td>Abra citando quem indicou, para o lead tratar a conversa como prioridade (14/07, 11/08).</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="card" id="i34">
+    <div class="card-head"><span class="card-num">04</span><h3>Do WhatsApp para a ligação</h3></div>
+    <div class="card-body">
+      <div class="etapas">
+        <div class="etapa"><span class="etapa-label">1</span><div>Faça 1 ou 2 perguntas simples para abrir a conversa (no máximo três).</div></div>
+        <div class="etapa"><span class="etapa-label">2</span><div>Quando o lead responder, peça a ligação com um motivo claro: "posso te ligar amanhã às [hora] para entender melhor como vocês trabalham?".</div></div>
+        <div class="etapa"><span class="etapa-label">3</span><div>Se ele recusar, siga pelo canal em que ele responde (WhatsApp, e-mail).</div></div>
+        <div class="etapa"><span class="etapa-label">4</span><div>Se não atender, tente em horário diferente e deixe um recado curto com o motivo.</div></div>
+      </div>
+      <p>Para lead que só responde por e-mail, a ligação também pode ser marcada por e-mail (28/10).</p>
+    </div>
+  </div>
+
+  <div class="card" id="i35">
+    <div class="card-head"><span class="card-num">05</span><h3>Confirmar reuniões (29/09)</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Reunião marcada com antecedência: confirme no dia anterior.</li>
+        <li>Reunião marcada de véspera: confirme cerca de 2 horas antes.</li>
+        <li>Em toda confirmação, relembre o propósito da reunião e o que o lead leva dela. "Você tem disponibilidade?" sozinho não basta.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">Regras de comunicação</h2>
+
+  <div class="card" id="i21">
+    <div class="card-head"><span class="card-num">01</span><h3>O que a Paula nunca faz ou diz</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Nunca usa travessão em qualquer texto ou mensagem (WhatsApp, e-mail, LinkedIn).</li>
+        <li>Nunca fala em "montar proposta" ou "orçamento" com o lead. Esse papel é do Gil. A Paula agenda a reunião e, no novo processo, não passa preço (28/10).</li>
+        <li>Nunca menciona valores, faixas de preço ou estimativas nas conversas de prospecção.</li>
+        <li>Nunca manda proposta ou orçamento passivamente. O risco é cair em leilão de preço (11/08).</li>
+        <li>Nunca abre o primeiro contato com proposta de valor, produto ou serviço. A ordem é conexão específica com o contexto do lead, depois descoberta, depois a Otus.</li>
+        <li>Nunca faz check-in genérico ("oi, tudo bem?"). O gatilho correto é uma novidade ou um gancho específico daquele lead.</li>
+        <li>Nunca reage com "boa", "legal" ou "entendi" antes da próxima pergunta. Puxe o dado técnico específico do que o lead disse.</li>
+        <li>Nunca rebate a objeção na primeira resposta ("a gente não substitui, é braço técnico"). Pergunte primeiro sobre o processo dele.</li>
+        <li>Nunca diz "ok, ligo depois" quando o lead dá um argumento que é o motivo para a Otus entrar agora (ex.: "estou revisando projetos para lançar").</li>
+        <li>Nunca vai direto para o tom de vendas logo depois de o lead responder. Em 29/09, uma segunda mensagem que "já vendia a Otus" esfriou uma conversa que tinha começado bem.</li>
+        <li>Nunca usa a expressão "marcar alguma coisa", que soa como obrigação (09/09).</li>
+        <li>Nunca explica de forma literal uma limitação interna da Otus. Formula o convite para outro canal como preferência natural, não como restrição.</li>
+        <li>Nunca assume que o lead já conhece a Otus só porque está no Pipedrive há tempo, nem finge que já falou com ele se o histórico é de outro colega.</li>
+        <li>Nunca cita cliente sem relação com a região do lead. A ABC, por exemplo, não serve para Chapecó (28/10).</li>
+        <li>Nunca cita a GPE como referência em Goiânia. Há disputa legal em andamento (09/09).</li>
+        <li>Nunca usa case com perfil diferente do lead. O Nest/PRC é alto padrão e coordenação, então não serve para MCMV, onde a referência é a Cury (26/08).</li>
+        <li>Nunca usa IA para responder diretamente o lead sem revisar. A resposta fica com cara de texto gerado (26/08).</li>
+        <li>Nunca promete visita, evento ou fato que não é verdadeiro. Use ganchos reais (por exemplo, a visita do Arthur a Santos foi confirmada em 28/10).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" id="i36">
+    <div class="card-head"><span class="card-num">02</span><h3>O que sempre fazer</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Deixar claro o motivo do contato logo no início (evento, indicação, EIV, conversa anterior).</li>
+        <li>Mostrar que a mensagem foi feita para aquela pessoa: cite o projeto, o lançamento, a mudança de cargo, o que ela postou.</li>
+        <li>Terminar com uma pergunta simples e específica, ligada a um fato do lead, e não com um convite genérico.</li>
+        <li>Reforçar o propósito da reunião em cada follow-up. "Você tem disponibilidade?" sozinho não basta.</li>
+        <li>Registrar toda ligação e interação no Pipe, em qualquer canal.</li>
+        <li>Preencher a ficha em bullets com negrito, não em parágrafo corrido (19/08).</li>
+        <li>Pedir ajuda ao Maciel no Discord quando não souber o que responder, principalmente na primeira resposta depois de uma negativa (29/09, 23/09).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" id="i37">
+    <div class="card-head"><span class="card-num">03</span><h3>Regras por canal</h3></div>
+    <div class="card-body">
+      <h4>WhatsApp</h4>
+      <ul>
+        <li>Uma pergunta por mensagem. Para dono e engenheiro de obra, mensagem direta e sem preâmbulo.</li>
+        <li>Uma ou duas perguntas, no máximo três, para abrir a conversa. Depois, ligação.</li>
+        <li>Se o lead raramente responde, uma linha de gancho e um convite.</li>
+        <li>Para convites em volume, mande em blocos curtos (saudação, depois o link) e alterne pelo menos quatro modelos de texto. Um bloco grande é pego pelos filtros do WhatsApp (06/10).</li>
+        <li>Configure respostas rápidas no WhatsApp Business para as mensagens mais frequentes (29/09).</li>
+        <li>Frase que teve a maior taxa de retorno no Driva: "Só para garantir que essa mensagem não vai passar batida" (08/09).</li>
+      </ul>
+      <h4>LinkedIn</h4>
+      <ul>
+        <li>Primeiro contato com uma conexão específica, sem abertura comercial.</li>
+        <li>Para quem não responde, pergunte o canal: "Bruno, prefere falar por aqui ou pelo WhatsApp?" (09/09).</li>
+        <li>Acompanhe o perfil de contatos relevantes: contratação de projetista, lançamento e visita a obra viram gancho natural (29/09).</li>
+      </ul>
+      <h4>E-mail</h4>
+      <ul>
+        <li>Assunto curto, específico e que gera curiosidade, sem falar da Otus (veja <a href="#i15">E-mail: assunto</a>).</li>
+        <li>Cada e-mail de nutrição precisa de abertura e estrutura diferentes, e não só de um case novo.</li>
+        <li>Não mande portfólio genérico. Abra com referência local (por exemplo, uma empresa da região) e uma live ou case com ela, e crie curiosidade antes de mostrar o material (09/09).</li>
+        <li>Se o lead só responde por e-mail, marque a ligação pelo próprio e-mail.</li>
+      </ul>
+      <h4>Ligação</h4>
+      <p>As regras de ligação estão em <a href="#i2">Durante a ligação</a> e <a href="#i34">Do WhatsApp para a ligação</a>.</p>
+    </div>
+  </div>
+
+  <div class="card" id="i38">
+    <div class="card-head"><span class="card-num">04</span><h3>Prova social e dados para usar</h3></div>
+    <div class="card-body">
+      <p>Confirme na aba <a href="Clientes%20-%20Otus%20Engenharia.html">Clientes</a> antes de citar qualquer nome, e use apenas cases com dados que você possa enviar em documento se o lead pedir.</p>
+      <ul>
+        <li><strong>Maringá:</strong> 11 projetos com a PRC e 6 projetos com a HCR.</li>
+        <li><strong>Floripa:</strong> Dimas, Urbana, Sanfielle, WKoerich, Rotesma, RTT e AMS.</li>
+        <li><strong>Itapema:</strong> Tríade, ABC e GCL. O Seu Neto, da Tríade, é referência de obra em Itapema.</li>
+        <li><strong>Santos:</strong> Silamar (PW36). <strong>Guarujá:</strong> Imperial.</li>
+        <li><strong>Aracaju:</strong> Impacto e Condominial.</li>
+        <li><strong>São Paulo:</strong> Benx, Planeta e Tegra.</li>
+        <li><strong>MCMV e alto volume:</strong> Cury.</li>
+        <li><strong>Complexidade:</strong> Catuaí (tropicalização de projeto de escritório de Londres), CFL/Jurerê (6 ou mais arquitetos coordenados ao mesmo tempo), Pininfarina (rigor de 1 mm) e projetos com assinatura Porsche Consulting em Floripa e Itapema.</li>
+        <li><strong>Autoridade:</strong> mais de 800 verificações no checklist, mais de 250 empreendimentos e plataforma própria de cronograma e comunicação. Em 16/09, o Maciel usou também "mais de 70 pessoas e quase 300 projetos gerenciados".</li>
+        <li><strong>Custo:</strong> uma decisão tomada no projeto custa muito menos do que na obra. O Maciel orientou citar o número concreto e não "5%".</li>
+      </ul>
+      <div class="alerta">Ainda falta confirmar qual número de equipe usar e se o custo é 50 ou 100 vezes menor (veja <a href="#i77">A confirmar</a>).</div>
     </div>
   </div>
 
@@ -338,6 +684,7 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
         <div class="etapa"><span class="etapa-label">2</span><div>Segunda mensagem: convite para live ou conteúdo relevante</div></div>
         <div class="etapa"><span class="etapa-label">3</span><div>Terceira mensagem: só então entra a pergunta de negócio</div></div>
       </div>
+      <p>Mensagens prontas em <a href="#i54">Primeiro contato com lead de evento</a>.</p>
     </div>
   </div>
 
@@ -345,7 +692,7 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
     <div class="card-head"><span class="card-num">02</span><h3>Reação às respostas do cliente: seja técnica, não genérica</h3></div>
     <div class="card-body">
       <p>Quando o cliente compartilha uma informação relevante (um dado, um problema, uma decisão), nunca reaja com "boa", "legal", "entendi" antes de ir para a próxima pergunta. Isso desperdiça o momento.</p>
-      <div class="alerta">A reação correta é puxar o dado técnico específico que ele acabou de dar. Exemplo: se ele disse que tem problema de incompatibilidade na obra, não diga "entendi, e quantos projetos você tem?" — pergunte sobre aquele problema: "Que tipo de incompatibilidade você já passou? Estrutura com hidráulica, ou mais em instalações?" Isso mostra que você ouviu de verdade e aprofunda exatamente onde importa.</div>
+      <div class="alerta">A reação correta é puxar o dado técnico específico que ele acabou de dar. Exemplo: se ele disse que tem problema de incompatibilidade na obra, não diga "entendi, e quantos projetos você tem?". Pergunte sobre aquele problema: "Que tipo de incompatibilidade você já passou? Estrutura com hidráulica, ou mais em instalações?" Isso mostra que você ouviu de verdade e aprofunda exatamente onde importa.</div>
     </div>
   </div>
 
@@ -354,106 +701,367 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
     <div class="card-body">
       <div class="nao"><strong>Não faça check-in genérico</strong> ("oi, tudo bem, como estão as coisas?"). Isso não gera resposta.</div>
       <div class="alerta" style="margin-top:8px;"><strong>O gatilho correto é:</strong> novidade + previsão futura relevante para aquele lead especificamente. Algo mudou no mercado, no serviço da Otus, ou no contexto do projeto dele que justifica o retorno agora.</div>
-      <p style="margin-top:10px;">A primeira mensagem de reabertura vai direto ao gancho, sem pedir permissão para retomar o contato. Explica o motivo e termina com uma pergunta de diagnóstico.</p>
-      <div class="alerta">Atenção: o histórico no Pipedrive pode ter sido feito por outro SDR ou executivo. <strong>Não simule que você já falou pessoalmente com o lead se não falou.</strong></div>
+      <p style="margin-top:10px;">A primeira mensagem de reabertura vai direto ao gancho, sem pedir permissão para retomar o contato. Explica o motivo e termina com uma pergunta de diagnóstico. Antes, busque o motivo real de não ter fechado.</p>
+      <div class="alerta">Atenção: o histórico no Pipedrive pode ter sido feito por outro SDR ou executivo. <strong>Não simule que você já falou pessoalmente com o lead se não falou.</strong> Cite quem conversou. Mensagens prontas em <a href="#i55">Reativação de lead antigo</a>.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i39">
+    <div class="card-head"><span class="card-num">04</span><h3>Velocidade e ritmo de contato</h3></div>
+    <div class="card-body">
+      <ul>
+        <li><strong>Primeira resposta de um lead:</strong> responda na hora. <strong>Lead em conversa há dias:</strong> até 1h a 1h30 (26/08).</li>
+        <li><strong>Conexão:</strong> mais de 3 dias entre uma atividade e outra, no máximo 2 por semana. Para quem já respondeu, 1 follow-up por semana (07/10 e 08/10). O objetivo é falar com mais leads ao mesmo tempo e cobrar menos retorno de cada um.</li>
+        <li><strong>Motivo:</strong> coordenadoras de incorporadoras recebem muita mensagem comercial e criam ranço de quem insiste demais. Uma delas contou que já deixou de fechar com uma empresa porque o comercial era chato (07/10).</li>
+        <li><strong>Não insista todo dia.</strong> Se mandou mensagem hoje, a ligação fica para depois de uns dias (por exemplo, sexta). Em 28/10 o Maciel pediu cuidado para não fazer muitas tentativas em período curto.</li>
+        <li><strong>Mudou o contexto, mude o gancho ou o canal.</strong> Se não respondeu, não repita a mesma mensagem.</li>
+        <li><strong>Quando alguém mais importante da empresa responde</strong>, tire os outros contatos da mesma empresa da sequência do Driva. Se quem respondeu tem cargo mais baixo que os prospectados, deixe a prospecção rolando (23/09).</li>
+      </ul>
     </div>
   </div>
 
   <div class="card" id="i14">
-    <div class="card-head"><span class="card-num">04</span><h3>Cadência e nutrição: varie a estrutura</h3></div>
+    <div class="card-head"><span class="card-num">05</span><h3>Cadência e nutrição: varie a estrutura</h3></div>
     <div class="card-body">
       <p>Cada e-mail ou mensagem de nutrição em uma cadência precisa ter abertura e estrutura diferentes. Não basta trocar o case ou o tema: se o formato é sempre o mesmo (apresentação, case, CTA), o lead percebe e ignora.</p>
       <div class="alerta">Varie: às vezes abra com uma pergunta, às vezes com um dado de mercado, às vezes com uma referência direta ao contexto da empresa dele. <strong>O conteúdo e a forma precisam mudar juntos.</strong></div>
+      <p style="margin-top:10px;"><strong>Nutrição depois do Lost ou durante a pausa:</strong></p>
+      <ul>
+        <li>Perdeu para concorrente: não mande nutrição mensal. Pergunte a previsão dos próximos projetos e agende o contato com base na resposta.</li>
+        <li>Tentativas esgotadas ou timing indefinido: nutrição mensal.</li>
+        <li>Nutrição de e-mail: dado real e um case da região, com estrutura diferente a cada e-mail.</li>
+        <li>Não crie planilha separada por região. Use os filtros do Pipe (etapa e cidade) para montar a lista na hora que precisar, por exemplo, quando o Gil for viajar (19/08).</li>
+        <li>Mantenha os leads salvos no WhatsApp com etiquetas por nome e empresa (19/08).</li>
+      </ul>
     </div>
   </div>
 
   <div class="card" id="i15">
-    <div class="card-head"><span class="card-num">05</span><h3>E-mail: assunto</h3></div>
+    <div class="card-head"><span class="card-num">06</span><h3>E-mail: assunto</h3></div>
     <div class="card-body">
-      <p>O assunto precisa ser curto, claro e específico para aquele lead. Quem bate o olho tem que querer abrir. Evite palavras genéricas como "parceria", "oportunidade", "serviços". Prefira algo que conecte com o contexto real do lead.</p>
+      <p>O assunto precisa ser curto, claro e específico para aquele lead. Quem bate o olho tem que querer abrir e sentir curiosidade, sem falar da Otus. Evite palavras genéricas como "parceria", "oportunidade", "serviços". Prefira algo que conecte com o contexto real do lead.</p>
       <div class="alerta"><strong>Teste rápido:</strong> se o assunto serve para qualquer empresa do setor, não serve.</div>
     </div>
   </div>
 
-  <h2 class="sec">Objeções e situações específicas</h2>
+  <div class="card" id="i40">
+    <div class="card-head"><span class="card-num">07</span><h3>Convites para eventos e lives</h3></div>
+    <div class="card-body">
+      <ul>
+        <li><strong>Convide só quem já respondeu e tem conexão real.</strong> Não use convite como gancho de reabertura fria (09/09, 08/09).</li>
+        <li>Foque o convite para Conexchange em Balneário Camboriú. Itapema e Itajaí só para os leads mais quentes (28/10).</li>
+        <li>Para quem não se inscreveu, ligue. A secretária costuma barrar: "Tenho um convite aqui para o [Nome], não consegui mandar. Qual o melhor canal?" (18/08).</li>
+        <li>Se alguém da empresa já se inscreveu: "Seu gerente (ou sócio) ainda não se inscreveu. Será que ele consegue ir?"</li>
+        <li>Em convites em massa pelo WhatsApp, mande blocos curtos e varie o texto (06/10). O e-mail em massa pelo Pipe com [Nome] dinâmico é permitido para Paula e Gil.</li>
+        <li><strong>Quem foi à live ou ao evento:</strong> reserve um tempo logo depois para relacionamento. "Conseguiu assistir? O que você mais gostou?" (06/10). Faça também uma rotina semanal para quem baixa material ou se inscreve em evento.</li>
+      </ul>
+      <p>Mensagens prontas em <a href="#i62">Convidar para evento</a>.</p>
+    </div>
+  </div>
+
+  <h2 class="sec">Objeções: caso, o que fazer e mensagem</h2>
+
+  <div class="alerta sec-intro"><strong>Regra central (26/08): não rebata, contorne.</strong> A primeira resposta depois de uma negativa quase nunca recebe resposta do lead, então escreva essa mensagem com mais cuidado e peça ajuda ao Maciel (23/09). "Não tenho interesse" é uma negativa genérica. Objeção é algo específico, como "já fazemos internamente", "não temos projeto" ou "o projeto está avançado".</div>
 
   <div class="card" id="i16">
-    <div class="card-head"><span class="card-num">01</span><h3>Objeção: "fazemos a compatibilização/BIM internamente"</h3></div>
+    <div class="card-head"><span class="card-num">01</span><h3>"Fazemos a compatibilização/BIM internamente"</h3></div>
     <div class="card-body">
-      <p>Quando o lead disser que já faz gestão BIM ou compatibilização com equipe própria, não trate como desqualificação automática. A resposta correta é mostrar <strong>complementaridade, não substituição.</strong></p>
-      <div class="alerta"><strong>O argumento central:</strong> a Otus trabalha com um checklist de mais de 800 verificações e experiência em mais de 250 projetos. Isso não substitui o time interno: complementa e eleva o padrão de entrega. Um colaborador interno não tem como ter a mesma profundidade de repertório que vem de centenas de projetos simultâneos em tipologias diferentes.</div>
-      <p style="margin-top:10px;">Perguntas para aprofundar antes de usar esse argumento:</p>
+      <p><strong>Quando:</strong> o lead diz que tem equipe própria ou que o coordenador faz a compatibilização. Não trate como desqualificação automática. A resposta correta é mostrar <strong>complementaridade, não substituição.</strong></p>
+      <p><strong>O que fazer:</strong> não diga "a gente não substitui". Sonde o processo primeiro. Depois que ele descrever, normalmente de forma vaga, mostre a complementaridade. Perguntas para aprofundar:</p>
       <ul>
-        <li>Como funciona esse processo interno hoje?</li>
-        <li>Quem faz? Tem quantas pessoas dedicadas?</li>
+        <li>Como funciona esse processo interno hoje? Quais as fases, como é a revisão entre disciplinas?</li>
+        <li>Quem faz? Tem quantas pessoas dedicadas? Como o fluxo entre projetistas é gerenciado?</li>
         <li>Já passou por algum problema de interferência que não foi pego antes da obra?</li>
       </ul>
+      <div class="alerta"><strong>O argumento central:</strong> a Otus trabalha com um checklist de mais de 800 verificações e experiência em mais de 250 empreendimentos. Isso não substitui o time interno: complementa e eleva o padrão de entrega. Um colaborador interno não tem como ter a mesma profundidade de repertório que vem de centenas de projetos em tipologias diferentes. Cerca de 80% dos clientes da Otus têm coordenador interno (16/09).</div>
+      <div class="msg"><span class="msg-label">Mensagem de sondagem (26/08)</span>Que bom que vocês têm uma equipe interna! O objetivo aqui é justamente entender como vocês trabalham, para ver se a gente consegue apoiar de alguma forma. Vocês estão com quantos projetos em andamento hoje?</div>
+      <div class="msg"><span class="msg-label">Para quem já tem a coordenação estruturada (19/08)</span>[Nome], o que a gente avalia como ideal para uma empresa que já tem a coordenação estruturada internamente são as análises técnicas de compatibilização. A gente faz ciclos isolados para aliviar a equipe de vocês em momentos de alta demanda ou para dar mais segurança a um projeto específico. Hoje, no portfólio de vocês, você vê algum projeto onde a gente poderia conversar sobre isso?</div>
+      <p id="i17" style="margin-top:12px;"><strong>Lead que faz projeto internamente (arquitetura, engenharia):</strong> não descarte. Ofereça relatório pontual de compatibilização ou a plataforma da Otus, em vez de ir embora da conversa. Existe espaço para colaboração mesmo quando o projeto é interno.</p>
     </div>
   </div>
 
-  <div class="card" id="i17">
-    <div class="card-head"><span class="card-num">02</span><h3>Lead que faz projeto internamente</h3></div>
+  <div class="card" id="i41">
+    <div class="card-head"><span class="card-num">02</span><h3>O contato é o coordenador interno e ele barra tudo</h3></div>
     <div class="card-body">
-      <p>Se o lead faz projeto internamente (arquitetura, engenharia), não descarte. Ofereça relatório pontual de compatibilização ou a plataforma da Otus, em vez de ir embora da conversa. <strong>Existe espaço para colaboração mesmo quando o projeto é interno.</strong></p>
+      <p><strong>Quando:</strong> toda vez que você apresenta a Otus, o coordenador diz que isso é o trabalho dele (caso Bilfor e Ufor, 16/09).</p>
+      <p><strong>O que fazer:</strong> é como oferecer consultoria de vendas ao gestor de vendas. Com ele, só curiosidade. Mapeie os desafios dele. Depois posicione: "A Otus trabalha em parceria com o coordenador de projetos. Ajudamos a potencializar o trabalho dele assumindo as tarefas mais operacionais e aumentando o poder de decisão dele." Em seguida, acione o dono ou diretor separadamente, sem dizer que tentou vender ao coordenador.</p>
+      <div class="msg"><span class="msg-label">Para o coordenador</span>Tranquilo, [Nome]. Queria entender um pouco mais da sua atuação e dos desafios que vocês passam hoje.</div>
+      <div class="msg"><span class="msg-label">Para o dono ou diretor</span>Oi, [Nome], tudo bem? Troquei uma ideia com o [coordenador], que cuida da coordenação de projetos aí. Pelo que ele me relatou, vejo bastante espaço para a gente ajudar vocês na gestão dos projetos. Queria conversar uns minutos com você sobre isso. Tem disponibilidade essa semana?</div>
     </div>
   </div>
 
-  <h2 class="sec">Ficha, ICP e Pipedrive</h2>
-
-  <div class="card" id="i18">
-    <div class="card-head"><span class="card-num">01</span><h3>Ficha de qualificação: cuidados na hora de preencher</h3></div>
+  <div class="card" id="i42">
+    <div class="card-head"><span class="card-num">03</span><h3>"O projetista (ou o arquiteto) faz a compatibilização"</h3></div>
     <div class="card-body">
+      <p><strong>O que fazer (16/09):</strong> questione com curiosidade. Esse escritório compatibiliza todas as disciplinas entre si ou só o projeto dele com os demais? Quem compatibiliza arquitetura com estrutura? E estrutura com interiores? Quem valida as soluções técnicas antes de chegar na obra? O projetista nunca vai apontar como errado o que ele mesmo fez. O Maciel usou a imagem de colocar o lobo para cuidar do galinheiro.</p>
+      <div class="msg"><span class="msg-label">Mensagem (Gil e Maciel, 09/09)</span>[Nome], conversando com o meu diretor, ele me pediu para entender quem são os projetistas de vocês. A gente tem parceiros e pode indicar, dependendo do que vocês precisam. Uma coisa que a gente vê bastante no mercado é o projetista fazer a própria compatibilização, o que cria um conflito de interesse natural. Gostaria de te apresentar como a gente trabalha.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i43">
+    <div class="card-head"><span class="card-num">04</span><h3>"Estou corrido" ou "estamos com lançamento"</h3></div>
+    <div class="card-body">
+      <p><strong>O que fazer (26/08, 19/08):</strong> a correria é o argumento para a Otus entrar agora, e não contra. Revisar projeto para aprovar e lançar no prazo é exatamente o trabalho da coordenação. Entrar depois do lançamento deixa pouco a fazer e causa retrabalho. Para quem raramente responde, mensagem muito curta.</p>
+      <div class="msg"><span class="msg-label">Lead que está revisando projetos para lançar (19/08)</span>[Nome], conversando com o meu coordenador, ele lembrou que esse é justamente o trabalho da coordenação: revisar os projetos e coordenar o desenvolvimento para você aprovar e lançar no prazo. Se a gente entrar depois do lançamento, não vai ter muito o que fazer. O projeto atualizado que você mencionou é só a arquitetura ou já tem as engenharias rodando?</div>
+      <div class="msg"><span class="msg-label">Curta, para quem raramente responde</span>[Nome], lançamento é muito corrido mesmo. Mas acho que a gente consegue te ajudar nessa correria e já garantir um projeto maduro desde agora. Podemos conversar rapidinho?</div>
+    </div>
+  </div>
+
+  <div class="card" id="i44">
+    <div class="card-head"><span class="card-num">05</span><h3>"Não temos orçamento" ou "está caro"</h3></div>
+    <div class="card-body">
+      <p><strong>O que fazer (23/09):</strong> tempo e dinheiro todo mundo tem, a questão é a prioridade. O trabalho é fazer a pessoa priorizar. Mostre o retorno, e não o custo: um apontamento de um ciclo pode pagar o valor daquele ciclo. Quem decide o orçamento normalmente reservou uma verba fechada para projetos e acha que não sobrou nada. A Paula não passa preço; isso vai para a reunião com o Gil.</p>
+      <div class="msg"><span class="msg-label">Mensagem</span>Entendo, [Nome]. A ideia da conversa é justamente te mostrar o que costuma aparecer em projetos como o de vocês e o quanto isso representa na obra. Um único apontamento já pode compensar o investimento do ciclo. Posso te mostrar em 30 minutos?</div>
+    </div>
+  </div>
+
+  <div class="card" id="i45">
+    <div class="card-head"><span class="card-num">06</span><h3>"Ainda não chegamos nessa fase" ou "estamos terminando os complementares"</h3></div>
+    <div class="card-body">
+      <p><strong>O que fazer (11/09, 09/09):</strong> quem entra na coordenação depois do projeto avançado herda problemas que não criou. Entrar cedo é o melhor momento. Use prova social da região.</p>
+      <div class="msg"><span class="msg-label">Mensagem (Floripa, 09/09)</span>[Nome], entendo que vocês estão finalizando os complementares. Mas a nossa experiência mostra que esse é justamente o melhor momento para entrar, com o projeto ainda se desenvolvendo. Quase todas as construtoras de Floripa que trabalham com a gente passaram por esse ponto: Dimas, Urbana, Sanfielle, WKoerich, Rotesma, RTT e AMS. Gostaria de conversar agora para você ver como a Otus encaixaria nesse momento.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i46">
+    <div class="card-head"><span class="card-num">07</span><h3>"Resolvemos direto na obra"</h3></div>
+    <div class="card-body">
+      <p><strong>O que fazer (19/08, Porto Valente):</strong> o argumento dela é o que justifica a coordenação. Se a demanda aparece na obra, o projeto chegou incompleto. Use o dado de que uma decisão no projeto custa muito menos do que na obra e cite uma empresa semelhante da região.</p>
+      <div class="msg"><span class="msg-label">Mensagem</span>[Nome], entendo. Se as demandas aparecem na obra, é porque o projeto está chegando incompleto na obra. Uma decisão tomada na fase de projeto custa muito menos do que a mesma decisão tomada durante a obra. A gente atende uma empresa [na região] com um cenário parecido com o de vocês, e justamente por não ter equipe de projetos interna, eles entenderam a importância de ter alguém olhando essa etapa antes de chegar na obra. Vejo que para a [Empresa] poderia ser um caminho. O que você acha?</div>
+    </div>
+  </div>
+
+  <div class="card" id="i47">
+    <div class="card-head"><span class="card-num">08</span><h3>Negativa genérica: "sem interesse no momento, obrigado"</h3></div>
+    <div class="card-body">
+      <p><strong>O que fazer (23/09):</strong> agradeça e faça uma única pergunta simples. Não faça uma série de perguntas nem apresente a Otus.</p>
+      <div class="msg"><span class="msg-label">Mensagem</span>Tranquilo, [Nome]. Obrigado pelo retorno! Essa parte de compatibilização vocês fazem internamente?</div>
+    </div>
+  </div>
+
+  <div class="card" id="i48">
+    <div class="card-head"><span class="card-num">09</span><h3>"Manda por e-mail"</h3></div>
+    <div class="card-body">
+      <p><strong>O que fazer (23/09):</strong> muitas vezes é só um jeito de se desviar. Mande o material e retome pelo outro canal.</p>
+      <div class="msg"><span class="msg-label">LinkedIn</span>[Nome], te mandei o portfólio por e-mail. Conseguiu dar uma olhada? Você vê esse tipo de apoio funcionando na [Empresa]?</div>
+      <div class="msg"><span class="msg-label">WhatsApp, depois do e-mail</span>Mandei o e-mail lá, [Nome]. Fico no aguardo do seu contato.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i49">
+    <div class="card-head"><span class="card-num">10</span><h3>Experiência ruim anterior com a Otus</h3></div>
+    <div class="card-body">
+      <p><strong>O que fazer (16/09, 09/09):</strong> busque com Gil, Carla ou Ana Carla o que aconteceu antes de contatar. Se o lead perguntar o que mudou e você não souber, parece que você não trabalha na Otus. Reconheça a mudança e vire a conversa para a carteira dele.</p>
+      <p><strong>Pontos que mudaram (resposta do Maciel em 16/09 para um lead de 2021):</strong></p>
       <ul>
-        <li>Não repita a mesma informação em campos diferentes</li>
-        <li>Se uma informação não foi confirmada, anote como pendência com uma pergunta específica para buscar na próxima conversa</li>
-        <li>Revise a ficha antes de enviar para o Gil</li>
-        <li>Projeto que está em CAD não entra como projeto em análise: vai apenas como dado de contexto da empresa</li>
-        <li>"Usa BIM" precisa ser respondido com base em prática real, não em intenção futura ("já contratou em BIM" é diferente de "quer contratar em BIM")</li>
-        <li>Equipe interna: seja direta. Ex: "Tem 1 colaborador que faz compatibilização internamente, mas será desligado." Não dilua em duas frases separadas.</li>
+        <li>Em 2021 a equipe tinha cerca de 15 pessoas. Hoje são mais de 70, com quase 300 projetos gerenciados.</li>
+        <li>Reestruturação societária e de equipe, com gerentes técnicos vindos de construtoras como GT Building e FG.</li>
+        <li>Plataforma própria de gestão e comunicação com o cliente.</li>
+        <li>Clientes atuais na região (por exemplo, VCC, Zamp e Ace; em Curitiba, Tríplice). Confirme os nomes antes de citar.</li>
       </ul>
+      <div class="msg"><span class="msg-label">Fechamento</span>E como está a carteira de vocês? Estão com bastante coisa em andamento? Hoje vocês contratam coordenação e compatibilização ou fazem internamente?</div>
     </div>
   </div>
 
-  <div class="card" id="i19">
-    <div class="card-head"><span class="card-num">02</span><h3>ICP: qualifique antes de investir tempo</h3></div>
+  <div class="card" id="i50">
+    <div class="card-head"><span class="card-num">11</span><h3>"A diretoria não vê valor" (o contato quer, mas não decide)</h3></div>
     <div class="card-body">
-      <p>Antes de avançar qualquer lead, confirme o fit básico:</p>
-      <ul>
-        <li>A empresa trabalha com projetos em BIM (Revit/IFC)? Se os projetistas entregam só em CAD 2D, está fora do escopo da Otus.</li>
-        <li>Quantos lançamentos por ano? O perfil ideal é 1 a 3 lançamentos/ano. Empresas com mais de 12 projetos simultâneos são grandes demais para prospecção direta.</li>
-        <li>Qual o tamanho dos projetos? A Otus atende a partir de coordenação a partir de ~R$75-85k, 12 meses. Projetos muito pequenos ficam fora do ICP.</li>
-      </ul>
-      <div class="alerta">Se o lead está claramente fora do ICP, registre o motivo correto no Pipedrive e dê Lost sem arrastar o negócio.</div>
+      <p><strong>O que fazer (28/10, Maybelly):</strong> seja transparente de volta e dê uma cartada final com prova social, para ela mostrar à diretoria. Depois, siga para o próximo.</p>
+      <div class="msg"><span class="msg-label">Mensagem</span>Entendi, [Nome]. Uma pena. A gente tem feito trabalhos muito legais com a [cliente 1], a [cliente 2] e a [cliente 3] aí na [cidade]. Quem sabe se a diretoria ver o que os concorrentes estão fazendo, dão atenção.</div>
     </div>
   </div>
 
-  <div class="card" id="i20">
-    <div class="card-head"><span class="card-num">03</span><h3>Pipedrive: etapas e o que cada uma exige</h3></div>
+  <div class="card" id="i51">
+    <div class="card-head"><span class="card-num">12</span><h3>Empresa grande e madura (Even, Helbor, AEM)</h3></div>
     <div class="card-body">
-      <div class="pipe">
-        <div class="pipe-row"><div class="pipe-name">Entrada</div><div class="pipe-desc">Lead chegou. Atender em até 1 dia.</div></div>
-        <div class="pipe-row"><div class="pipe-name">Prospecção</div><div class="pipe-desc">Lead sendo trabalhado via sequência (Driva ou manual). Se não responder ao fim da cadência, Lost em Prospecção.</div></div>
-        <div class="pipe-row"><div class="pipe-name">Conexão</div><div class="pipe-desc">Primeiro contato estabelecido, lead respondeu. Não deixar mais de 7 dias sem atividade (vira vermelho).</div></div>
-        <div class="pipe-row"><div class="pipe-name">Qualificado</div><div class="pipe-desc">Empresa mapeada com o cliente. Precisa ter: champion confirmado + dores mapeadas (max 2, da lista fixa do Pipe).</div></div>
-        <div class="pipe-row"><div class="pipe-name">Descoberta Agendada</div><div class="pipe-desc">Reunião com o Gil marcada.</div></div>
-      </div>
-      <div class="alerta" style="margin-top:14px;"><strong>Quando dar Lost:</strong> sempre registrar o motivo correto da lista do Pipedrive + adicionar comentário no card explicando o contexto (o que foi conversado, por que perdeu, se vale reativar no futuro e quando).</div>
-      <div class="alerta" style="margin-top:8px;"><strong>Break off:</strong> quando as tentativas de contato se esgotam, mandar mensagem curta e direta: "Tenho tentado contato, imagino que esteja na correria. Ainda é uma prioridade isso para você? Quando quiser retomar, estaremos à disposição." Depois: Lost com motivo "Tentativas de contato esgotadas" + observação no card.</div>
+      <p><strong>O que fazer (23/09):</strong> mostre conhecimento da empresa. Perguntas rasas como "já aconteceu problema na obra com vocês?" não funcionam. A empresa já tem processos robustos, e a Otus entra como braço técnico pontual, e não como substituição.</p>
+      <div class="msg"><span class="msg-label">Mensagem (Maciel, 23/09)</span>[Nome], imagino que vocês já façam esse serviço internamente. Na Otus, para empresas desse porte, a gente atua como braço técnico de compatibilização em momentos em que a equipe está sobrecarregada, com excesso de demanda, ou para um olhar mais profundo em um conflito de projeto. Vocês têm alguma demanda desse tipo agora, ou previsão de ter?</div>
     </div>
   </div>
 
-  <h2 class="sec">Regras pessoais</h2>
-
-  <div class="card" id="i21">
-    <div class="card-head"><span class="card-num">01</span><h3>O que a Paula nunca faz ou diz</h3></div>
+  <div class="card" id="i52">
+    <div class="card-head"><span class="card-num">13</span><h3>Pede proposta ou orçamento sem reunião</h3></div>
     <div class="card-body">
-      <ul>
-        <li>Nunca fala em "montar proposta" ou "orçamento" com o lead. Esse papel é do Gil. A Paula agenda a reunião.</li>
-        <li>Nunca menciona valores ou estimativas de preço nas conversas de prospecção.</li>
-        <li>Nunca usa travessão em mensagens (WhatsApp, e-mail, LinkedIn).</li>
-        <li>Nunca explica de forma literal uma limitação interna da Otus. Formula o convite para outro canal como preferência natural, não como restrição.</li>
-        <li>Nunca assume que o lead já conhece a Otus só porque está no Pipedrive há tempo. Pode ter sido prospectado por outra pessoa, em outro contexto.</li>
-      </ul>
+      <p><strong>O que fazer (11/08, 19/08):</strong> não mande proposta passivamente. A reunião posiciona a Otus tecnicamente e evita o leilão de preço.</p>
+      <div class="msg"><span class="msg-label">Mensagem</span>[Nome], não consigo montar uma proposta sem aprofundar o escopo com você. É uma conversa curta para organizar projeto, escopo, tempo de coordenação e número de ciclos. Pedi ao especialista para ir direto ao ponto, e a gente resolve em 40 minutos. Quando fica melhor para você, hoje no fim do dia ou amanhã cedo?</div>
+    </div>
+  </div>
+
+  <div class="card" id="i53">
+    <div class="card-head"><span class="card-num">14</span><h3>O lead já fechou com um concorrente</h3></div>
+    <div class="card-body">
+      <p><strong>O que fazer (19/08):</strong> reposicione a Otus como alternativa para um segundo olhar. Pergunte se existe outro projeto do grupo. Em 28/10 o Maciel sugeriu perguntar como tem sido a experiência com coordenação externa e oferecer apoio pontual, como um ciclo de compatibilização em um projeto em andamento.</p>
+      <div class="msg"><span class="msg-label">Mensagem</span>Como você já trabalha com uma empresa de coordenação, queria deixar a Otus à disposição como alternativa para quando precisar de um segundo olhar. Gostaria de te apresentar as diferenças. E tem algum outro projeto no grupo em que a gente poderia ajudar?</div>
+    </div>
+  </div>
+
+  <h2 class="sec">Situações do dia a dia: mensagens prontas</h2>
+
+  <div class="alerta sec-intro">Adapte nomes, empresas e fatos. Mensagens marcadas com data vêm de orientação direta do Maciel. As marcadas como modelo seguem as regras do guia.</div>
+
+  <div class="card" id="i54">
+    <div class="card-head"><span class="card-num">01</span><h3>Primeiro contato com lead de evento (Conexchange ou live)</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> o lead se inscreveu ou foi ao evento. A sequência é: 1ª mensagem com conexão e insight do evento, sem pergunta comercial. 2ª com o convite para a live ou conteúdo relevante. 3ª com a pergunta de negócio.</p>
+      <div class="msg"><span class="msg-label">Mensagem 1 (modelo)</span>Oi, [Nome], tudo bem? Aqui é a Maria Paula, da Otus Engenharia. Vi que a [Empresa] participou do [evento], e um ponto que ficou forte lá foi [tema real do evento]. O que você mais gostou?</div>
+      <div class="msg"><span class="msg-label">Depois da live (Maciel, 06/10)</span>[Nome], conseguiu assistir à live? O que você mais gostou?</div>
+    </div>
+  </div>
+
+  <div class="card" id="i55">
+    <div class="card-head"><span class="card-num">02</span><h3>Reativação de lead antigo</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> a empresa já conversou com a Otus (Gil, outro SDR ou outra pessoa). Não finja que foi você, cite quem conversou e vá direto ao gancho, sem pedir permissão para retomar. Busque antes o motivo real de não ter fechado.</p>
+      <div class="msg"><span class="msg-label">Mensagem (Maciel, 26/08)</span>Oi, [Nome], tudo bem? Conversamos [X] meses atrás. Como é que o projeto avançou de lá para cá?</div>
+      <div class="msg"><span class="msg-label">Variação citando o Gil (modelo)</span>Oi, [Nome], tudo bem? Aqui é a Maria Paula, da Otus. O Gil conversou com vocês sobre o [projeto] e na época não seguimos. Vi que a [Empresa] lançou o [empreendimento] e queria entender como está a compatibilização dos projetos de vocês hoje.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i56">
+    <div class="card-head"><span class="card-num">03</span><h3>O lead respondeu bem: levar para a ligação</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> resposta positiva no primeiro contato. Responda na hora e chame para ligar.</p>
+      <div class="msg"><span class="msg-label">Mensagem (Maciel, 26/08)</span>Poxa, [Nome]! Que bom que você gostou de conhecer o nosso trabalho. Vejo que se encaixa bastante no perfil de vocês. Posso te ligar para a gente entender melhor o momento que vocês estão passando agora e combinar os próximos contatos?</div>
+      <p><strong>Se ele fez uma pergunta objetiva (por exemplo, anteprojeto ou executivo):</strong> responda só o que foi perguntado. "A Otus consegue entrar nos dois momentos, dependendo do que fizer sentido para vocês." Sem desenvolver.</p>
+    </div>
+  </div>
+
+  <div class="card" id="i57">
+    <div class="card-head"><span class="card-num">04</span><h3>Pedir a ligação sem peso</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> o lead respondeu e você quer ligar, ou ele disse que está sem tempo (29/09 e 07/10).</p>
+      <div class="msg"><span class="msg-label">Mensagem</span>Imagina que está corrido aí mesmo, [Nome]. Quer marcar um horário para a gente falar melhor? O objetivo é só entender como vocês trabalham e falar um pouco da Otus também. Se você achar que faz sentido, a gente marca uma reunião para aprofundar, e senão deixamos para um próximo momento. É só um bate-papo inicial de 5 minutos.</div>
+      <div class="msg"><span class="msg-label">Para lead que só responde por e-mail ou texto (28/10)</span>[Nome], posso te ligar amanhã às [hora], ou entre [hora] e [hora]? Qual fica melhor para você?</div>
+    </div>
+  </div>
+
+  <div class="card" id="i58">
+    <div class="card-head"><span class="card-num">05</span><h3>Lead que veio de indicação</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> alguém da empresa ou um parceiro passou o contato. Abra citando quem indicou, para o lead tratar a conversa como prioridade (09/09, 14/07).</p>
+      <div class="msg"><span class="msg-label">Abertura de ligação (Maciel, 09/09)</span>Oi, [Nome], tudo bem? Me chamo Paula, sou da Otus Engenharia. O [indicador] me passou o seu contato e disse que você seria a pessoa certa para a gente conversar sobre o processo de projetos de vocês.</div>
+      <div class="msg"><span class="msg-label">Para o decisor quando o contato só repassou (11/08)</span>[Nome], conversei com a [contato] e foi bem legal. Ela me explicou que vocês estão começando uma nova obra e que o principal desafio é ter tempo e equipe para acompanhar os projetos. A gente atua como braço direito da incorporadora para vocês terem projetos mais eficientes. Gostaria de ver a sua agenda para marcar uma reunião presencial em [cidade].</div>
+      <div class="msg"><span class="msg-label">Quando o lead não sabe quem é a Otus (05/08, Swell)</span>[Nome], desculpa, acho que passou batido ou não fui clara. A [indicadora] passou o seu contato e disse que você era a pessoa certa para falar sobre isso. A Otus [explicação em uma ou duas frases]. Você já trabalha com esse tipo de serviço?</div>
+    </div>
+  </div>
+
+  <div class="card" id="i59">
+    <div class="card-head"><span class="card-num">06</span><h3>Lead que visualiza e não responde</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> várias mensagens vistas, sem resposta. Antes, pesquise o Instagram e o LinkedIn por um gancho. Se não houver, pergunte de forma direta e transparente.</p>
+      <div class="msg"><span class="msg-label">Mensagem (Maciel, 19/08)</span>[Nome], esse assunto ainda é prioridade para você?</div>
+      <div class="msg"><span class="msg-label">Para lead que pediu proposta e sumiu (Maciel, 23/09)</span>[Nome], como você tem visto as mensagens e não tem respondido, posso entender isso como uma negativa da sua parte? Ou ainda faz sentido a gente conversar sobre a proposta?</div>
+      <div class="msg"><span class="msg-label">Para lead difícil de acessar (Maciel, 23/09)</span>[Nome], a gente ajuda as construtoras dessa forma e quero falar com você por causa disso. Como tem sido difícil o retorno, queria saber se você acredita que podemos falar agora ou não.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i60">
+    <div class="card-head"><span class="card-num">07</span><h3>Pedir a data de retomada</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> o lead pediu para retomar depois, ou parou de responder e já está em aberto.</p>
+      <div class="msg"><span class="msg-label">Mensagem (Maciel, 16/09)</span>Oi, [Nome], tudo bem? Só queria pegar um prazo com você de quando poderemos retomar este contato. Assim já marco na agenda para não perder o timing.</div>
+      <div class="msg"><span class="msg-label">Quando ele diz "vamos aguardar" (19/08)</span>Combinado, [Nome]. Para eu me organizar: quando posso te retornar? Daqui a um mês, 15 dias ou um ano?</div>
+    </div>
+  </div>
+
+  <div class="card" id="i61">
+    <div class="card-head"><span class="card-num">08</span><h3>Confirmar ou propor a reunião de alinhamento de escopo</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> o lead já foi qualificado ou veio pedindo proposta. Reforce o propósito da reunião.</p>
+      <div class="msg"><span class="msg-label">Mensagem (Maciel, 16/09)</span>[Nome], tudo bem? Passando para retomarmos o alinhamento de escopo e darmos sequência à proposta. Você comentou que teve bastante trabalho e retrabalho em projetos anteriores, e a ideia da conversa é justamente estruturar tudo de forma certeira no [empreendimento]. Gostaria de agendar uma videochamada de alinhamento de escopo com o nosso especialista. Como está a sua disponibilidade essa semana?</div>
+      <div class="msg"><span class="msg-label">Versão com opções de horário (Maciel, 09/09)</span>[Nome], queria confirmar a reunião que estávamos tentando encaixar. O objetivo é mostrar como a Otus atua com empresas que têm o perfil de vocês, especialmente no gerenciamento de projetos. Você teria disponibilidade [opção A] ou [opção B]?</div>
+      <p><strong>Quando a coordenadora está sobrecarregada (Maciel, 16/09):</strong> pergunte se ela tem tempo de fazer tudo sozinha (reuniões com projetistas, cobranças, gestão de cronograma, preenchimento de plataforma) e se o diretor sente as mesmas dores.</p>
+    </div>
+  </div>
+
+  <div class="card" id="i62">
+    <div class="card-head"><span class="card-num">09</span><h3>Convidar para evento</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> lead que já respondeu e tem fit. Nunca para quem ainda não deu retorno.</p>
+      <div class="msg"><span class="msg-label">Otus Day (Maciel, 09/09)</span>[Nome], tudo bem? Este evento é exclusivo para clientes da Otus. Surgiram algumas vagas novas e estamos convidando alguns dos nossos principais contatos. Lembrei de você porque [motivo real]. É um pouco maior do que o Conexchange que você foi e os temas são diferentes. Gostaria de te convidar [e o seu diretor].</div>
+      <div class="msg"><span class="msg-label">Com escassez (Maciel, 16/09)</span>[Nome], o evento é exclusivo para clientes da Otus, mas a gente cedeu algumas vagas para contatos próximos. Reservei uma vaga para você. Caso não possa ir, é só me avisar que repasso para outra pessoa. O [indicador] foi quem me passou o seu contato e é um dos patrocinadores do evento.</div>
+      <p><strong>Para o dono em convite de evento:</strong> use tom um pouco mais formal e sem "bora conversar" (23/09).</p>
+    </div>
+  </div>
+
+  <div class="card" id="i63">
+    <div class="card-head"><span class="card-num">10</span><h3>Contato indicou outra pessoa, ou copiou alguém no e-mail</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> reconheça o gesto. Uma mensagem genérica depois disso desperdiça a conexão (29/09).</p>
+      <div class="msg"><span class="msg-label">Mensagem (Maciel, 29/09)</span>[Nome], vi que você respondeu o e-mail colocando o [colega] em cópia. Muito obrigada pela conexão.</div>
+      <div class="msg"><span class="msg-label">Depois, na ligação (Maciel, 29/09)</span>Quero conversar com você para entender como vocês têm trabalhado a parte de gerenciamento de projetos. Vi que os empreendimentos de vocês são bem legais e muito parecidos com os que a gente atende aí em [cidade]. Acho que pode ter fit e sinergia.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i64">
+    <div class="card-head"><span class="card-num">11</span><h3>A pessoa mudou de empresa ou a empresa mudou</h3></div>
+    <div class="card-body">
+      <div class="msg"><span class="msg-label">Mensagem (Maciel, 09/09)</span>[Nome], a gente se falou quando você ainda estava na [empresa antiga]. Vi que você foi para a [empresa nova] e queria entender como estão os projetos de vocês por lá.</div>
+      <div class="msg"><span class="msg-label">Quando o projeto da Otus aparece no portfólio de outra empresa (Maciel, 09/09)</span>[Nome], estava vendo alguns projetos aqui e notei que o [projeto] aparece no portfólio do [Grupo]. Você tem ligação com o grupo?</div>
+      <p>Se a pessoa saiu da empresa, veja o passo a passo em <a href="#i76">Rotina e agenda</a>.</p>
+    </div>
+  </div>
+
+  <div class="card" id="i65">
+    <div class="card-head"><span class="card-num">12</span><h3>Empresa grande com reunião marcada que quer ir direto (Cyrela)</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> a gerente prefere ir direto à reunião e não quer qualificar antes. Posicione que o objetivo é recíproco, conhecer a empresa também, e use o diretor como motivo (23/09, 29/09).</p>
+      <div class="msg"><span class="msg-label">Mensagem (áudio ou texto)</span>[Nome], o nosso diretor vai estar na reunião e me pediu para falar com você uns 5 minutinhos antes, só para a gente chegar mais direcionado. O objetivo é também conhecer a [Empresa] e o jeito como vocês trabalham.</div>
+      <p>Se ela preferir texto, mande 3 ou 4 perguntas em tópicos, como "como funciona a coordenação interna?" e "como são escolhidos os projetistas?".</p>
+    </div>
+  </div>
+
+  <div class="card" id="i66">
+    <div class="card-head"><span class="card-num">13</span><h3>Lead monossilábico (só diz sim ou não)</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> você só fez perguntas fechadas. Passe para perguntas abertas e seja mais direta (28/10).</p>
+      <div class="nao"><strong>Antes (pergunta fechada):</strong> "Vocês têm projeto rodando agora?"</div>
+      <div class="msg"><span class="msg-label">Depois (pergunta aberta)</span>Como vocês estão conduzindo a compatibilização dos projetos que estão em andamento agora?</div>
+      <div class="msg"><span class="msg-label">Se mesmo assim não evoluir, proposta direta de videochamada (Maciel, 28/10)</span>Pelo que você me contou, vocês trabalham em BIM e já conhecem esse tipo de serviço. Então vamos fazer uma videochamada de 45 minutos para entender melhor o processo de vocês e apresentar a Otus.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i67">
+    <div class="card-head"><span class="card-num">14</span><h3>Perguntar pelo projeto de forma simples</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> o lead engaja mais com perguntas curtas sobre o projeto do que com mensagem longa. Falar de projeto não é invasivo, eles gostam de falar (23/09).</p>
+      <div class="msg"><span class="msg-label">Exemplo</span>Como está o projeto de vocês na fase de aprovação na prefeitura?</div>
+      <div class="msg"><span class="msg-label">Exemplo</span>Por que o projeto foi adiado? Voltou para o produto ou é algum problema de aprovação?</div>
+    </div>
+  </div>
+
+  <div class="card" id="i68">
+    <div class="card-head"><span class="card-num">15</span><h3>Convite para reunião presencial</h3></div>
+    <div class="card-body">
+      <div class="msg"><span class="msg-label">Para dono com estrutura enxuta (Maciel, 23/09)</span>Vamos marcar uma reunião presencial para mostrar como a gente pode te ajudar nessa parte de gerenciamento de projetos?</div>
+      <p>Depois mande outra mensagem resumindo os principais ganhos para empresas com o perfil dele.</p>
+      <div class="msg"><span class="msg-label">Café para se apresentar, sem pressão (Maciel, 29/09)</span>[Nome], quem sabe a gente marca um café só para nos apresentarmos? O suporte da Otus é para incorporadoras, e gostaria de conhecer melhor o trabalho de vocês.</div>
+      <div class="msg"><span class="msg-label">Lead de Londrina (Maciel, 19/08)</span>[Nome], o nosso coordenador vai estar em Londrina na segunda-feira. Poderíamos aproveitar para fazer essa reunião presencial. Fica melhor de manhã ou à tarde?</div>
+      <p><strong>Visita à obra:</strong> só cite uma visita se ela for real e confirmada com o Gil ou o Arthur.</p>
+    </div>
+  </div>
+
+  <div class="card" id="i69">
+    <div class="card-head"><span class="card-num">16</span><h3>Lead com lançamento apertado</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> quer lançar em poucos meses e ainda não contratou os projetistas (19/08).</p>
+      <div class="msg"><span class="msg-label">Mensagem</span>Esse prazo está bem apertado. A nossa experiência mostra que os clientes chegam ao lançamento na fase de anteprojeto ou pré-executivo, em torno do 8º ao 10º mês de trabalho com a equipe. Para lançar em [mês], você provavelmente precisa acionar os projetistas imediatamente. Vamos fazer a reunião o quanto antes para o especialista orientar sobre os prazos reais?</div>
+    </div>
+  </div>
+
+  <div class="card" id="i70">
+    <div class="card-head"><span class="card-num">17</span><h3>Retomar usando o que a empresa publicou</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> manutenção de carteira (29/09).</p>
+      <div class="msg"><span class="msg-label">Mensagem (modelo)</span>[Nome], vi no Instagram que vocês estão contratando o [projetista]. Eles são muito bons. Como está o projeto do [empreendimento]?</div>
+    </div>
+  </div>
+
+  <div class="card" id="i71">
+    <div class="card-head"><span class="card-num">18</span><h3>Lead pequeno ou fora do perfil que pediu algo que a Otus não faz</h3></div>
+    <div class="card-body">
+      <p><strong>Caso:</strong> formulário de lead pequeno ou que buscava consultoria (28/10).</p>
+      <div class="msg"><span class="msg-label">Mensagem (modelo)</span>[Nome], obrigada pelo contato. Passando para ser transparente: a Otus atua com coordenação e compatibilização de projetos em BIM para incorporadoras, e não com [o que ele pediu]. Se fizer sentido, você pode acompanhar o nosso próximo evento online, que é gratuito e aberto ao mercado.</div>
     </div>
   </div>
 
@@ -543,10 +1151,144 @@ nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
     </div>
   </div>
 
+
+  <h2 class="sec">Pipedrive, break-off e Lost</h2>
+
+  <div class="card" id="i20">
+    <div class="card-head"><span class="card-num">01</span><h3>Pipedrive: etapas e o que cada uma exige</h3></div>
+    <div class="card-body">
+      <div class="pipe">
+        <div class="pipe-row"><div class="pipe-name">Entrada</div><div class="pipe-desc">Lead chegou. Atender em até 1 dia (alerta de estagnação: 1 dia).</div></div>
+        <div class="pipe-row"><div class="pipe-name">Prospecção</div><div class="pipe-desc">Lead sendo trabalhado via sequência (Driva ou manual). Se não responder ao fim da cadência, Lost em Prospecção (alerta: 15 dias).</div></div>
+        <div class="pipe-row"><div class="pipe-name">Conexão</div><div class="pipe-desc">Pessoa relevante respondeu, mesmo que negativa. Mova no momento da resposta. Mais de 3 dias entre atividades e no máximo 2 por semana. Não deixar mais de 7 dias sem atividade (vira vermelho).</div></div>
+        <div class="pipe-row"><div class="pipe-name">Qualificado</div><div class="pipe-desc">Empresa mapeada com o cliente. Precisa ter: champion confirmado + dores mapeadas (máximo 2, da lista fixa do Pipe). A parte do projeto da ficha pode ficar em aberto (05/08).</div></div>
+        <div class="pipe-row"><div class="pipe-name">Descoberta Agendada</div><div class="pipe-desc">Reunião com o Gil marcada (alinhamento de escopo e apresentação).</div></div>
+      </div>
+      <div class="alerta" style="margin-top:14px;"><strong>Fluxo do Driva no Pipe (05/08):</strong> criar o negócio em Entrada, mover para Prospecção quando rodar a sequência, ir para Conexão quando responder (associando ao negócio em Prospecção) e Lost em Prospecção se a sequência acabar sem resposta.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i72">
+    <div class="card-head"><span class="card-num">02</span><h3>O que conta como Conexão e Qualificado</h3></div>
+    <div class="card-body">
+      <ul>
+        <li><strong>Conta como Conexão:</strong> qualquer resposta de pessoa relevante (coordenador, gerente, diretor de projetos ou engenharia), mesmo negativa, como "não tenho interesse" ou "me chama em 6 meses".</li>
+        <li><strong>Não conta:</strong> resposta automática, secretária repassando contato, setor comercial, "bom dia" sem continuidade, quem saiu da empresa, área diferente (compras, RH, financeiro). "Engajado" no Driva não é Conexão (19/08). Resposta de quem não decide (mestre de obras, assistente, comercial) também não (11/08).</li>
+        <li><strong>Mova para Conexão no momento da resposta</strong>, sem esperar a confirmação do interesse (26/08).</li>
+        <li><strong>Qualificado</strong> exige empresa mapeada diretamente com o cliente e, pela regra atual, champion confirmado e no máximo 2 dores da lista fixa do Pipe. A parte do projeto da ficha pode ficar em aberto (05/08).</li>
+        <li>Se a informação não foi confirmada, anote como pendência com a pergunta específica para a próxima conversa. Não deixe "a confirmar" solto.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" id="i18">
+    <div class="card-head"><span class="card-num">03</span><h3>Ficha de qualificação: cuidados na hora de preencher</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Preencha em bullets com negrito, não em parágrafo corrido (19/08).</li>
+        <li>Não repita a mesma informação em campos diferentes.</li>
+        <li>Se uma informação não foi confirmada, anote como pendência com uma pergunta específica para buscar na próxima conversa.</li>
+        <li>Revise a ficha antes de enviar para o Gil. Com a ficha em cerca de 80%, já pode marcar a reunião (11/08).</li>
+        <li>Projeto que está em CAD não entra como projeto em análise: vai apenas como dado de contexto da empresa.</li>
+        <li>"Usa BIM" precisa ser respondido com base em prática real, não em intenção futura ("já contratou em BIM" é diferente de "quer contratar em BIM").</li>
+        <li>Equipe interna: seja direta. Ex.: "Tem 1 colaborador que faz compatibilização internamente, mas será desligado." Não dilua em duas frases separadas.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" id="i73">
+    <div class="card-head"><span class="card-num">04</span><h3>Break-off é uma ferramenta, não desistência</h3></div>
+    <div class="card-body">
+      <p>O break-off abre espaço para um "não", mas também reativa quem estava com outra prioridade. "Posso entender a falta de retorno como um não agora?" reativa quem sumiu sem forçar a barra (09/09). O e-mail com o portfólio vem antes da mensagem final.</p>
+      <p><strong>Quando usar:</strong> o lead parou de responder depois de algumas tentativas em canais diferentes, ou você contornou uma ou duas objeções e ele segue barrando (28/10). Os intervalos de cadência continuam valendo antes do break-off. Depois, Lost com o motivo certo e observação no card (veja <a href="#i74">Quando dar Lost</a>).</p>
+      <div class="msg"><span class="msg-label">Versão curta (14/07 e padrão do projeto)</span>[Nome], tenho tentado contato, mas imagino que esteja na correria. Ainda é uma prioridade isso para você? Quando quiser retomar, estaremos à disposição.</div>
+      <div class="msg"><span class="msg-label">Versão direta (09/09)</span>[Nome], posso entender a falta de retorno como um não agora?</div>
+      <div class="msg"><span class="msg-label">Para o dono quando o contato indicado não responde (Maciel, 29/09)</span>[Nome], tentei contato algumas vezes com o [contato], por ligação e por WhatsApp, e não obtive retorno. Imagino que ele esteja muito corrido. Aqui na Otus ajudamos incorporadoras a preservar a margem de lucro do empreendimento por meio do gerenciamento eficiente de projetos, garantindo uma compatibilização assertiva e um cronograma confiável de desenvolvimento. Caso sejam assuntos do interesse de vocês, deixo aqui o meu contato para conversarmos melhor. Estamos à disposição.</div>
+      <div class="msg"><span class="msg-label">Técnica, para diretor de empresa madura (Maciel, 29/09)</span>[Nome], só ressalto que o nosso objetivo é ser um braço técnico pontual de compatibilização. Caso você tenha algum projeto agora em que não esteja confiante com a maturidade da compatibilização, ou a equipe esteja sobrecarregada, estamos à disposição.</div>
+      <div class="msg"><span class="msg-label">Com cenários específicos, em vez de "quando precisar" (Maciel, 29/09)</span>[Nome], deixo a Otus à disposição para duas situações em que costuma fazer diferença: quando um projeto está indo para a obra e você não tem confiança na maturidade da compatibilização, e quando a equipe está sobrecarregada com muita demanda ao mesmo tempo. Se algum desses cenários aparecer, é só me chamar.</div>
+      <div class="msg"><span class="msg-label">Com entrada antecipada e redes da Otus (Maciel, 29/09)</span>[Nome], um ponto que reforço é que a Otus rende mais quando entra no começo do projeto, antes das decisões estarem fechadas. Deixo aqui o nosso site, o portfólio e o Instagram para você conhecer o que fazemos. Fico à disposição.</div>
+      <div class="msg"><span class="msg-label">Com café, sem pressão de venda (Maciel, 29/09)</span>[Nome], o suporte da Otus é para incorporadoras. Quem sabe a gente marca um café só para nos apresentarmos e eu conhecer melhor o trabalho de vocês?</div>
+      <div class="msg"><span class="msg-label">Com portfólio (Maciel, 28/10, caso Aracaju)</span>[Nome], vou deixar aqui o nosso portfólio para você conhecer melhor a Otus. Temos feito um trabalho muito legal com a [cliente 1] e a [cliente 2] aí em [cidade], e já atuamos em mais de 250 empreendimentos. Caso queira aprofundar a conversa, estamos à disposição.</div>
+    </div>
+  </div>
+
+  <div class="card" id="i74">
+    <div class="card-head"><span class="card-num">05</span><h3>Quando dar Lost</h3></div>
+    <div class="card-body">
+      <p>Sempre registre o motivo correto da lista do Pipedrive e adicione um comentário no card explicando o contexto: o que foi conversado, por que perdeu, se vale reativar no futuro e quando.</p>
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Situação</th><th>Ação</th></tr>
+        <tr><td>Sequência do Driva terminou sem resposta (Prospecção)</td><td>Lost com motivo "Tentativas de contato esgotadas" (19/08)</td></tr>
+        <tr><td>Lead que já respondeu e sumiu (Conexão ou depois)</td><td>Lost com motivo "Parou de responder durante o contato" (14/07, 19/08). Nunca use "tentativas esgotadas" para quem já chegou em Conexão</td></tr>
+        <tr><td>Pediu para retomar em mais de 15 dias</td><td>Lost por timing e atividade de reativação na data combinada (16/09)</td></tr>
+        <tr><td>Projeto adiado ou sem definição de produto</td><td>Mover para "Aguardando timing, ainda definindo o produto", com comentário e próximo contato em 30 dias (09/09)</td></tr>
+        <tr><td>Não enxerga valor em coordenar antes</td><td>Provável motivo "Não acredita no ROI" (19/08)</td></tr>
+        <tr><td>Fora do ICP, região ou perfil</td><td>Registrar o motivo correto e dar Lost (16/09, 07/10)</td></tr>
+        <tr><td>Empresa só faz o próprio projeto e sem abertura</td><td>Portfólio como última cartada, depois Lost (28/10)</td></tr>
+        <tr><td>Perdeu para concorrente</td><td>Perguntar a previsão dos próximos projetos e agendar contato com base na resposta (19/08)</td></tr>
+      </table></div>
+      <p><strong>Antes de qualquer Lost:</strong></p>
+      <ul>
+        <li>Use apenas motivos que existem na lista fixa do Pipedrive. Os nomes acima são os citados nas reuniões. Confira na lista do Pipe antes de escolher.</li>
+        <li>Em lead que já respondeu e sumiu, tente por pelo menos 15 dias com intervalos espaçados antes de perder (19/08). Quando o lead só barra a conversa, o Maciel orienta contornar uma ou duas vezes e seguir (28/10).</li>
+        <li>Lost por timing sempre leva uma atividade futura marcada (11/09).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" id="i75">
+    <div class="card-head"><span class="card-num">06</span><h3>Regras de Pipedrive</h3></div>
+    <div class="card-body">
+      <ul>
+        <li><strong>Funil de eventos (05/08):</strong> quem foi ao evento é marcado como Ganho no funil de eventos. Quem não foi é marcado como Perdido e ganha um negócio novo em Novos Clientes. Nunca mova o negócio de eventos para Novos Clientes, porque perde o histórico da inscrição.</li>
+        <li><strong>Lead que deu Lost e voltou a se manifestar:</strong> crie um novo negócio em vez de reativar o antigo. Os dois históricos ficam separados (18/08).</li>
+        <li><strong>Indicação:</strong> preencha a suborigem com o nome comercial da empresa que indicou (18/08).</li>
+        <li><strong>Ex-clientes:</strong> não são leads frios. Prepare-se para a conversa antes de contatar (19/08).</li>
+        <li><strong>Registro:</strong> toda ligação e interação vai para o Pipe, em qualquer canal.</li>
+        <li><strong>Confirmar escopos adicionais</strong> com o cliente antes de executar (aprendizado do caso Soma, 08/10).</li>
+        <li><strong>Comissão de arquiteto ou intermediário (Gil, 18/08):</strong> a Otus não oferece proativamente. Quem tem interesse precisa trazer o assunto, e a comissão é embutida no valor da proposta.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" id="i76">
+    <div class="card-head"><span class="card-num">07</span><h3>Rotina e agenda</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Abra o Pipe todo dia em "para fazer", ordene por vencimento e zere as tarefas de hoje e as vencidas.</li>
+        <li>Blocos fixos: 2 a 3 horas só para leads em Conexão e 2 a 3 horas para prospecção ativa. Blocos menores para convites e follow-ups (16/09).</li>
+        <li>Sexta-feira é para planejar a semana seguinte (11/08).</li>
+        <li>Rotina semanal de manutenção de carteira: LinkedIn e Instagram das empresas prospectadas, para ver contratação de projetista, lançamento ou visita a obra (29/09).</li>
+        <li>Em viagem presencial, maximize as reuniões. Se um lead cancelar, tenha outro de reserva (19/08).</li>
+      </ul>
+      <p><strong>Quando a pessoa saiu da empresa (19/08):</strong></p>
+      <div class="etapas">
+        <div class="etapa"><span class="etapa-label">1</span><div>Desvincule a pessoa do negócio no Pipe e atualize o card.</div></div>
+        <div class="etapa"><span class="etapa-label">2</span><div>Pergunte para onde ela foi e quem assumiu o cargo.</div></div>
+        <div class="etapa"><span class="etapa-label">3</span><div>Decida se prospecta o novo contato manualmente ou se dá Lost.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec">A confirmar com o Maciel</h2>
+
+  <div class="card" id="i77">
+    <div class="card-head"><span class="card-num">01</span><h3>Pontos que ainda precisam de confirmação</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Qual número usar para o custo de decidir no projeto e não na obra: 50 vezes (19/08) ou 100 vezes (mensagem-chave do projeto).</li>
+        <li>Qual número usar para a equipe da Otus: "mais de 70 pessoas e quase 300 projetos" (16/09) ou "mais de 250 empreendimentos" (28/10).</li>
+        <li>Se o motivo de Lost para quem recebeu o break-off em Conexão segue sendo "Parou de responder durante o contato". O padrão do projeto indica "Tentativas de contato esgotadas", enquanto o Maciel usou o primeiro em 14/07 e 19/08.</li>
+        <li>O nome exato dos motivos na lista fixa do Pipedrive.</li>
+        <li>As diretrizes sobre projetos abaixo de 10.000 m² (conversão baixa em 08/10) e o modelo de atuação para esses projetos anunciado em julho.</li>
+      </ul>
+    </div>
+  </div>
+
 </div>
 
 <footer>
-  <strong>Otus Engenharia</strong> &nbsp;|&nbsp; Instruções de Atendimento
+  <strong>Otus Engenharia</strong> &nbsp;|&nbsp; Guia de Atendimento
 </footer>
 
 <a href="#top" id="scroll-top-btn" title="Voltar ao topo">&#8679;</a>
