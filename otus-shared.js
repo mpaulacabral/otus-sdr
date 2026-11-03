@@ -4,6 +4,23 @@
 (function () {
   'use strict';
 
+  /* ── 0. Link do WhatsApp em Massa na barra entre documentos ── */
+  var WA_URL = 'https://claude.ai/artifact/JvJDpztQz2cXcBnxFYr8zp';
+  var topBar = null;
+  document.querySelectorAll('body > div').forEach(function (d) {
+    if (!topBar && d.querySelector(':scope > a[href="index.html"]')) topBar = d;
+  });
+  if (topBar && !topBar.querySelector('a[href="' + WA_URL + '"]')) {
+    var refLink = topBar.querySelector(':scope > a[href="index.html"]');
+    var waLink = document.createElement('a');
+    waLink.href = WA_URL;
+    waLink.target = '_blank';
+    waLink.rel = 'noopener';
+    waLink.textContent = 'WhatsApp em Massa';
+    waLink.setAttribute('style', refLink.getAttribute('style') || '');
+    topBar.appendChild(waLink);
+  }
+
   /* ── 1. Highlight current document in cross-nav ── */
   var page = (location.pathname.split('/').pop() || 'index.html').replace(/%20/g, ' ');
   document.querySelectorAll('.cross-nav a').forEach(function (a) {
