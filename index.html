@@ -131,6 +131,18 @@
   .doc-card:hover .doc-card-foot { background: var(--amarelo); color: var(--preto); }
   .doc-card-foot .arrow { font-size: 18px; }
 
+  /* ── Faixa na última linha (WhatsApp em Massa) ── */
+  .doc-card-wide { grid-column: 1 / -1; flex-direction: row; align-items: stretch; }
+  .doc-card-wide .doc-card-head { border-bottom: none; border-right: 3px solid var(--amarelo); min-width: 250px; display: flex; flex-direction: column; justify-content: center; }
+  .doc-card-wide .doc-card-body { border-bottom: none; display: flex; align-items: center; }
+  .doc-card-wide .doc-card-body p { margin-bottom: 0; }
+  .doc-card-wide .doc-card-foot { gap: 10px; white-space: nowrap; }
+  @media (max-width: 720px) {
+    .doc-card-wide { flex-direction: column; }
+    .doc-card-wide .doc-card-head { border-right: none; border-bottom: 3px solid var(--amarelo); min-width: 0; }
+    .doc-card-wide .doc-card-foot { white-space: normal; }
+  }
+
   /* ── How to use ── */
   .how-section {
     background: var(--cinza);
@@ -297,21 +309,13 @@
       <div class="doc-card-foot">Abrir Concorrentes <span class="arrow">→</span></div>
     </a>
 
-    <a class="doc-card" href="https://claude.ai/artifact/JvJDpztQz2cXcBnxFYr8zp" target="_blank" rel="noopener">
+    <a class="doc-card doc-card-wide" href="https://claude.ai/artifact/JvJDpztQz2cXcBnxFYr8zp" target="_blank" rel="noopener">
       <div class="doc-card-head">
         <h3>WhatsApp em Massa</h3>
         <div class="sub">Fila diária da cadência de WhatsApp</div>
       </div>
       <div class="doc-card-body">
-        <p>A fila do dia montada a partir das atividades de WhatsApp do Pipedrive, com mensagem pronta e personalizada para cada pessoa. Você só revisa e envia.</p>
-        <ul>
-          <li>Um contato por vez, pronto no celular</li>
-          <li>Mensagem por perfil e pelo histórico do negócio</li>
-          <li>Ritmo anti-bloqueio e limite diário</li>
-          <li>Status salvo: pendente, enviado, pulado</li>
-          <li>Lista de quem ficou fora do WhatsApp</li>
-          <li>Lembretes no celular nos dias úteis</li>
-        </ul>
+        <p>A fila do dia montada a partir das atividades de WhatsApp do Pipedrive, com mensagem pronta para cada pessoa. Você só revisa e envia, um contato por vez.</p>
       </div>
       <div class="doc-card-foot">Abrir fila de WhatsApp <span class="arrow">→</span></div>
     </a>
