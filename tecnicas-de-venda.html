@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Técnicas de Venda - Otus Engenharia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="otus-shared.css">
+<style>
+:root {
+  --amarelo: #FFDC00;
+  --amarelo-bg: #fffce0;
+  --amarelo-borda: #e7e0b0;
+  --preto: #1C1C1B;
+  --cinza: #e9e7e1;
+  --borda: #c1bfba;
+  --cinza-escuro: #374151;
+  --cinza-medio: #6b7280;
+  --bg: #faf7f0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; font-size: 14px; color: var(--preto); background: var(--bg); }
+
+.hero {
+  background: #000; color: #fff;
+  padding: 48px 24px 40px;
+  border-bottom: 4px solid var(--amarelo);
+  text-align: center;
+}
+.hero .badge {
+  display: inline-block; background: var(--amarelo); color: var(--preto);
+  font-size: 11.5px; font-weight: 800; padding: 4px 14px; border-radius: 20px;
+  margin-bottom: 14px; text-transform: uppercase; letter-spacing: .4px;
+}
+.hero h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+.hero p { opacity: .78; font-size: 13.5px; max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+.container { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+
+.toc {
+  background: var(--cinza); border: 1px solid var(--borda); border-radius: 12px;
+  padding: 18px 22px; margin-bottom: 36px;
+}
+.toc h4 { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--cinza-escuro); margin-bottom: 12px; }
+.toc-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.toc-grupo { background: rgba(255,255,255,0.65); border-radius: 8px; padding: 12px 14px; }
+.toc-sec-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; padding-bottom: 7px; border-bottom: 2px solid var(--amarelo); }
+.toc-range { background: var(--preto); color: var(--amarelo); font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 20px; letter-spacing: .3px; flex-shrink: 0; }
+.toc-sec-name { font-size: 11.5px; font-weight: 700; color: var(--preto); }
+.toc-items { display: flex; flex-direction: column; gap: 0; }
+.toc a { font-size: 11.5px; color: var(--cinza-escuro); text-decoration: none; padding: 3px 0; display: block; line-height: 1.4; }
+.toc a:hover { color: var(--preto); text-decoration: underline; }
+.toc .n { color: var(--cinza-medio); font-size: 10px; margin-right: 4px; }
+
+h2.sec { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px; color: var(--cinza-escuro); opacity: .65; margin: 36px 0 18px; padding-bottom: 6px; border-bottom: 3px solid var(--amarelo); }
+
+.card {
+  background: #fff; border: 1px solid var(--borda); border-radius: 12px;
+  overflow: hidden; margin-bottom: 14px;
+}
+.card-head {
+  background: var(--preto); padding: 13px 20px;
+  border-bottom: 3px solid var(--amarelo);
+  display: flex; align-items: center; gap: 10px;
+}
+.card-num {
+  background: var(--amarelo); color: var(--preto);
+  font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 20px; flex-shrink: 0;
+}
+.card-head h3 { font-size: 13.5px; color: #fff; font-weight: 700; }
+.card-body { padding: 16px 20px; font-size: 13px; color: var(--cinza-escuro); line-height: 1.75; }
+.card-body p + p { margin-top: 10px; }
+.card-body strong { color: var(--preto); }
+
+.card-body ul { list-style: none; padding: 0; margin: 10px 0; }
+.card-body ul li { padding: 5px 0 5px 20px; position: relative; border-bottom: 1px dashed var(--borda); }
+.card-body ul li:last-child { border-bottom: none; }
+.card-body ul li::before { content: 'a'; font-family: sans-serif; color: transparent; position: absolute; left: 0; width: 14px; height: 14px; background: var(--amarelo); clip-path: polygon(0 50%, 45% 50%, 45% 0, 100% 50%, 45% 100%, 45% 50%); top: 10px; }
+
+.alerta {
+  background: var(--amarelo-bg); border-left: 4px solid var(--amarelo);
+  border-radius: 0 8px 8px 0; padding: 11px 15px; margin: 10px 0;
+  font-size: 12.5px; line-height: 1.65;
+}
+.nao {
+  background: #fef2f2; border-left: 4px solid #ef4444;
+  border-radius: 0 8px 8px 0; padding: 11px 15px; margin: 10px 0;
+  font-size: 12.5px; line-height: 1.65; color: #7f1d1d;
+}
+.nao strong { color: #991b1b; }
+
+.etapas { display: flex; flex-direction: column; gap: 7px; margin: 10px 0; }
+.etapa { display: flex; gap: 10px; align-items: flex-start; background: var(--cinza); border-radius: 7px; padding: 9px 13px; font-size: 12.5px; }
+.etapa-label { background: var(--preto); color: var(--amarelo); font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 4px; flex-shrink: 0; letter-spacing: .3px; margin-top: 1px; }
+
+.pipe { display: flex; flex-direction: column; gap: 5px; margin: 10px 0; }
+.pipe-row { display: flex; border-radius: 7px; overflow: hidden; border: 1px solid var(--borda); font-size: 12.5px; }
+.pipe-name { background: var(--preto); color: var(--amarelo); padding: 9px 14px; font-weight: 800; font-size: 11px; min-width: 140px; display: flex; align-items: center; }
+.pipe-desc { padding: 9px 14px; color: var(--cinza-escuro); background: #fff; display: flex; align-items: center; line-height: 1.5; }
+
+footer { background: var(--preto); color: rgba(255,255,255,0.45); text-align: center; padding: 18px 24px; font-size: 12px; border-top: 3px solid var(--amarelo); }
+footer strong { color: var(--amarelo); }
+
+nav { background: #000; color: #fff; padding: 0 16px; position: sticky; top: 36px; z-index: 100; display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: nowrap; overflow-x: auto; overflow-y: visible; font-family: 'Montserrat', sans-serif; }
+nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 12px; padding: 12px 10px; white-space: nowrap; font-weight: 400; display: inline-block; }
+nav a:hover { color: #000; background: #FFDC00; border-radius: 4px; }
+.nav-item { position: relative; }
+.nav-item > .dropdown { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid var(--borda); border-radius: 0 0 8px 8px; box-shadow: 0 6px 14px rgba(0,0,0,0.15); min-width: 220px; flex-direction: column; padding: 4px 0; z-index: 200; }
+.nav-item:hover > .dropdown, .nav-item:focus-within > .dropdown { display: flex; }
+.nav-item > .dropdown a { color: var(--cinza-escuro); padding: 8px 14px; font-size: 12px; font-weight: 500; border-bottom: 1px solid var(--cinza); white-space: normal; margin-bottom: 0; background: #fff; }
+.nav-item > .dropdown a:last-child { border-bottom: none; }
+.nav-item > .dropdown a:hover { background: var(--amarelo-bg); color: var(--preto); border-radius: 0; }
+
+.msg { background: #f6f5f1; border: 1px solid var(--cinza); border-left: 4px solid var(--preto); border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 8px 0; font-size: 12.5px; line-height: 1.65; color: var(--preto); }
+.msg-label { display: block; font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; color: var(--cinza-medio); margin-bottom: 4px; }
+.tabela-wrap { overflow-x: auto; margin: 10px 0; }
+.tabela { width: 100%; border-collapse: collapse; font-size: 12.5px; line-height: 1.55; }
+.tabela th { background: var(--preto); color: var(--amarelo); text-align: left; padding: 8px 10px; font-size: 11px; font-weight: 800; }
+.tabela td { border-bottom: 1px solid var(--cinza); padding: 8px 10px; vertical-align: top; }
+.tabela tr:nth-child(even) td { background: #fbfaf6; }
+.card-body ol.lista-num { padding-left: 22px; margin: 6px 0; }
+.card-body ol.lista-num li { padding: 6px 0; border-bottom: 1px dashed var(--borda); }
+.card-body ol.lista-num li:last-child { border-bottom: none; }
+.card-body h4 { font-size: 11.5px; font-weight: 800; color: var(--preto); margin: 14px 0 2px; text-transform: uppercase; letter-spacing: .4px; }
+.card-body h4:first-child { margin-top: 0; }
+.card-body a, .alerta a { color: var(--preto); font-weight: 600; }
+.sec-intro { margin: -4px 0 14px; }
+.nav-item > .dropdown { max-height: 70vh; overflow-y: auto; }
+@media (min-width: 701px) { nav { overflow: visible; flex-wrap: wrap; } }
+
+@media (max-width: 700px) {
+  .hero h1 { font-size: 20px; }
+  .container { padding: 24px 14px 60px; }
+}
+</style>
+</head>
+<body id="top">
+
+<div style="background:#000;border-bottom:2px solid #FFDC00;position:sticky;top:0;z-index:300;display:flex;align-items:center;gap:2px;padding:0 16px;height:36px;overflow-x:auto;white-space:nowrap;">
+  <span style="font-size:12px;font-weight:800;color:#FFDC00;margin-right:10px;flex-shrink:0;">Otus Engenharia</span>
+  <span style="color:rgba(255,255,255,0.2);margin:0 4px;">|</span>
+  <a href="index.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Início</a>
+  <a href="Playbook%20SDR%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Playbook SDR</a>
+  <a href="Produto%20e%20Cases%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Produto &amp; Cases</a>
+  <a href="instrucoes-atendimento.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Guia de Atendimento</a>
+  <a href="tecnicas-de-venda.html" style="color:#1C1C1B;background:#FFDC00;text-decoration:none;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:4px;flex-shrink:0;">Técnicas de Venda</a>
+  <a href="Scripts%20de%20Abordagem%20-%20Otus.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Scripts</a>
+  <a href="Clientes%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Clientes</a>
+  <a href="Concorrentes%20-%20Otus%20Engenharia.html" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:4px;flex-shrink:0;">Concorrentes</a>
+</div>
+
+<nav>
+  <div class="nav-item">
+    <a href="#t1">Comece aqui ▾</a>
+    <div class="dropdown">
+      <a href="#t1">Como usar este guia</a>
+      <a href="#t2">Regras do guia</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <a href="#t3">SPIN Selling ▾</a>
+    <div class="dropdown">
+      <a href="#t3">O que é e de onde vem</a>
+      <a href="#t4">As quatro perguntas</a>
+      <a href="#t5">O que a pesquisa diz</a>
+      <a href="#t6">Necessidade implícita e explícita</a>
+      <a href="#t7">Erros comuns</a>
+      <a href="#t8">Versão enxuta</a>
+      <a href="#t9">Contornar "fazemos internamente"</a>
+      <a href="#t10">Exemplo no WhatsApp</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <a href="#t11">Gatilhos Mentais ▾</a>
+    <div class="dropdown">
+      <a href="#t11">O que são e base científica</a>
+      <a href="#t12">Os quatro principais</a>
+      <a href="#t13">Outros gatilhos</a>
+      <a href="#t14">Qual gatilho em qual momento</a>
+      <a href="#t15">Exemplos de mensagem</a>
+      <a href="#t16">Teste ético e erros</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <a href="#t17">ABM ▾</a>
+    <div class="dropdown">
+      <a href="#t17">O que é e por que cabe à Otus</a>
+      <a href="#t18">Os três níveis</a>
+      <a href="#t19">Como o SDR atua</a>
+      <a href="#t20">Passos para praticar</a>
+      <a href="#t21">Como medir</a>
+      <a href="#t22">Conta em pausa</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <a href="#t23">Os Três Juntos ▾</a>
+    <div class="dropdown">
+      <a href="#t23">Mapa por canal</a>
+      <a href="#t24">Conta de ponta a ponta</a>
+      <a href="#t25">Cadência com SPIN e gatilhos</a>
+      <a href="#t26">Na ligação</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <a href="#t27">Checklists ▾</a>
+    <div class="dropdown">
+      <a href="#t27">Antes de enviar</a>
+      <a href="#t28">Antes de ligar</a>
+      <a href="#t29">Depois da ligação</a>
+    </div>
+  </div>
+  <div class="nav-item">
+    <a href="#t30">Prática e Estudo ▾</a>
+    <div class="dropdown">
+      <a href="#t30">Exercícios práticos</a>
+      <a href="#t31">Leituras e materiais</a>
+      <a href="#t32">Fontes</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Técnicas de Venda</h1>
+  <p>SPIN Selling, gatilhos mentais e ABM aplicados à pré-venda da Otus.</p>
+</div>
+
+<div class="container">
+
+  <h2 class="sec">Comece aqui</h2>
+
+  <div class="card" id="t1">
+    <div class="card-head"><span class="card-num">01</span><h3>Como usar este guia</h3></div>
+    <div class="card-body">
+      <p>Guia de consulta da pré-venda para aplicar SPIN Selling, gatilhos mentais e ABM em mensagens, ligações e cadências. O SPIN diz o que perguntar, os gatilhos mentais reforçam por que o lead deve responder agora, e o ABM define quais contas trabalhar e com que constância.</p>
+      <p>O objetivo é saber por que você faz cada pergunta e, pela resposta, qual é a próxima.</p>
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Tema</th><th>Pergunta que responde</th><th>Onde entra no seu dia</th></tr>
+        <tr><td><strong>SPIN Selling</strong></td><td>O que perguntar e em que ordem</td><td>Ligação, WhatsApp e LinkedIn depois da primeira resposta</td></tr>
+        <tr><td><strong>Gatilhos mentais</strong></td><td>Por que o lead deveria responder e confiar agora</td><td>Primeira mensagem, convites, follow-ups, e-mails de nutrição</td></tr>
+        <tr><td><strong>ABM</strong></td><td>Quais contas priorizar e como manter o relacionamento</td><td>Listas, nutrição, contas em Lost ou em pausa</td></tr>
+      </table></div>
+      <div class="alerta">No processo atual, a pré-venda faz menos perguntas, e o aprofundamento de dor, expectativa e timing passa para a reunião com o especialista. Por isso o SPIN aparece em duas versões: a completa, para entender o método, e a <a href="#t8">enxuta</a>, de 3 a 4 perguntas bem escolhidas, para o dia a dia.</div>
+    </div>
+  </div>
+  <div class="card" id="t2">
+    <div class="card-head"><span class="card-num">02</span><h3>Regras que valem para todo o guia</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Sem travessão em nenhum texto, mensagem ou e-mail.</li>
+        <li>Nunca mencionar valor, faixa de preço, proposta ou orçamento com o lead.</li>
+        <li>Primeiro contato sem oferta de produto ou serviço.</li>
+        <li>Case só com dado verificável, que você consiga enviar em documento se o lead pedir.</li>
+        <li>Escassez só quando for verdadeira.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">SPIN Selling</h2>
+
+  <div class="card" id="t3">
+    <div class="card-head"><span class="card-num">01</span><h3>O que é e de onde vem</h3></div>
+    <div class="card-body">
+      <p>SPIN é uma sequência de perguntas (Situação, Problema, Implicação e Necessidade de solução) criada para vendas complexas, nas quais o cliente precisa enxergar o tamanho do problema antes de enxergar valor na solução.</p>
+      <p>O método vem do livro de Neil Rackham, baseado no trabalho da Huthwaite: mais de 35 mil visitas de vendas observadas ao longo de 12 anos, em mais de 20 países, para descobrir o que separa quem vende bem de quem vende mal em vendas grandes.</p>
+      <ul>
+        <li><strong>Técnicas clássicas atrapalham em venda grande.</strong> Numa loja de revelação fotográfica, o treinamento em técnicas de fechamento subiu a taxa de venda de itens baratos (72% para 76%) e derrubou a de itens caros (42% para 33%).</li>
+        <li><strong>O estágio de investigação pesa mais que o fechamento.</strong> Os melhores vendedores dedicam mais tempo a perguntar e entender; o fechamento vira consequência.</li>
+        <li><strong>Aberta ou fechada não fez diferença mensurável</strong> em vendas grandes. O que importa é o tipo de pergunta, não o formato.</li>
+        <li><strong>O efeito do treinamento foi medido.</strong> Os primeiros mil vendedores treinados em SPIN venderam em média 17% mais que grupos de controle.</li>
+        <li><strong>Necessidade de solução é o que mais separa os melhores.</strong> Em média, eles faziam mais de 10 vezes mais perguntas desse tipo por visita que vendedores medianos.</li>
+      </ul>
+      <div class="alerta">A pesquisa é de visitas de vendas B2B, não de abordagem fria de SDR. Use a lógica, adaptada ao seu canal e ao tempo que o lead dá.</div>
+    </div>
+  </div>
+  <div class="card" id="t4">
+    <div class="card-head"><span class="card-num">02</span><h3>As quatro perguntas</h3></div>
+    <div class="card-body">
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Letra</th><th>Para que serve</th><th>Exemplo para a Otus</th></tr>
+        <tr><td><strong>S, situação</strong></td><td>Entender o contexto: porte, projetos, equipe, como a gestão é feita hoje</td><td>"Como vocês fazem a gestão e a compatibilização hoje? Quem é o responsável?"</td></tr>
+        <tr><td><strong>P, problema</strong></td><td>Descobrir a dor real, típica daquele perfil de empresa</td><td>"O que costuma chegar na obra que deveria ter sido resolvido no projeto?"</td></tr>
+        <tr><td><strong>I, implicação</strong></td><td>Ampliar as consequências do problema (prazo, custo, risco, lançamento)</td><td>"Isso já gerou retrabalho ou custo extra? Chegou a dimensionar?"</td></tr>
+        <tr><td><strong>N, necessidade de solução</strong></td><td>Fazer o lead dizer o que resolveria e por que importa</td><td>"O que ajudaria nisso para vocês?"</td></tr>
+      </table></div>
+    </div>
+  </div>
+  <div class="card" id="t5">
+    <div class="card-head"><span class="card-num">03</span><h3>O que a pesquisa diz de cada tipo</h3></div>
+    <div class="card-body">
+      <p><strong>Situação.</strong> Não está ligada ao sucesso: vendedores inexperientes fazem perguntas demais, e o comprador se irrita ao repetir dados que poderiam ter sido pesquisados antes. Quem vende bem faz a lição de casa e corta as perguntas que consegue responder sozinho. Na rotina, isso é o LinkedIn, o site da empresa e os dados do EIV antes de escrever.</p>
+      <p><strong>Problema.</strong> É a matéria-prima do restante, mas sozinha não basta em venda grande. Quem pergunta só sobre problema recebe respostas como "é difícil, mas a gente resolve", e o lead não vê motivo para agir.</p>
+      <p><strong>Implicação.</strong> É o coração do método em venda grande. A pergunta pega um problema que o lead considera pequeno e o desenvolve até ficar grande o bastante para justificar uma ação. No exemplo do livro, uma máquina "difícil de operar" virou problema sério depois de perguntas sobre rotatividade, treinamento, hora extra e qualidade. Quem decide reage melhor a implicações, porque decidir é lidar com consequências.</p>
+      <p><strong>Necessidade de solução.</strong> Vem depois da implicação para devolver o tom positivo: foca na solução e faz o lead dizer os benefícios com as próprias palavras. Funciona muito bem com quem vai levar a ideia ao decisor, como um coordenador de projetos que precisa convencer o diretor.</p>
+      <div class="alerta">O risco da implicação é deixar o lead pesado e desanimado. Por isso ela quase sempre é seguida de uma pergunta de necessidade.</div>
+    </div>
+  </div>
+  <div class="card" id="t6">
+    <div class="card-head"><span class="card-num">04</span><h3>Necessidade implícita e explícita</h3></div>
+    <div class="card-body">
+      <ul>
+        <li><strong>Implícita:</strong> o lead declara um problema ou uma insatisfação ("às vezes aparece retrabalho na obra").</li>
+        <li><strong>Explícita:</strong> o lead declara o que quer ("precisamos de alguém que feche isso antes de liberar o projeto").</li>
+      </ul>
+      <p>Em vendas grandes, o sinal de que a conversa avança é a necessidade explícita. Para a pré-venda, ouvir "temos problemas" ainda não é motivo para chamar o especialista; ouvir o lead dizer o que gostaria de ter é.</p>
+      <div class="alerta">Por trás disso há a equação de valor: o lead só age quando o problema pesa mais que o custo, o risco e o esforço de mudar. Em venda complexa, o comprador também pesa o risco pessoal de uma decisão ruim ser vista por toda a empresa.</div>
+    </div>
+  </div>
+  <div class="card" id="t7">
+    <div class="card-head"><span class="card-num">05</span><h3>Erros comuns</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Só perguntas de situação: o lead se entedia, e você não descobre dor nenhuma.</li>
+        <li>Discurso pronto, focado em produto: o lead não sai da zona de conforto e some depois.</li>
+        <li>Pular para a solução assim que aparece um problema pequeno, sem dimensionar o impacto.</li>
+        <li>Deixar o cenário negativo demais, sem a pergunta de necessidade para devolver esperança.</li>
+        <li>Rebater a objeção sem antes entender o processo do lead.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="t8">
+    <div class="card-head"><span class="card-num">06</span><h3>Versão enxuta para a pré-venda</h3></div>
+    <div class="card-body">
+      <p>Com a qualificação reduzida a três pontos (projeto em BIM, projeto em andamento, abertura para entender coordenação), a conversa cabe em quatro movimentos:</p>
+      <div class="etapas">
+        <div class="etapa"><span class="etapa-label">S</span><div><strong>Por pesquisa:</strong> em vez de perguntar o que dá para descobrir, mostre que já sabe ("vi que o [empreendimento] está em fase de [fase]").</div></div>
+        <div class="etapa"><span class="etapa-label">P</span><div>Uma pergunta sobre a dor típica daquele perfil.</div></div>
+        <div class="etapa"><span class="etapa-label">I</span><div>Uma pergunta sobre o que isso causa em prazo, retrabalho ou lançamento.</div></div>
+        <div class="etapa"><span class="etapa-label">N</span><div>Uma pergunta sobre o que ajudaria, que leva ao convite para a conversa com o especialista.</div></div>
+      </div>
+      <p><strong>Três regras que cabem aqui:</strong></p>
+      <ul>
+        <li>Comentário curto antes de cada pergunta, para a conversa parecer diálogo e não interrogatório.</li>
+        <li>Uma pergunta por mensagem.</li>
+        <li>Com lead que responde em uma palavra, troque a pergunta de sim ou não por uma aberta, que peça data, prazo ou dia.</li>
+      </ul>
+      <div class="alerta"><strong>Quantas perguntas?</strong> Os dados da Gong (mais de 500 mil ligações de descoberta) apontam o melhor resultado com cerca de 11 a 14 perguntas direcionadas, bem distribuídas, e com o vendedor falando em torno de 43% do tempo. A referência é de conversa de descoberta longa, não da abordagem inicial. O princípio vale: poucas perguntas boas, espaçadas, e silêncio para ouvir.</div>
+    </div>
+  </div>
+  <div class="card" id="t9">
+    <div class="card-head"><span class="card-num">07</span><h3>Contornar o "fazemos internamente" com SPIN</h3></div>
+    <div class="card-body">
+      <p>Em vez de rebater, deixe o lead descrever o próprio processo. Cada pergunta faz a pessoa provocar a si mesma:</p>
+      <ol class="lista-num">
+        <li>Vocês seguem uma metodologia de giro em cima dos projetos?</li>
+        <li>As premissas dos empreendimentos estão bem definidas?</li>
+        <li>Essas informações chegam aos projetistas?</li>
+        <li>O fluxo de projeto é dividido em fases, e está claro o que cada projetista deve entregar em cada uma?</li>
+        <li>Existe revisão em cada fase antes de avançar?</li>
+        <li>Como vocês coordenam isso?</li>
+      </ol>
+      <div class="msg"><span class="msg-label">Se o lead responder que não tem parte disso</span>Então é isso que costuma ser necessário para o projeto chegar bem resolvido na obra e no lançamento, sem retrabalho nem desperdício.</div>
+      <div class="alerta">Só depois de ouvir o processo entram os argumentos de complementaridade (mais de 800 verificações, mais de 250 empreendimentos), sempre como reforço do time interno e não como substituição.</div>
+    </div>
+  </div>
+  <div class="card" id="t10">
+    <div class="card-head"><span class="card-num">08</span><h3>Exemplo de conversa no WhatsApp</h3></div>
+    <div class="card-body">
+      <p>Lead fictício: coordenadora de projetos de uma incorporadora que diz fazer a compatibilização com a equipe própria.</p>
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Letra</th><th>Mensagem da SDR</th><th>Resposta do lead</th></tr>
+        <tr><td><strong>S, por pesquisa</strong></td><td>"Vi no LinkedIn que a [Empresa] está com o [Empreendimento] em fase de projeto legal. Hoje a compatibilização desse projeto fica com a equipe de vocês ou tem apoio de fora?"</td><td>"Fica com a gente mesmo."</td></tr>
+        <tr><td><strong>P</strong></td><td>"Com equipe própria, vocês conhecem o projeto por dentro. Em empreendimentos desse porte, o que costuma escapar entre as disciplinas e só aparece na obra?"</td><td>"Às vezes hidráulica com estrutura, mas a gente resolve."</td></tr>
+        <tr><td><strong>I</strong></td><td>"Quando hidráulica e estrutura se encontram só na obra, o que costuma acontecer com o prazo?"</td><td>"Atrasa alguns dias e dá retrabalho."</td></tr>
+        <tr><td><strong>N</strong></td><td>"Dias de atraso e retrabalho pesam no cronograma de lançamento. Se vocês tivessem um segundo olhar técnico antes de liberar o projeto para a obra, o que mudaria?"</td><td>"Ajudaria bastante."</td></tr>
+        <tr><td><strong>Convite</strong></td><td>"Posso te ligar amanhã às 10h, por 5 minutos? Quero entender melhor como vocês trabalham e falar um pouco da Otus. Se você achar que faz sentido, marcamos uma conversa com o nosso especialista. Senão, deixamos para outro momento."</td><td></td></tr>
+      </table></div>
+      <div class="alerta">Repare que a mensagem nunca começa com "entendi" ou "legal": cada resposta puxa o dado técnico que o lead acabou de dar. O convite pede um horário específico, porque data vaga é risco alto de novo silêncio.</div>
+    </div>
+  </div>
+
+  <h2 class="sec">Gatilhos Mentais</h2>
+
+  <div class="card" id="t11">
+    <div class="card-head"><span class="card-num">01</span><h3>O que são e base científica</h3></div>
+    <div class="card-body">
+      <p>Gatilhos mentais são atalhos de decisão descritos pela psicologia da persuasão e pela economia comportamental. Usados com verdade, ajudam o lead a decidir mais rápido; usados com exagero, destroem a confiança.</p>
+      <ul>
+        <li><strong>Cialdini, sete princípios de influência:</strong> reciprocidade, compromisso e coerência, prova social, autoridade, simpatia, escassez e unidade (identidade compartilhada, acrescentado depois da edição original).</li>
+        <li><strong>Kahneman, dois sistemas de pensar:</strong> um rápido e emocional, outro lento e racional. Decisões de alto compromisso tendem a passar pelo sistema lento, por isso, na pré-venda, o gatilho serve mais para facilitar o agendamento do que para "forçar" uma decisão.</li>
+        <li><strong>Kahneman e Tversky, aversão à perda:</strong> perder pesa mais que ganhar o equivalente, na casa de duas vezes, com variação por contexto. É a base de falar do que o lead perde ao descobrir o conflito de projeto só na obra.</li>
+        <li><strong>Nudge (Thaler e Sunstein):</strong> pequenos empurrões no contexto da escolha, sem tirar a liberdade de decidir.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="t12">
+    <div class="card-head"><span class="card-num">02</span><h3>Os quatro gatilhos principais</h3></div>
+    <div class="card-body">
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Gatilho</th><th>Como funciona</th><th>Como a Otus usa</th></tr>
+        <tr><td><strong>Prova social</strong></td><td>Seguimos o que pessoas parecidas conosco fazem. É o mais importante para a Otus: citar quem já é cliente, de preferência da mesma região e do mesmo perfil.</td><td>"Hoje trabalhamos com [cliente da mesma região] em empreendimentos parecidos com o de vocês." Confira o nome na aba <a href="Clientes%20-%20Otus%20Engenharia.html">Clientes</a> antes de usar.</td></tr>
+        <tr><td><strong>Reciprocidade</strong></td><td>Quem recebe algo sem pedir tende a retribuir. Dar primeiro cria abertura.</td><td>Conteúdo útil, convite gratuito para o Conexchange, ou o especialista viajando só para a reunião presencial. O lead sente o esforço e passa a dar prioridade.</td></tr>
+        <tr><td><strong>Escassez</strong></td><td>O que é raro ou está acabando ganha valor. Só funciona se for verdadeira.</td><td>Horário real na agenda do especialista, vagas de evento realmente limitadas. Modelo: "Surgiu uma oportunidade na agenda do especialista para hoje à tarde e gostaria de ajudar você. Consegue nesse horário?"</td></tr>
+        <tr><td><strong>Autoridade</strong></td><td>Confiamos em quem demonstra domínio. Em vendas, isso é chegar sabendo quem o lead é e qual a dor provável.</td><td>Entrar na conversa já conhecendo porte, padrão dos empreendimentos e dor típica. Cases de complexidade (Catuaí, CFL, Pininfarina, Porsche Consulting) e o Report Otus 2026 reforçam. Confirme os números na central antes de citar.</td></tr>
+      </table></div>
+      <div class="alerta">Exemplo do perfume: quem vendeu ganhou autoridade porque leu o cenário da pessoa antes de indicar o produto. É a mesma ideia do S do SPIN feito por pesquisa.</div>
+    </div>
+  </div>
+  <div class="card" id="t13">
+    <div class="card-head"><span class="card-num">03</span><h3>Outros gatilhos que ajudam a pré-venda</h3></div>
+    <div class="card-body">
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Gatilho</th><th>Ideia</th><th>Exemplo de uso</th></tr>
+        <tr><td><strong>Relevância</strong></td><td>A mensagem parece escrita para aquele lead.</td><td>Citar o nome do projeto, onde você encontrou o contato e por que fala com ele. A prospecção por EIV teve quase 100% de retorno por isso.</td></tr>
+        <tr><td><strong>Curiosidade</strong></td><td>Uma lacuna de informação pede para ser preenchida.</td><td>Assunto de e-mail que desperta curiosidade sem falar da Otus.</td></tr>
+        <tr><td><strong>Coerência</strong></td><td>Quem concorda com algo tende a manter a coerência.</td><td>Retomar uma frase do próprio lead antes de propor o próximo passo. Começar por um compromisso pequeno, como 5 minutos de conversa.</td></tr>
+        <tr><td><strong>Antecipação e novidade</strong></td><td>Expectativa de algo novo mantém o interesse.</td><td>Nova edição do Conexchange, conteúdo novo, "vamos abrir isso ao vivo na quarta".</td></tr>
+        <tr><td><strong>Unidade e afinidade</strong></td><td>A sensação de "somos do mesmo grupo" reduz resistência.</td><td>Falar a língua da região e do tipo de projeto: "Quem constrói em Itapema sabe como o prazo aperta".</td></tr>
+        <tr><td><strong>Aversão à perda</strong></td><td>O que se perde pesa mais que o que se ganha.</td><td>Decisões tomadas no projeto custam 100 vezes menos do que em obra.</td></tr>
+      </table></div>
+    </div>
+  </div>
+  <div class="card" id="t14">
+    <div class="card-head"><span class="card-num">04</span><h3>Qual gatilho em qual momento</h3></div>
+    <div class="card-body">
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Momento</th><th>Gatilhos que combinam</th></tr>
+        <tr><td><strong>Primeiro contato</strong></td><td>Relevância, curiosidade, unidade. Sem oferta.</td></tr>
+        <tr><td><strong>Convite para evento</strong></td><td>Antecipação, prova social, escassez real (vagas), exclusividade</td></tr>
+        <tr><td><strong>Qualificação e ligação</strong></td><td>Autoridade pela leitura de cenário, coerência, implicação (SPIN)</td></tr>
+        <tr><td><strong>Reativação</strong></td><td>Novidade somada a uma previsão futura relevante para aquele lead, prova social regional</td></tr>
+        <tr><td><strong>Nutrição</strong></td><td>Reciprocidade (conteúdo útil), autoridade (dado verificável)</td></tr>
+        <tr><td><strong>Break-off</strong></td><td>Facilidade (portfólio pronto) e uma saída elegante</td></tr>
+      </table></div>
+    </div>
+  </div>
+  <div class="card" id="t15">
+    <div class="card-head"><span class="card-num">05</span><h3>Exemplos de mensagem</h3></div>
+    <div class="card-body">
+      <p>Todos com marcadores entre colchetes, sem valor e sem proposta.</p>
+      <div class="msg"><span class="msg-label">Prova social · 2ª mensagem</span>Oi, [Nome]. Hoje acompanhamos empreendimentos em [cidade] junto com [cliente da região]. Na [Empresa], a compatibilização dos projetos fica interna ou com apoio de fora?</div>
+      <div class="msg"><span class="msg-label">Escassez · convite para ligação</span>[Nome], abriu um horário na agenda do nosso especialista hoje às 16h para conversar sobre o [empreendimento]. Consegue nesse horário?</div>
+      <div class="msg"><span class="msg-label">Reciprocidade · reativação</span>[Nome], nosso especialista estará em [cidade] de [dia] a [dia]. Lembrei de você porque o [empreendimento] está em fase de [fase]. Qual seria o melhor dia para uma conversa presencial de 30 minutos?</div>
+      <div class="msg"><span class="msg-label">Coerência · qualificação</span>Você comentou que o prazo de lançamento é o ponto mais sensível. Se desse para pegar as interferências antes da obra, isso mudaria algo no cronograma? Posso te ligar amanhã às 10h para entender melhor?</div>
+      <div class="msg"><span class="msg-label">Curiosidade · assunto de e-mail</span>O que mais se repete nos projetos de incorporação</div>
+      <div class="msg"><span class="msg-label">Unidade · primeiro contato</span>Quem constrói em [cidade] sabe como o prazo de aprovação aperta o projeto. Como vocês têm lidado com isso nos empreendimentos atuais?</div>
+    </div>
+  </div>
+  <div class="card" id="t16">
+    <div class="card-head"><span class="card-num">06</span><h3>Teste ético e erros comuns</h3></div>
+    <div class="card-body">
+      <p>O teste de Cialdini cabe numa pergunta: <strong>você está apontando algo que realmente existe?</strong> Escassez real é informação; escassez inventada é manipulação. Quem mente ou esconde informação é desmascarado no longo prazo, e o cliente que não precisava da solução vira churn.</p>
+      <p>Rackham cita uma pesquisa com compradores profissionais em que 34 de 54 disseram ficar menos propensos a comprar quando percebiam técnicas de fechamento. Comprador experiente percebe manobra.</p>
+      <div class="nao"><strong>Evite:</strong></div>
+      <ul>
+        <li>Escassez inventada, ou "urgência" sem prazo real.</li>
+        <li>Empilhar vários gatilhos na mesma mensagem.</li>
+        <li>Prova social sem o mesmo perfil do lead, como citar um case de alto padrão para um empreendimento de perfil econômico.</li>
+        <li>Citar dado ou case que você não consegue enviar em documento se o lead pedir.</li>
+        <li>Usar gatilho para compensar uma dor que ainda não foi mapeada.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">ABM: Marketing Baseado em Contas</h2>
+
+  <div class="card" id="t17">
+    <div class="card-head"><span class="card-num">01</span><h3>O que é e por que cabe à Otus</h3></div>
+    <div class="card-body">
+      <p>ABM é trabalhar contas escolhidas de antemão em vez de esperar leads aparecerem: o universo é pequeno desde o início, e cada conta recebe ações personalizadas de marketing e de vendas.</p>
+      <p>O termo foi cunhado pela ITSMA, com a ideia de tratar cada conta como um mercado em si. A RD Station usa uma analogia simples: o inbound pesca com anzol e isca, o ABM pesca com arpão, escolhendo o peixe. O ABM não substitui a geração de leads: complementa, cobrindo as lacunas do inbound.</p>
+      <p><strong>Cinco sinais de que o ABM faz sentido, e a Otus se encaixa em todos:</strong></p>
+      <ul>
+        <li>Universo finito e contável de potenciais clientes.</li>
+        <li>Contas com várias pessoas envolvidas na decisão.</li>
+        <li>Ciclo de venda longo.</li>
+        <li>Busca por conversões de maior valor.</li>
+        <li>Ticket elevado.</li>
+      </ul>
+      <div class="alerta">O perfil-alvo são incorporadoras de alto padrão com mais de um projeto a cada dois anos e prédios acima de 10.000 m². O modelo da Otus é um meio-termo entre prospectar por ICP e por contas-chave, e a venda é baseada em relacionamento: uma série de ações de marketing e de vendas com a mesma conta, para que um dia ela considere a Otus.</div>
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th></th><th>Inbound</th><th>Prospecção por ICP</th><th>ABM</th></tr>
+        <tr><td><strong>Ponto de partida</strong></td><td>Quem converte em uma oferta</td><td>Perfil ideal numa lista ampla</td><td>Lista nomeada de contas</td></tr>
+        <tr><td><strong>Unidade de trabalho</strong></td><td>O lead</td><td>O contato</td><td>A conta, com várias pessoas</td></tr>
+        <tr><td><strong>Personalização</strong></td><td>Baixa</td><td>Por segmento</td><td>Por conta</td></tr>
+        <tr><td><strong>Foco</strong></td><td>Volume e qualificação</td><td>Fit com o perfil</td><td>Relacionamento ao longo do tempo</td></tr>
+      </table></div>
+    </div>
+  </div>
+  <div class="card" id="t18">
+    <div class="card-head"><span class="card-num">02</span><h3>Os três níveis</h3></div>
+    <div class="card-body">
+      <p>A ITSMA organiza o ABM em três níveis. As fontes divergem sobre a quantidade exata de contas em cada um, então trate os números como referência.</p>
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Nível</th><th>Contas</th><th>Personalização</th><th>Exemplo na Otus</th></tr>
+        <tr><td><strong>Um para um (estratégico)</strong></td><td>Poucas, de altíssimo valor</td><td>Máxima: ações exclusivas por conta</td><td>Conta com projeto grande e decisor identificado: estudo do empreendimento, convite pessoal, visita do especialista</td></tr>
+        <tr><td><strong>Um para poucos (ABM lite)</strong></td><td>Grupos de contas parecidas, na faixa de até 10 em algumas fontes</td><td>Conteúdo e campanha por grupo</td><td>Incorporadoras de Itapema e Balneário Camboriú recebendo o mesmo convite regional e cases da região</td></tr>
+        <tr><td><strong>Um para muitos (programático)</strong></td><td>Centenas, com apoio de tecnologia</td><td>Por segmento, com automação</td><td>Listas do Driva com mensagens separadas por cargo</td></tr>
+      </table></div>
+      <div class="alerta">Um plano de reativação de contas escolhidas antes, agrupadas por região, em que cada grupo recebe case e convite da própria região, já é ABM um para poucos.</div>
+    </div>
+  </div>
+  <div class="card" id="t19">
+    <div class="card-head"><span class="card-num">03</span><h3>Como o SDR atua em ABM</h3></div>
+    <div class="card-body">
+      <ul>
+        <li><strong>Trabalhe uma lista curada, não volume.</strong> Cada conta é um mini mercado, e o SDR vira especialista no perfil dela.</li>
+        <li><strong>Mapeie o comitê de decisão.</strong> Estudos de account-based sales development falam em engajar de 3 a 7 pessoas por conta, não só uma. Na Otus, isso é dono ou diretor, gerente de incorporação ou engenharia, coordenador de projetos e suprimentos.</li>
+        <li><strong>Adapte a mensagem ao papel.</strong> O gerente de projetos pensa em facilitar o trabalho; o dono pensa em margem e risco. É a mesma lógica das listas por cargo.</li>
+        <li><strong>A personalização vem de pesquisa, não de variação de template.</strong> Projeto, fase, porte e onde você achou o contato valem mais que trocar o nome da empresa.</li>
+        <li><strong>Combine com o especialista quando a conta estiver pronta,</strong> com critérios claros de repasse entre pré-venda e vendas.</li>
+        <li><strong>Ajuste o ritmo à conta.</strong> Contas com ciclo longo pedem cadência mais espaçada, o que conversa com a regra de mais de 3 dias entre atividades em Conexão.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="t20">
+    <div class="card-head"><span class="card-num">04</span><h3>Passos para colocar em prática</h3></div>
+    <div class="card-body">
+      <div class="etapas">
+        <div class="etapa"><span class="etapa-label">1</span><div><strong>Definir o ICP e as contas.</strong> Use os melhores clientes como molde: porte, região, tipo de empreendimento, uso de BIM.</div></div>
+        <div class="etapa"><span class="etapa-label">2</span><div><strong>Montar a lista de contas.</strong> Comece pequeno, com um segmento de teste e entre 50 e 500 contas, e use a lista de Lost para reativar depois de certo período.</div></div>
+        <div class="etapa"><span class="etapa-label">3</span><div><strong>Preparar conteúdo e ofertas por grupo.</strong> Case regional, Report Otus 2026, convite para evento, curso novo.</div></div>
+        <div class="etapa"><span class="etapa-label">4</span><div><strong>Rodar ações diretas.</strong> Mensagem, ligação, e-mail, convite para evento, visita do especialista quando estiver na cidade.</div></div>
+        <div class="etapa"><span class="etapa-label">5</span><div><strong>Medir por conta e ajustar,</strong> sempre com retorno do especialista sobre a qualidade do que você repassa.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" id="t21">
+    <div class="card-head"><span class="card-num">05</span><h3>Como medir</h3></div>
+    <div class="card-body">
+      <p>Métricas ligadas a negócio, e não só cliques e aberturas:</p>
+      <ul>
+        <li>Contas alcançadas em relação ao tamanho da lista.</li>
+        <li>Contas com conversa ativa e com mais de uma pessoa mapeada.</li>
+        <li>Oportunidades geradas e contas que avançaram no funil.</li>
+        <li>Velocidade do ciclo: o ABM está encurtando o caminho?</li>
+        <li>Taxa de fechamento das contas da campanha.</li>
+      </ul>
+      <div class="alerta">O ABM gera retorno de médio e longo prazo, e a jornada de compra não é linear. Não desanime se os primeiros números forem modestos.</div>
+    </div>
+  </div>
+  <div class="card" id="t22">
+    <div class="card-head"><span class="card-num">06</span><h3>Trilha de relacionamento para conta em pausa</h3></div>
+    <div class="card-body">
+      <p>Exemplo: uma conta deu Lost porque ainda trabalha em CAD. Em vez de abandonar, inicie um relacionamento para que, quando ela migrar para BIM, compre da Otus. A trilha pode ter conteúdo sobre a importância do BIM, como fazer a transição com segurança e o que considerar ao contratar projetos em BIM. Se a pessoa mudar de empresa, o relacionamento continua.</p>
+      <div class="alerta">Cinco meses sem contato é tempo demais: nesse intervalo o concorrente "coloca a bandeira" e passa a disputar a conta. Deixar uma atividade futura de 1 a 2 meses ao dar Lost atende exatamente isso.</div>
+      <p><strong>Para cada conta em pausa, registre:</strong></p>
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Campo</th><th>Exemplo</th></tr>
+        <tr><td><strong>Motivo do Lost</strong></td><td>Ainda trabalha em CAD</td></tr>
+        <tr><td><strong>Gatilho que reabre a conta</strong></td><td>Migração para BIM</td></tr>
+        <tr><td><strong>Trilha de ações</strong></td><td>Conteúdo sobre transição para BIM, convite para live ou evento, visita presencial do especialista quando estiver na cidade</td></tr>
+        <tr><td><strong>Próximo contato</strong></td><td>Data de 1 a 2 meses à frente</td></tr>
+        <tr><td><strong>Pessoas mapeadas</strong></td><td>Contato atual e outros do comitê</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <h2 class="sec">Os Três Juntos na Prática</h2>
+
+  <div class="card" id="t23">
+    <div class="card-head"><span class="card-num">01</span><h3>Mapa por canal</h3></div>
+    <div class="card-body">
+      <p>O ABM escolhe a conta e o momento, os gatilhos abrem a conversa e o SPIN conduz até o convite para o especialista.</p>
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Canal</th><th>Papel do SPIN</th><th>Gatilhos que combinam</th><th>Cuidados</th></tr>
+        <tr><td><strong>LinkedIn</strong></td><td>S feito por pesquisa, na conexão específica</td><td>Relevância, unidade</td><td>Nota curta, sem abertura comercial</td></tr>
+        <tr><td><strong>WhatsApp</strong></td><td>Uma pergunta por mensagem, com comentário antes</td><td>Relevância, prova social regional, escassez real no convite</td><td>Mensagem longa é ignorada. Com lead monossilábico, pergunta aberta que peça data ou prazo</td></tr>
+        <tr><td><strong>E-mail</strong></td><td>Pergunta final ligada a um fato do lead</td><td>Curiosidade no assunto, reciprocidade, autoridade com dado verificável</td><td>Assunto curto e específico, sem falar da Otus. Abertura e estrutura diferentes a cada e-mail de nutrição</td></tr>
+        <tr><td><strong>Ligação</strong></td><td>SPIN completo, com silêncio para ouvir</td><td>Autoridade pela leitura de cenário, coerência</td><td>Pesquisar quem decide antes. Não completar a frase do lead</td></tr>
+      </table></div>
+    </div>
+  </div>
+  <div class="card" id="t24">
+    <div class="card-head"><span class="card-num">02</span><h3>Uma conta de ponta a ponta</h3></div>
+    <div class="card-body">
+      <p>Exemplo com uma conta em pausa que tem projeto novo.</p>
+      <div class="etapas">
+        <div class="etapa"><span class="etapa-label">1</span><div><strong>Escolha (ABM).</strong> Conta no perfil, com projeto novo em fase de [fase]. Defina o gatilho que reabre a conversa e mapeie 2 ou 3 pessoas do comitê.</div></div>
+        <div class="etapa"><span class="etapa-label">2</span><div><strong>Pesquisa (S por pesquisa).</strong> Site, LinkedIn, EIV: porte, fase, projetistas conhecidos, últimas novidades. Tudo o que você consegue descobrir sozinha não vira pergunta.</div></div>
+        <div class="etapa"><span class="etapa-label">3</span><div><strong>Primeira mensagem (relevância e unidade).</strong> Sem oferta e sem fingir que já falou com o lead se o histórico é de outro colega.</div></div>
+        <div class="etapa"><span class="etapa-label">4</span><div><strong>Se responder (P e I).</strong> Comentário que puxa o dado técnico da resposta e uma pergunta sobre o impacto no prazo ou no retrabalho.</div></div>
+        <div class="etapa"><span class="etapa-label">5</span><div><strong>Valor (reciprocidade e prova social).</strong> Um dado verificável e um case da mesma região, no e-mail, seguido de uma pergunta sobre o caso dele.</div></div>
+        <div class="etapa"><span class="etapa-label">6</span><div><strong>Convite (N, escassez real e coerência).</strong> Retome uma frase do lead e convide para uma ligação curta ou para a conversa com o especialista, com dia e horário.</div></div>
+        <div class="etapa"><span class="etapa-label">7</span><div><strong>Se não responder.</strong> Siga a cadência até o break-off, registre o Lost com comentário curto e deixe uma atividade futura de 1 a 2 meses.</div></div>
+      </div>
+      <div class="msg"><span class="msg-label">Primeira mensagem (passo 3)</span>Oi, [Nome], aqui é a Maria Paula, da Otus Engenharia. A [Empresa] e a Otus chegaram a conversar sobre projetos há um tempo, e na época não seguimos. Vi que o [empreendimento] entrou em fase de [fase]. A compatibilização desse projeto fica com a equipe de vocês ou tem apoio externo?</div>
+    </div>
+  </div>
+  <div class="card" id="t25">
+    <div class="card-head"><span class="card-num">03</span><h3>Cadência de prospecção com SPIN e gatilhos</h3></div>
+    <div class="card-body">
+      <p>O fluxo de prospecção do <a href="Playbook%20SDR%20-%20Otus%20Engenharia.html#cadencia">Playbook</a>, com o que cada toque pode carregar:</p>
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Dia</th><th>Canal e objetivo</th><th>Gatilho</th><th>SPIN</th></tr>
+        <tr><td><strong>D0</strong></td><td>LinkedIn, convite de conexão</td><td>Relevância, unidade</td><td>S por pesquisa, implícito</td></tr>
+        <tr><td><strong>D1</strong></td><td>WhatsApp, resgate da última conversa</td><td>Relevância, novidade</td><td>Uma pergunta de S ou P</td></tr>
+        <tr><td><strong>D3</strong></td><td>WhatsApp, qualificação</td><td>Coerência</td><td>De P para I, uma pergunta por vez</td></tr>
+        <tr><td><strong>D4</strong></td><td>E-mail, contextualiza a tentativa</td><td>Autoridade com dado</td><td>S ou P</td></tr>
+        <tr><td><strong>D6</strong></td><td>LinkedIn, mensagem pós-conexão</td><td>Relevância</td><td>S</td></tr>
+        <tr><td><strong>D8</strong></td><td>E-mail de nutrição</td><td>Prova social regional, reciprocidade</td><td>I, com pergunta final sobre o caso dele</td></tr>
+        <tr><td><strong>D10</strong></td><td>WhatsApp, break-off com portfólio</td><td>Facilidade, perda leve</td><td>Convite aberto</td></tr>
+      </table></div>
+      <div class="msg"><span class="msg-label">Break-off</span>Tenho tentado contato, imagino que esteja na correria. Ainda é uma prioridade isso para você? Quando quiser retomar, estaremos à disposição.</div>
+      <div class="alerta">Depois do break-off vem o Lost com o motivo "Tentativas de contato esgotadas". O e-mail com o portfólio entra antes dessa mensagem final. Essa cadência é de Prospecção; depois que o lead responde, em Conexão, vale a regra de mais de 3 dias entre atividades, no máximo 2 por semana, e 1 follow-up por semana para quem já respondeu.</div>
+    </div>
+  </div>
+  <div class="card" id="t26">
+    <div class="card-head"><span class="card-num">04</span><h3>Na ligação</h3></div>
+    <div class="card-body">
+      <div class="etapas">
+        <div class="etapa"><span class="etapa-label">1</span><div><strong>Antes.</strong> Pesquise quem decide e revise a ficha. Defina o avanço que você quer, e não só "criar relacionamento".</div></div>
+        <div class="etapa"><span class="etapa-label">2</span><div><strong>Abertura sem peso.</strong> "Quero entender melhor como vocês trabalham e falar um pouco da Otus. Se você achar que faz sentido, marcamos uma reunião. Senão, deixamos para outro momento." Peça 5 minutos.</div></div>
+        <div class="etapa"><span class="etapa-label">3</span><div><strong>S curto, depois P, I e N.</strong> Pergunte, fique em silêncio e ouça. Não complete a frase do lead e não pule etapas.</div></div>
+        <div class="etapa"><span class="etapa-label">4</span><div><strong>Sempre pergunte como a compatibilização é feita hoje.</strong> É a porta de entrada para as perguntas de implicação.</div></div>
+        <div class="etapa"><span class="etapa-label">5</span><div><strong>Feche com data.</strong> Se o lead disser "semana que vem", pergunte o dia. Se disser "mês que vem", pergunte se é início, meio ou fim.</div></div>
+        <div class="etapa"><span class="etapa-label">6</span><div><strong>Registre no Pipe.</strong> Para ir a Qualificado, é preciso champion confirmado e até 2 dores da lista fixa.</div></div>
+      </div>
+      <div class="alerta"><strong>Régua de Rackham:</strong> avanço é uma ação concreta do lead, como aceitar a conversa com o especialista em um dia marcado. Elogio, como "gostei, depois a gente fala", é só continuação e, nos estudos dele, contava como visita sem sucesso.</div>
+    </div>
+  </div>
+
+  <h2 class="sec">Checklists</h2>
+
+  <div class="card" id="t27">
+    <div class="card-head"><span class="card-num">01</span><h3>Antes de enviar uma mensagem</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Sei quem é a pessoa, o cargo e se ela decide ou influencia.</li>
+        <li>A mensagem parece escrita para este lead: nome do projeto, motivo do contato.</li>
+        <li>Tem um assunto e uma pergunta, ligada a um fato específico dele.</li>
+        <li>Não há oferta, valor, proposta nem travessão.</li>
+        <li>Todo case, dado ou cliente citado eu consigo enviar em documento.</li>
+        <li>Se usei escassez, ela é verdadeira.</li>
+        <li>Não finjo que já falei com o lead se o histórico é de outro colega.</li>
+        <li>Se o lead responde curto, a pergunta pede mais que sim ou não.</li>
+        <li>Deixei a próxima atividade no Pipe, com data.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="t28">
+    <div class="card-head"><span class="card-num">02</span><h3>Antes de ligar</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Pesquisei quem decide, no LinkedIn e no site.</li>
+        <li>Revisei a ficha e o histórico da conta.</li>
+        <li>Defini o avanço que quero, por exemplo a conversa com o especialista em data marcada.</li>
+        <li>Tenho a primeira pergunta de situação feita por pesquisa e uma pergunta de implicação preparada.</li>
+        <li>Vou fazer a pergunta e ficar em silêncio.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="t29">
+    <div class="card-head"><span class="card-num">03</span><h3>Depois da ligação: autoavaliação</h3></div>
+    <div class="card-body">
+      <div class="tabela-wrap"><table class="tabela">
+        <tr><th>Pergunta</th><th>O que observar</th></tr>
+        <tr><td><strong>Quantas perguntas fiz de cada letra?</strong></td><td>Se faltou o I, a conversa tende a ficar sem urgência.</td></tr>
+        <tr><td><strong>Quanto falei?</strong></td><td>Referência da Gong para conversas de descoberta: em torno de 43% falando e 57% ouvindo.</td></tr>
+        <tr><td><strong>Completei alguma frase do lead?</strong></td><td>Se sim, anote para evitar da próxima vez.</td></tr>
+        <tr><td><strong>O lead disse o que quer ou só que tem um problema?</strong></td><td>Necessidade explícita é o sinal que importa.</td></tr>
+        <tr><td><strong>Saí com avanço ou com continuação?</strong></td><td>Avanço é ação concreta, como data marcada com o especialista.</td></tr>
+        <tr><td><strong>Que gatilho usei, e ele foi verdadeiro?</strong></td><td>Se não conseguiria provar, retire na próxima.</td></tr>
+        <tr><td><strong>Qual é a próxima ação no Pipe?</strong></td><td>Sempre com data.</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <h2 class="sec">Prática e Estudo</h2>
+
+  <div class="card" id="t30">
+    <div class="card-head"><span class="card-num">01</span><h3>Exercícios práticos</h3></div>
+    <div class="card-body">
+      <ul>
+        <li>Revisar uma ligação marcando a letra de cada pergunta (S, P, I ou N) e se faltou o I.</li>
+        <li>Montar uma lista de perguntas por letra, por perfil de lead: empresa grande, empresa pequena, dono, coordenador.</li>
+        <li>Escrever uma mensagem para cada gatilho, aplicada a leads reais da carteira, e conferir a regra ética antes de enviar.</li>
+        <li>Para cada conta em pausa no nicho, registrar o motivo do Lost, o gatilho que reabre a conta e a trilha de ações.</li>
+        <li>Manter ao menos um contato a cada 1 a 2 meses com as contas em pausa.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="t31">
+    <div class="card-head"><span class="card-num">02</span><h3>Leituras e materiais</h3></div>
+    <div class="card-body">
+      <ul>
+        <li><strong>SPIN Selling</strong>, de Neil Rackham. Os capítulos 1 a 4 são o essencial.</li>
+        <li><strong>As Armas da Persuasão</strong>, de Robert Cialdini, e <strong>Rápido e Devagar</strong>, de Daniel Kahneman, para a base dos gatilhos.</li>
+        <li><strong>Nudge</strong>, de Richard Thaler e Cass Sunstein, para a ideia de empurrão na escolha.</li>
+        <li>Curso de Fundamentos do Copywriting da RD University, que cobre gatilhos mentais, e o curso gratuito de Marketing Digital.</li>
+        <li>Materiais de discovery da Gong sobre número de perguntas e proporção entre falar e ouvir.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="t32">
+    <div class="card-head"><span class="card-num">03</span><h3>Fontes</h3></div>
+    <div class="card-body">
+      <ul>
+        <li><a href="https://www.rdstation.com/blog/vendas/spin-selling/" target="_blank" rel="noopener">RD Station: O que é SPIN Selling e como aplicar</a></li>
+        <li><a href="https://www.rdstation.com/blog/marketing/gatilhos-mentais/" target="_blank" rel="noopener">RD Station: Gatilhos mentais, 25 tipos e exemplos</a></li>
+        <li><a href="https://www.rdstation.com/blog/marketing/account-based-marketing/" target="_blank" rel="noopener">RD Station: Guia completo de Account-Based Marketing</a></li>
+        <li><a href="https://www.salesforce.com/br/marketing/account-based-marketing-guide/" target="_blank" rel="noopener">Salesforce: ABM, o que é account based marketing</a></li>
+        <li><a href="https://exactsales.com.br/gatilhos-mentais/" target="_blank" rel="noopener">Exact Sales: Gatilhos mentais para vendas</a></li>
+        <li><a href="https://br.hubspot.com/blog/sales/gatilhos-mentais" target="_blank" rel="noopener">HubSpot: Gatilhos mentais para vendas</a></li>
+        <li><a href="https://www.agendor.com.br/blog/gatilhos-de-vendas/" target="_blank" rel="noopener">Agendor: 7 gatilhos mentais para vendas</a></li>
+        <li><a href="https://growth.cortex-intelligence.com/geracao-de-leads-b2b-qualificados" target="_blank" rel="noopener">Cortex Intelligence: Geração de leads B2B</a></li>
+        <li><a href="https://crcgo.org.br/wp-content/uploads/2022/12/Spin-Selling-Alcancando-Excelencia-Em-Vendas-2.pdf" target="_blank" rel="noopener">Neil Rackham, Alcançando Excelência em Vendas: SPIN Selling (PDF)</a></li>
+        <li><a href="https://www.gong.io/blog/nailing-your-sales-discovery-calls" target="_blank" rel="noopener">Gong: Nailing your sales discovery calls</a></li>
+        <li><a href="https://gong.io/blog/talk-to-listen-conversion-ratio" target="_blank" rel="noopener">Gong: Mastering the talk-to-listen ratio</a></li>
+        <li><a href="https://komo.ai/glossary/one-to-one-abm" target="_blank" rel="noopener">Komo: One-to-one ABM</a></li>
+        <li><a href="https://www.madisonlogic.com/blog/uncovering-the-three-types-of-abm-and-why-they-matter/" target="_blank" rel="noopener">Madison Logic: Three types of ABM</a></li>
+        <li><a href="https://www.fullenrich.com/content/account-based-sales-development" target="_blank" rel="noopener">FullEnrich: Account-based sales development</a></li>
+        <li><a href="https://abmatic.ai/blog/abm-playbook-for-sdr-teams" target="_blank" rel="noopener">Abmatic: ABM playbook for SDR teams</a></li>
+        <li><a href="https://amplemarket.com/blog/how-to-use-loss-aversion-psychology-and-fomo-to-close-more-b2b-deals" target="_blank" rel="noopener">Amplemarket: Loss aversion e FOMO em vendas B2B</a></li>
+        <li><a href="https://www.mapsleads.co/blog/spin-selling-modern-version" target="_blank" rel="noopener">MapsLeads: SPIN selling em versão moderna</a></li>
+        <li><a href="https://conversionxl.com/cialdini-unity/" target="_blank" rel="noopener">CXL: O princípio da unidade de Cialdini</a></li>
+      </ul>
+      <div class="alerta">Os números da Gong vêm de conversas de descoberta de vendedores, não de abordagem de SDR: use como régua, não como meta. Os dados da Otus (Report 2026, mais de 800 verificações, mais de 250 empreendimentos, clientes e cases) devem ser conferidos na central antes de usar com um lead.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>Otus Engenharia</strong> &nbsp;|&nbsp; Técnicas de Venda
+</footer>
+
+<a href="#top" id="scroll-top-btn" title="Voltar ao topo">&#8679;</a>
+<script src="otus-shared.js"></script>
+</body>
+</html>
